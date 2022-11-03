@@ -9,5 +9,8 @@
 </head>
 <body>
 <h1>환영합니다 맛있는 감미!</h1>
+<div>
+<a href ="chatting.do">얍</a>
+</div>
 </body>
 </html>
