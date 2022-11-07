@@ -2396,111 +2396,15 @@ ol {
 	padding-top: 20px;
 }
 
-.footer__instagram {
-	padding-left: 15px;
-	padding-right: 15px;
-	position: relative;
-}
 
-.footer__instagram__item {
-	height: 305px;
-	margin-right: -10px !important;
-	margin-left: -10px !important;
-	margin-bottom: 10px;
-}
-
-.footer__instagram__avatar {
-	display: inline-block;
-	padding: 20px 30px;
-	background: #ffffff;
-	position: absolute;
-	height: 90px;
-	width: 240px;
-	left: 50%;
-	top: 50%;
-	-webkit-transform: translate(-120px, -50px);
-	-ms-transform: translate(-120px, -50px);
-	transform: translate(-120px, -50px);
-	z-index: 1;
-}
-
-.footer__instagram__avatar .footer__instagram__avatar--pic {
-	float: left;
-	margin-right: 15px;
-}
-
-.footer__instagram__avatar .footer__instagram__avatar--pic img {
-	height: 50px;
-	width: 50px;
-	border-radius: 50%;
-}
-
-.footer__instagram__avatar .footer__instagram__avatar--text {
-	overflow: hidden;
-}
-
-.footer__instagram__avatar .footer__instagram__avatar--text h5 {
-	font-size: 20px;
-	color: #111111;
-	font-weight: 700;
-	margin-bottom: 5px;
-}
-
-.footer__instagram__avatar .footer__instagram__avatar--text span {
-	font-size: 14px;
-	color: #888888;
-}
 
 .footer__text {
 	padding: 50px 0;
 	text-align: center;
+	font-family: 'Noto Sans KR', sans-serif;
+    font-size: 20px;
 }
 
-.footer__text .footer__logo {
-	margin-bottom: 10px;
-}
-
-.footer__text .footer__logo a {
-	display: inline-block;
-}
-
-.footer__text p {
-	font-size: 15px;
-	margin-bottom: 30px;
-}
-
-.footer__text .footer__social a {
-	display: inline-block;
-	font-size: 16px;
-	color: #111111;
-	height: 46px;
-	width: 46px;
-	background: #e7e7e7;
-	border-radius: 50%;
-	line-height: 46px;
-	text-align: center;
-	-webkit-transition: all, 0.3s;
-	-o-transition: all, 0.3s;
-	transition: all, 0.3s;
-	margin-right: 6px;
-}
-
-.footer__text .footer__social a:last-child {
-	margin-right: 0;
-}
-
-.footer__text .footer__social a:hover {
-	background: #f4952f;
-	color: #ffffff;
-}
-
-.footer__copyright {
-	font-size: 15px;
-	color: #444444;
-	border-top: 1px solid #e1e1e1;
-	text-align: center;
-	padding: 30px 0 25px;
-}
 
 /*---------------------
     About Section

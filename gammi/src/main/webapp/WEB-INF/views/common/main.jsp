@@ -3,8 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 <!DOCTYPE html>
 <html lang="ko">
-
-
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&family=Noto+Sans+KR:wght@500;700&display=swap" rel="stylesheet">
 <body>
 <c:import url="/WEB-INF/views/common/menubar.jsp" />
 
@@ -31,29 +30,16 @@
                                 </div>
                             </div>
                             <div class="categories__post__item__text">
-                                <ul class="post__label--large">
-                                    <li>Vegan</li>
-                                    <li>Desserts</li>
-                                </ul>
-                                <h3><a href="#">The Absolute Best Way to Cook Steak Perfectly, According to Wayyy Too
-                                        Many Tests</a></h3>
+                             <span class="post__label">Recipe</span>
+                                <h3><a href="#" style="font-family: 'Noto Sans KR', sans-serif;">제목~</a></h3>
                                 <ul class="post__widget">
-                                    <li>by <span>Admin</span></li>
-                                    <li>3 min read</li>
-                                    <li>20 Comment</li>
+                                    <li>by <span>작성자</span></li>
                                 </ul>
-                                <p>Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                                    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                                    ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-                                    reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur
-                                    excepteur sint ...</p>
-                                <a href="#" class="primary-btn">Read more</a>
-                                <div class="post__social">
-                                    <span>Share</span>
-                                    <a href="#"><i class="fa fa-facebook"></i> <span>82</span></a>
-                                    <a href="#"><i class="fa fa-twitter"></i> <span>24</span></a>
-                                    <a href="#"><i class="fa fa-envelope-o"></i> <span>08</span></a>
-                                </div>
+                                <p>
+                                하여도 것은 없는 힘차게 오직 것이다.보라, 있다. 청춘의 싶이 생생하며, 
+                                그것을 있으랴? 얼마나 위하여 그들의 작고 끝에 옷을 모래뿐일 끓는다. 때에, 
+                                황금시대의 없으면 이상, 예가 힘있다. 뭇 사람은 할지니, 가는 군영과 때에, 공자는 인생에 열락의 약동하다. 같은 현저하게 능히 무엇을 사막이다. 작고 풀밭에 얼음 청춘에서
+                               </p>
                             </div>
                         </div>
                         <div class="row">
@@ -67,15 +53,13 @@
                                     </div>
                                     <div class="categories__post__item__text">
                                         <span class="post__label">Recipe</span>
-                                        <h3><a href="#">The Best Weeknight Baked Potatoes, 3 Creative Ways</a></h3>
+                                        <h3><a href="#" style="font-family: 'Noto Sans KR', sans-serif;">제목~</a></h3>
                                         <ul class="post__widget">
-                                            <li>by <span>Admin</span></li>
-                                            <li>3 min read</li>
-                                            <li>20 Comment</li>
+                                            <li>by <span>작성자</span></li>
                                         </ul>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                            tempor incididunt dolore magna aliqua. Quis ipsum suspendisse ultrices
-                                            gravida...</p>
+                                        <p>하여도 것은 없는 힘차게 오직 것이다.보라, 있다. 청춘의 싶이 생생하며, 
+		                                그것을 있으랴? 얼마나 위하여 그들의 작고 끝에 옷을 모래뿐일 끓는다. 때에, 
+		                                황금시대의 없으면 이상, 예가 힘있다. 뭇 사람은 할지니, 가는 군영과 때에, 공자는 인생에 열락의 약동하다. 같은 현저하게 능히 무엇을 사막이다. 작고 풀밭에 얼음 청춘에서.</p>
                                     </div>
                                 </div>
                                 <div class="categories__post__item">
@@ -88,18 +72,16 @@
                                     </div>
                                     <div class="categories__post__item__text">
                                         <ul class="post__label--large">
-                                            <li>Vegan</li>
-                                            <li>Desserts</li>
+                                               <span class="post__label">Recipe</span>
                                         </ul>
-                                        <h3><a href="#">The Best Grass Stain Remover Is Already In Your Pantry</a></h3>
+                                        <h3><a href="#" style="font-family: 'Noto Sans KR', sans-serif;">제목~</a></h3>
                                         <ul class="post__widget">
-                                            <li>by <span>Admin</span></li>
-                                            <li>3 min read</li>
-                                            <li>20 Comment</li>
+                                            <li>by <span>작성자</span></li>
+   
                                         </ul>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                            tempor incididunt dolore magna aliqua. Quis ipsum suspendisse ultrices
-                                            gravida...</p>
+                                   		<p>하여도 것은 없는 힘차게 오직 것이다.보라, 있다. 청춘의 싶이 생생하며, 
+		                                그것을 있으랴? 얼마나 위하여 그들의 작고 끝에 옷을 모래뿐일 끓는다. 때에, 
+		                                황금시대의 없으면 이상, 예가 힘있다. 뭇 사람은 할지니, 가는 군영과 때에, 공자는 인생에 열락의 약동하다. 같은 현저하게 능히 무엇을 사막이다. 작고 풀밭에 얼음 청춘에서.</p>
                                     </div>
                                 </div>
                       
@@ -111,17 +93,15 @@
                                         </div>
                                     </div>
                                     <div class="categories__post__item__text">
-                                        <span class="post__label">Smoothie</span>
-                                        <h3><a href="#">This 2-Ingredient Spread Makes Any Egg Sandwich So Much
-                                                Better</a></h3>
+                                           <span class="post__label">Recipe</span>
+                                        <h3><a href="#" style="font-family: 'Noto Sans KR', sans-serif;">제목~</a></h3>
                                         <ul class="post__widget">
-                                            <li>by <span>Admin</span></li>
-                                            <li>3 min read</li>
-                                            <li>20 Comment</li>
+                                            <li>by <span>작성자</span></li>
+                       
                                         </ul>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                            tempor incididunt dolore magna aliqua. Quis ipsum suspendisse ultrices
-                                            gravida...</p>
+                                        <p>하여도 것은 없는 힘차게 오직 것이다.보라, 있다. 청춘의 싶이 생생하며, 
+		                                그것을 있으랴? 얼마나 위하여 그들의 작고 끝에 옷을 모래뿐일 끓는다. 때에, 
+		                                황금시대의 없으면 이상, 예가 힘있다. 뭇 사람은 할지니, 가는 군영과 때에, 공자는 인생에 열락의 약동하다. 같은 현저하게 능히 무엇을 사막이다. 작고 풀밭에 얼음 청춘에서.</p>
                                     </div>
                                 </div>
                             </div>
@@ -135,24 +115,23 @@
                                         </div>
                                     </div>
                                     <div class="categories__post__item__text">
-                                        <span class="post__label">Dinner</span>
-                                        <h3><a href="#">17 Perfect Gifts for Your Vegan Friend Because Sometimes...</a>
+                                        <span class="post__label">RECIPE</span>
+                                        <h3><a href="#" style="font-family: 'Noto Sans KR', sans-serif;">제목~</a>
                                         </h3>
                                         <ul class="post__widget">
-                                            <li>by <span>Admin</span></li>
-                                            <li>3 min read</li>
-                                            <li>20 Comment</li>
+                                            <li>by <span>작성자</span></li>
+
                                         </ul>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                            tempor incididunt dolore magna aliqua. Quis ipsum suspendisse ultrices
-                                            gravida...</p>
+                                  		<p>하여도 것은 없는 힘차게 오직 것이다.보라, 있다. 청춘의 싶이 생생하며, 
+		                                그것을 있으랴? 얼마나 위하여 그들의 작고 끝에 옷을 모래뿐일 끓는다. 때에, 
+		                                황금시대의 없으면 이상, 예가 힘있다. 뭇 사람은 할지니, 가는 군영과 때에, 공자는 인생에 열락의 약동하다. </p>
                                     </div>
                                 </div>
                                 <div class="categories__post__item__small">
                                     
-                                    <p>Lorem ipsum dolor amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                        incididunt labore et dolore magna aliqua gravida.</p>
-                                    <div class="posted__by">Elena T.Jaivy</div>
+                                    <p>Part of the secret of success in life is to eat what you like and let the food fight it out inside.
+                                    인생에서 성공하는 비결 중 하나는 좋아하는 음식을 먹고 힘내 싸우는 것이다.</p>
+                                    <div class="posted__by">Mark Twain</div>
                                 </div>
                                 <div class="categories__post__item">
                                     <div class="categories__post__item__pic smaller__large set-bg"
@@ -162,16 +141,16 @@
                                         </div>
                                     </div>
                                     <div class="categories__post__item__text">
-                                        <span class="post__label">Drinks</span>
-                                        <h3><a href="#">A 5-Minute Peach Mug Cobbler That Just So Happens to...</a></h3>
+                                        <span class="post__label">RECIPE</span>
+                                        <h3><a href="#" style="font-family: 'Noto Sans KR', sans-serif;">제목~</a></h3>
                                         <ul class="post__widget">
-                                            <li>by <span>Admin</span></li>
+                                            <li>by <span>작성자</span></li>
                                             <li>3 min read</li>
                                             <li>20 Comment</li>
                                         </ul>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                            tempor incididunt dolore magna aliqua. Quis ipsum suspendisse ultrices
-                                            gravida...</p>
+                                        <p>하여도 것은 없는 힘차게 오직 것이다.보라, 있다. 청춘의 싶이 생생하며, 
+		                                그것을 있으랴? 얼마나 위하여 그들의 작고 끝에 옷을 모래뿐일 끓는다. 때에, 
+		                                황금시대의 없으면 이상, 예가 힘있다. 뭇 사람은 할지니, 가는 군영과 때에, 공자는 인생에 열락의 약동하다. </p>
                                     </div>
                                 </div>
                                 <div class="categories__post__item">
@@ -183,18 +162,15 @@
                                     </div>
                                     <div class="categories__post__item__text">
                                         <ul class="post__label--large">
-                                            <li>Vegan</li>
-                                            <li>Desserts</li>
+                                            <li>RECIPE</li>
                                         </ul>
-                                        <h3><a href="#">Fresh Herb Polenta with Parsnip Chips and Maple Butter</a></h3>
+                                        <h3><a href="#" style="font-family: 'Noto Sans KR', sans-serif;">제목~</a></h3>
                                         <ul class="post__widget">
-                                            <li>by <span>Admin</span></li>
-                                            <li>3 min read</li>
-                                            <li>20 Comment</li>
+                                            <li>by <span>작성자</span></li>
                                         </ul>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                            tempor incididunt dolore magna aliqua. Quis ipsum suspendisse ultrices
-                                            gravida...</p>
+                                          <p>하여도 것은 없는 힘차게 오직 것이다.보라, 있다. 청춘의 싶이 생생하며, 
+		                                그것을 있으랴? 얼마나 위하여 그들의 작고 끝에 옷을 모래뿐일 끓는다. 때에, 
+		                                황금시대의 없으면 이상, 예가 힘있다. 뭇 사람은 할지니, 가는 군영과 때에, 공자는 인생에 열락의 약동하다. </p>
                                     </div>
                                 </div>
                             </div>
