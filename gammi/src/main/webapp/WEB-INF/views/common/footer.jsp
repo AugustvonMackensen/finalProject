@@ -17,10 +17,7 @@
                 <div class="col-lg-12">
                     <div class="footer__text">
    
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                            ut<br /> labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus
-                            commodo viverra<br /> maecenas accumsan lacus vel facilisis. </p>
-
+                  <b>Copyright 2022.Team ANDAMIRO all rights reserved<br> Gammi Final Project</b>
                     </div>
                 </div>
             </div>
