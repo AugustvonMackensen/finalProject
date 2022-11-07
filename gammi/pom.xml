@@ -252,7 +252,23 @@
 		    <version>3.8.1</version>
 		</dependency>
 
-	
+		<!-- 통신을 위한 web soket -->
+		<dependency>
+           <groupId>org.springframework</groupId>
+           <artifactId>spring-websocket</artifactId>
+           <version>${org.springframework-version}</version>
+		</dependency>
+		
+		<!-- 스프링 메시지 -->
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-messaging -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-messaging</artifactId>
+		    <version>${org.springframework-version}</version>
+		</dependency>
+		
+
+		
 		<!-- Test -->
 		<dependency>
 			<groupId>junit</groupId>
