@@ -20,7 +20,8 @@ var map = new kakao.maps.Map(mapContainer, mapOption);
 </script>
 </head>
 <body>
-<div id="food_map">
+검색 결과 예시창
+<div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
 </div>
 </body>
 </html>

@@ -43,6 +43,15 @@
     	const popup = document.querySelector('#popup');
       popup.classList.add('hide');
     }
+    
+    function imgSearch(){
+    	
+    	location.href="imgSearch.do";
+    }
+    
+    function keywordSearch(){
+    	location.href="result.do";
+    }
     </script>
 </head>
 </head>
@@ -76,13 +85,10 @@
                         <br><br>
                         <a href="./index.html"><h1  style="font-family: 'CookieRun'; font-size : 50px; color: white; letter-spacing:5px;">음식이 맛있다!<br>감미</h1></a><br><br><br>
                         <div class="search-box">
-                            <form action="." method="post">
-                              <input class="search-txt" type="text" placeholder="음식을 입력해주세요.">
-                                <button type="button" class="btm_image" id="img_btn"><img class="btn_image2"  src="resources/img/camera4.png"></button>
-
-                                <button type="button2" class="btm_image2" id="img_btn2"><img class="btn_image3"  src="resources/img/picture.png"></button>
-                              <input  class="search-button" type="button" value="검색">
-                            </form>
+                            <input class="search-txt" type="text" placeholder="음식을 입력해주세요.">
+                              <button type="button" class="btm_image" id="img_btn"><img class="btn_image2"  src="resources/img/camera4.png"></button>
+                              <button type="button2" class="btm_image2" id="img_btn2" onclick="imgSearch();"><img class="btn_image3"  src="resources/img/picture.png"></button>
+                            <input  class="search-button" type="button" value="검색" onclick="keywordSearch();">
                           </div>
                     </div>
                 </div>
