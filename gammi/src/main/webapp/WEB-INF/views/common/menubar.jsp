@@ -11,7 +11,7 @@
     <meta name="keywords" content="Foodeiblog, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Foodeiblog | Template</title>
+    <title></title>
 
     <!-- Google Font -->
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500;700&display=swap" rel="stylesheet">
@@ -43,6 +43,15 @@
     	const popup = document.querySelector('#popup');
       popup.classList.add('hide');
     }
+    
+    function imgSearch(){
+    	
+    	location.href="imgSearch.do";
+    }
+    
+    function keywordSearch(){
+    	location.href="result.do";
+    }
     </script>
 </head>
 </head>
@@ -56,10 +65,10 @@
 
                         <nav class="header__menu">
                             <ul>
-                                <li ><a style="font-family: 'Noto Sans KR', sans-serif;" href="./index.html">홈</a></li>
+                                <li ><a style="font-family: 'Noto Sans KR', sans-serif;" href="main.do">홈</a></li>
                                 <li><a style="font-family: 'Noto Sans KR', sans-serif;" href="#">공지사항</a></li>
                                 <li><a style="font-family: 'Noto Sans KR', sans-serif;" href="#">자유게시판</a></li>
-								<li><a style="font-family: 'Noto Sans KR', sans-serif;" href="#">소모임</a></li>
+								<li><a style="font-family: 'Noto Sans KR', sans-serif;" href="group.do">소모임</a></li>
 								<li><a style="font-family: 'Noto Sans KR', sans-serif;" href="#">레시피</a></li>
 								<li><a style="font-family: 'Noto Sans KR', sans-serif;" href="#">한식관련뉴스</a></li>
 								<li><a style="font-family: 'Noto Sans KR', sans-serif;" href="./signin.html">회원가입</a></li>
@@ -71,21 +80,18 @@
                 </div>
             </div>
         </div>
-                <div>
+                <!-- <div>
                     <div class="header__logo">
                         <br><br>
                         <a href="./index.html"><h1  style="font-family: 'CookieRun'; font-size : 50px; color: white; letter-spacing:5px;">음식이 맛있다!<br>감미</h1></a><br><br><br>
                         <div class="search-box">
-                            <form action="." method="post">
-                              <input class="search-txt" type="text" placeholder="음식을 입력해주세요.">
-                                <button type="button" class="btm_image" id="img_btn"><img class="btn_image2"  src="resources/img/camera4.png"></button>
-
-                                <button type="button2" class="btm_image2" id="img_btn2"><img class="btn_image3"  src="resources/img/picture.png"></button>
-                              <input  class="search-button" type="button" value="검색">
-                            </form>
+                            <input class="search-txt" type="text" placeholder="음식을 입력해주세요.">
+                              <button type="button" class="btm_image" id="img_btn"><img class="btn_image2"  src="resources/img/camera4.png"></button>
+                              <button type="button2" class="btm_image2" id="img_btn2" onclick="imgSearch();"><img class="btn_image3"  src="resources/img/picture.png"></button>
+                            <input  class="search-button" type="button" value="검색" onclick="keywordSearch();">
                           </div>
                     </div>
-                </div>
+                </div> -->
     <script src="resources/js/jquery-3.3.1.min.js"></script>
     <script src="resources/js/bootstrap.min.js"></script>
     <script src="resources/js/jquery.slicknav.js"></script>
