@@ -1,0 +1,32 @@
+.wrap{
+    margin-left: 25%;
+    display:inline-block;
+    vertical-align:top;
+
+    word-break:break-all;
+    word-wrap:break-word;
+}
+.imgbox{
+    width: 100px;
+    height: 100px;
+    background-color: gray;
+}
+
+.content {
+    display:inline-block;
+    margin-top: 23px;
+}
+.bgc{
+    background-color: bisque;
+}
+
+.imgbtn {
+    width: 56px;
+    border: none;
+}
+.img2{
+    width: 100px;
+}
+.nameleader{
+    margin-left: 10px;
+}
