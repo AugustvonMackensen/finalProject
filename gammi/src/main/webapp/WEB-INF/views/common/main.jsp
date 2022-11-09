@@ -33,10 +33,12 @@
                              <span class="post__label">Recipe</span>
                                 <h3><a href="#" style="font-family: 'Noto Sans KR', sans-serif;">제목~</a></h3>
                                 <ul class="post__widget">
-                                    <li>by <span>작성자</span></li>
+                                            <li>조회수 : </li>
+                                            <li>작성날짜 : </li>
                                 </ul>
                                 <p>
-                                하여도 것은 없는 힘차게 오직 것이다.보라, 있다. 청춘의 싶이 생생하며, 
+                                하여도 것은 없는 힘차게 오직 것이다.보라, 있다. 청춘의 싶이 생생하며, 하여도 것은 없는 힘차게 오직 것이다.보라, 있다. 청춘의 싶이 생생하며, 
+                                그것을 있으랴? 얼마나 위하여 그들의 작고 끝에 옷을 모래뿐일 끓는다. 때에
                                 그것을 있으랴? 얼마나 위하여 그들의 작고 끝에 옷을 모래뿐일 끓는다. 때에, 
                                 황금시대의 없으면 이상, 예가 힘있다. 뭇 사람은 할지니, 가는 군영과 때에, 공자는 인생에 열락의 약동하다. 같은 현저하게 능히 무엇을 사막이다. 작고 풀밭에 얼음 청춘에서
                                </p>
@@ -55,7 +57,8 @@
                                         <span class="post__label">Recipe</span>
                                         <h3><a href="#" style="font-family: 'Noto Sans KR', sans-serif;">제목~</a></h3>
                                         <ul class="post__widget">
-                                            <li>by <span>작성자</span></li>
+                                          <li>조회수 : </li>
+                                            <li>작성날짜 : </li>
                                         </ul>
                                         <p>하여도 것은 없는 힘차게 오직 것이다.보라, 있다. 청춘의 싶이 생생하며, 
 		                                그것을 있으랴? 얼마나 위하여 그들의 작고 끝에 옷을 모래뿐일 끓는다. 때에, 
@@ -71,12 +74,11 @@
                                         </div>
                                     </div>
                                     <div class="categories__post__item__text">
-                                        <ul class="post__label--large">
-                                               <span class="post__label">Recipe</span>
-                                        </ul>
+                               <span class="post__label">Recipe</span>
                                         <h3><a href="#" style="font-family: 'Noto Sans KR', sans-serif;">제목~</a></h3>
                                         <ul class="post__widget">
-                                            <li>by <span>작성자</span></li>
+                                      	      <li>조회수 : </li>
+                                            <li>작성날짜 : </li>
    
                                         </ul>
                                    		<p>하여도 것은 없는 힘차게 오직 것이다.보라, 있다. 청춘의 싶이 생생하며, 
@@ -96,7 +98,8 @@
                                            <span class="post__label">Recipe</span>
                                         <h3><a href="#" style="font-family: 'Noto Sans KR', sans-serif;">제목~</a></h3>
                                         <ul class="post__widget">
-                                            <li>by <span>작성자</span></li>
+                                           <li>조회수 : </li>
+                                            <li>작성날짜 : </li>
                        
                                         </ul>
                                         <p>하여도 것은 없는 힘차게 오직 것이다.보라, 있다. 청춘의 싶이 생생하며, 
@@ -119,7 +122,8 @@
                                         <h3><a href="#" style="font-family: 'Noto Sans KR', sans-serif;">제목~</a>
                                         </h3>
                                         <ul class="post__widget">
-                                            <li>by <span>작성자</span></li>
+                                             <li>조회수 : </li>
+                                            <li>작성날짜 : </li>
 
                                         </ul>
                                   		<p>하여도 것은 없는 힘차게 오직 것이다.보라, 있다. 청춘의 싶이 생생하며, 
@@ -144,9 +148,8 @@
                                         <span class="post__label">RECIPE</span>
                                         <h3><a href="#" style="font-family: 'Noto Sans KR', sans-serif;">제목~</a></h3>
                                         <ul class="post__widget">
-                                            <li>by <span>작성자</span></li>
-                                            <li>3 min read</li>
-                                            <li>20 Comment</li>
+                                               <li>조회수 : </li>
+                                            <li>작성날짜 : </li>
                                         </ul>
                                         <p>하여도 것은 없는 힘차게 오직 것이다.보라, 있다. 청춘의 싶이 생생하며, 
 		                                그것을 있으랴? 얼마나 위하여 그들의 작고 끝에 옷을 모래뿐일 끓는다. 때에, 
@@ -161,12 +164,11 @@
                                         </div>
                                     </div>
                                     <div class="categories__post__item__text">
-                                        <ul class="post__label--large">
-                                            <li>RECIPE</li>
-                                        </ul>
+                                     <span class="post__label">Recipe</span>
                                         <h3><a href="#" style="font-family: 'Noto Sans KR', sans-serif;">제목~</a></h3>
                                         <ul class="post__widget">
-                                            <li>by <span>작성자</span></li>
+                                        <li>조회수 : </li>
+                                            <li>작성날짜 : </li>
                                         </ul>
                                           <p>하여도 것은 없는 힘차게 오직 것이다.보라, 있다. 청춘의 싶이 생생하며, 
 		                                그것을 있으랴? 얼마나 위하여 그들의 작고 끝에 옷을 모래뿐일 끓는다. 때에, 
@@ -310,6 +312,25 @@
             </div>
         </div>
     </section>
+
+    
+<a href="#doz_header" class="btn_gotop" id="click">
+ 	<img src="resources/img/upbtn.png">
+</a>
+  <script type="text/javascript">
+  $(window).scroll(function(){
+		if ($(this).scrollTop() > 300){
+			$('.btn_gotop').show();
+		} else{
+			$('.btn_gotop').hide();
+		}
+	});
+	$('.btn_gotop').click(function(){
+		$('html, body').animate({scrollTop:0},400);
+		return false;
+	});
+  </script>
+    
     <!-- Categories Section End -->
 <c:import url="/WEB-INF/views/common/footer.jsp" />
 
