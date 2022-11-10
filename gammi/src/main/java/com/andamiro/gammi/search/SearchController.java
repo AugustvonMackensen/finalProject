@@ -15,4 +15,9 @@ public class SearchController {
 	public String searchResult() {
 		return "food/searchView";
 	}
+	
+	@RequestMapping("camSearch.do")
+	public String camSearch() {
+		return "search/camView";
+	}
 }
