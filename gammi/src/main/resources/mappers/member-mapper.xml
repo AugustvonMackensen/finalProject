@@ -18,7 +18,7 @@
 		<result property="admin" column="admin"/>
 		<result property="login_ok" column="login_ok"/>
 	</resultMap>
-	
+	 
 	<!-- 회원가입시 아이디 중복 체크 처리용 -->
 	<select id="selectCheckId" parameterType="string" resultType="_int">
 		select count(m_id) from member

@@ -104,6 +104,7 @@ public class MemberController {
 			
 			//2. 서비스 모델로 전달하고 결과 받기
 			//Member loginMember = memberService.selectLogin(member);
+			//logger.info(loginMember.toString());
 			
 			//3. 로그인 성공 여부에 따라서 결과 처리
 			//암호화된 패스워드와 전달된 글자타입 패스워드를 비교함
@@ -114,7 +115,7 @@ public class MemberController {
 						member.getM_pw(), loginMember.getM_pw())
 					&& loginMember.getLogin_ok().equals("Y")) {  //로그인 성공
 				//로그인 상태 관리 방법 (상태 관리 매커니즘) : 기본 세션 사용
-				//logger.info("sessionID : " + loginSession.getId());
+				logger.info("sessionID : " + loginSession.getId());
 				
 				//필요할 경우 생성된 세션 객체 안에 정보를 저장할 수 있음
 				//맵 구조로 저장함 : 키(String), 값(Object)
@@ -122,7 +123,7 @@ public class MemberController {
 				status.setComplete();  //로그인 요청 성공, 200 전송함
 				
 				//로그인 성공시 내보낼 뷰파일명 지정
-				viewName = "common/main";
+				viewName =  "group/groupSearch";//"common/main";
 			}else {  //로그인 실패
 				model.addAttribute("message", 
 						"로그인 실패 : 아이디나 암호 확인하세요.<br>"

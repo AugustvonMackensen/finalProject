@@ -2,7 +2,7 @@ package com.andamiro.gammi.member.vo;
 
 import java.sql.Date;
 
-public class Member implements java.io.Serializable{
+public class Member implements java.io.Serializable{ 
 	
 	private static final long serialVersionUID = -6334101746276490233L;
 	public String m_id;

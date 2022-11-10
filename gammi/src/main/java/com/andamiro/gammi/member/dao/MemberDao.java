@@ -24,5 +24,5 @@ public class MemberDao {
 		return session.selectOne("memberMapper.selectMember", m_id);
 	}
 	
-	
+	 
 }

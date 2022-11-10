@@ -13,7 +13,7 @@ h1 {
 div {
 	width: 500px;
 	height: 200px;
-	border: 2px solid navy;
+	border: 2px solid navy; 
 	position: relative; /* 본래 표시될 위치기준 상대적 위치로 지정 */
 	left: 300px;
 }
