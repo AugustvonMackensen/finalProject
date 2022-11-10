@@ -66,8 +66,10 @@
                 <div class="row">
 
                     <div class="col-lg-8 col-md-10 order-md-2 order-3">
-
+                    <!-- 비로그인 상태  -->
                         <nav class="header__menu">
+                        <!-- 비로그인 상태  -->
+                        	<c:if test="${ empty sessionScope.loginMember }">
                             <ul>
                                 <li ><a style="font-family: 'Noto Sans KR', sans-serif;" href="main.do">홈</a></li>
                                 <li><a style="font-family: 'Noto Sans KR', sans-serif;" href="#">공지사항</a></li>
@@ -75,15 +77,49 @@
 								<li><a style="font-family: 'Noto Sans KR', sans-serif;" href="group.do">소모임</a></li>
 								<li><a style="font-family: 'Noto Sans KR', sans-serif;" href="#">레시피</a></li>
 								<li><a style="font-family: 'Noto Sans KR', sans-serif;" href="#">한식관련뉴스</a></li>
-								<li><a style="font-family: 'Noto Sans KR', sans-serif;" href="./signin.html">회원가입</a></li>
-								<li><a style="font-family: 'Noto Sans KR', sans-serif;" href="./signin.html">로그인</a></li>
+								<li><a style="font-family: 'Noto Sans KR', sans-serif;" href="${ pageContext.servletContext.contextPath }/enrollPage.do">회원가입</a></li>
+								<li><a style="font-family: 'Noto Sans KR', sans-serif;" href="${ pageContext.servletContext.contextPath }/loginPage.do">로그인</a></li>
                             </ul>
+                            </c:if>
+                            <!--로그인 일반회원  -->
+                            <c:if test="${ !empty sessionScope.loginMember and sessionScope.loginMember.admin ne 'Y' }">
+                            <ul>
+                                <li ><a style="font-family: 'Noto Sans KR', sans-serif;" href="main.do">홈</a></li>
+                                <li><a style="font-family: 'Noto Sans KR', sans-serif;" href="#">공지사항</a></li>
+                                <li><a style="font-family: 'Noto Sans KR', sans-serif;" href="#">자유게시판</a></li>
+								<li><a style="font-family: 'Noto Sans KR', sans-serif;" href="group.do">소모임</a></li>
+								<li><a style="font-family: 'Noto Sans KR', sans-serif;" href="#">레시피</a></li>
+								<li><a style="font-family: 'Noto Sans KR', sans-serif;" href="#">한식관련뉴스</a></li>
+								<li><a style="font-family: 'Noto Sans KR', sans-serif;" href="${ pageContext.servletContext.contextPath }/">내정보</a></li>
+								<li><a style="font-family: 'Noto Sans KR', sans-serif;" href="${ pageContext.servletContext.contextPath }/">로그아웃</a></li>
+                            </ul>
+                            </c:if>
+                            
+                            <!--관리자 로그인  -->
+                            <c:if test="${ !empty sessionScope.loginMember and sessionScope.loginMember.admin eq 'Y' }">
+                            <ul>
+                                <li ><a style="font-family: 'Noto Sans KR', sans-serif;" href="main.do">홈</a></li>
+                                <li><a style="font-family: 'Noto Sans KR', sans-serif;" href="#">공지사항</a></li>
+                                <li><a style="font-family: 'Noto Sans KR', sans-serif;" href="#">자유게시판</a></li>
+								<li><a style="font-family: 'Noto Sans KR', sans-serif;" href="group.do">소모임</a></li>
+								<li><a style="font-family: 'Noto Sans KR', sans-serif;" href="#">레시피</a></li>
+								<li><a style="font-family: 'Noto Sans KR', sans-serif;" href="#">한식관련뉴스</a></li>
+								<li><a style="font-family: 'Noto Sans KR', sans-serif;" href="${ pageContext.servletContext.contextPath }/">회원정보</a></li>
+								<li><a style="font-family: 'Noto Sans KR', sans-serif;" href="${ pageContext.servletContext.contextPath }/">로그아웃</a></li>
+                            </ul>
+                            </c:if>
                         </nav>
+                       
+                        
+                       
+                        
                     </div>
 
                 </div>
             </div>
         </div>
+        
+        
                 <!-- <div>
                     <div class="header__logo">
                         <br><br>

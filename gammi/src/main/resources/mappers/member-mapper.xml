@@ -8,21 +8,35 @@
 	각 컬럼값들을 vo 객체의 각 필드에 저장 처리하는 작업
 	: 결과 매핑
 	리스트나 맵에 여러 객체를 저장 처리도 포함됨 -->
-	<!-- <resultMap type="Member" id="resultList">
-		<result property="userid" column="userid" />
-		<result property="userpwd" column="userpwd" />
-		<result property="username" column="username" />
-		<result property="age" column="age" />
-		<result property="gender" column="gender" />
-		<result property="phone" column="phone" />
-		<result property="email" column="email" />
-		<result property="hobby" column="hobby" />
-		<result property="etc" column="etc" />
-		<result property="enroll_date" column="enroll_date" />
-		<result property="lastmodified" column="lastmodified" />
-		<result property="login_ok" column="login_ok" />
-		<result property="admin" column="admin" />
-	</resultMap> -->
+	
+	<resultMap type="Member" id="resultList">
+		<result property="m_id" column="m_id"/>
+		<result property="m_nickname" column="m_nickname"/>
+		<result property="m_pw" column="m_pw"/>
+		<result property="m_email" column="m_email"/>
+		<result property="m_birth" column="m_birth"/>
+		<result property="admin" column="admin"/>
+		<result property="login_ok" column="login_ok"/>
+	</resultMap>
+	 
+	<!-- 회원가입시 아이디 중복 체크 처리용 -->
+	<select id="selectCheckId" parameterType="string" resultType="_int">
+		select count(m_id) from member
+		where m_id = #{ m_id }
+	</select>
+	
+	<insert id="insertMember" parameterType="Member">
+		insert into member (m_id, m_nickname, m_pw, m_email, m_birth ,login_ok, admin)
+		values ( #{m_id}, #{m_nickname}, #{m_pw}, #{m_email}, #{ m_birth}, default, default)
+	</insert>
+	
+	<!-- 회원 아이디(userid)로 회원정보 조회 -->
+	<select id="selectMember" parameterType="string" resultType="Member">
+		select * from member
+		where m_id = #{ m_id }
+	</select>
+
+	
 
 </mapper>
 
