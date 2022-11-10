@@ -62,8 +62,8 @@
 								<li><a style="font-family: 'Noto Sans KR', sans-serif;" href="#">소모임</a></li>
 								<li><a style="font-family: 'Noto Sans KR', sans-serif;" href="#">레시피</a></li>
 								<li><a style="font-family: 'Noto Sans KR', sans-serif;" href="#">한식관련뉴스</a></li>
-								<li><a style="font-family: 'Noto Sans KR', sans-serif;" href="./signin.html">회원가입</a></li>
-								<li><a style="font-family: 'Noto Sans KR', sans-serif;" href="./signin.html">로그인</a></li>
+								<li><a style="font-family: 'Noto Sans KR', sans-serif;" href="${ pageContext.servletContext.contextPath }/enrollPage.do">회원가입</a></li>
+								<li><a style="font-family: 'Noto Sans KR', sans-serif;" href="${ pageContext.servletContext.contextPath }/loginPage.do">로그인</a></li>
                             </ul>
                         </nav>
                     </div>

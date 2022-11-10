@@ -9,10 +9,12 @@
 	</settings>
 
 	<typeAliases>		
-		<!-- <typeAlias type="com.test.first.member.model.vo.Member" alias="Member" /> -->
+		<typeAlias type="com.andamiro.gammi.group.vo.Group" alias="Group" />
+		<typeAlias type="com.andamiro.gammi.member.vo.Member" alias="Member" />
 	</typeAliases>
 	
 	<mappers>
-		<!-- <mapper resource="mappers/member-mapper.xml" /> -->
+		<mapper resource="mappers/group-mapper.xml" />
+		<mapper resource="mappers/member-mapper.xml" />
 	</mappers>
 </configuration>

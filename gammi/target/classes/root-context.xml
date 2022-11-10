@@ -7,20 +7,18 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 	
-	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- Root Context: defines shared resources visible to all other web components 
+	@gammidb_high?TNS_ADMIN=/Users/goseungjae/dbtools/Wallet_gammidb-->
 	<!-- DataSource 등록 -->	
 	<bean class="org.apache.commons.dbcp.BasicDataSource"
 		id="realDataSource" destroy-method="close">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
-		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
-		<property name="username" value="c##homework" />
-		<property name="password" value="homework" />
+		<property name="url" value="jdbc:oracle:thin:@gammidb_high?TNS_ADMIN=/Users/goseungjae/dbtools/Wallet_gammidb" />
+	     <property name="username" value="ADMIN" />
+	     <property name="password" value="Gammiproject!1" />
 	</bean>
 	
-	<!-- 전달값이 적용되어 실행되는 query 문과 resultSet 결과값을 
-		로그로 출력되게 하려면, dataSource 에 로그 연결 설정을 함
-	 -->
-	<!-- pom.xml 의 log4jdbc-remix 관련 dataSource 처리 -->
+	
 	<bean id="dataSource"
 		class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
 		<constructor-arg ref="realDataSource" />
