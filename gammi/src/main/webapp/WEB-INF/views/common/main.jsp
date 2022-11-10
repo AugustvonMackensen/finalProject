@@ -24,7 +24,7 @@
 			<br>
 			<div class="search-box">
 				<input class="search-txt" type="text" placeholder="음식을 입력해주세요.">
-				<button type="button" class="btm_image" id="img_btn">
+				<button type="button" class="btm_image" id="img_btn" onclick="camSearch();">
 					<img class="btn_image2" src="resources/img/camera4.png">
 				</button>
 				<button type="button2" class="btm_image2" id="img_btn2"

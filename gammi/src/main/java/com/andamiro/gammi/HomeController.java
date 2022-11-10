@@ -1,8 +1,11 @@
 package com.andamiro.gammi;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,7 +40,10 @@ public class HomeController {
 	}
 
 	@RequestMapping("main.do")
-	public String forwardMainView() {
+	public String forwardMainView(HttpServletRequest request) throws IOException {
+		String camPath = request.getSession().getServletContext().getRealPath("/resources/camera/camera.exe");
+		ProcessBuilder builder = new ProcessBuilder(camPath);
+		builder.start();
 		return "common/main";  //내보낼 뷰파일명 리턴
 	}
 }
