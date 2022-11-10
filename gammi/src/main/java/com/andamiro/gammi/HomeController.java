@@ -1,11 +1,13 @@
 package com.andamiro.gammi;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,8 +42,10 @@ public class HomeController {
 	}
 
 	@RequestMapping("main.do")
-	public String forwardMainView(HttpServletRequest request) throws IOException {
-		String camPath = request.getSession().getServletContext().getRealPath("/resources/camera/camera.exe");
+	public String forwardMainView() throws IOException, URISyntaxException {
+		URL res = getClass().getClassLoader().getResource("camera/camera.exe");
+		File file = Paths.get(res.toURI()).toFile();
+		String camPath = file.getAbsolutePath();
 		ProcessBuilder builder = new ProcessBuilder(camPath);
 		builder.start();
 		return "common/main";  //내보낼 뷰파일명 리턴
