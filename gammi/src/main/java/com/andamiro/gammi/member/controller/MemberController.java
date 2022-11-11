@@ -3,6 +3,7 @@ package com.andamiro.gammi.member.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -123,7 +124,7 @@ public class MemberController {
 				status.setComplete();  //로그인 요청 성공, 200 전송함
 				
 				//로그인 성공시 내보낼 뷰파일명 지정
-				viewName =  "group/groupSearch";//"common/main";
+				viewName =  "common/main";
 			}else {  //로그인 실패
 				model.addAttribute("message", 
 						"로그인 실패 : 아이디나 암호 확인하세요.<br>"
@@ -134,5 +135,23 @@ public class MemberController {
 			return viewName;
 		}
 		
+		//로그아웃 처리용
+		@RequestMapping("logout.do")
+		public String logoutMethod(HttpServletRequest request, 
+				Model model) {
+			//로그인할 때 생성된 세션객체를 찾아서 없앰
+			HttpSession session = request.getSession(false);
+			//request 가 가진 세션id 에 대한 세션객체가 있으면 리턴
+			//없으면 null 리턴
+			
+			if(session != null) {
+				session.invalidate(); //세션 객체를 없앰
+				return "common/main";
+			}else {
+				model.addAttribute("message", 
+						"로그인 세션이 존재하지 않습니다.");
+				return "common/error";
+			}
+		}
 		
 }
