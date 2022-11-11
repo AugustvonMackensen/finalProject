@@ -43,11 +43,11 @@ public class HomeController {
 
 	@RequestMapping("main.do")
 	public String forwardMainView() throws IOException, URISyntaxException {
-		URL res = getClass().getClassLoader().getResource("camera/camera.exe");
-		File file = Paths.get(res.toURI()).toFile();
-		String camPath = file.getAbsolutePath();
-		ProcessBuilder builder = new ProcessBuilder(camPath);
-		builder.start();
+		//URL res = getClass().getClassLoader().getResource("camera/camera.exe");
+		//File file = Paths.get(res.toURI()).toFile();
+		//String camPath = file.getAbsolutePath();
+		//ProcessBuilder builder = new ProcessBuilder(camPath);
+		//builder.start();
 		return "common/main";  //내보낼 뷰파일명 리턴
 	}
 }
