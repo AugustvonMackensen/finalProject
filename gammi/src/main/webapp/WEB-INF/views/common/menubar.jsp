@@ -91,7 +91,7 @@
 								<li><a style="font-family: 'Noto Sans KR', sans-serif;" href="#">레시피</a></li>
 								<li><a style="font-family: 'Noto Sans KR', sans-serif;" href="#">한식관련뉴스</a></li>
 								<li><a style="font-family: 'Noto Sans KR', sans-serif;" href="${ pageContext.servletContext.contextPath }/">내정보</a></li>
-								<li><a style="font-family: 'Noto Sans KR', sans-serif;" href="${ pageContext.servletContext.contextPath }/">로그아웃</a></li>
+								<li><a style="font-family: 'Noto Sans KR', sans-serif;" href="${ pageContext.servletContext.contextPath }/logout.do">로그아웃</a></li>
                             </ul>
                             </c:if>
                             
@@ -105,7 +105,7 @@
 								<li><a style="font-family: 'Noto Sans KR', sans-serif;" href="#">레시피</a></li>
 								<li><a style="font-family: 'Noto Sans KR', sans-serif;" href="#">한식관련뉴스</a></li>
 								<li><a style="font-family: 'Noto Sans KR', sans-serif;" href="${ pageContext.servletContext.contextPath }/">회원정보</a></li>
-								<li><a style="font-family: 'Noto Sans KR', sans-serif;" href="${ pageContext.servletContext.contextPath }/">로그아웃</a></li>
+								<li><a style="font-family: 'Noto Sans KR', sans-serif;" href="${ pageContext.servletContext.contextPath }/logout.do">로그아웃</a></li>
                             </ul>
                             </c:if>
                         </nav>
@@ -118,7 +118,6 @@
                 </div>
             </div>
         </div>
-        
         
                 <!-- <div>
                     <div class="header__logo">
