@@ -1,8 +1,12 @@
+.wrap2{
+width: 1130px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .wrap{
-    margin-left: 25%;
     display:inline-block;
     vertical-align:top;
-
     word-break:break-all;
     word-wrap:break-word;
 }
@@ -14,10 +18,10 @@
 
 .content {
     display:inline-block;
-    margin-top: 23px;
+   margin-top: 20px;
 }
 .bgc{
-    background-color: bisque;
+    background-color: #F7F8F9;
 }
 
 .imgbtn {
@@ -29,4 +33,70 @@
 }
 .nameleader{
     margin-left: 10px;
+    line-height : 11px;
+}
+.container2 {
+   width: 1700px;
+    display: flex;
+   flex-flow: row wrap;
+    justify-content: space-between;
+
+}
+.item{
+    flex: 1 1 40%;
+    list-style: none;
+    margin-top: 60px;
+}
+.writelistbtn{
+   display:flex;
+      justify-content: center;
+}
+
+.writelistbtn .rightbtn{
+    margin : 10px 10px 10px 10px;
+   font-size: 12px;
+   width: 5rem; 
+   border-radius: 10px;
+   height:3.2rem; 
+   background-color:#b5daff; 
+   color:black; 
+   border:3px solid #b5daff;
+   font-family: 'Noto Sans KR', sans-serif;
+}
+.writelistbtn .rightbtn2{
+   margin : 10px 10px 10px 10px;
+   font-size: 12px;
+   width: 5rem; 
+   border-radius: 10px;  
+   height:3.2rem; 
+   background-color: #444;
+   color:#fff;
+   border:1px solid #303030;
+   font-family: 'Noto Sans KR', sans-serif;
+}
+.writelistbtn .rightbtn3{
+   margin : 10px 10px 10px 10px;
+   font-size: 12px;
+   width: 5rem; 
+   border-radius: 10px;
+   height:3.2rem; 
+   background-color:#fff;
+   color:#7c7474;; 
+   border:1px solid #aaa;
+   font-family: 'Noto Sans KR', sans-serif;
+}
+
+
+.roomname{
+   font-weight: 600;
+   font-size:14px;
+}
+.roomabout{
+   font-size: 13px;
+    font-weight: 400;
+}
+.roomsize{
+   font-size: 12px;
+    font-weight: 400;
+    color: #999;
 }

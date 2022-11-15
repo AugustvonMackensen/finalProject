@@ -9,7 +9,7 @@
 	</settings>
 
 	<typeAliases>		
-		<typeAlias type="com.andamiro.gammi.group.vo.Group" alias="Group" />
+		<typeAlias type="com.andamiro.gammi.gammigroup.vo.GammiGroup" alias="GammiGroup" />
 		<typeAlias type="com.andamiro.gammi.member.vo.Member" alias="Member" />
 	</typeAliases>
 	
