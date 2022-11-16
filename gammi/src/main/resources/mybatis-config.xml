@@ -10,6 +10,7 @@
 
 	<typeAliases>		
 		<typeAlias type="com.andamiro.gammi.gammigroup.vo.GammiGroup" alias="GammiGroup" />
+		<typeAlias type="com.andamiro.gammi.gammigroup.vo.GroupMember" alias="GroupMember" />
 		<typeAlias type="com.andamiro.gammi.member.vo.Member" alias="Member" />
 		<typeAlias type="com.andamiro.gammi.recipe.vo.Recipe" alias="Recipe" />
 		<typeAlias type="com.andamiro.gammi.common.SearchDate" alias="SearchDate" />
