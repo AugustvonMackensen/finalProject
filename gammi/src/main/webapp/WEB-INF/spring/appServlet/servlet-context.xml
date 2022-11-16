@@ -57,6 +57,16 @@
 		<beans:property name="maxUploadSize" value="10000000" />
 	</beans:bean>
 	
+	<interceptors>
+		<!-- 로그인 상태에서 요청하는 서비스 체크용 인터셉터 -->
+		<interceptor>
+			<mapping path="/group.do" />
+			<beans:bean
+				class="com.andamiro.gammi.common.intercepter.LoginCheckIntercepter"
+				id="loginCheckIntercepter" />
+		</interceptor>
+	</interceptors>
+	
 </beans:beans>
 
 

@@ -4,22 +4,23 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="groupMapper">
 
-	<!-- <resultMap type="Member" id="resultList">
-		<result property="userid" column="userid" />
-		<result property="userpwd" column="userpwd" />
-		<result property="username" column="username" />
-		<result property="age" column="age" />
-		<result property="gender" column="gender" />
-		<result property="phone" column="phone" />
-		<result property="email" column="email" />
-		<result property="hobby" column="hobby" />
-		<result property="etc" column="etc" />
-		<result property="enroll_date" column="enroll_date" />
-		<result property="lastmodified" column="lastmodified" />
-		<result property="login_ok" column="login_ok" />
-		<result property="admin" column="admin" />
-	</resultMap> -->
-
+	<resultMap type="GammiGroup" id="resultList">
+		<result property="group_no" column="group_no" />
+		<result property="group_owner" column="group_owner" />
+		<result property="group_name" column="group_name" />
+		<result property="group_date" column="group_date" />
+		<result property="group_info" column="group_info" />
+		<result property="group_img" column="group_img" />
+	</resultMap>
+	
+	<select id = "selectAllList" resultType="GammiGroup">
+	select * from GAMMIGROUP
+	</select>
+	
+	<insert id="insertGroup" parameterType="GammiGroup">
+		insert into gammigroup
+		values ( default, #{group_owner}, #{group_name}, default, #{ group_info }, #{group_img})
+	</insert>
 	
 </mapper>
 
