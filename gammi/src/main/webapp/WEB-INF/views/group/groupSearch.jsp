@@ -84,7 +84,7 @@
 			<ul class="container2">
 			<c:forEach var="groups" items="${groups}" varStatus="groups_status"> 
 				<li class="item">
-				<a href = "${ pageContext.servletContext.contextPath }/selectGroup.do">
+				<a href = "${ pageContext.servletContext.contextPath }/selectGroup.do?selectGroupNo=${ groups.group_no }">
 					<div class="wrap">
 						<div class="imgbox">
 							<c:if test="${ empty groups.group_img }">
@@ -109,8 +109,7 @@
 
 			<div class="writelistbtn">
 				<button class="rightbtn3">목록</button>
-				<button class="rightbtn"
-					onclick="javascript:location.href='${ pageContext.servletContext.contextPath }/group.do';">가입목록</button>
+				<button class="rightbtn" onclick="javascript:location.href='${ pageContext.servletContext.contextPath }/group.do';">가입목록</button>
 				<button class="rightbtn2" onclick="javascript:location.href='creategroupform.do';">모임생성</button>
 			</div>
 			<br>

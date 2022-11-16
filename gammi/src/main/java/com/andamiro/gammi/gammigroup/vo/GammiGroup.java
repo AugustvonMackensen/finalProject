@@ -12,11 +12,12 @@ public class GammiGroup implements Serializable{
 	private Date group_date;
 	private String group_info;
 	private String group_img;
+	private String group_ok;
 	public GammiGroup() {
 		super();
 	}
 	public GammiGroup(int group_no, String group_owner, String group_name, Date group_date, String group_info,
-			String group_img) {
+			String group_img, String group_ok) {
 		super();
 		this.group_no = group_no;
 		this.group_owner = group_owner;
@@ -24,6 +25,7 @@ public class GammiGroup implements Serializable{
 		this.group_date = group_date;
 		this.group_info = group_info;
 		this.group_img = group_img;
+		this.group_ok = group_ok;
 	}
 	public int getGroup_no() {
 		return group_no;
@@ -31,10 +33,10 @@ public class GammiGroup implements Serializable{
 	public void setGroup_no(int group_no) {
 		this.group_no = group_no;
 	}
-	public String getgroup_owner() {
+	public String getGroup_owner() {
 		return group_owner;
 	}
-	public void setgroup_owner(String group_owner) {
+	public void setGroup_owner(String group_owner) {
 		this.group_owner = group_owner;
 	}
 	public String getGroup_name() {
@@ -61,10 +63,17 @@ public class GammiGroup implements Serializable{
 	public void setGroup_img(String group_img) {
 		this.group_img = group_img;
 	}
+	public String getGroup_ok() {
+		return group_ok;
+	}
+	public void setGroup_ok(String group_ok) {
+		this.group_ok = group_ok;
+	}
 	@Override
 	public String toString() {
 		return "GammiGroup [group_no=" + group_no + ", group_owner=" + group_owner + ", group_name=" + group_name
-				+ ", group_date=" + group_date + ", group_info=" + group_info + ", group_img=" + group_img + "]";
+				+ ", group_date=" + group_date + ", group_info=" + group_info + ", group_img=" + group_img
+				+ ", group_ok=" + group_ok + "]";
 	}
 	
 }

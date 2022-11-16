@@ -11,15 +11,51 @@
 		<result property="group_date" column="group_date" />
 		<result property="group_info" column="group_info" />
 		<result property="group_img" column="group_img" />
+		<result property="group_ok" column="group_ok" />
 	</resultMap>
 	
+	<resultMap type="GroupMember" id="GMList">
+		<result property="join_no" column="join_no" />
+		<result property="group_no" column="group_no" />
+		<result property="m_id" column="m_id" />
+		<result property="member_grade" column="member_grade" />
+	</resultMap>
+	
+	
+	<!-- 전체 목록 조회 -->
 	<select id = "selectAllList" resultType="GammiGroup">
 	select * from GAMMIGROUP
 	</select>
 	
+	<!-- 그룹 한개 조회(입장용) -->
+	<select id = "selectOneGroup" resultType="GammiGroup" parameterType="_int">
+	select *
+	from GAMMIGROUP
+	where group_no=#{ group_no }
+	</select>
+	
+	<!-- 가입되어있는지 확인  -->
+	<select id="getGroupMember" resultType="_int" parameterType="GroupMember">
+	select count(*)
+	from groupmember
+	where group_no=#{ group_no } and m_id=#{ m_id }
+	</select>
+	
+	<!-- 그룹에 가입자 수 확인 -->
+	<select id = "getmemberCount" resultType="_int" parameterType="_int">
+	select count(*)
+	from groupmember
+	where group_no=#{group_no}
+	</select>
+	<!-- 신규 그룹 추가 -->
 	<insert id="insertGroup" parameterType="GammiGroup">
 		insert into gammigroup
-		values ( default, #{group_owner}, #{group_name}, default, #{ group_info }, #{group_img})
+		values ( default, #{group_owner}, #{group_name}, default, #{ group_info }, #{group_img}, default)
+	</insert>
+	<!-- 그룹 추가에 따라오는 멤버 추가(그룹장) -->
+	<insert id="insertGoupMember" parameterType="GammiGroup">
+		insert into groupmember
+		values(default, (select max(group_no) from gammigroup where group_owner=#{group_owner}) , #{group_owner}, 2)
 	</insert>
 	
 </mapper>
