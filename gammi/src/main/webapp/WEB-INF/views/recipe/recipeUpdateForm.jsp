@@ -19,7 +19,7 @@
 	<c:import url="/WEB-INF/views/common/menubar.jsp" />
 	<hr>
 	<br><br><br><br><br>
-	<h2 align="center">${ recipe.recipe_title }수정</h2>
+	<h2 align="center">${ recipe.recipe_title } 수정</h2>
 	<form action="rupdate.do" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="recipe_num" value="${ recipe.recipe_num }">
 		<c:if test="${ !empty recipe.recipe_original_imgname }">

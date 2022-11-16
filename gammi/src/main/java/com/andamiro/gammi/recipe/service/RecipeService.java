@@ -3,6 +3,7 @@ package com.andamiro.gammi.recipe.service;
 import java.util.ArrayList;
 
 import com.andamiro.gammi.common.Paging;
+import com.andamiro.gammi.common.SearchPaging;
 import com.andamiro.gammi.recipe.vo.Recipe;
 
 
@@ -24,11 +25,15 @@ public interface RecipeService {
 
 	int updateRecipe(Recipe recipe);
 
-	ArrayList<Recipe> selectSearchTitle(String keyword);
+	ArrayList<Recipe> selectSearchTitle(SearchPaging searchpaging);
 
-	ArrayList<Recipe> selectSearchContent(String keyword);
+	ArrayList<Recipe> selectSearchContent(SearchPaging searchpaging);
 
 	ArrayList<Recipe> selectStarList(Paging paging);
+
+	int selectSearchTListCount(String keyword);
+
+	int selectSearchCListCount(String keyword);
 
 
 

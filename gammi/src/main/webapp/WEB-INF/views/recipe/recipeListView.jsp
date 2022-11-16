@@ -20,7 +20,7 @@
 <title></title>
 <style>
 .container001 {
-	margin: auto;
+	margin: 120px;
 	item-align: center;
 }
 
@@ -75,7 +75,7 @@ function modalOpen(recipe_title, recipe_readcount, recipe_date, imgBox, recipe_c
 	console.log(recipe_content);
 	console.log(imgBox);
 };
-</script>
+</script>y
 
 
 <script type="text/javascript">
@@ -121,19 +121,19 @@ function modalOpen(recipe_title, recipe_readcount, recipe_date, imgBox, recipe_c
 			</select>
 
 			<div id="d1" style="display: block">
-				<form action="rsearchTitle.do" method="post">
+				<form action="rsearchTitle.do" method="get">
 					<input type="search" name="keyword"
 						style="width: 25rem; height: 3rem; border: 3px solid #f8f9fa;">
-					&nbsp; &nbsp; &nbsp; <input type="submit" value="검색"
+					&nbsp; &nbsp; &nbsp; <input type="submit" value="title"
 						style="width: 6rem; height: 3rem; border: none; background-color: orange; cursor: pointer;"
 						class="btn">
 				</form>
 			</div>
 			<div id="d2" style="display: none">
-				<form action="rsearchContent.do" method="post">
+				<form action="rsearchContent.do" method="get">
 					<input type="search" name="keyword"
 						style="width: 25rem; height: 3rem; border: 3px solid #f8f9fa;">
-					&nbsp; &nbsp; &nbsp; <input type="submit" value="검색"
+					&nbsp; &nbsp; &nbsp; <input type="submit" value="content"
 						style="width: 6rem; height: 3rem; border: none; background-color: orange; cursor: pointer;"
 						class="btn">
 				</form>
@@ -146,7 +146,7 @@ function modalOpen(recipe_title, recipe_readcount, recipe_date, imgBox, recipe_c
 			<tr>
 				<th align="left">총 ${ listCount } 개의 맛있는 레시피가 있습니다</th>
 
-				<th align="right"><span style="align: right"><a
+				<th style="text-align: end;"><span><a
 						href="${ pageContext.servletContext.contextPath }/starlist.do">인기순</a></span>
 					<span>|</span> <a
 					href="${ pageContext.servletContext.contextPath }/rlist.do">최신순</a></th>
@@ -157,7 +157,7 @@ function modalOpen(recipe_title, recipe_readcount, recipe_date, imgBox, recipe_c
 
 			<c:forEach items="${ requestScope.list }" var="rec" varStatus="vs">
 				<ul
-					style="padding: 0 0 0 8px; display: inline-block; margin-right: 10px; list-style-type: none; line-height: 28px;">
+					style="padding: 0 0 0 8px; display: inline-block; margin-right: 20px; list-style-type: none; line-height: 28px;">
 					
 					
 					<c:url var="rdt" value="/rdetail.do">

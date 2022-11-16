@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.andamiro.gammi.common.Paging;
+import com.andamiro.gammi.common.SearchPaging;
 import com.andamiro.gammi.recipe.vo.Recipe;
 
 @Repository("recipeDao")
@@ -51,19 +52,27 @@ public class RecipeDao {
 		return session.update("recipeMapper.updateRecipe", recipe);
 	}
 
-	public ArrayList<Recipe> selectSearchTitle(String keyword) {
-		List<Recipe> list = session.selectList("recipeMapper.searchTitle", keyword);
+	public ArrayList<Recipe> selectSearchTitle(SearchPaging searchpaging) {
+		List<Recipe> list = session.selectList("recipeMapper.searchTitle", searchpaging);
 		return (ArrayList<Recipe>)list;
 	}
 
-	public ArrayList<Recipe> selectSearchContent(String keyword) {
-		List<Recipe> list = session.selectList("recipeMapper.searchContent", keyword);
+	public ArrayList<Recipe> selectSearchContent(SearchPaging searchpaging) {
+		List<Recipe> list = session.selectList("recipeMapper.searchContent", searchpaging);
 		return (ArrayList<Recipe>)list;
 	}
 
 	public ArrayList<Recipe> selectStarList(Paging paging) {
 		List<Recipe> list = session.selectList("recipeMapper.selectStarList", paging);
 		return (ArrayList<Recipe>)list;
+	}
+
+	public int selectSearchTListCount(String keyword) {
+		return session.selectOne("recipeMapper.getSearchTListCount", keyword);
+	}
+
+	public int selectSearchCListCount(String keyword) {
+		return session.selectOne("recipeMapper.getSearchCListCount", keyword);
 	}
 
 

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.andamiro.gammi.common.Paging;
+import com.andamiro.gammi.common.SearchPaging;
 import com.andamiro.gammi.recipe.dao.RecipeDao;
 import com.andamiro.gammi.recipe.vo.Recipe;
 
@@ -57,18 +58,28 @@ public class RecipeServiceImpl implements RecipeService {
 	}
 
 	@Override
-	public ArrayList<Recipe> selectSearchTitle(String keyword) {
-		return recipeDao.selectSearchTitle(keyword);
+	public ArrayList<Recipe> selectSearchTitle(SearchPaging searchpaging) {
+		return recipeDao.selectSearchTitle(searchpaging);
 	}
 
 	@Override
-	public ArrayList<Recipe> selectSearchContent(String keyword) {
-		return recipeDao.selectSearchContent(keyword);
+	public ArrayList<Recipe> selectSearchContent(SearchPaging searchpaging) {
+		return recipeDao.selectSearchContent(searchpaging);
 	}
 
 	@Override
 	public ArrayList<Recipe> selectStarList(Paging paging) {
 		return recipeDao.selectStarList(paging);
+	}
+
+	@Override
+	public int selectSearchTListCount(String keyword) {
+		return recipeDao.selectSearchTListCount(keyword);
+	}
+
+	@Override
+	public int selectSearchCListCount(String keyword) {
+		return recipeDao.selectSearchCListCount(keyword);
 	}
 
 
