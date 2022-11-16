@@ -112,21 +112,47 @@
 				default, default)
 	</insert>
 	
-	<select id="searchTitle" resultMap="resultRecipe" parameterType="string">
-		select * from recipe
+	<select id="getSearchTListCount" resultType="_int" parameterType="string">
+		select count(*) from recipe
 		where recipe_title like '%' || #{ keyword } || '%'
 		order by recipe_readcount desc
 	</select>
 	
-	<select id="searchContent" resultMap="resultRecipe" parameterType="string">
-		select * from recipe
+	<select id="getSearchCListCount" resultType="_int" parameterType="string">
+		select count(*) from recipe
 		where recipe_content like '%' || #{ keyword } || '%'
 		order by recipe_readcount desc
 	</select>
 	
+	<select id="searchTitle" resultMap="resultRecipe" parameterType="SearchPaging">
+		<![CDATA[
+			select *  
+			from (select rownum rnum, recipe_num, recipe_title, 
+						  recipe_date, recipe_writer, 
+						  recipe_content,  
+			               recipe_original_imgname, recipe_rename_imgname, 
+			               recipe_readcount
+			       from (select * from recipe
+			       		   where recipe_title like '%' || #{ keyword } || '%'
+			               order by recipe_num desc)) 
+			where rnum >= #{startRow} and rnum <= #{endRow}
+		]]>
+	</select>
 	
-	
-	
+	<select id="searchContent" resultMap="resultRecipe" parameterType="SearchPaging">
+		<![CDATA[
+			select *  
+			from (select rownum rnum, recipe_num, recipe_title, 
+						  recipe_date, recipe_writer, 
+						  recipe_content,  
+			               recipe_original_imgname, recipe_rename_imgname, 
+			               recipe_readcount
+			       from (select * from recipe
+			       		   where recipe_content like '%' || #{ keyword } || '%'
+			               order by recipe_num desc)) 
+			where rnum >= #{startRow} and rnum <= #{endRow}
+		]]>
+	</select>
 	
 	
 	

@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.andamiro.gammi.common.Paging;
+import com.andamiro.gammi.common.SearchPaging;
 import com.andamiro.gammi.member.vo.Member;
 import com.andamiro.gammi.recipe.service.RecipeService;
 import com.andamiro.gammi.recipe.vo.Recipe;
@@ -366,27 +367,22 @@ public class RecipeController {
 	
 	
 	//레시피 제목 검색
-	@RequestMapping(value="rsearchTitle.do", method=RequestMethod.POST)
+	@RequestMapping(value="rsearchTitle.do", method=RequestMethod.GET)
 	public String recipeSearchTitleMethod(
 			@RequestParam("keyword") String keyword, Model model,
 			@RequestParam(name="page", required=false) String page) {
-		
-		ArrayList<Recipe> list = recipeService.selectSearchTitle(keyword);
-
-		
-		
 		
 		int currentPage = 1;
 		if(page != null) {
 			currentPage = Integer.parseInt(page);
 		}
 		
-		//한 페이지에 레시피 10개씩 출력되게 하는 경우
+		//한 페이지에 레시피 40개씩 출력되게 하는 경우
 		//페이징 계산 처리 -- 별도의 클래스로 작성해도 됨 ---------------
 		//별도의 클래스의 메소드에서 Paging 을 리턴하면 됨
 		int limit = 40;  //한 페이지에 출력할 목록 갯수
 		//전체 페이지 갯수 계산을 위해 총 목록 갯수 조회해 옴
-		int listCount = recipeService.selectListCount();
+		int listCount = recipeService.selectSearchTListCount(keyword);
 		//페이지 수 계산
 		//주의 : 목록이 11개이면 페이지 수는 2페이지가 됨
 		// 나머지 목록 1개도 1페이지가 필요함
@@ -404,10 +400,11 @@ public class RecipeController {
 		//쿼리문에 전달할 현재 페이지에 적용할 목록의 시작행과 끝행 계산
 		int startRow = (currentPage - 1) * limit + 1;
 		int endRow = startRow + limit - 1;
-		Paging paging = new Paging(startRow, endRow);
 		
 		//페이징 계산 처리 끝 ---------------------------------------
+		SearchPaging searchpaging = new SearchPaging(keyword, startRow, endRow);
 		
+		ArrayList<Recipe> list = recipeService.selectSearchTitle(searchpaging);
 		
 		if(list.size() > 0 && list != null) {
 			model.addAttribute("list", list);
@@ -417,7 +414,8 @@ public class RecipeController {
 			model.addAttribute("startPage", startPage);
 			model.addAttribute("endPage", endPage);
 			model.addAttribute("limit", limit);
-			
+			model.addAttribute("action", "title");
+			model.addAttribute("keyword", keyword);
 			return "recipe/recipeListView";
 		}else {
 			model.addAttribute("message", 
@@ -427,13 +425,54 @@ public class RecipeController {
 	} // method end
 	
 	//레시피 내용 검색
-	@RequestMapping(value="rsearchContent.do", method=RequestMethod.POST)
+	@RequestMapping(value="rsearchContent.do", method=RequestMethod.GET)
 	public String recipeSearchContentMethod(
-			@RequestParam("keyword") String keyword, Model model) {
-			ArrayList<Recipe> list = recipeService.selectSearchContent(keyword);
+			@RequestParam("keyword") String keyword, Model model,
+			@RequestParam(name="page", required=false) String page) {
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = Integer.parseInt(page);
+		}
 		
-		if(list.size() > 0) {
+		//한 페이지에 레시피 40개씩 출력되게 하는 경우
+		//페이징 계산 처리 -- 별도의 클래스로 작성해도 됨 ---------------
+		//별도의 클래스의 메소드에서 Paging 을 리턴하면 됨
+		int limit = 40;  //한 페이지에 출력할 목록 갯수
+		//전체 페이지 갯수 계산을 위해 총 목록 갯수 조회해 옴
+		int listCount = recipeService.selectSearchCListCount(keyword);
+		//페이지 수 계산
+		//주의 : 목록이 11개이면 페이지 수는 2페이지가 됨
+		// 나머지 목록 1개도 1페이지가 필요함
+		int maxPage = (int)((double)listCount / limit + 0.9);
+		//현재 페이지가 포함된 페이지 그룹의 시작값 지정
+		// => 뷰 아래쪽에 표시할 페이지 수를 10개로 하는 경우
+		int startPage = (currentPage / 10) * 10 + 1;
+		//현재 페이지가 포함된 페이지 그룹의 끝값 지정
+		int endPage = startPage + 10 - 1;
+		
+		if(maxPage < endPage) {
+			endPage = maxPage;
+		}
+		
+		//쿼리문에 전달할 현재 페이지에 적용할 목록의 시작행과 끝행 계산
+		int startRow = (currentPage - 1) * limit + 1;
+		int endRow = startRow + limit - 1;
+		
+		//페이징 계산 처리 끝 ---------------------------------------
+		SearchPaging searchpaging = new SearchPaging(keyword, startRow, endRow);
+		
+		ArrayList<Recipe> list = recipeService.selectSearchContent(searchpaging);
+		
+		if(list.size() > 0 && list != null) {
 			model.addAttribute("list", list);
+			model.addAttribute("listCount", listCount);
+			model.addAttribute("maxPage", maxPage);
+			model.addAttribute("currentPage", currentPage);
+			model.addAttribute("startPage", startPage);
+			model.addAttribute("endPage", endPage);
+			model.addAttribute("limit", limit);
+			model.addAttribute("action", "content");
+			model.addAttribute("keyword", keyword);
 			return "recipe/recipeListView";
 		}else {
 			model.addAttribute("message", 
