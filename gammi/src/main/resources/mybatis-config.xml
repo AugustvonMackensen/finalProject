@@ -11,10 +11,14 @@
 	<typeAliases>		
 		<typeAlias type="com.andamiro.gammi.gammigroup.vo.GammiGroup" alias="GammiGroup" />
 		<typeAlias type="com.andamiro.gammi.member.vo.Member" alias="Member" />
+		<typeAlias type="com.andamiro.gammi.recipe.vo.Recipe" alias="Recipe" />
+		<typeAlias type="com.andamiro.gammi.common.SearchDate" alias="SearchDate" />
+		<typeAlias type="com.andamiro.gammi.common.Paging" alias="Paging" />
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="mappers/group-mapper.xml" />
 		<mapper resource="mappers/member-mapper.xml" />
+		<mapper resource="mappers/recipe-mapper.xml" />
 	</mappers>
 </configuration>
