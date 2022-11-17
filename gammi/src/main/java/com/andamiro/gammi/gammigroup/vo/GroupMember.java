@@ -8,7 +8,7 @@ public class GroupMember implements Serializable{
 	private int join_no;
 	private int group_no;
 	private String m_id;
-	private int member_grade;
+	private int member_grade;		//1신청 2거절 3일반회원 4모임장
 	public GroupMember() {
 		super();
 	}

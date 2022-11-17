@@ -35,11 +35,15 @@ public class GammiGroupDao {
 		return session.selectOne("groupMapper.selectOneGroup",selectGroupNo);
 	}
 
-	public int getGroupMember(GroupMember gm) {
+	public GroupMember getGroupMember(GroupMember gm) {
 		return session.selectOne("groupMapper.getGroupMember",gm);
 	}
 
 	public int getMemberCount(int gno) {
 		return session.selectOne("groupMapper.getmemberCount",gno);
+	}
+
+	public int createApplication(GroupMember gm) {
+		return session.insert("groupMapper.createApplication",gm);
 	}
 }

@@ -6,14 +6,16 @@ import com.andamiro.gammi.gammigroup.vo.GammiGroup;
 import com.andamiro.gammi.gammigroup.vo.GroupMember;
 
 public interface GammiGroupService {
-	//±×·ì ÀüÃ¼¸ñ·Ï Á¶È¸
-	public ArrayList<GammiGroup> groupAllList();
-	//±×·ì ½Å±Ô »ı¼º
-	public int insertNewGroup(GammiGroup gammiGroup);
-	//°¡ÀÔµÇ¾îÀÖ´Â ±×·ì Á¢¼Ó
-	public GammiGroup selectOneGroup(int selectGroupNo);
-	//±×·ì¿¡ °¡ÀÔ µÇ¾îÀÖ´ÂÁö È®ÀÎ
-	public int getGroupMember(GroupMember gm);
-	//°¡ÀÔÇÏ·Á´Â ±×·ì¿¡ °¡ÀÔµÈ ÀÎ¿øÀÌ ¸î¸íÀÎÁö È®ÀÎ
-	public int getMemberCount(int gno); 
+		//ê·¸ë£¹ ì „ì²´ëª©ë¡ ì¡°íšŒ
+		public ArrayList<GammiGroup> groupAllList();
+		//ê·¸ë£¹ ì‹ ê·œ ìƒì„±
+		public int insertNewGroup(GammiGroup gammiGroup);
+		//ê°€ì…ë˜ì–´ìˆëŠ” ê·¸ë£¹ ì ‘ì†
+		public GammiGroup selectOneGroup(int selectGroupNo);
+		//ê·¸ë£¹ì— ê°€ì… ë˜ì–´ìˆëŠ”ì§€ í™•ì¸
+		public GroupMember getGroupMember(GroupMember gm);
+		//ê°€ì…í•˜ë ¤ëŠ” ê·¸ë£¹ì— ê°€ì…ëœ ì¸ì›ì´ ëª‡ëª…ì¸ì§€ í™•ì¸
+		public int getMemberCount(int gno); 
+		//ëª¨ì„ ì‹ ê·œê°€ì…
+		public int createApplication(GroupMember gm); 
 }

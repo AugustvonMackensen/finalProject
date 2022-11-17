@@ -106,15 +106,29 @@ public class GammiGroupController {
 		
 		GammiGroup group = service.selectOneGroup(Integer.parseInt(gno));
 		int memberCount = service.getMemberCount(Integer.parseInt(gno));
-		int check = service.getGroupMember(gm);
+		GroupMember check = service.getGroupMember(gm);
 		
 		model.addAttribute("group", group);
 		model.addAttribute("memberCount",memberCount);
-		if(check>0) {		//가입된 회원
+		if(check!=null && check.getMember_grade()>2) {		//가입된 회원
 			return "group/groupMain";
 		}else {		    	//미가입 회원
 			return "group/groupJoinForm";
 		}
-		
+	}
+	
+	//가입신청 이후 목록으로 이동
+	@RequestMapping(value = "applicationGroup.do", method=RequestMethod.POST)
+	public String applicationGroup(GammiGroup group, GroupMember gm, Model model) {
+		gm.setGroup_no(group.getGroup_no());
+		gm.setMember_grade(1);
+		GroupMember check = service.getGroupMember(gm);
+		if(check == null) {
+			service.createApplication(gm);
+			model.addAttribute("message", "가입 신청이 완료 되었습니다.");
+		}else {
+			model.addAttribute("message", "이미 가입 신청된 그룹입니다.");
+		}
+		return "common/alert";
 	}
 }

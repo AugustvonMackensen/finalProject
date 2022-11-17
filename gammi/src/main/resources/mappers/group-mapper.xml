@@ -35,8 +35,8 @@
 	</select>
 	
 	<!-- 가입되어있는지 확인  -->
-	<select id="getGroupMember" resultType="_int" parameterType="GroupMember">
-	select count(*)
+	<select id="getGroupMember" resultType="GroupMember" parameterType="GroupMember">
+	select *
 	from groupmember
 	where group_no=#{ group_no } and m_id=#{ m_id }
 	</select>
@@ -55,9 +55,14 @@
 	<!-- 그룹 추가에 따라오는 멤버 추가(그룹장) -->
 	<insert id="insertGoupMember" parameterType="GammiGroup">
 		insert into groupmember
-		values(default, (select max(group_no) from gammigroup where group_owner=#{group_owner}) , #{group_owner}, 2)
+		values(default, (select max(group_no) from gammigroup where group_owner=#{group_owner}) , #{group_owner}, 4)
 	</insert>
 	
+	<!-- 가입신청 -->
+	<insert id="createApplication" parameterType="GroupMember">
+		insert into groupmember
+		values(default, #{group_no}, #{m_id}, #{member_grade})
+	</insert>
 </mapper>
 
 
