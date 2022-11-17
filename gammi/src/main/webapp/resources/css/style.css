@@ -2420,8 +2420,14 @@ ol {
 -----------------------*/
 
 .footer {
-	background: #f5f5f5;
-	padding-top: 20px;
+    position: absolute;
+    height: 1px;
+    width: 100%;
+    padding: 0 25px;
+    line-height: 60px;
+    color: #8a8c8f;
+    border-top: 1px solid #dee5e7;
+    background-color: #f2f2f2;
 }
 
 
