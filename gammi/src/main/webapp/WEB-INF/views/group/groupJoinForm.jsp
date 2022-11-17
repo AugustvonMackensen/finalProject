@@ -11,33 +11,31 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title></title>
 <!-- Google Font -->
-<link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500;700&display=swap"
-	rel="stylesheet">
-<link
-	href="https://fonts.googleapis.com/css?family=Unna:400,700&display=swap"
-	rel="stylesheet">
-<link
-	href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&family=Noto+Sans+KR:wght@500;700&display=swap"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Unna:400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&family=Noto+Sans+KR:wght@500;700&display=swap" rel="stylesheet">
 <!-- Css Styles -->
-<link rel="stylesheet" href="resources/css/bootstrap.min.css"
-	type="text/css">
-<link rel="stylesheet" href="resources/css/font-awesome.min.css"
-	type="text/css">
-<link rel="stylesheet" href="resources/css/elegant-icons.css"
-	type="text/css">
-<link rel="stylesheet" href="resources/css/owl.carousel.min.css"
-	type="text/css">
-<link rel="stylesheet" href="resources/css/slicknav.min.css"
-	type="text/css">
+<link rel="stylesheet" href="resources/css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="resources/css/font-awesome.min.css" type="text/css">
+<link rel="stylesheet" href="resources/css/elegant-icons.css" type="text/css">
+<link rel="stylesheet" href="resources/css/owl.carousel.min.css" type="text/css">
+<link rel="stylesheet" href="resources/css/slicknav.min.css" type="text/css">
 <link rel="stylesheet" href="resources/css/style.css" type="text/css">
-<link rel="stylesheet" href="resources/css/band-clone.css"
-	type="text/css">
-<link href="https://webfontworld.github.io/cookierun/CookieRun.css"
-	rel="stylesheet">
+<link rel="stylesheet" href="resources/css/band-clone.css" type="text/css">
+<link href="https://webfontworld.github.io/cookierun/CookieRun.css" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<title></title>
+ <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script>
+$().ready(function () {
+            $(".rightbtn3").click(function () {
+                Swal.fire({
+                    icon: 'success',
+                    title: '가입완료!',
+                });
+            });
+        });
+</script>
 </head>
 <body>
 	<c:import url="/WEB-INF/views/common/menubar.jsp" />

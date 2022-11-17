@@ -17,5 +17,11 @@ public interface GammiGroupService {
 		//가입하려는 그룹에 가입된 인원이 몇명인지 확인
 		public int getMemberCount(int gno); 
 		//모임 신규가입
-		public int createApplication(GroupMember gm); 
+		public int createApplication(GroupMember gm);
+		//모임에 가입된 전체 유저(가입 목록 보기)
+		public ArrayList<GroupMember> getAllGM(int gno);
+		//모임 유저 탈퇴/ 추방처리
+		public int deleteGroupMember(GroupMember gm);
+		//모임 유저 가입 승인
+		public int updateGroupMember(GroupMember gm); 
 }

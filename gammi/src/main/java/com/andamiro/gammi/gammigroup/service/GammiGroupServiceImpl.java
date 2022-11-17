@@ -44,5 +44,21 @@ public class GammiGroupServiceImpl implements GammiGroupService{
 	public int createApplication(GroupMember gm) {
 		return dao.createApplication(gm);
 	}
+
+	@Override
+	public ArrayList<GroupMember> getAllGM(int gno) {
+		return dao.getAllGM(gno);
+	}
+
+	@Override
+	public int deleteGroupMember(GroupMember gm) {
+		return dao.deleteGroupMember(gm);
+	}
+
+	@Override
+	public int updateGroupMember(GroupMember gm) {
+		// TODO Auto-generated method stub
+		return dao.updateGroupMember(gm);
+	}
 	
 }
