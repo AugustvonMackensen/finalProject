@@ -41,24 +41,17 @@
 </head>
 <body>
 	<c:import url="/WEB-INF/views/common/menubar.jsp" />
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
+	
 	<div class="container">
-		<form action="" align="center">
+		<form action="applicationGroup.do" align="center" method="post">
 			<ul style="list-style: none">
+			<input type="hidden" name="group_no" value="${ group.group_no }">
+			<input type="hidden" name="m_id" value="${ sessionScope.loginMember.m_id }">
 				<li>
 				<span style="font-family: 'CookieRun'; font-size: 20px">
 				그룹명 : &nbsp;&nbsp;&nbsp;<input type="text"
 							style="border: 0 solid black;"
-							value="${ group.group_name }"></td>
+							value="${ group.group_name }" name="group_name" id ="group_name"></td>
 				</span>
 				</li>
 				<li>
@@ -73,7 +66,7 @@
 				<span style="font-family: 'CookieRun'; font-size: 20px">
 				그룹장 이름 : &nbsp;&nbsp;&nbsp;<input type="text"
 							style="border: 0 solid black;"
-							value="${ group.group_owner }"></td>
+							value="${ group.group_owner }" name="group_owner"></td>
 				</span>
 				</li>
 				
@@ -81,7 +74,7 @@
 				<span style="font-family: 'CookieRun'; font-size: 20px">
 				그룹 설명 : &nbsp;&nbsp;&nbsp;<input type="textarea"
 							style="border: 0 solid black;"
-							value="${ group.group_info }"></td>
+							value="${ group.group_info }" name="group_info"></td>
 				</span>
 				</li>
 				<li>
@@ -94,16 +87,6 @@
 			</ul>
 		</form>
 	</div>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
 	<c:import url="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>

@@ -31,13 +31,18 @@ public class GammiGroupServiceImpl implements GammiGroupService{
 	}
 
 	@Override
-	public int getGroupMember(GroupMember gm) {
+	public GroupMember getGroupMember(GroupMember gm) {
 		return dao.getGroupMember(gm);
 	}
 
 	@Override
 	public int getMemberCount(int gno) {
 		return dao.getMemberCount(gno);
+	}
+
+	@Override
+	public int createApplication(GroupMember gm) {
+		return dao.createApplication(gm);
 	}
 	
 }
