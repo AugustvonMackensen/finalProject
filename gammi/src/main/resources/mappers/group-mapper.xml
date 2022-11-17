@@ -63,6 +63,27 @@
 		insert into groupmember
 		values(default, #{group_no}, #{m_id}, #{member_grade})
 	</insert>
+	
+	<!-- 모임 가입된 유저 목록 전체조회(가입유저, 신청자, 거절된 목록까지 전체 조회) -->
+	<select id = "getAllGM" parameterType="_int" resultType="GroupMember">
+		select *
+		from groupmember
+		where group_no =#{gno}
+		order by join_no, member_grade
+	</select>
+	
+	<!-- 모임 탈퇴/추방처리 -->
+	<delete id="deleteGroupMember" parameterType="GroupMember">
+	delete from groupmember
+	where group_no=#{group_no} and m_id = #{m_id}
+	</delete>
+	
+	<!-- 모임 가입 승인 -->
+	<update id="updateGroupMember" parameterType="GroupMember">
+	update groupmember
+	set member_grade = 3
+	where group_no=#{group_no} and m_id = #{m_id}
+	</update>
 </mapper>
 
 

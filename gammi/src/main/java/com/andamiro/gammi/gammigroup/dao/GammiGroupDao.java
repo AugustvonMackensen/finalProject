@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import com.andamiro.gammi.gammigroup.vo.GammiGroup;
 import com.andamiro.gammi.gammigroup.vo.GroupMember;
-import com.andamiro.gammi.member.vo.Member;
 
 @Repository("groupDao")
 public class GammiGroupDao {
@@ -45,5 +44,18 @@ public class GammiGroupDao {
 
 	public int createApplication(GroupMember gm) {
 		return session.insert("groupMapper.createApplication",gm);
+	}
+
+	public ArrayList<GroupMember> getAllGM(int gno) {
+		List<GroupMember> list = session.selectList("groupMapper.getAllGM",gno);
+		return (ArrayList<GroupMember>)list;
+	}
+
+	public int deleteGroupMember(GroupMember gm) {
+		return session.delete("groupMapper.deleteGroupMember",gm);
+	}
+
+	public int updateGroupMember(GroupMember gm) {
+		return session.update("groupMapper.updateGroupMember",gm);
 	}
 }
