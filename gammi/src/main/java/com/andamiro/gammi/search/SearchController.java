@@ -2,6 +2,8 @@ package com.andamiro.gammi.search;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,7 +16,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -49,7 +50,8 @@ public class SearchController {
 		File renameFile = new File(imgFilePath + "\\" + renameFilename);
 		try {
 			file.transferTo(renameFile);
-			model.addAttribute("upImgPath", renameFile.getAbsolutePath());
+			logger.info(renameFile.getAbsolutePath());
+			model.addAttribute("imgPath", renameFile.getAbsolutePath());
 		} catch(Exception e) {
 			e.printStackTrace();
 			model.addAttribute("message", "이미지 등록 실패");
@@ -60,6 +62,7 @@ public class SearchController {
 		
 	}
 	
+
 	@ResponseBody
 	@PostMapping("camResult.do")
 	public String camSearch(HttpServletRequest request,
