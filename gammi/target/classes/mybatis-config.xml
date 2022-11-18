@@ -9,18 +9,12 @@
 	</settings>
 
 	<typeAliases>		
-		<typeAlias type="com.andamiro.gammi.group.vo.Group" alias="Group" />
-<<<<<<< HEAD
+		<typeAlias type="com.andamiro.gammi.gammigroup.vo.GammiGroup" alias="GammiGroup" />
 		<typeAlias type="com.andamiro.gammi.member.vo.Member" alias="Member" />
-=======
->>>>>>> branch 'main' of https://github.com/AugustvonMackensen/finalProject.git
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="mappers/group-mapper.xml" />
-<<<<<<< HEAD
 		<mapper resource="mappers/member-mapper.xml" />
-=======
->>>>>>> branch 'main' of https://github.com/AugustvonMackensen/finalProject.git
 	</mappers>
 </configuration>
