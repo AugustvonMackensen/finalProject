@@ -5,6 +5,7 @@ import java.sql.Date;
 public class Member implements java.io.Serializable{ 
 	
 	private static final long serialVersionUID = -6334101746276490233L;
+	public String m_name;
 	public String m_id;
 	public String m_nickname;
 	public String m_pw;
@@ -15,9 +16,10 @@ public class Member implements java.io.Serializable{
 	
 	public Member() {}
 
-	public Member(String m_id, String m_nickname, String m_pw, String m_email, String m_birth, String admin,
-			String login_ok) {
+	public Member(String m_name, String m_id, String m_nickname, String m_pw, String m_email, String m_birth,
+			String admin, String login_ok) {
 		super();
+		this.m_name = m_name;
 		this.m_id = m_id;
 		this.m_nickname = m_nickname;
 		this.m_pw = m_pw;
@@ -25,6 +27,14 @@ public class Member implements java.io.Serializable{
 		this.m_birth = m_birth;
 		this.admin = admin;
 		this.login_ok = login_ok;
+	}
+
+	public String getM_name() {
+		return m_name;
+	}
+
+	public void setM_name(String m_name) {
+		this.m_name = m_name;
 	}
 
 	public String getM_id() {
@@ -89,9 +99,11 @@ public class Member implements java.io.Serializable{
 
 	@Override
 	public String toString() {
-		return "Member [m_id=" + m_id + ", m_nickname=" + m_nickname + ", m_pw=" + m_pw + ", m_email=" + m_email
-				+ ", m_birth=" + m_birth + ", admin=" + admin + ", login_ok=" + login_ok + "]";
+		return "Member [m_name=" + m_name + ", m_id=" + m_id + ", m_nickname=" + m_nickname + ", m_pw=" + m_pw
+				+ ", m_email=" + m_email + ", m_birth=" + m_birth + ", admin=" + admin + ", login_ok=" + login_ok + "]";
 	}
+
+	
 
 	
 

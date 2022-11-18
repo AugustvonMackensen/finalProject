@@ -37,5 +37,26 @@ public class MemberDao {
 		return session.selectOne("memberMapper.getListCount");
 	}
 	
+	public int selectDupCheckNick(String m_nickname) {
+		return session.selectOne("memberMapper.selectCheckNick", m_nickname);
+	}
+
+	public int selectMailCheck(String m_email) {
+		return session.selectOne("memberMapper.selectMailCheck", m_email);
+	}
+
+	
+
+	public int updateMember(Member member) {
+		return session.update("memberMapper.updateMember", member);
+	}
+
+	public int deleteMember(String m_id) {
+		return session.delete("memberMapper.deleteMember", m_id);
+	}
+
+	public Member selectByMail(String m_email) {
+		return session.selectOne("memberMapper.selectByMail", m_email);
+	}
 	 
 }
