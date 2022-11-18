@@ -10,13 +10,16 @@
 <link rel="stylesheet" href="resources/css/band-clone.css" type="text/css">
 <body>
 <c:import url="/WEB-INF/views/common/menubar.jsp" />
+<br><br><br><br><br><br><br><br>
 <c:if test="${ group.group_owner eq sessionScope.loginMember.m_id }">
 	<h3>그룹장 : ${ group.group_owner }입니다.</h3>
 	<div class="writelistbtn">
-	<button class="rightbtn3" onclick = "location.href= '${ pageContext.servletContext.contextPath }/groupMemberManagement.do?gno=${group.group_no }'">멤버 관리</button>
+	<button class="rightbtn3" onclick = "location.href= '${ pageContext.servletContext.contextPath }/groupMemberManagement.do?gno= ${ group.group_no }'">멤버 관리</button>
+	
+	
 	</div>
 </c:if>
-
+<a href= "  ${ pageContext.servletContext.contextPath }/chatting?gno=${ group.group_no}">채팅</button>
 <c:import url="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>

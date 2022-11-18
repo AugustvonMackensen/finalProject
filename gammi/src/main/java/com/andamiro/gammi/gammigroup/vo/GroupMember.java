@@ -1,6 +1,7 @@
 package com.andamiro.gammi.gammigroup.vo;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 public class GroupMember implements Serializable{
 	private static final long serialVersionUID = 5109671732413668689L;
@@ -9,15 +10,17 @@ public class GroupMember implements Serializable{
 	private int group_no;
 	private String m_id;
 	private int member_grade;		//1신청 2거절 3일반회원 4모임장
+	private Date member_grade_date;
 	public GroupMember() {
 		super();
 	}
-	public GroupMember(int join_no, int group_no, String m_id, int member_grade) {
+	public GroupMember(int join_no, int group_no, String m_id, int member_grade, Date member_grade_date) {
 		super();
 		this.join_no = join_no;
 		this.group_no = group_no;
 		this.m_id = m_id;
 		this.member_grade = member_grade;
+		this.member_grade_date = member_grade_date;
 	}
 	public int getJoin_no() {
 		return join_no;
@@ -43,10 +46,15 @@ public class GroupMember implements Serializable{
 	public void setMember_grade(int member_grade) {
 		this.member_grade = member_grade;
 	}
+	public Date getMember_grade_date() {
+		return member_grade_date;
+	}
+	public void setMember_grade_date(Date member_grade_date) {
+		this.member_grade_date = member_grade_date;
+	}
 	@Override
 	public String toString() {
 		return "GroupMember [join_no=" + join_no + ", group_no=" + group_no + ", m_id=" + m_id + ", member_grade="
-				+ member_grade + "]";
+				+ member_grade + ", member_grade_date=" + member_grade_date + "]";
 	}
-	
 }

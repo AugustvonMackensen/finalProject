@@ -23,5 +23,5 @@ public interface GammiGroupService {
 		//모임 유저 탈퇴/ 추방처리
 		public int deleteGroupMember(GroupMember gm);
 		//모임 유저 가입 승인
-		public int updateGroupMember(GroupMember gm); 
+		public int acceptGroupMember(GroupMember gm); 
 }

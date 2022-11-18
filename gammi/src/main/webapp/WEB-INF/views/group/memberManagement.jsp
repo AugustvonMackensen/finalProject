@@ -9,18 +9,6 @@
 </head>
 <script type="text/javascript" src="${ pageContext.servletContext.contextPath }/resources/js/jquery-3.6.1.min.js"></script>
 <script type="text/javascript">
-function changeLogin(element){
-	var userid = element.name.substring(8);
-	console.log("changeLogin : " + userid);
-	if(element.checked == true && element.value == "N"){
-		//로그인 제한을 체크했다면
-		console.log("로그인 제한 체크함");
-		location.href = "${ pageContext.servletContext.contextPath }/loginok.do?userid=" + userid + "&login_ok=N";
-	}else{
-		console.log("로그인 제한 해제함");
-		location.href = "${ pageContext.servletContext.contextPath }/loginok.do?userid=" + userid + "&login_ok=Y";
-	}
-}
 //추방
 function mExile(no, id){
 	var m = new Object();
@@ -71,20 +59,34 @@ function mRefuse(no, id){
 <body>
 <br><br><br><br><br><br><br><br><br><br><br>
 <h1>회원 관리 목록 페이지</h1>
-
+	<hr><br><h3>모임 멤버 목록</h3>
 	<c:forEach var="gm" items="${gm}" varStatus="mem_status">
 		<c:if test="${ gm.member_grade  == 3 }">
-		<h5>${gm.m_id} : 님</h5>
+		<h5>${gm.m_id} : 님</h5>&nbsp;&nbsp;&nbsp;
+		<h5>가입 날짜 : ${ gm.member_grade_date }</h5>
 		<div class="writelistbtn">
 			<button class="rightbtn3" onclick="mExile(${gm.group_no}, '${ gm.m_id }');">추방하기</button>
 		</div>
 		<br>
 		</c:if>
 	</c:forEach>
-	<hr><br><h3>가입대기자</h3>
+	<hr><br><h3>가입대기자 목록</h3>
 	<c:forEach var="gm" items="${gm}" varStatus="mem_status">
 		<c:if test ="${ gm.member_grade < 2 }">
-		<h5>${gm.m_id} : 님</h5>
+		<h5>${gm.m_id} : 님</h5>&nbsp;&nbsp;&nbsp;
+		<h5>가입 신청날짜 : ${ gm.member_grade_date }</h5>
+		<div class="writelistbtn">
+			<button class="rightbtn3" onclick="mAccept(${gm.group_no}, '${ gm.m_id }');">가입 수락</button>
+			<button class="rightbtn3" onclick="mRefuse(${gm.group_no}, '${ gm.m_id }');">가입 거절</button>
+		</div>
+		<br>
+		</c:if>
+	</c:forEach>
+	<hr><br><h3>가입거절한 목록</h3>
+	<c:forEach var="gm" items="${gm}" varStatus="mem_status">
+		<c:if test ="${ gm.member_grade == 2 }">
+		<h5>${gm.m_id} : 님</h5>&nbsp;&nbsp;&nbsp;
+		<h5>가입 신청날짜 : ${ gm.member_grade_date }</h5>
 		<div class="writelistbtn">
 			<button class="rightbtn3" onclick="mAccept(${gm.group_no}, '${ gm.m_id }');">가입 수락</button>
 			<button class="rightbtn3" onclick="mRefuse(${gm.group_no}, '${ gm.m_id }');">가입 거절</button>

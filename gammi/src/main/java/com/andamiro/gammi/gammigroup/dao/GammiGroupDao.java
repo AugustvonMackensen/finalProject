@@ -55,7 +55,7 @@ public class GammiGroupDao {
 		return session.delete("groupMapper.deleteGroupMember",gm);
 	}
 
-	public int updateGroupMember(GroupMember gm) {
-		return session.update("groupMapper.updateGroupMember",gm);
+	public int acceptGroupMember(GroupMember gm) {
+		return session.update("groupMapper.acceptGroupMember",gm);
 	}
 }
