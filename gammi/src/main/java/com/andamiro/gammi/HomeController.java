@@ -2,9 +2,6 @@ package com.andamiro.gammi;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -42,12 +39,7 @@ public class HomeController {
 	}
 
 	@RequestMapping("main.do")
-	public String forwardMainView() throws IOException, URISyntaxException {
-		//URL res = getClass().getClassLoader().getResource("camera/camera.exe");
-		//File file = Paths.get(res.toURI()).toFile();
-		//String camPath = file.getAbsolutePath();
-		//ProcessBuilder builder = new ProcessBuilder(camPath);
-		//builder.start();
+	public String forwardMainView(){
 		return "common/main";  //내보낼 뷰파일명 리턴
 	}
 }
