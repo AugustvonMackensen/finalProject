@@ -14,9 +14,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -34,13 +36,29 @@ public class MemberController {
 	private MemberService memberService;
 	
 	@Autowired
+	private MailSendService mailService;
+	
+	@Autowired
 	private BCryptPasswordEncoder bcryptPasswordEncoder;
 	
+	// 회원가입 이동 
 	@RequestMapping("enrollPage.do")
 	public String moveEnrollPage() {
 		return "member/enrollPage";
 	}
 	
+	//수정페이지 이동 
+	@RequestMapping("moveup.do")
+	public String moveUpdatePage(@RequestParam String m_id, Model model) {
+		Member member = memberService.selectMember(m_id);
+		if(member != null) {
+			model.addAttribute("member", member);
+			return "member/update";
+		} else {
+			model.addAttribute("message", m_id + " : 회원 조회 실패!");
+			return "common/error";
+		}
+	}
 	//회원 가입 처리용
 		@RequestMapping(value="enroll.do", method=RequestMethod.POST)
 		public String memberInsertMethod(Member member, Model model) {
@@ -67,12 +85,36 @@ public class MemberController {
 		}
 		
 		//ajax 통신으로 처리하는 요청 메소드 -------------------------
+		//아이디 중복 확인 
 		@RequestMapping(value="idchk.do", method=RequestMethod.POST)
 		public void dupIdCheckMethod(
 				@RequestParam("m_id") String m_id, 
 				HttpServletResponse response) throws IOException {
 			
 			int idCount = memberService.selectDupCheckId(m_id);
+			
+			String returnValue = null;
+			if(idCount == 0) {
+				returnValue = "ok";
+			}else {
+				returnValue = "dup";
+			}
+			
+			//response 를 이용해서 클라이언트로 출력스트림을 만들고 값 보내기
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter out = response.getWriter();
+			out.append(returnValue);
+			out.flush();
+			out.close();
+		}
+		
+		//닉네임 중복 확인 
+		@RequestMapping(value="nickchk.do", method=RequestMethod.POST)
+		public void dupNickNameCheckMethod(
+				@RequestParam("m_nickname") String m_nickname, 
+				HttpServletResponse response) throws IOException {
+			
+			int idCount = memberService.selectDupCheckNickName(m_nickname);
 			
 			String returnValue = null;
 			if(idCount == 0) {
@@ -201,6 +243,106 @@ public class MemberController {
 			}
 			
 			return mv;
+		}
+		
+		//이메일 인증
+		@ResponseBody
+		@GetMapping("mailCheck.do")
+		public String mailCheck(String m_email) {
+			int mailCount = memberService.selectMailCheck(m_email);
+			
+			if(mailCount == 0 ) {
+				return mailService.mailMessage(m_email);
+			} else {
+				String failureMessage = "failure";
+				return failureMessage;
+			}
+		}
+		
+		//회원 정보 보기
+		//리턴 타입으로 String, ModelAndView 를 사용할 수 있음
+		@RequestMapping("myinfo.do")
+		//public String myinfoMethod() {  return "폴더명/뷰파일명"; }
+		public ModelAndView myinfoMethod(
+				@RequestParam("m_id") String m_id, 
+				ModelAndView mv) {
+			//서비스로 전송온 값 전달해서, 실행 결과 받기
+			Member member = memberService.selectMember(m_id);
+			
+			if(member != null) {
+				mv.addObject("member", member);
+				mv.setViewName("member/myinfo");
+			}else {
+				mv.addObject("message", m_id + " : 회원 정보 조회 실패!");
+				mv.setViewName("common/error");
+			}
+			
+			return mv;		
+		}
+		
+		//회원 정보 수정용 : 수정 성공시 myinfoPage.jsp 로 이동함
+		@RequestMapping(value="mupdate.do", method=RequestMethod.POST)
+		public String memberUpdateMethod(Member member, Model model, 
+				@RequestParam("origin_userpwd") String originUserpwd) {
+			logger.info("mupdate.do : " + member);
+			logger.info("origin_userpwd : " + originUserpwd);
+			
+			//새로운 암호가 전송이 왔다면, 패스워드 암호화 처리함
+			String m_pw = member.getM_pw().trim();
+			if(m_pw != null && m_pw.length() > 0) {
+				//기존 암호와 다른 값이면
+				if(!this.bcryptPasswordEncoder.matches(m_pw, originUserpwd)) {
+					//member 에 새로운 패스워드를 암호화해서 기록함
+					member.setM_pw(this.bcryptPasswordEncoder.encode(m_pw));
+				}
+			}else {
+				//새로운 패스워드 값이 없다면, member 에 원래 패스워드 기록
+				member.setM_pw(originUserpwd);
+			}
+			
+			logger.info("after : " + member);
+			
+			if(memberService.updateMember(member) > 0) {
+				//수정이 성공했다면, 컨트롤러의 메소드를 직접 호출할 수도 있음
+				//즉, 컨트롤러 안에서 다른 컨트롤러를 실행할 수도 있음
+				//내정보보기 페이지에 수정된 회원정보를 다시 조회해서 내보냄
+				//쿼리스트링 : ?이름=값&이름=값
+				return "redirect:myinfo.do?m_id=" + member.getM_id();
+			}else {
+				model.addAttribute("message", 
+						member.getM_id() + " : 회원 정보 수정 실패!");
+				return "common/error";
+			}
+			
+		}
+		
+		//회원 탈퇴
+		// 삭제되면 자동 로그아웃함
+		@RequestMapping("mdel.do")
+		public String memberDeleteMethod(@RequestParam("m_id") String m_id, Model model) {
+			if(memberService.deleteMember(m_id) > 0) {
+				return "redirect:logout.do";
+			} else {
+				model.addAttribute("message", m_id + " : 회원 삭제 요청 실패!");
+				return "common/error";
+			}
+		}
+		
+		//아이디찾기 
+		@RequestMapping("IdRecovery.do")
+		public ModelAndView idRecovery(@RequestParam("m_email") String m_email, ModelAndView mv) {
+			Member loginMember = memberService.selectByMail(m_email);
+			
+			if(loginMember != null) {
+				mv.addObject("find_id", loginMember.getM_id());
+				mv.setViewName("member/showUid");
+			}else {
+				mv.addObject("message", "아이디 찾기 실패!");
+				mv.setViewName("common/error");
+			}
+			
+			return mv;
+			
 		}
 		
 }

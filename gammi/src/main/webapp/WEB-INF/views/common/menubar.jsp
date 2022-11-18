@@ -91,7 +91,11 @@
 								<li><a style="font-family: 'Noto Sans KR', sans-serif;" href="group.do">소모임</a></li>
 								<li><a style="font-family: 'Noto Sans KR', sans-serif;" href="#">레시피</a></li>
 								<li><a style="font-family: 'Noto Sans KR', sans-serif;" href="#">한식관련뉴스</a></li>
-								<li><a style="font-family: 'Noto Sans KR', sans-serif;" href="${ pageContext.servletContext.contextPath }/">내정보</a></li>
+								<li>
+								<c:url var="callMyinfo" value="/myinfo.do">
+									<c:param name="m_id" value="${ loginMember.m_id }" />
+								</c:url>
+							<a style="font-family: 'Noto Sans KR', sans-serif;" href="${ callMyinfo }">내정보</a></li>
 								<li><a style="font-family: 'Noto Sans KR', sans-serif;" href="${ pageContext.servletContext.contextPath }/logout.do">로그아웃</a></li>
                             </ul>
                             </c:if>

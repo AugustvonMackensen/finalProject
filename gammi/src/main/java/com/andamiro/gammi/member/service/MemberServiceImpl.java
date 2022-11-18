@@ -40,5 +40,30 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.selectListCount();
 	}
 	
+	@Override
+	public int selectDupCheckNickName(String m_nickname) {
+		return memberDao.selectDupCheckNick(m_nickname);
+	}
+
+	@Override
+	public int selectMailCheck(String m_email) {
+		return memberDao.selectMailCheck(m_email);
+	}
+
+	@Override
+	public int updateMember(Member member) {
+		return memberDao.updateMember(member);
+	}
+
+	@Override
+	public int deleteMember(String m_id) {
+		return memberDao.deleteMember(m_id);
+	}
+
+	@Override
+	public Member selectByMail(String m_email) {
+		return memberDao.selectByMail(m_email);
+	}
+	
 	
 }
