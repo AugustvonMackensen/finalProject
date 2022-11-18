@@ -5,17 +5,24 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.andamiro.gammi.gammigroup.service.GammiGroupService;
 import com.andamiro.gammi.gammigroup.vo.GammiGroup;
@@ -25,8 +32,6 @@ import com.andamiro.gammi.member.vo.Member;
 @Controller
 public class GammiGroupController {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
-	private int total_count = 10;
-	
 	
 	@Autowired
 	private GammiGroupService service;
@@ -110,6 +115,7 @@ public class GammiGroupController {
 		
 		model.addAttribute("group", group);
 		model.addAttribute("memberCount",memberCount);
+		model.addAttribute("member", check);
 		if(check!=null && check.getMember_grade()>2) {		//가입된 회원
 			return "group/groupMain";
 		}else {		    	//미가입 회원
@@ -130,5 +136,61 @@ public class GammiGroupController {
 			model.addAttribute("message", "이미 가입 신청된 그룹입니다.");
 		}
 		return "common/alert";
+	}
+	
+	//멤버 관리 페이지
+	@RequestMapping(value = "groupMemberManagement.do")
+	public String groupMemberManagement(@RequestParam("gno") int gno, Model model) {
+		ArrayList<GroupMember> gm = service.getAllGM(gno);
+		model.addAttribute("gm", gm);
+		return "group/memberManagement";
+	}
+	
+	//멤버 가입 수락
+	@RequestMapping(value = "groupmAccept.do", method=RequestMethod.POST)
+	@ResponseBody
+	public String groupmAccept(@RequestBody String param, HttpServletResponse response) throws ParseException {
+		JSONParser jparser = new JSONParser();
+		JSONObject job = (JSONObject)jparser.parse(param);
+		String no = (String)job.get("group_no");
+		String id = (String)job.get("m_id");
+		GroupMember gm = new GroupMember();
+		gm.setGroup_no(Integer.parseInt(no));
+		gm.setM_id(id);
+		service.acceptGroupMember(gm);
+		job = new JSONObject();
+		job.put("group_no", Integer.parseInt(no));
+		return job.toJSONString();  
+	}
+	//멤버 추방 및 탈퇴
+	@RequestMapping(value = "groupExile.do", method=RequestMethod.POST)
+	@ResponseBody
+	public String groupExile(@RequestBody String param, HttpServletResponse response) throws ParseException {
+		JSONParser jparser = new JSONParser();
+		JSONObject job = (JSONObject)jparser.parse(param);
+		String no = (String)job.get("group_no");
+		String id = (String)job.get("m_id");
+		GroupMember gm = new GroupMember();
+		gm.setGroup_no(Integer.parseInt(no));
+		gm.setM_id(id);
+		service.deleteGroupMember(gm);
+		job = new JSONObject();
+		job.put("group_no", Integer.parseInt(no));
+		return job.toJSONString();  
+	}
+	
+	//----------------------채팅
+	@RequestMapping(value = "/chatting", method = RequestMethod.GET)
+	public ModelAndView chat(
+			ModelAndView mv,
+			HttpServletRequest request
+			) {
+		HttpSession session = request.getSession();
+		Member user = (Member)session.getAttribute("loginMember");
+		mv.setViewName("meeting/chat");
+		mv.addObject("user", user);
+		mv.addObject("articleOwner", "jin");
+		
+		return mv;
 	}
 }

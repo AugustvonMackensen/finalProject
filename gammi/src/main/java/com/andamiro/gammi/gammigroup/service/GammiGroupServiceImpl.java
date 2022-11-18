@@ -56,9 +56,8 @@ public class GammiGroupServiceImpl implements GammiGroupService{
 	}
 
 	@Override
-	public int updateGroupMember(GroupMember gm) {
-		// TODO Auto-generated method stub
-		return dao.updateGroupMember(gm);
+	public int acceptGroupMember(GroupMember gm) {
+		return dao.acceptGroupMember(gm);
 	}
 	
 }

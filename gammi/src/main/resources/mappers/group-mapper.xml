@@ -19,6 +19,7 @@
 		<result property="group_no" column="group_no" />
 		<result property="m_id" column="m_id" />
 		<result property="member_grade" column="member_grade" />
+		<result property="member_grade_date" column="member_grade_date" />
 	</resultMap>
 	
 	
@@ -55,13 +56,13 @@
 	<!-- 그룹 추가에 따라오는 멤버 추가(그룹장) -->
 	<insert id="insertGoupMember" parameterType="GammiGroup">
 		insert into groupmember
-		values(default, (select max(group_no) from gammigroup where group_owner=#{group_owner}) , #{group_owner}, 4)
+		values(default, (select max(group_no) from gammigroup where group_owner=#{group_owner}) , #{group_owner}, 4, default)
 	</insert>
 	
 	<!-- 가입신청 -->
 	<insert id="createApplication" parameterType="GroupMember">
 		insert into groupmember
-		values(default, #{group_no}, #{m_id}, #{member_grade})
+		values(default, #{group_no}, #{m_id}, #{member_grade}, default)
 	</insert>
 	
 	<!-- 모임 가입된 유저 목록 전체조회(가입유저, 신청자, 거절된 목록까지 전체 조회) -->
@@ -69,7 +70,7 @@
 		select *
 		from groupmember
 		where group_no =#{gno}
-		order by join_no, member_grade
+		order by member_grade_date, member_grade
 	</select>
 	
 	<!-- 모임 탈퇴/추방처리 -->
@@ -79,9 +80,9 @@
 	</delete>
 	
 	<!-- 모임 가입 승인 -->
-	<update id="updateGroupMember" parameterType="GroupMember">
+	<update id="acceptGroupMember" parameterType="GroupMember">
 	update groupmember
-	set member_grade = 3
+	set member_grade = 3, member_grade_date = default
 	where group_no=#{group_no} and m_id = #{m_id}
 	</update>
 </mapper>
