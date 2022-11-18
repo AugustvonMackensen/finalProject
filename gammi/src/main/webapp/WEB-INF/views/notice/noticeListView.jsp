@@ -33,6 +33,12 @@ function Change() {
 	<!-- jstl 에서 절대경로 표기 : /WEB-INF/views/common/menubar.jsp -->
 	<br>
 	<br>
+	<c:if test="${ empty list }"><br><br><br>
+	<h1>ㅇㄴㅇㄴㅁㅇㅁㅇㅁㅇㅁㅇ</h1>
+	</c:if>
+	<c:if test="${ !empty list }">
+	
+	
 	<div class="page-title">
 		<div class="container">
 			<h4
@@ -41,12 +47,7 @@ function Change() {
 	</div>
 	<!-- 관리자만 공지글 등록할 수 있도록 처리함
   => 로그인한 회원이 관리자이면 공지글 등록 버튼이 보이게 함 -->
-	<center>
-		<c:if test="${ sessionScope.loginMember.admin eq 'Y' }">
-			<button onclick="javascript:location.href='movewrite.do';">
-				새 공지글 등록</button>
-		</c:if>
-	</center>
+
 
 	<hr>
 	<!-- 검색 항목 영역 -->
@@ -54,6 +55,13 @@ function Change() {
 		<!-- board seach area -->
 		<div id="board-search">
 			<div class="container">
+				<div style="max-height:30px; font-family: 'Noto Sans KR', sans-serif; font-size:14px ">
+				<div style="margin-left:15px"><span>총 ${ listCount } 건</span></div>
+				<div style="text-align : right; margin-top : -20px; margin-right: 33px;">
+				    <span><a class="visted" href="${ pageContext.servletContext.contextPath }/nstarlist.do">조회순</a></span>
+					<span>|</span> 
+					<a class="visted" href="${ pageContext.servletContext.contextPath }/nlist.do">최신순</a></div></div>
+				<br>
 				<div class="search-window">
 					<div
 						style="display: flex; justify-content: center; margin: 0px 0px 0px 200px;">
@@ -89,16 +97,6 @@ function Change() {
 			</div>
 		</div>
 
-		<table align="center" class="board-table">
-			<tr>
-				<th align="left">총 ${ listCount } 건</th>
-
-				<th><span><a
-						href="${ pageContext.servletContext.contextPath }/nstarlist.do">조회순</a></span>
-					<span>|</span> <a
-					href="${ pageContext.servletContext.contextPath }/nlist.do">최신순</a></th>
-			</tr>
-		</table>
 
 
 		<!-- 목록 출력 영역 -->
@@ -120,7 +118,7 @@ function Change() {
 							<tr>
 								<td>${ n.notice_num }</td>
 								<c:url var="ndt" value="/ndetail.do">
-									<c:param name="notice_num" value="${ n.notice_num }" />
+								<c:param name="notice_num" value="${ n.notice_num }" />
 								</c:url>
 								<th><a href="${ ndt }">${ n.notice_title }</a>
 								<td>${ n.notice_readcount }</td>
@@ -136,13 +134,18 @@ function Change() {
 						</tbody>
 					</c:forEach>
 				</table>
+				
+		<c:if test="${ sessionScope.loginMember.admin eq 'Y' }">
+			<button class="rightbtn" onclick="javascript:location.href='movewrite.do';">
+				공지글 등록</button>
+		</c:if>
 
-				<button class="rightbtn2"
+				<button class="rightbtn3"
 					onclick="javascript:location.href='${ pageContext.servletContext.contextPath }/nlist.do';">목록</button>
 			</div>
 		</div>
 	</section>
-
+	
 
 	<c:if test="${ empty action }">
 		<!-- 전체 목록 페이징 처리 -->
@@ -328,8 +331,8 @@ function Change() {
 		</div>
 	</c:if>
 	<!-- 검색 목록 페이징 처리 -->
-
-	<hr>
+	</c:if>
+	<br>
 	<c:import url="/WEB-INF/views/common/footer.jsp" />
 
 </body>
