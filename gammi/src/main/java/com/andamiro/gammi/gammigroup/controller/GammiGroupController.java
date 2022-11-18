@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,10 +19,14 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.andamiro.gammi.gammigroup.service.GammiGroupService;
 import com.andamiro.gammi.gammigroup.vo.GammiGroup;
+import com.andamiro.gammi.gammigroup.vo.GroupMember;
+import com.andamiro.gammi.member.vo.Member;
 
 @Controller
 public class GammiGroupController {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
+	private int total_count = 10;
+	
 	
 	@Autowired
 	private GammiGroupService service;
@@ -90,9 +95,40 @@ public class GammiGroupController {
 		}
 	}
 	
-	//모임 입장
-	@RequestMapping("selectGroup.do")
-	public String moveIntoGroup() {
-		return "group/groupMain";
+	//모임 입장		1)가입여부 확인 1-1)가입되어있다면 내부 입장. 1-2) 미가입시  가입 폼으로 이동
+	@RequestMapping(value="selectGroup.do")
+	public String moveIntoGroup(@RequestParam("selectGroupNo") String gno, HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		Member user = (Member)session.getAttribute("loginMember");
+		GroupMember gm = new GroupMember();
+		gm.setGroup_no(Integer.parseInt(gno));
+		gm.setM_id(user.getM_id());
+		
+		GammiGroup group = service.selectOneGroup(Integer.parseInt(gno));
+		int memberCount = service.getMemberCount(Integer.parseInt(gno));
+		GroupMember check = service.getGroupMember(gm);
+		
+		model.addAttribute("group", group);
+		model.addAttribute("memberCount",memberCount);
+		if(check!=null && check.getMember_grade()>2) {		//가입된 회원
+			return "group/groupMain";
+		}else {		    	//미가입 회원
+			return "group/groupJoinForm";
+		}
+	}
+	
+	//가입신청 이후 목록으로 이동
+	@RequestMapping(value = "applicationGroup.do", method=RequestMethod.POST)
+	public String applicationGroup(GammiGroup group, GroupMember gm, Model model) {
+		gm.setGroup_no(group.getGroup_no());
+		gm.setMember_grade(1);
+		GroupMember check = service.getGroupMember(gm);
+		if(check == null) {
+			service.createApplication(gm);
+			model.addAttribute("message", "가입 신청이 완료 되었습니다.");
+		}else {
+			model.addAttribute("message", "이미 가입 신청된 그룹입니다.");
+		}
+		return "common/alert";
 	}
 }

@@ -9,18 +9,21 @@
 	</settings>
 
 	<typeAliases>		
-		<typeAlias type="com.andamiro.gammi.group.vo.Group" alias="Group" />
-<<<<<<< HEAD
+		<typeAlias type="com.andamiro.gammi.gammigroup.vo.GammiGroup" alias="GammiGroup" />
+		<typeAlias type="com.andamiro.gammi.gammigroup.vo.GroupMember" alias="GroupMember" />
 		<typeAlias type="com.andamiro.gammi.member.vo.Member" alias="Member" />
-=======
->>>>>>> branch 'main' of https://github.com/AugustvonMackensen/finalProject.git
+		<typeAlias type="com.andamiro.gammi.recipe.vo.Recipe" alias="Recipe" />
+		<typeAlias type="com.andamiro.gammi.common.SearchDate" alias="SearchDate" />
+		<typeAlias type="com.andamiro.gammi.common.Paging" alias="Paging" />
+		<typeAlias type="com.andamiro.gammi.common.SearchPaging" alias="SearchPaging" />
+		<typeAlias type="com.andamiro.gammi.notice.vo.Notice" alias="Notice" />
+	
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="mappers/group-mapper.xml" />
-<<<<<<< HEAD
 		<mapper resource="mappers/member-mapper.xml" />
-=======
->>>>>>> branch 'main' of https://github.com/AugustvonMackensen/finalProject.git
+		<mapper resource="mappers/recipe-mapper.xml" />
+		<mapper resource="mappers/notice-mapper.xml" />
 	</mappers>
 </configuration>

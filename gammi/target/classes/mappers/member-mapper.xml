@@ -11,6 +11,7 @@
 	
 	<resultMap type="Member" id="resultList">
 		<result property="m_id" column="m_id"/>
+		<result property="m_name" column="m_name"/>
 		<result property="m_nickname" column="m_nickname"/>
 		<result property="m_pw" column="m_pw"/>
 		<result property="m_email" column="m_email"/>
@@ -18,16 +19,23 @@
 		<result property="admin" column="admin"/>
 		<result property="login_ok" column="login_ok"/>
 	</resultMap>
-	
+	 
 	<!-- 회원가입시 아이디 중복 체크 처리용 -->
 	<select id="selectCheckId" parameterType="string" resultType="_int">
 		select count(m_id) from member
 		where m_id = #{ m_id }
 	</select>
 	
+	<!-- 회원가입시 닉네임 중복 체크 처리용 -->
+	<select id="selectCheckNick" parameterType="string" resultType="_int">
+		select count(m_nickname) from member
+		where m_nickname = #{ m_nickname }
+	</select>
+	
+	
 	<insert id="insertMember" parameterType="Member">
-		insert into member (m_id, m_nickname, m_pw, m_email, m_birth ,login_ok, admin)
-		values ( #{m_id}, #{m_nickname}, #{m_pw}, #{m_email}, #{ m_birth}, default, default)
+		insert into member (m_id, m_name, m_nickname, m_pw, m_email, m_birth ,login_ok, admin)
+		values ( #{m_id}, #{m_name}, #{m_nickname}, #{m_pw}, #{m_email}, #{ m_birth}, default, default)
 	</insert>
 	
 	<!-- 회원 아이디(userid)로 회원정보 조회 -->
@@ -35,8 +43,47 @@
 		select * from member
 		where m_id = #{ m_id }
 	</select>
-
 	
+	<select id="selectList" parameterType="Paging" resultMap="resultList">
+	<![CDATA[
+		SELECT *  
+		FROM (SELECT ROWNUM RNUM, m_id, m_nickname, m_pw, m_email, m_birth, admin, login_ok
+		       FROM (SELECT * FROM MEMBER 
+		              ORDER BY m_id DESC))  
+		where rnum >= #{startRow} and rnum <= #{endRow}
+	]]>
+	</select>
+	
+	<select id="getListCount" resultType="_int">
+		select count(*) from member
+	</select>
+	
+	<!-- 회원가입시 이메일 중복 체크 처리 -->
+	<select id = "selectMailCheck" parameterType="String" resultType="_int">
+		select count(m_email) from member
+		where m_email = #{ m_email }
+	</select>
+	
+	<update id="updateMember" parameterType="Member">
+		update member
+		set m_pw = #{ m_pw },
+			m_email = #{ m_email },
+			m_nickname = #{ m_nickname},
+			m_birth = #{ m_birth }
+		where m_id = #{ m_id } 
+	</update>
+	
+	<delete id="deleteMember" parameterType="string">
+		delete from member
+		where m_id = #{ m_id }
+	</delete>
+	
+	
+	<!-- 이메일로 회원조회 -->
+	<select id="selectByMail" parameterType="string" resultType="Member">
+		select * from member
+		where m_email = #{ m_email }
+	</select>
 
 </mapper>
 

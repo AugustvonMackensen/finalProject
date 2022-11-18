@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="noticeMapper">
+
+	<resultMap type="Notice" id="resultNotice">
+		<id column="notice_num" property="notice_num" />
+		<result column="notice_title" property="notice_title" />
+		<result column="notice_date" property="notice_date" />
+		<result column="notice_writer" property="notice_writer" />
+		<result column="notice_content" property="notice_content" />
+		<result column="notice_original_filename" property="notice_original_filename" />
+		<result column="notice_rename_filename" property="notice_rename_filename" />
+		<result column="notice_readcount" property="notice_readcount" />
+	</resultMap>
+	
+	<resultMap type="Notice" id="resultNoticeTop3">
+		<id column="notice_num" property="notice_num" />
+		<result column="notice_title" property="notice_title" />
+		<result column="notice_date" property="notice_date" />		
+	</resultMap>
+	
+	<select id="selectNewTop3" resultMap="resultNoticeTop3">
+		<![CDATA[
+		select *
+		from (select rownum rnum, notice_num, notice_title, notice_date
+		      from (select * from notice
+		            order by notice_date desc, notice_num desc))
+		where rnum >= 1 and rnum <= 3
+		]]>
+	</select>
+	
+	<!--  리스트 전체 목록 보기  -->
+	<select id="selectAll" resultMap="resultNotice">
+		select * from notice
+		order by notice_num desc
+	</select>
+	
+	<select id="searchTitle" resultMap="resultNotice" parameterType="SearchPaging">
+		<![CDATA[
+			select *  
+			from (select rownum rnum, notice_num, notice_title, 
+						  notice_date, notice_writer, 
+						  notice_content,  
+			               notice_original_filename, notice_rename_filename, 
+			               notice_readcount
+			       from (select * from notice
+			       		   where notice_title like '%' || #{ keyword } || '%'
+			               order by notice_readcount desc 
+			              			
+			                        )) 
+			where rnum >= #{startRow} and rnum <= #{endRow}
+		]]>
+	</select>
+	
+	<select id="searchContent" resultMap="resultNotice" parameterType="SearchPaging">
+		<![CDATA[
+			select *  
+			from (select rownum rnum, notice_num, notice_title, 
+						  notice_date, notice_writer, 
+						  notice_content,  
+			               notice_original_filename, notice_rename_filename, 
+			               notice_readcount
+			       from (select * from notice
+			       		   where notice_content like '%' || #{ keyword } || '%'
+			               order by notice_readcount desc 
+			              			
+			                        )) 
+			where rnum >= #{startRow} and rnum <= #{endRow}
+		]]>
+	</select>
+	
+	<select id="selectNotice" parameterType="_int" resultMap="resultNotice">
+		select * from notice
+		where notice_num = #{ notice_num }
+	</select>
+	
+	<delete id="deleteNotice" parameterType="_int">
+		delete from notice
+		where notice_num = #{ notice_num }
+	</delete>
+	
+	<insert id="insertNotice" parameterType="Notice">
+		insert into notice (notice_num, notice_title, notice_writer, 
+		notice_date, notice_original_filename, notice_rename_filename, notice_content, notice_readcount) 
+		values (default, 
+				#{ notice_title }, #{ notice_writer }, sysdate, 
+				#{ notice_original_filename, jdbcType=VARCHAR }, 
+				#{ notice_rename_filename, jdbcType=VARCHAR }, 
+				#{ notice_content }, default
+				)
+			
+	</insert>
+	
+	<update id="updateNotice" parameterType="Notice">
+		update notice
+		set notice_title = #{ notice_title },
+			notice_content = #{ notice_content}
+			<if test="notice_original_filename != null">
+			, notice_original_filename = #{ notice_original_filename }
+			, notice_rename_filename = #{ notice_rename_filename }
+			</if>
+			<if test="notice_original_filename == null">
+			, notice_original_filename = null
+			, notice_rename_filename = null
+			</if>
+		where notice_num = #{ notice_num }
+	</update>
+	
+	<!-- 조회수 1증가 -->
+	<update id="addReadCount" parameterType="_int">
+		update notice
+		set notice_readcount = notice_readcount + 1
+		where notice_num = #{ notice_num }
+	</update>
+	
+	<select id="getListCount" resultType="_int">
+		select count(*) from notice
+	</select>
+	
+	<select id="getSearchTListCount" resultType="_int" parameterType="string">
+		select count(*) from notice
+		where notice_title like '%' || #{ keyword } || '%'
+	</select>
+	
+	<select id="getSearchCListCount" resultType="_int" parameterType="string">
+		select count(*) from notice
+		where notice_content like '%' || #{ keyword } || '%'
+	</select>	
+	
+	<select id="selectList" parameterType="Paging" resultMap="resultNotice">
+		<![CDATA[
+			select *  
+			from (select rownum rnum, notice_num, notice_title, 
+						  notice_date, notice_writer, 
+						  notice_content,  
+			               notice_original_filename, notice_rename_filename, 
+			               notice_readcount
+			       FROM (select * from notice 
+			              order by notice_num desc
+			                        )) 
+			where rnum >= #{startRow} and rnum <= #{endRow}
+		]]>
+	</select>
+	
+		<select id="selectStarlist" parameterType="Paging" resultMap="resultNotice">
+		<![CDATA[
+			select *  
+			from (select rownum rnum, notice_num, notice_title, 
+						  notice_date, notice_writer, 
+						  notice_content,  
+			               notice_original_filename, notice_rename_filename, 
+			               notice_readcount
+			       FROM (select * from notice 
+			              order by notice_readcount desc
+			                        )) 
+			where rnum >= #{startRow} and rnum <= #{endRow}
+		]]>
+	</select>
+	
+	
+</mapper>
+
+
+
