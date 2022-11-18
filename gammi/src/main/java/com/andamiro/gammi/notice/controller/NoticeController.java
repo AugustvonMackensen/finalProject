@@ -104,23 +104,17 @@ public class NoticeController {
 		//페이징 계산 처리 끝 ---------------------------------------
 		
 		ArrayList<Notice> list = noticeService.selectList(paging);
-		
+		mv.addObject("list", list);
 		if(list != null && list.size() > 0) {
-			mv.addObject("list", list);
+			
 			mv.addObject("listCount", listCount);
 			mv.addObject("maxPage", maxPage);
 			mv.addObject("currentPage", currentPage);
 			mv.addObject("startPage", startPage);
 			mv.addObject("endPage", endPage);
 			mv.addObject("limit", limit);
-			
-			mv.setViewName("notice/noticeListView");
-		}else {
-			mv.addObject("message", 
-					currentPage + " 페이지 목록 조회 실패.");
-			mv.setViewName("common/error");
 		}
-		
+		mv.setViewName("notice/noticeListView");
 		return mv;
 	}
 	
