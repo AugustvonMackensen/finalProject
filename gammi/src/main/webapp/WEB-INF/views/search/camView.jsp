@@ -22,7 +22,7 @@ const canvas = document.getElementById('canvas');
 const snap = document.getElementById('snap');
 
 const constraints = {
-		audio: true,
+		audio: false,
 		video: {
 			width: 640, height: 480
 			
@@ -61,10 +61,9 @@ snap.onclick = function(){
 		data: {
 			"img" : img
 		},
-		datatype: "text",
-		url: "result.do",
+		url: "camResult.do",
 		success: function(data){
-			console.log(data);
+			console.log("success");
 		},
 		error: function(a, b, c){
 			alert("error");

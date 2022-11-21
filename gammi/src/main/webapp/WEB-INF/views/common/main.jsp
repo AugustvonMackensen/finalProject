@@ -27,7 +27,7 @@
 				<button type="button" class="btm_image" id="img_btn" onclick="camSearch();">
 					<img class="btn_image2" src="resources/img/camera4.png">
 				</button>
-				<button type="button2" class="btm_image2" id="img_btn2"
+				<button type="button" class="btm_image2" id="img_btn2"
 					onclick="imgSearch();">
 					<img class="btn_image3" src="resources/img/picture.png">
 				</button>
