@@ -59,5 +59,10 @@ public class GammiGroupServiceImpl implements GammiGroupService{
 	public int acceptGroupMember(GroupMember gm) {
 		return dao.acceptGroupMember(gm);
 	}
+
+	@Override
+	public int refuseGroupMember(GroupMember gm) {
+		return dao.refuseGroupMember(gm);
+	}
 	
 }
