@@ -79,6 +79,7 @@
 </head>
 <body>
 	<c:import url="/WEB-INF/views/common/menubar.jsp" />
+	
 	<c:if test="${ !empty groups }">
 	<div class="bgc">
 		<br><br><br><br><br>
@@ -89,6 +90,7 @@
 			<ul class="container2">
 			<c:forEach var="groups" items="${groups}" varStatus="groups_status"> 
 				<li class="item">
+				<h1>${ groups.total_mem }</h1>
 				<a href = "${ pageContext.servletContext.contextPath }/selectGroup.do?selectGroupNo=${ groups.group_no }">
 					<div class="wrap">
 						<div class="imgbox">
@@ -96,7 +98,7 @@
 							<img class="img2" src="resources/img/banner.png" alt="무사진">
 							</c:if>
 							<c:if test="${ !empty groups.group_img }">
-							<img class="img2" src="resources/groupImg/${ groups.group_img }" alt="무사진">
+							<img class="img2" src = "resources/groupImg/${ groups.group_img }">
 							</c:if>
 						</div>
 					</div>

@@ -58,4 +58,8 @@ public class GammiGroupDao {
 	public int acceptGroupMember(GroupMember gm) {
 		return session.update("groupMapper.acceptGroupMember",gm);
 	}
+
+	public int refuseGroupMember(GroupMember gm) {
+		return session.update("groupMapper.refuseGroupMember",gm);
+	}
 }

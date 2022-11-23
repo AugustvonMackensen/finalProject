@@ -19,7 +19,7 @@
 	
 	</div>
 </c:if>
-<a href= "  ${ pageContext.servletContext.contextPath }/chatting?gno=${ group.group_no}">채팅</button>
+<a href="${ pageContext.servletContext.contextPath }/chat/rooms">채팅방 목록</a>
 <c:import url="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>
