@@ -45,20 +45,7 @@
       popup.classList.add('hide');
     }
     
-    function imgSearch(){
-    	
-    	location.href="imgSearch.do";
-    }
-    
-    function keywordSearch(){
-    	location.href="result.do";
-    }
-    
-    function camSearch(){
-    	location.href="camSearch.do";
-    }
     </script>
-</head>
 </head>
 <body>
  <header class="header">

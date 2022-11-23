@@ -66,7 +66,7 @@ public class SearchController {
 
 	@ResponseBody
 	@PostMapping("camResult.do")
-	public void camSearch(HttpServletRequest request,
+	public void camResult(HttpServletRequest request,
 			HttpServletResponse response, Model model) throws Exception{
 		String img = request.getParameter("img");
 		FileOutputStream stream = null;
