@@ -90,7 +90,7 @@
 			<ul class="container2">
 			<c:forEach var="groups" items="${groups}" varStatus="groups_status"> 
 				<li class="item">
-				<h1>${ groups.total_mem }</h1>
+			
 				<a href = "${ pageContext.servletContext.contextPath }/selectGroup.do?selectGroupNo=${ groups.group_no }">
 					<div class="wrap">
 						<div class="imgbox">
@@ -107,6 +107,7 @@
 							<p class="roomname">소모임이름 : ${ groups.group_name }</p>
 							<p class="roomabout">모임 설명 : ${ groups.group_info }</p>
 							<p class="roomsize">멤버 명 리더 : ${ groups.group_owner }</p>
+							<p class="roomabout">${ groups.total_mem }/10명</p>
 						</div>
 					</div>
 					</a>
@@ -123,30 +124,25 @@
 			<div
 				style="display: flex; justify-content: center; margin: 0px 0px 0px 200px;">
 				<select id="test" onchange="Change()"
-					style="position: relative; left: -200px; width: 5rem; height: 3rem; border: 2px solid #b5daff; text-align: center">
+					style="position: relative; border: 1px solid #ccc; left: -198px; width:5rem; height:3rem;  text-align:center">
 					<option value="1">제목</option>
 					<option value="2">키워드</option>
 				</select>
 				<div id="d1" style="display: block">
 					<form action="qna.do" method="post">
-						<input type="search" name="keyword"
-							style="width: 20rem; height: 3rem; margin-left: -198px; border: 2px solid #b5daff;">
-						<input type="submit" value="검색"
-							style="width: 5.5rem; height: 3rem; border: none; background-color: #b5daff; cursor: pointer; margin-top: -3px;"
-							class="btn">
+						<input type="search" name="keyword" style="width: 26rem;height:3rem; border: 1px solid #ccc; margin-left:-198px; ">
+						<input type="submit" value="검색" style="width: 5.5rem;height:3rem;border:none; margin-left: -7px; background: #555;color: #fff; cursor:pointer;  margin-top:-3px;" class="btn">
 					</form>
 				</div>
 				<div id="d2" style="display: none">
 					<form action="qna.do" method="post">
-						<input type="search" name="keyword"
-							style="width: 20rem; height: 3rem; margin-left: -198px; border: 2px solid #b5daff;">
-						<input type="submit" value="검색"
-							style="width: 5.5rem; height: 3rem; border: none; background-color: #b5daff; cursor: pointer; margin-top: -3px;"
-							class="btn">
+						<input type="search" name="keyword" style="width: 26rem;height:3rem; border: 1px solid #ccc; margin-left:-198px; ">
+						<input type="submit" value="검색" style="width: 5.5rem;height:3rem;border:none; margin-left: -7px; background: #555;color: #fff; cursor:pointer;  margin-top:-3px;" class="btn">
 					</form>
 				</div>
 			</div>
 		</div>
+		<br>
 	</div>
 	</c:if>
 	<c:if test="${ empty groups }">
@@ -159,7 +155,7 @@
 				<button class="rightbtn2" onclick="javascript:location.href='creategroupform.do';">모임생성</button>
 			</div>
 		</c:if>
-	<br>
+
 	<c:import url="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>

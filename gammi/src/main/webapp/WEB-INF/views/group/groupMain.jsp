@@ -20,6 +20,7 @@
 	</div>
 </c:if>
 <a href="${ pageContext.servletContext.contextPath }/chat/rooms">채팅방 목록</a>
+<a href= "${ pageContext.servletContext.contextPath }/groupgal.do?gno=${ group.group_no}">갤러리 이동</a></button>
 <c:import url="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>
