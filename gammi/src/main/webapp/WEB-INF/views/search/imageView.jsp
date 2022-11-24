@@ -35,7 +35,7 @@ function fileTransmit(fileObj){
 }
 
 const dropzone = new Dropzone('div.my-dropzone', {
-	url: 'imgTransmission.do',
+	url: 'transmitImg.do',
 	method: 'post',
 	maxFiles: 1,
 	uploadMultiple: false,
@@ -65,7 +65,7 @@ const dropzone = new Dropzone('div.my-dropzone', {
 <br><br><br>
 <!-- input 태그 감추기 -->
 <div>
-<form id="transmitImg" class="sendImgForm" action="imgTransmission.do" method="post" enctype="multipart/form-data">
+<form id="transmitImg" class="sendImgForm" action="transmitImg.do" method="post" enctype="multipart/form-data">
 	<input type="file" id="imgFile" name="imgFile" class="imgFile" onchange="fileTransmit(this)" accept="image/*">
 </form>
 </div>

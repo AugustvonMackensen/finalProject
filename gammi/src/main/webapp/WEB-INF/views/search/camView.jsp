@@ -61,7 +61,7 @@ snap.onclick = function(){
 		data: {
 			"img" : img
 		},
-		url: "camResult.do",
+		url: "transmitCam.do",
 		success: function(data){
 			console.log("success");
 		},

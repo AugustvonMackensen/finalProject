@@ -17,6 +17,8 @@
 		<typeAlias type="com.andamiro.gammi.common.Paging" alias="Paging" />
 		<typeAlias type="com.andamiro.gammi.common.SearchPaging" alias="SearchPaging" />
 		<typeAlias type="com.andamiro.gammi.notice.vo.Notice" alias="Notice" />
+		<typeAlias type="com.anadamiro.gammi.search.foodinfo.vo.Foodinfo" alias="Foodinfo" />
+		<typeAlias type="com.anadamiro.gammi.search.recipe.vo.Recipe" alias="SearchRecipe" />
 	
 	</typeAliases>
 	
@@ -25,5 +27,7 @@
 		<mapper resource="mappers/member-mapper.xml" />
 		<mapper resource="mappers/recipe-mapper.xml" />
 		<mapper resource="mappers/notice-mapper.xml" />
+		<mapper resource="mappers/foodinfo-mapper.xml" />
+		<mapper resource="mappers/searchRecipe-mapper.xml" />
 	</mappers>
 </configuration>
