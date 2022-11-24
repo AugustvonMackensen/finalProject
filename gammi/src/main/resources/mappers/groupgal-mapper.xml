@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="groupgalMapper">
+
+	<resultMap type="GammiGroupGal" id="resultList">
+		<result property="gal_no" column="gal_no" />
+		<result property="group_no" column="group_no" />
+		<result property="gal_id" column="gal_id" />
+		<result property="gal_title" column="gal_title" />
+		<result property="gal_date" column="gal_date" />
+		<result property="gal_content" column="gal_content" />
+		<result property="gal_original_image" column="gal_original_image" />
+		<result property="gal_rename_image" column="gal_rename_image" />
+	</resultMap>
+	
+	<select id = "selectAllList" resultType="GammiGroupGal">
+	select * from gallery
+	</select>
+	
+	<select id="selectgal" parameterType="_int" resultType="GammiGroupGal">
+      select * from gallery
+      where gal_no = #{ gal_no }
+   </select>
+	
+		<insert id="insertGroupGal" parameterType="GammiGroupGal">
+		insert into gallery
+		values (default ,#{group_no}, #{gal_id}, #{gal_title}, sysdate, #{gal_content}, #{gal_original_image}, #{gal_rename_image})
+	</insert>
+	
+	   <!-- 번호로 상세보기  -->
+   <select id="selectgroupgal" parameterType="_int" resultType="GammiGroupGal">
+      select * from gallery
+      where gal_no = #{ gal_no }
+   </select>
+   
+   
+    <!-- 원글 수정용  -->
+   <update id="updategal" parameterType="GammiGroupGal">
+      update gallery
+      set gal_title = #{gal_title}, 
+         gal_content = #{gal_content}
+         <if test="gal_original_image != null">
+            , 
+            gal_original_image = #{gal_original_image},
+            gal_rename_image = #{gal_rename_image}
+         </if>
+         <if test="gal_rename_image == null">
+            , 
+            gal_original_image = null,
+            gal_rename_image = null
+         </if>
+      where gal_no = #{ gal_no }
+   </update>
+   
+        <delete id="deletegal" parameterType="GammiGroupGal">
+      delete from gallery
+         where gal_no = #{gal_no}
+   </delete>
+
+</mapper>
+
+
+
+
+
+
+
