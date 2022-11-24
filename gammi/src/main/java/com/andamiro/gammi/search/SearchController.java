@@ -2,8 +2,6 @@ package com.andamiro.gammi.search;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class SearchController {
@@ -29,8 +28,10 @@ public class SearchController {
 	}
 	
 	@GetMapping("result.do")
-	public String searchResult() {
-		return "food/searchView";
+	public ModelAndView searchResult(@RequestParam("keyword") String keyword, ModelAndView mv) {
+		mv.addObject("keyword", keyword);
+		mv.setViewName("food/searchView");
+		return mv;
 	}
 	
 	@RequestMapping("camSearch.do")
@@ -65,7 +66,7 @@ public class SearchController {
 
 	@ResponseBody
 	@PostMapping("camResult.do")
-	public String camSearch(HttpServletRequest request,
+	public void camResult(HttpServletRequest request,
 			HttpServletResponse response, Model model) throws Exception{
 		String img = request.getParameter("img");
 		FileOutputStream stream = null;
@@ -86,9 +87,6 @@ public class SearchController {
 			e.printStackTrace();
 			model.addAttribute("message", "촬영된 이미지 저장 실패");
 			stream.close();
-			return "common/error";
 		}
-		
-		return "food/searchView";
 	}
 }

@@ -6,6 +6,22 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&family=Noto+Sans+KR:wght@500;700&display=swap"
 	rel="stylesheet">
+<script type="text/javascript">
+function imgSearch(){
+	
+	location.href="imgSearch.do";
+}
+
+function keywordSearch(){
+	var input = document.getElementById('searchKeyword').value;
+	location.href="result.do?keyword=" + input;
+}
+
+function camSearch(){
+	location.href="camSearch.do";
+}
+</script>
+</head>
 <body>
 	<c:import url="/WEB-INF/views/common/menubar.jsp" />
 
@@ -23,11 +39,11 @@
 			<br>
 			<br>
 			<div class="search-box">
-				<input class="search-txt" type="text" placeholder="음식을 입력해주세요.">
+				<input id="searchKeyword" name="keyword" class="search-txt" type="text" placeholder="음식을 입력해주세요.">
 				<button type="button" class="btm_image" id="img_btn" onclick="camSearch();">
 					<img class="btn_image2" src="resources/img/camera4.png">
 				</button>
-				<button type="button2" class="btm_image2" id="img_btn2"
+				<button type="button" class="btm_image2" id="img_btn2"
 					onclick="imgSearch();">
 					<img class="btn_image3" src="resources/img/picture.png">
 				</button>
