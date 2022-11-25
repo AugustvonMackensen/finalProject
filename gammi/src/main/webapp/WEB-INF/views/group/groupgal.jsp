@@ -69,13 +69,15 @@
 	<c:if test="${ empty groupgals }">
 			<div style="display: grid;  place-items: center;  min-height: 80vh;">
 				<h1 style=" font-family: 'Noto Sans KR', sans-serif;">
-				현재 생성된 갤러리가 없습니다.
+				현재 생성된 갤러리가 없습니다.<br>
 				</h1>
+				    
 			</div>
-			<div class="writelistbtn">
-				<button class="rightbtn2" onclick="javascript:location.href='creategroupgal.do';">모임생성</button>
-			</div>
-		</c:if>
+		
+		<div style="margin-right : 50px;">
+	<button class="rightbtn4" onclick="javascript:location.href='creategroupgal.do?gno=${gno}';">글쓰기</button>
+	</div>
+	</c:if>
 <c:import url="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>
