@@ -17,10 +17,9 @@
 		<typeAlias type="com.andamiro.gammi.common.Paging" alias="Paging" />
 		<typeAlias type="com.andamiro.gammi.common.SearchPaging" alias="SearchPaging" />
 		<typeAlias type="com.andamiro.gammi.notice.vo.Notice" alias="Notice" />
-		<typeAlias type="com.anadamiro.gammi.search.foodinfo.vo.Foodinfo" alias="Foodinfo" />
-		<typeAlias type="com.anadamiro.gammi.search.recipe.vo.Recipe" alias="SearchRecipe" />
+		<typeAlias type="com.andamiro.gammi.search.foodinfo.vo.Foodinfo" alias="Foodinfo" />
+		<typeAlias type="com.andamiro.gammi.search.recipe.vo.Recipe" alias="SearchRecipe" />
 		<typeAlias type="com.andamiro.gammi.gammigroupgal.vo.GammiGroupGal" alias="GammiGroupGal" />
-	
 	</typeAliases>
 	
 	<mappers>
