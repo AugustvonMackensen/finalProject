@@ -1,4 +1,4 @@
-package com.andamiro.gammi.search;
+package com.andamiro.gammi.search.controller;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -40,34 +40,33 @@ public class SearchController {
 	}
 	
 
-	@PostMapping("imgTransmission.do")
-	public String imgTransmission(@RequestParam("imgFile") MultipartFile file
-			,HttpServletRequest request, Model model) {
+	@PostMapping("transmitImg.do")
+	public String transmitImg(@RequestParam("imgFile") MultipartFile file
+			,HttpServletRequest request) {
 		String imgFilePath = request.getSession().getServletContext().getRealPath("/resources/uploaded_foodImage");
 		String fileName = file.getOriginalFilename();
 		String renameFilename = "up_food." + fileName.substring(fileName.lastIndexOf(".") + 1);
-		
+		String msg = "";
 		//파일 저장
 		File renameFile = new File(imgFilePath + "\\" + renameFilename);
 		try {
 			file.transferTo(renameFile);
 			logger.info(renameFile.getAbsolutePath());
-			model.addAttribute("imgPath", renameFile.getAbsolutePath());
+			msg = "success";
 		} catch(Exception e) {
 			e.printStackTrace();
-			model.addAttribute("message", "이미지 등록 실패");
-			return "common/error";
+			msg = "fail";
 		}
 		
-		return "food/searchView";
+		return msg;
 		
 	}
 	
 
 	@ResponseBody
-	@PostMapping("camResult.do")
-	public void camResult(HttpServletRequest request,
-			HttpServletResponse response, Model model) throws Exception{
+	@PostMapping("transmitCam.do")
+	public String transmitCam(HttpServletRequest request) throws Exception{
+		String msg = "";
 		String img = request.getParameter("img");
 		FileOutputStream stream = null;
 		try {
@@ -82,11 +81,13 @@ public class SearchController {
 			stream = new FileOutputStream(filePath + "\\cam_food.png");
 			stream.write(file);
 			stream.close();
-			model.addAttribute("snap", filePath + "\\cam_food.png");
+			msg = "success";
 		}catch(Exception e) {
-			e.printStackTrace();
-			model.addAttribute("message", "촬영된 이미지 저장 실패");
+			e.printStackTrace();;
 			stream.close();
+			msg = "fail";
 		}
+		
+		return msg;
 	}
 }

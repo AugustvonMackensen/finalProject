@@ -17,8 +17,9 @@
 		<typeAlias type="com.andamiro.gammi.common.Paging" alias="Paging" />
 		<typeAlias type="com.andamiro.gammi.common.SearchPaging" alias="SearchPaging" />
 		<typeAlias type="com.andamiro.gammi.notice.vo.Notice" alias="Notice" />
-				<typeAlias type="com.andamiro.gammi.gammigroupgal.vo.GammiGroupGal" alias="GammiGroupGal" />
-	
+		<typeAlias type="com.andamiro.gammi.search.foodinfo.vo.Foodinfo" alias="Foodinfo" />
+		<typeAlias type="com.andamiro.gammi.search.recipe.vo.Recipe" alias="SearchRecipe" />
+		<typeAlias type="com.andamiro.gammi.gammigroupgal.vo.GammiGroupGal" alias="GammiGroupGal" />
 	</typeAliases>
 	
 	<mappers>
@@ -26,6 +27,8 @@
 		<mapper resource="mappers/member-mapper.xml" />
 		<mapper resource="mappers/recipe-mapper.xml" />
 		<mapper resource="mappers/notice-mapper.xml" />
-				<mapper resource="mappers/groupgal-mapper.xml" />
+		<mapper resource="mappers/foodinfo-mapper.xml" />
+		<mapper resource="mappers/searchRecipe-mapper.xml" />
+		<mapper resource="mappers/groupgal-mapper.xml" />
 	</mappers>
 </configuration>
