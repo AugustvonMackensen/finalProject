@@ -34,6 +34,20 @@
     border: 1px solid #303030;
     font-family: 'Noto Sans KR', sans-serif;
 }
+
+.rightbtn4{
+    float: right;
+    margin: 10px 10px 10px 10px;
+    font-size: 12px;
+    width: 8rem;
+    border-radius: 10px;
+    height: 4rem;
+    background-color: #444;
+    color: #fff;
+    border: 1px solid #303030;
+    font-family: 'Noto Sans KR', sans-serif;
+    margin-left: 30px;
+}
 .uploadtitle {
     font-size: 12px;
 }
