@@ -2,9 +2,9 @@ package com.andamiro.gammi.search.service;
 
 import org.springframework.stereotype.Service;
 
+import com.andamiro.gammi.recipe.vo.Recipe;
 import com.andamiro.gammi.search.dao.SearchDao;
 import com.andamiro.gammi.search.foodinfo.vo.Foodinfo;
-import com.andamiro.gammi.search.recipe.vo.Recipe;
 
 @Service
 public class SearchServiceImpl implements SearchService{

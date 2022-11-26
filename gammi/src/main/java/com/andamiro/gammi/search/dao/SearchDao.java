@@ -1,7 +1,7 @@
 package com.andamiro.gammi.search.dao;
 
+import com.andamiro.gammi.recipe.vo.Recipe;
 import com.andamiro.gammi.search.foodinfo.vo.Foodinfo;
-import com.andamiro.gammi.search.recipe.vo.Recipe;
 
 public class SearchDao {
 
