@@ -15,12 +15,11 @@
 </c:if>
 	<div class="menu">
     <ul>
-        <li class="il"><a href="groupMemberManagement.do?gno= ${ group.group_no }" class="item"><div>멤버관리</div></a></li>
-        <li class="il"><a href="#" class="item"><div>관리자</div></a></li>
+        <li class="il"><a href="groupMemberManagement.do?gno=${group.group_no}" class="item"><div>멤버관리</div></a></li>
         <li class="il"><a href="#" class="item"><div>공지사항</div></a></li>
         <li class="il"><a href="groupgal.do?gno=${ group.group_no}" class="item"><div>갤러리게시판</div></a></li>
         <li class="il"><a href="#" class="item"><div>캘린더</div></a></li>
-        <li class="il"><a href="chat/rooms" class="item"><div>자유채팅방</div></a></li>
+        <li class="il"><a href="${ pageContext.servletContext.contextPath }/rooms.do?gno=${ group.group_no}" class="item"><div>자유채팅방</div></a></li>
         <li class="il"><a href="#" class="item"><div>설정</div></a></li>
     </ul>
 </div>

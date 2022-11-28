@@ -74,7 +74,7 @@ public class GammiGroupController {
 						new SimpleDateFormat("yyyyMMddHHmmss");
 				//변경할 파일이름 만들기
 				String renameFileName = sdf.format(
-						new java.sql.Date(System.currentTimeMillis()))+gammiGroup.getGroup_name();	
+						new java.sql.Date(System.currentTimeMillis()));
 				renameFileName += "." + fileName.substring(fileName.lastIndexOf(".") + 1);
 				
 				//파일 객체 만들기
@@ -147,41 +147,27 @@ public class GammiGroupController {
 	}
 	
 	//멤버 가입 수락
-	@RequestMapping(value = "mGrade", method=RequestMethod.POST)
-	@ResponseBody
-	public String groupmGrade(@RequestBody String param, HttpServletResponse response) throws ParseException {
-		JSONParser jparser = new JSONParser();
-		JSONObject job = (JSONObject)jparser.parse(param);
-		int state = Integer.parseInt((String)job.get("num"));
-		String no = (String)job.get("group_no");
-		String id = (String)job.get("m_id");
-		GroupMember gm = new GroupMember();
-		gm.setGroup_no(Integer.parseInt(no));
-		gm.setM_id(id);
-		if(state==1) {		//1 수락, 2 거절, 3 추방
-			service.acceptGroupMember(gm);
-		}else if(state==2) {
-			service.refuseGroupMember(gm);
-		}else if(state==3) {
-			service.deleteGroupMember(gm);
+		@RequestMapping(value = "mGrade.do", method=RequestMethod.POST)
+		@ResponseBody
+		public String groupmGrade(@RequestBody String param, HttpServletResponse response) throws ParseException {
+			JSONParser jparser = new JSONParser();
+			JSONObject job = (JSONObject)jparser.parse(param);
+			int state = Integer.parseInt((String)job.get("num"));
+			String no = (String)job.get("group_no");
+			String id = (String)job.get("m_id");
+			GroupMember gm = new GroupMember();
+			gm.setGroup_no(Integer.parseInt(no));
+			gm.setM_id(id);
+			if(state==1) {		//1 수락, 2 거절, 3 추방
+				service.acceptGroupMember(gm);
+			}else if(state==2) {
+				service.refuseGroupMember(gm);
+			}else if(state==3) {
+				service.deleteGroupMember(gm);
+			}
+			job = new JSONObject();
+			job.put("group_no", Integer.parseInt(no));
+			return job.toJSONString();  
 		}
-		job = new JSONObject();
-		job.put("group_no", Integer.parseInt(no));
-		return job.toJSONString();  
-	}
 	
-	//----------------------채팅
-	@RequestMapping(value = "/chatting", method = RequestMethod.GET)
-	public ModelAndView chat(
-			ModelAndView mv,
-			HttpServletRequest request
-			) {
-		HttpSession session = request.getSession();
-		Member user = (Member)session.getAttribute("loginMember");
-		mv.setViewName("meeting/chat");
-		mv.addObject("user", user);
-		mv.addObject("articleOwner", "jin");
-		
-		return mv;
-	}
 }

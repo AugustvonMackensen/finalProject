@@ -9,13 +9,14 @@
 </head>
 <script type="text/javascript" src="${ pageContext.servletContext.contextPath }/resources/js/jquery-3.6.1.min.js"></script>
 <script type="text/javascript">
-//추방
-function mExile(no, id){
+//멤버 상태 변경(가입수락, 가입 거부 처리, 추방처리)
+function mGrade(no, id, num){
 	var m = new Object();
 	m.group_no = String(no);
 	m.m_id=id;
+	m.num = String(num);
 	$.ajax({
-		url: "groupExile.do",
+		url: "mGrade.do",
 		type: "post",
 		data: JSON.stringify(m),
 		contentType: "application/json; charset=utf-8",
@@ -30,7 +31,7 @@ function mExile(no, id){
 		}
 	});
 }
-//가입수락
+/* //가입수락
 function mAccept(no, id){
 	var m = new Object();
 	m.group_no = String(no);
@@ -54,7 +55,7 @@ function mAccept(no, id){
 //가입거절
 function mRefuse(no, id){
 	
-}
+} */
 </script>
 <body>
 <br><br><br><br><br><br><br><br><br><br><br>
@@ -65,7 +66,7 @@ function mRefuse(no, id){
 		<h5>${gm.m_id} : 님</h5>&nbsp;&nbsp;&nbsp;
 		<h5>가입 날짜 : ${ gm.member_grade_date }</h5>
 		<div class="writelistbtn">
-			<button class="rightbtn3" onclick="mExile(${gm.group_no}, '${ gm.m_id }');">추방하기</button>
+			<button class="rightbtn3" onclick="mGrade(${gm.group_no}, '${ gm.m_id }', 3);">추방하기</button>
 		</div>
 		<br>
 		</c:if>
@@ -76,8 +77,8 @@ function mRefuse(no, id){
 		<h5>${gm.m_id} : 님</h5>&nbsp;&nbsp;&nbsp;
 		<h5>가입 신청날짜 : ${ gm.member_grade_date }</h5>
 		<div class="writelistbtn">
-			<button class="rightbtn3" onclick="mAccept(${gm.group_no}, '${ gm.m_id }');">가입 수락</button>
-			<button class="rightbtn3" onclick="mRefuse(${gm.group_no}, '${ gm.m_id }');">가입 거절</button>
+			<button class="rightbtn3" onclick="mGrade(${gm.group_no}, '${ gm.m_id }', 1);">가입 수락</button>
+			<button class="rightbtn3" onclick="mGrade(${gm.group_no}, '${ gm.m_id }', 2);">가입 거절</button>
 		</div>
 		<br>
 		</c:if>
@@ -88,8 +89,8 @@ function mRefuse(no, id){
 		<h5>${gm.m_id} : 님</h5>&nbsp;&nbsp;&nbsp;
 		<h5>가입 신청날짜 : ${ gm.member_grade_date }</h5>
 		<div class="writelistbtn">
-			<button class="rightbtn3" onclick="mAccept(${gm.group_no}, '${ gm.m_id }');">가입 수락</button>
-			<button class="rightbtn3" onclick="mRefuse(${gm.group_no}, '${ gm.m_id }');">가입 거절</button>
+			<button class="rightbtn3" onclick="mAccept(${gm.group_no}, '${ gm.m_id }',1);">가입 수락</button>
+			<button class="rightbtn3" onclick="mRefuse(${gm.group_no}, '${ gm.m_id }',2);">가입 거절</button>
 		</div>
 		<br>
 		</c:if>
