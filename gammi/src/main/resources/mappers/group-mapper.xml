@@ -5,7 +5,7 @@
 <mapper namespace="groupMapper">
 
 	<resultMap type="GammiGroup" id="resultList">
-		<result property="group_no" column="group_no" />
+		<id property="group_no" column="group_no" />
 		<result property="group_owner" column="group_owner" />
 		<result property="group_name" column="group_name" />
 		<result property="group_date" column="group_date" />
@@ -16,7 +16,7 @@
 	</resultMap>
 	
 	<resultMap type="GroupMember" id="GMList">
-		<result property="join_no" column="join_no" />
+		<id property="join_no" column="join_no" />
 		<result property="group_no" column="group_no" />
 		<result property="m_id" column="m_id" />
 		<result property="member_grade" column="member_grade" />
@@ -29,13 +29,48 @@
 	<select id = "selectAllList" resultType="GammiGroup">
 	select * from GAMMIGROUP
 	</select> -->
-	<select id = "selectAllList" resultType="GammiGroup">
+	<!-- <select id = "selectAllList" resultType="GammiGroup">
 	select a.group_no, a.GROUP_OWNER, a.GROUP_NAME, a.GROUP_DATE, a.GROUP_INFO, a.GROUP_IMG, a.GROUP_OK,count(a.group_no) as "total_mem"
 	from gammigroup a
 	join groupmember b on a.group_no = b.group_no
 	group by a.group_no,a.GROUP_OWNER, a.GROUP_NAME, a.GROUP_DATE, a.GROUP_INFO, a.GROUP_IMG, a.GROUP_OK
+	</select> -->
+	<select id = "selectAllList" parameterType="Paging" resultMap="resultList">
+	<![CDATA[
+	select *
+	from (select rownum rnum, group_no, GROUP_OWNER, GROUP_NAME,GROUP_DATE, GROUP_INFO, GROUP_IMG, GROUP_OK, "total_mem"
+	from (select a.group_no, a.GROUP_OWNER, a.GROUP_NAME, a.GROUP_DATE, a.GROUP_INFO, a.GROUP_IMG, a.GROUP_OK,count(a.group_no) as "total_mem"
+	from gammigroup a
+	join groupmember b on a.group_no = b.group_no
+	group by a.group_no,a.GROUP_OWNER, a.GROUP_NAME, a.GROUP_DATE, a.GROUP_INFO, a.GROUP_IMG, a.GROUP_OK
+	order by a.group_date))
+	where rnum >= #{startRow} and rnum <= #{endRow}
+	
+	]]>
 	</select>
 	
+	
+	<!-- 전체 그룹 갯수 조회 -->
+	<select id="selectListCount" resultType="_int">
+	select count(*) from gammigroup
+	</select>
+	<select id ="selectSearchTListCount" resultType="_int" parameterType="string">
+	select count(*) from GAMMIGROUP
+	where group_name like '%' || #{ keyword } || '%'
+	</select>
+	
+	<select id="selectSearchTitle" resultType="GammiGroup" parameterType="SearchPaging">
+	<![CDATA[
+	select *
+	from (select rownum rnum, group_no, GROUP_OWNER, GROUP_NAME,GROUP_DATE, GROUP_INFO, GROUP_IMG, GROUP_OK, "total_mem"
+	from (select a.group_no, a.GROUP_OWNER, a.GROUP_NAME, a.GROUP_DATE, a.GROUP_INFO, a.GROUP_IMG, a.GROUP_OK,count(a.group_no) as "total_mem"
+	from gammigroup a
+	join groupmember b on a.group_no = b.group_no
+	group by a.group_no,a.GROUP_OWNER, a.GROUP_NAME, a.GROUP_DATE, a.GROUP_INFO, a.GROUP_IMG, a.GROUP_OK
+	order by a.group_date))
+			where rnum >= #{startRow} and rnum <= #{endRow} and group_name like '%' || #{keyword} || '%'
+		]]>
+	</select>
 	
 	<!-- 그룹 한개 조회(입장용) -->
 	<select id = "selectOneGroup" resultType="GammiGroup" parameterType="_int">

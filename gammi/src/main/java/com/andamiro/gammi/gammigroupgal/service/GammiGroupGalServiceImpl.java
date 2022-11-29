@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.andamiro.gammi.gammigroup.vo.GammiGroup;
 import com.andamiro.gammi.gammigroup.vo.GroupMember;
 import com.andamiro.gammi.gammigroupgal.dao.GammiGroupGalDao;
+import com.andamiro.gammi.gammigroupgal.vo.GalleryImg;
 import com.andamiro.gammi.gammigroupgal.vo.GammiGroupGal;
 
 
@@ -46,6 +47,16 @@ public class GammiGroupGalServiceImpl implements GammiGroupGalService {
 	@Override
 	public int deletegroupgal(int gal_no) {
 		return dao.deletegroupgal(gal_no);
+	}
+
+	@Override
+	public int insertNewGroupGalImg(GalleryImg gal_img) {
+		return dao.insertNewGroupGalImg(gal_img);
+	}
+
+	@Override
+	public ArrayList<GalleryImg> selectgal_img(int gal_no) {
+		return dao.selectgal_img(gal_no);
 	}
 
 

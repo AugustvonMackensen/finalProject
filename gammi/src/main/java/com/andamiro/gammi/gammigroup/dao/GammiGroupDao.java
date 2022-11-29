@@ -7,6 +7,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.andamiro.gammi.common.Paging;
+import com.andamiro.gammi.common.SearchPaging;
 import com.andamiro.gammi.gammigroup.vo.GammiGroup;
 import com.andamiro.gammi.gammigroup.vo.GroupMember;
 
@@ -15,8 +17,8 @@ public class GammiGroupDao {
 	@Autowired
 	private SqlSessionTemplate session;
 
-	public ArrayList<GammiGroup> groupAllList() {
-		List<GammiGroup> list =session.selectList("groupMapper.selectAllList"); 
+	public ArrayList<GammiGroup> groupAllList(Paging paging) {
+		List<GammiGroup> list =session.selectList("groupMapper.selectAllList",paging); 
 		return (ArrayList<GammiGroup>)list;
 	}
 
@@ -62,4 +64,17 @@ public class GammiGroupDao {
 	public int refuseGroupMember(GroupMember gm) {
 		return session.update("groupMapper.refuseGroupMember",gm);
 	}
+	public int selectSearchTListCount(String keyword) {
+		return session.selectOne("groupMapper.selectSearchTListCount", keyword);
+	}
+
+	public ArrayList<GammiGroup> selectSearchTitle(SearchPaging searchpaging) {
+		List<GammiGroup> list =session.selectList("groupMapper.selectSearchTitle", searchpaging); 
+		return (ArrayList<GammiGroup>)list;
+	}
+
+	public int selectListCount() {
+		return session.selectOne("groupMapper.selectListCount");
+	}
+
 }

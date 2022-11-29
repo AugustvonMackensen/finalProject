@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.andamiro.gammi.gammigroup.vo.GroupMember;
+import com.andamiro.gammi.gammigroupgal.vo.GalleryImg;
 import com.andamiro.gammi.gammigroupgal.vo.GammiGroupGal;
 
 @Repository("groupgalDao")
@@ -38,6 +39,15 @@ public class GammiGroupGalDao {
 
 	public int deletegroupgal(int gal_no) {
 		return session.delete("groupgalMapper.deletegal", gal_no);
+	}
+
+	public int insertNewGroupGalImg(GalleryImg gal_img) {
+		return session.insert("groupgalMapper.insertNewImg",gal_img);
+	}
+
+	public ArrayList<GalleryImg> selectgal_img(int gal_no) {
+		List<GalleryImg> list = session.selectList("groupgalMapper.selectgal_img",gal_no);
+		return (ArrayList<GalleryImg>)list;
 	}
 
 

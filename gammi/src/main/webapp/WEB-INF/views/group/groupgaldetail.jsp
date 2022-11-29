@@ -21,7 +21,9 @@
 	<tr><th>작성자</th><td>${ gammiGroupGal.gal_id }</td></tr>
 	<tr><th>날 짜</th><td>${ gammiGroupGal.gal_date }</td></tr>
 	<tr><th>내 용</th><td>${ gammiGroupGal.gal_content }</td></tr>
-	<tr><th>이미지</th><td> ${ gammiGroupGal.gal_original_image}</td></tr>
+	<c:forEach items="${ gal_img }"  var ="gal_img">
+	<tr><th>이미지</th><td> <img class="img2" src = "resources/groupGalImg/${ gal_img.gal_rename_image }"></td></tr>
+	</c:forEach>
 	<tr><th>모임번호</th><td> ${ gammiGroupGal.group_no}</td></tr>
 
 	    <c:url var="movenup" value="/updategal2.do">

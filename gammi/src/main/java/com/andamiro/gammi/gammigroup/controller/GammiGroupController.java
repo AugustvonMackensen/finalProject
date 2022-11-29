@@ -24,6 +24,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.andamiro.gammi.common.Paging;
+import com.andamiro.gammi.common.SearchPaging;
 import com.andamiro.gammi.gammigroup.service.GammiGroupService;
 import com.andamiro.gammi.gammigroup.vo.GammiGroup;
 import com.andamiro.gammi.gammigroup.vo.GroupMember;
@@ -44,17 +46,72 @@ public class GammiGroupController {
 	
 	//모임 전체 목록 페이지
 	@RequestMapping("group.do")
-	public String groupSearch(Model model) {
-		ArrayList<GammiGroup> allList = service.groupAllList();
-		if(allList!=null) {
-			model.addAttribute("groups",allList);
-			model.addAttribute("size", allList.size());
-		}else
-		{
-			model.addAttribute("size",0);
-		}
+	public String groupSearch(@RequestParam(name="page", required=false) String page, 
+			Model model) {
 		
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = Integer.parseInt(page);
+		}
+		int limit = 10;
+		int listCount = service.selectListCount();
+		int maxPage = (int)((double)listCount / limit + 0.9);
+		int startPage = (currentPage / 10) * 10 + 1;
+		int endPage = startPage + 10 - 1;
+		if(maxPage < endPage) {
+			endPage = maxPage;
+		}
+		int startRow = (currentPage - 1) * limit + 1;
+		int endRow = startRow + limit - 1;
+		Paging paging = new Paging(startRow, endRow);
+		
+		ArrayList<GammiGroup> list = service.groupAllList(paging);
+		if(list != null) {
+			model.addAttribute("groups", list);
+			model.addAttribute("listCount", listCount);
+			model.addAttribute("maxPage", maxPage);
+			model.addAttribute("currentPage", currentPage);
+			model.addAttribute("startPage", startPage);
+			model.addAttribute("endPage", endPage);
+			model.addAttribute("limit", limit);
+		}
 		return "group/groupSearch";
+	}
+	
+	//모임 검색용
+	@RequestMapping(value="groupsearchTitle.do")
+	public String groupSearchNameMethod(@RequestParam("keyword") String keyword, 
+			@RequestParam(name="page", required=false) String page,
+			Model model) {
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = Integer.parseInt(page);
+		}
+		int limit = 10;
+		int listCount = service.selectSearchTListCount(keyword);
+		int maxPage = (int)((double)listCount / limit + 0.9);
+		int startPage = (currentPage / 10) * 10 + 1;
+		int endPage = startPage + 10 - 1;
+		if(maxPage < endPage) {
+			endPage = maxPage;
+		}
+		int startRow = (currentPage - 1) * limit + 1;
+		int endRow = startRow + limit - 1;
+		SearchPaging searchpaging = new SearchPaging(keyword, startRow, endRow);
+		
+		ArrayList<GammiGroup> list = service.selectSearchTitle(searchpaging);
+		
+		model.addAttribute("groups", list);
+		model.addAttribute("listCount", listCount);
+		model.addAttribute("maxPage", maxPage);
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("limit", limit);
+		model.addAttribute("action", "title");
+		model.addAttribute("keyword", keyword);
+		return "group/groupSearch";
+		
 	}
 	
 	//모임 생성

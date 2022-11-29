@@ -2,12 +2,12 @@ package com.andamiro.gammi.gammigroup.service;
 
 import java.util.ArrayList;
 
+import com.andamiro.gammi.common.Paging;
+import com.andamiro.gammi.common.SearchPaging;
 import com.andamiro.gammi.gammigroup.vo.GammiGroup;
 import com.andamiro.gammi.gammigroup.vo.GroupMember;
 
 public interface GammiGroupService {
-		//그룹 전체목록 조회
-		public ArrayList<GammiGroup> groupAllList();
 		//그룹 신규 생성
 		public int insertNewGroup(GammiGroup gammiGroup);
 		//가입되어있는 그룹 접속
@@ -25,5 +25,14 @@ public interface GammiGroupService {
 		//모임 유저 가입 승인
 		public int acceptGroupMember(GroupMember gm);
 		//모임 유저 가입 거절
-		public int refuseGroupMember(GroupMember gm); 
+		public int refuseGroupMember(GroupMember gm);
+		//전체 그룹 갯수 조회
+		public int selectListCount();
+		//전체 그룹 페이징
+		public ArrayList<GammiGroup> groupAllList(Paging paging); 
+		//전체 검색 키워드 갯수 계산을 위해 총 목록 갯수 조회해 옴
+		public int selectSearchTListCount(String keyword);
+		//키워드 가지고 서칭 페이징용 조회
+		public ArrayList<GammiGroup> selectSearchTitle(SearchPaging searchpaging);
+		
 }

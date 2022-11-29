@@ -19,6 +19,7 @@
 		<typeAlias type="com.andamiro.gammi.notice.vo.Notice" alias="Notice" />
 		<typeAlias type="com.andamiro.gammi.search.foodinfo.vo.Foodinfo" alias="Foodinfo" />
 		<typeAlias type="com.andamiro.gammi.gammigroupgal.vo.GammiGroupGal" alias="GammiGroupGal" />
+		<typeAlias type="com.andamiro.gammi.gammigroupgal.vo.GalleryImg" alias="GalleryImg" />
 		<typeAlias type="com.andamiro.gammi.chatting.vo.ChatRoom" alias="ChatRoom" />
 		<typeAlias type="com.andamiro.gammi.chatting.vo.ChatMessage" alias="ChatMessage" />
 		<typeAlias type="com.andamiro.gammi.chatting.vo.ChatRoomJoin" alias="ChatRoomJoin" />
