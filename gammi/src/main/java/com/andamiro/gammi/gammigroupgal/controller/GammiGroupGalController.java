@@ -3,6 +3,7 @@ package com.andamiro.gammi.gammigroupgal.controller;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,13 +22,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.andamiro.gammi.gammigroup.vo.GammiGroup;
 import com.andamiro.gammi.gammigroup.vo.GroupMember;
 import com.andamiro.gammi.gammigroupgal.service.GammiGroupGalService;
+import com.andamiro.gammi.gammigroupgal.vo.GalleryImg;
 import com.andamiro.gammi.gammigroupgal.vo.GammiGroupGal;
-import com.andamiro.gammi.notice.vo.Notice;
 
 
 @Controller
@@ -63,41 +65,44 @@ public class GammiGroupGalController {
 	
 	// 갤러리 생성
 	@RequestMapping(value="groupgalinsert.do", method=RequestMethod.POST)
-	public String groupgalInsertMethod(GammiGroupGal gammiGroupGal, Model model, @RequestParam("gno") String gno,
-			HttpServletRequest request, @RequestParam(name="upfile", required=false) MultipartFile mfile) {
-		String savePath = request.getSession().getServletContext().getRealPath("resources/groupGalImg");
-		gammiGroupGal.setGroup_no(Integer.parseInt(gno));
-		if(!mfile.isEmpty()) {
-			String fileName = mfile.getOriginalFilename();
-			if(fileName != null && fileName.length() > 0) {
-				
-				  SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss"); //변경할 파일이름 만들기
-				  String renameFileName = sdf.format( new
-				  java.sql.Date(System.currentTimeMillis()))+gammiGroupGal.getGal_id();
-				  renameFileName += "." + fileName.substring(fileName.lastIndexOf(".") + 1);
-				 
-				//String renameFileName = "test"+"." + fileName.substring(fileName.lastIndexOf(".") + 1);
-				
-				//파일 객체 만들기
-				File renameFile = new File(savePath + "\\" + renameFileName);
-				
-				//업로드된 파일 저장시키고, 바로 이름바꾸기 실행함
-				try {
-					mfile.transferTo(renameFile);
-				} catch (Exception e) {					
-					e.printStackTrace();
-					model.addAttribute("message", "전송파일 저장 실패!");
-					return "common/error";
-				} 
-				
-				gammiGroupGal.setGal_original_image(renameFileName);
-			}
-		}
-		logger.info(gammiGroupGal+"");
-		if(service.insertNewGroupGal(gammiGroupGal) > 0) {
-			return "redirect:groupgal.do?gno="+gno;
+	 public String groupgalInsertMethod(GammiGroupGal gammiGroupGal, Model model, @RequestParam("gno") String gno,
+	         HttpServletRequest request, MultipartHttpServletRequest  mfile) {
+	      gammiGroupGal.setGroup_no(Integer.parseInt(gno));
+		if(service.insertNewGroupGal(gammiGroupGal)>0) {
+			GalleryImg gal_img = new GalleryImg();
+			int filenameCount=0;
+		    List<MultipartFile> fileList = mfile.getFiles("file");
+		    String savePath = request.getSession().getServletContext().getRealPath("resources/groupGalImg");
+		    for (MultipartFile mf : fileList) {
+		          String fileName = mf.getOriginalFilename();
+
+		          if(fileName != null && fileName.length() > 0) {
+		               SimpleDateFormat sdf = 
+		                     new SimpleDateFormat("yyyyMMddHHmmss");
+		               //변경할 파일이름 만들기
+		               String renameFileName = sdf.format(
+		                     new java.sql.Date(System.currentTimeMillis()))+filenameCount;
+		               renameFileName += "." + fileName.substring(fileName.lastIndexOf(".") + 1);
+		               
+		               //파일 객체 만들기
+		               File renameFile = new File(savePath + "\\" + renameFileName);
+		               
+		               //업로드된 파일 저장시키고, 바로 이름바꾸기 실행함
+		               try {
+		                  mf.transferTo(renameFile);
+		               } catch (Exception e) {               
+		                  e.printStackTrace();
+		                  model.addAttribute("message", "전송파일 저장 실패!");
+		                  return "common/error";
+		               } 
+		               gal_img.setGal_ori_image(fileName);
+		               gal_img.setGal_rename_image(renameFileName);
+		               service.insertNewGroupGalImg(gal_img);
+		            }
+		          filenameCount++;
+		      }
+		    return "redirect:groupgal.do?gno=" + gno;
 		}else {
-			model.addAttribute("message", "새 게시 원글 등록 실패!");
 			return "common/error";
 		}
 	}
@@ -109,8 +114,12 @@ public class GammiGroupGalController {
 
 			//해당 게시글 조회
 		 gammiGroupGal =  service.selectgroupgal(gal_no);
-		if(gammiGroupGal !=null) {
+		 ArrayList<GalleryImg> gal_img = service.selectgal_img(gal_no);
+		logger.info("gal : " + gammiGroupGal);
+		logger.info("GalleryImg : " + gal_img);
+		 if(gammiGroupGal !=null) {
 			mv.addObject("gammiGroupGal", gammiGroupGal);
+			mv.addObject("gal_img",gal_img);
 			mv.setViewName("group/groupgaldetail"); //디테일만 바꿈
 			
 		}else {
@@ -141,7 +150,7 @@ public class GammiGroupGalController {
 		
 		
 		
-		
+		/*
 		   //게시 원글 수정 요청 처리용
 		   @RequestMapping(value="updategal.do", method=RequestMethod.POST)
 		   public String updategalMethod(
@@ -229,7 +238,7 @@ public class GammiGroupGalController {
 		         return "common/error";
 		      }
 		   }
-		   
+		   */
 			//갤러리 게시글 삭제 요청 처리용
 			@RequestMapping("galdel.do")
 			public String groupgalDeleteMethod(

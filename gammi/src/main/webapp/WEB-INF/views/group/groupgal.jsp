@@ -24,12 +24,12 @@
             <c:param name="gal_no" value="${ groupgals.gal_no }" />
             <c:param name="gno" value="${ gno }"/>
          </c:url>
-             	<c:if test="${ empty groupgals.gal_original_image }">
+             	<c:if test="${ empty groupgals.gal_image }">
 					<a href="${bdt}"><img class="thumb" src="resources/img/food2.jpg" alt="무사진"></a>
 				</c:if>
 
-				<c:if test="${ !empty groupgals.gal_original_image }">
-					<a href="${bdt}"><img class="thumb" src="resources/groupGalImg/${ groupgals.gal_original_image}" alt="무사진"></a>
+				<c:if test="${ !empty groupgals.gal_image }">
+					<a href="${bdt}"><img class="thumb" src="resources/groupGalImg/${ groupgals.gal_image}" alt="무사진"></a>
 				</c:if>
                 <p class="uploadtitle">제목 : ${groupgals.gal_title}</p>
                 <p class="uploadname">작성자 : ${groupgals.gal_id }</p>

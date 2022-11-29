@@ -129,13 +129,13 @@
 					<option value="2">키워드</option>
 				</select>
 				<div id="d1" style="display: block">
-					<form action="qna.do" method="post">
+					<form action="groupsearchTitle.do" method="post">
 						<input type="search" name="keyword" style="width: 26rem;height:3rem; border: 1px solid #ccc; margin-left:-198px; ">
 						<input type="submit" value="검색" style="width: 5.5rem;height:3rem;border:none; margin-left: -7px; background: #555;color: #fff; cursor:pointer;  margin-top:-3px;" class="btn">
 					</form>
 				</div>
 				<div id="d2" style="display: none">
-					<form action="qna.do" method="post">
+					<form action="groupsearchTitle.do" method="post">
 						<input type="search" name="keyword" style="width: 26rem;height:3rem; border: 1px solid #ccc; margin-left:-198px; ">
 						<input type="submit" value="검색" style="width: 5.5rem;height:3rem;border:none; margin-left: -7px; background: #555;color: #fff; cursor:pointer;  margin-top:-3px;" class="btn">
 					</form>
@@ -155,7 +155,159 @@
 				<button class="rightbtn2" onclick="javascript:location.href='creategroupform.do';">모임생성</button>
 			</div>
 		</c:if>
+	
+	<!-- 으아아아아아아아아아아아아아아아아아아아아 -->
+	<c:if test="${ empty action }">
+		<!-- 전체 목록 페이징 처리 -->
 
+		<div style="text-align: center;">
+			<!-- 페이지 표시 영역 -->
+			<!-- 1페이지로 이동 처리 -->
+			<c:if test="${ currentPage eq 1 }">
+		[맨처음] &nbsp;
+	</c:if>
+			<c:if test="${ currentPage > 1 }">
+				<c:url var="bl" value="/group.do">
+					<c:param name="page" value="1" />
+				</c:url>
+				<a href="${ bl }">[맨처음]</a> &nbsp;
+	</c:if>
+			<!-- 이전 페이지그룹으로 이동 처리 -->
+			<c:if
+				test="${ (currentPage - 10) < startPage and (currentPage - 10) > 1 }">
+				<c:url var="bl2" value="/group.do">
+					<c:param name="page" value="${ startPage - 10 }" />
+				</c:url>
+				<a href="${ bl2 }">[이전그룹]</a> &nbsp;
+			
+			<c:if
+				test="${ !((currentPage - 10) < startPage and (currentPage - 10) > 1) }">
+		[이전그룹] &nbsp;
+	</c:if>
+	</c:if>
+			<!-- 현재 페이지가 속한 페이지 그룹 페이지 숫자 출력 -->
+			<c:forEach var="p" begin="${ startPage }" end="${ endPage }" step="1">
+				<c:if test="${ p eq currentPage }">
+					<font size="4" color="red"><b>[${ p }]</b></font>
+				</c:if>
+				<c:if test="${ p ne currentPage }">
+					<c:url var="bl3" value="/group.do">
+						<c:param name="page" value="${ p }" />
+					</c:url>
+					<a href="${ bl3 }"><font color="blue">${ p }</font></a>
+				</c:if>
+			</c:forEach>
+			<!-- 다음 페이지그룹으로 이동 처리 -->
+			<c:if
+				test="${ (currentPage + 10) > endPage and (currentPage + 10) < maxPage }">
+				<c:url var="bl4" value="/group.do">
+					<c:param name="page" value="${ endPage + 10 }" />
+				</c:url>
+				<a href="${ bl4 }">[다음그룹]</a> &nbsp;
+	
+			<c:if
+				test="${ !((currentPage + 10) > endPage and (currentPage + 10) < maxPage) }">
+		[다음그룹] &nbsp;
+	</c:if></c:if>
+			<!-- 끝페이지로 이동 처리 -->
+			<c:if test="${ currentPage eq maxPage }">
+		[맨끝] &nbsp; 
+	</c:if>
+			<c:if test="${ currentPage < maxPage }">
+				<c:url var="bl5" value="/group.do">
+					<c:param name="page" value="${ maxPage }" />
+				</c:url>
+				<a href="${ bl5 }">[맨끝]</a> &nbsp;
+	</c:if>
+		</div>
+	</c:if>
+
+
+	<!-- 검색 목록 페이징 처리 -->
+	<c:if test="${ !empty action }">
+
+		<div style="text-align: center;">
+			<!-- 페이지 표시 영역 -->
+			<!-- 1페이지로 이동 처리 -->
+			<c:if test="${ currentPage eq 1 }">
+		 [맨처음] &nbsp;
+	</c:if>
+			<c:if test="${ currentPage > 1 }">
+				<c:if test="${ action eq 'title' }">
+					<c:url var="nsl" value="groupsearchTitle.do">
+						<c:param name="keyword" value="${ keyword }" />
+						<c:param name="page" value="1" />
+					</c:url>
+				</c:if>
+				<a href="${ nsl }">[맨처음]</a> &nbsp;
+	</c:if>
+			<!-- 이전 페이지그룹으로 이동 처리 -->
+			<c:if
+				test="${ (currentPage - 10) < startPage and (currentPage - 10) > 1 }">
+				<c:if test="${ action eq 'title' }">
+					<c:url var="nsl" value="groupsearchTitle.do">
+						<c:param name="keyword" value="${ keyword }" />
+						<c:param name="page" value="${ startPage - 10 }" />
+					</c:url>
+				</c:if>
+
+				
+				<a href="${ nsl }">[이전그룹]</a> &nbsp;
+	
+			<c:if
+				test="${ !((currentPage - 10) < startPage and (currentPage - 10) > 1) }">
+		[이전그룹] &nbsp;
+	</c:if></c:if>
+			<!-- 현재 페이지가 속한 페이지 그룹 페이지 숫자 출력 -->
+			<c:forEach var="p" begin="${ startPage }" end="${ endPage }" step="1">
+				<c:if test="${ p eq currentPage }">
+					<font size="4" color="red"><b>[${ p }]</b></font>
+				</c:if>
+				<c:if test="${ p ne currentPage }">
+					<c:if test="${ action eq 'title' }">
+						<c:url var="nsl" value="groupsearchTitle.do">
+							<c:param name="keyword" value="${ keyword }" />
+							<c:param name="page" value="${ p }" />
+						</c:url>
+					</c:if>
+
+					<a href="${ nsl }"><font color="blue">${ p }</font></a>
+				</c:if>
+			</c:forEach>
+			<!-- 다음 페이지그룹으로 이동 처리 -->
+			<c:if
+				test="${ (currentPage + 10) > endPage and (currentPage + 10) < maxPage }">
+				<c:if test="${ action eq 'title' }">
+					<c:url var="nsl" value="groupsearchTitle.do">
+						<c:param name="keyword" value="${ keyword }" />
+						<c:param name="page" value="${ endPage + 10 }" />
+					</c:url>
+				</c:if>
+
+				<a href="${ nsl }">[다음그룹]</a> &nbsp;
+	
+			<c:if
+				test="${ !((currentPage + 10) > endPage and (currentPage + 10) < maxPage) }">
+		[다음그룹] &nbsp;
+	</c:if></c:if>
+			<!-- 끝페이지로 이동 처리 -->
+			<c:if test="${ currentPage eq maxPage }">
+		[맨끝] &nbsp; 
+	</c:if>
+			<c:if test="${ currentPage < maxPage }">
+				<c:if test="${ action eq 'title' }">
+					<c:url var="nsl" value="groupsearchTitle.do">
+						<c:param name="keyword" value="${ keyword }" />
+						<c:param name="page" value="${ maxPage }" />
+					</c:url>
+				</c:if>
+
+				<a href="${ nsl }">[맨끝]</a> &nbsp;
+	</c:if>
+		</div>
+	</c:if>
+	<!-- 검색 목록 페이징 처리 -->
+	
 	<c:import url="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>

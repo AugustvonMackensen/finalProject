@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.andamiro.gammi.common.Paging;
+import com.andamiro.gammi.common.SearchPaging;
 import com.andamiro.gammi.gammigroup.dao.GammiGroupDao;
 import com.andamiro.gammi.gammigroup.vo.GammiGroup;
 import com.andamiro.gammi.gammigroup.vo.GroupMember;
@@ -14,11 +16,6 @@ public class GammiGroupServiceImpl implements GammiGroupService{
 	
 	@Autowired
 	private GammiGroupDao dao;
-	
-	@Override
-	public ArrayList<GammiGroup> groupAllList() {
-		return dao.groupAllList();
-	}
 
 	@Override
 	public int insertNewGroup(GammiGroup gammiGroup) {
@@ -63,6 +60,26 @@ public class GammiGroupServiceImpl implements GammiGroupService{
 	@Override
 	public int refuseGroupMember(GroupMember gm) {
 		return dao.refuseGroupMember(gm);
+	}
+
+	@Override
+	public int selectSearchTListCount(String keyword) {
+		return dao.selectSearchTListCount(keyword);
+	}
+
+	@Override
+	public ArrayList<GammiGroup> selectSearchTitle(SearchPaging searchpaging) {
+		return dao.selectSearchTitle(searchpaging);
+	}
+
+	@Override
+	public int selectListCount() {
+		return dao.selectListCount();
+	}
+
+	@Override
+	public ArrayList<GammiGroup> groupAllList(Paging paging) {
+		return dao.groupAllList(paging);
 	}
 	
 }
