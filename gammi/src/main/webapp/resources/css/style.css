@@ -592,7 +592,7 @@ ol {
 .search-button{
 	width: 200px;
     font-size: 1.313rem;
-    line-height: 52px;
+	line-height: 53px;
     border-radius: 80px;
 	position: absolute;
 	border: 3.4px solid rgb(255, 113, 0);

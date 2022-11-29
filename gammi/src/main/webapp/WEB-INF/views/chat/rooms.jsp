@@ -36,8 +36,13 @@ function moveChatRoom(gno, id, chatno, chatroom_name){
 <body>
 <c:import url="/WEB-INF/views/common/menubar.jsp" />
 <div style="background-color: #F7F8F9;">
-<br><br><br><br><br>
-<div class="container">
+
+
+
+
+<c:import url="/WEB-INF/views/common/somoimsidebar.jsp"/>
+    <div style="margin-left:25%;padding:1px 16px;height:1000px;">
+        <div class="container">
     <div>
     	<c:forEach var="room" items="${list}" varStatus="room_status">
         <ul>
@@ -49,13 +54,18 @@ function moveChatRoom(gno, id, chatno, chatroom_name){
         </c:forEach>
     </div>
 </div>
+
+<div style="text-align : center;">
 <form action="${ pageContext.servletContext.contextPath }/roomP.do" method="post">
     <input type="hidden" name = "group_no" value="${ gno }">
     <input type="hidden" name = "m_id" value="${ sessionScope.loginMember.m_id }">
-    <input type="text" name="chatroom_name" ><br>
+    <input type="text" name="chatroom_name" >
     <button >개설하기</button>
 </form>
-<c:import url="/WEB-INF/views/common/somoimsidebar.jsp"/>
 </div>
+       
+      </div>
+</div>
+<c:import url="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>

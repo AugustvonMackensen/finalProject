@@ -1,16 +1,20 @@
+.div_menu{
+    position: relative;
+}
+
 .menu {
-    display: block;
-    overflow: hidden;
-    height: 900px;
-    width: 200px;
+    height: 600px;
+    width: 250px;
     color: #fff;
     transition: all 0.5s ease;
     border-radius: 20px;
-    padding: 10px;
+    padding: 38px;
     box-sizing: border-box;
-    margin-top: -232px;
-    background: white;
+
+    background: rgb(201, 200, 200);
     margin-left: 50px;
+position: fixed;
+
 
 }
 .menu ul {
@@ -19,7 +23,6 @@
     padding: 0;
 }
 .menu a, .menu > label {
-    display: block;
     height: 25px;
     padding: 20px;
     cursor: pointer;
@@ -58,13 +61,13 @@
     float: left;
     clear: left;
 }
-.menu li:nth-child(1) a::before        { content: '\e8f7'; }
-.menu li:nth-child(2) a::before{ content: '\f02e'; }
-.menu li:nth-child(3) a::before{ content: '\e7f7'; }
-.menu li:nth-child(4) a::before{ content: '\e88a'; }
-.menu li:nth-child(5) a::before{ content: '\e251'; }
-.menu li:nth-child(6) a::before{ content: '\e0d8'; }
-.menu li:nth-child(7) a::before{ content: '\e8b8'; }
+
+.menu li:nth-child(1) a::before{ content: '\f02e'; }
+.menu li:nth-child(2) a::before{ content: '\e7f7'; }
+.menu li:nth-child(3) a::before{ content: '\e88a'; }
+.menu li:nth-child(4) a::before{ content: '\e251'; }
+.menu li:nth-child(5) a::before{ content: '\e0d8'; }
+.menu li:nth-child(6) a::before{ content: '\e8b8'; }
 
 @media screen and (max-width:1023px) {
     .menu {
