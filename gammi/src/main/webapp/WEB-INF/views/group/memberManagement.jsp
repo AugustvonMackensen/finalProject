@@ -31,34 +31,12 @@ function mGrade(no, id, num){
 		}
 	});
 }
-/* //가입수락
-function mAccept(no, id){
-	var m = new Object();
-	m.group_no = String(no);
-	m.m_id=id;
-	$.ajax({
-		url: "groupmAccept.do",
-		type: "post",
-		data: JSON.stringify(m),
-		contentType: "application/json; charset=utf-8",
-		dataType: "json",
-		success: function(result){
-			location.href="groupMemberManagement.do?gno="+result.group_no;
-		},
-		error: function(request, status, errorData){
-			console.log("error code : " + request.status
-					+ "\nMessage : " + request,responseText
-					+ "\nError : " + errorData);
-		}
-	});
-}
-//가입거절
-function mRefuse(no, id){
-	
-} */
 </script>
 <body>
-<br><br><br><br><br><br><br><br><br><br><br>
+<c:import url="/WEB-INF/views/common/menubar.jsp" />
+<div style="background-color: #F7F8F9;">
+<c:import url="/WEB-INF/views/common/somoimsidebar.jsp"/>
+<div style="margin-left:25%;padding:1px 16px;height:1000px;">
 <h1>회원 관리 목록 페이지</h1>
 	<hr><br><h3>모임 멤버 목록</h3>
 	<c:forEach var="gm" items="${gm}" varStatus="mem_status">
@@ -97,6 +75,8 @@ function mRefuse(no, id){
 	</c:forEach>
 	<div class="writelistbtn">
 	<button class="rightbtn3" onclick="javascript:history.go(-1); return false;">이전페이지로 이동</button>
+</div>
+</div>
 </div>
 </body>
 </html>

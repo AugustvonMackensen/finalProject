@@ -109,23 +109,21 @@ public class GammiGroupGalController {
 	
 	// 게시글 상세보기 처리용
 		@RequestMapping("groupgaldetail.do")
-		public ModelAndView groupgalDetailMethod(ModelAndView mv,GammiGroupGal gammiGroupGal,
-				@RequestParam("gal_no") int gal_no) {
-
-			//해당 게시글 조회
-		 gammiGroupGal =  service.selectgroupgal(gal_no);
-		 ArrayList<GalleryImg> gal_img = service.selectgal_img(gal_no);
-		logger.info("gal : " + gammiGroupGal);
-		logger.info("GalleryImg : " + gal_img);
+		public ModelAndView groupgalDetailMethod(ModelAndView mv,GammiGroupGal gammiGroupGal) {
+			
+		//해당 게시글 조회
+		 gammiGroupGal =  service.selectgroupgal(gammiGroupGal.getGal_no());
+		 ArrayList<GalleryImg> gal_img = service.selectgal_img(gammiGroupGal.getGal_no());
 		 if(gammiGroupGal !=null) {
 			mv.addObject("gammiGroupGal", gammiGroupGal);
 			mv.addObject("gal_img",gal_img);
+			mv.addObject("gno",gammiGroupGal.getGroup_no());
 			mv.setViewName("group/groupgaldetail"); //디테일만 바꿈
 			
 		}else {
 			
 			mv.addObject("message", 
-					gal_no + "번 게시글 조회 실패");
+					gammiGroupGal.getGal_no() + "번 게시글 조회 실패");
 			mv.setViewName("common/error");
 		}
 		return mv;

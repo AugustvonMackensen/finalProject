@@ -23,5 +23,9 @@ public interface ChattingService {
 	public int setMsgDB(ChatMessage message);
 	//채팅방 삭제
 	public int roomDelete(int group_no);
+	//가입되어있는 채팅방 가져오기
+	public ArrayList<ChatRoom> joinRoomsList(ChatRoom selRoom);
+	//채팅방 나가기
+	public int secessionRoomJoin(ChatRoomJoin member);
 
 }

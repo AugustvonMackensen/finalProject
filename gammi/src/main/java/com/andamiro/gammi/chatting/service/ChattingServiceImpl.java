@@ -61,5 +61,15 @@ public class ChattingServiceImpl implements ChattingService{
 		return dao.roomDelete(group_no);
 	}
 
+	@Override
+	public ArrayList<ChatRoom> joinRoomsList(ChatRoom selRoom) {
+		return dao.joinRoomsList(selRoom);
+	}
+
+	@Override
+	public int secessionRoomJoin(ChatRoomJoin member) {
+		return dao.secessionRoomJoin(member);
+	}
+
 	
 }

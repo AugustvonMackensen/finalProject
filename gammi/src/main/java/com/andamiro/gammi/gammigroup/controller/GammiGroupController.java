@@ -173,6 +173,7 @@ public class GammiGroupController {
 		model.addAttribute("group", group);
 		model.addAttribute("memberCount",memberCount);
 		model.addAttribute("member", check);
+		model.addAttribute("gno",group.getGroup_no());
 		if(check!=null && check.getMember_grade()>2) {		//가입된 회원
 			return "group/groupMain";
 		}else {		    	//미가입 회원
@@ -200,6 +201,7 @@ public class GammiGroupController {
 	public String groupMemberManagement(@RequestParam("gno") int gno, Model model) {
 		ArrayList<GroupMember> gm = service.getAllGM(gno);
 		model.addAttribute("gm", gm);
+		model.addAttribute("gno",gno);
 		return "group/memberManagement";
 	}
 	

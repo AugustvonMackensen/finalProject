@@ -14,7 +14,7 @@ public class ChatRoom implements Serializable{
 	private int group_no;
 	private String m_id;
 	private String chatroom_name;
-	private Date chatrom_date;
+	private Date chatroom_date;
     private Set<WebSocketSession> sessions = new HashSet<>();
 	public ChatRoom() {
 		super();
@@ -25,7 +25,7 @@ public class ChatRoom implements Serializable{
 		this.group_no = group_no;
 		this.m_id = m_id;
 		this.chatroom_name = chatroom_name;
-		this.chatrom_date = chatrom_date;
+		this.chatroom_date = chatrom_date;
 	}
 	public int getChatroom_no() {
 		return chatroom_no;
@@ -51,11 +51,11 @@ public class ChatRoom implements Serializable{
 	public void setChatroom_name(String chatroom_name) {
 		this.chatroom_name = chatroom_name;
 	}
-	public Date getChatrom_date() {
-		return chatrom_date;
+	public Date getChatroom_date() {
+		return chatroom_date;
 	}
-	public void setChatrom_date(Date chatrom_date) {
-		this.chatrom_date = chatrom_date;
+	public void setChatroom_date(Date chatrom_date) {
+		this.chatroom_date = chatrom_date;
 	}
 	public Set<WebSocketSession> getSessions() {
 		return sessions;
@@ -66,7 +66,7 @@ public class ChatRoom implements Serializable{
 	@Override
 	public String toString() {
 		return "ChatRoom [chatroom_no=" + chatroom_no + ", group_no=" + group_no + ", m_id=" + m_id + ", chatroom_name="
-				+ chatroom_name + ", chatrom_date=" + chatrom_date + ", sessions=" + sessions + "]";
+				+ chatroom_name + ", chatroom_date=" + chatroom_date + ", sessions=" + sessions + "]";
 	}
 
 	/*
