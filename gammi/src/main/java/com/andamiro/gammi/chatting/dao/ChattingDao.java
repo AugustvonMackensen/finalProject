@@ -27,11 +27,23 @@ public class ChattingDao {
 	}
 	
 	public int createChatJoin(ChatRoomJoin room) {
-		return session.insert("chattingMapper.createChatRoomJoin",room);
+		try {
+			return session.insert("chattingMapper.createChatRoomJoin",room);
+		} catch (Exception e) {
+			System.out.println("에러 발생함 비상!");
+			return 9;
+		}
 	}
 	
 	public ChatRoomJoin findRoomMember(ChatRoomJoin chatroom) {
-		return session.selectOne("chattingMapper.findRoomMember",chatroom);
+		ChatRoomJoin result;
+		try {
+			result = session.selectOne("chattingMapper.findRoomMember",chatroom);
+		} catch (Exception e) {
+			System.out.println("에러 발생함 비상!");
+			return null;
+		}
+		return result;
 	}
 
 	public ArrayList<ChatMessage> findRoomMessages(ChatRoomJoin chatroom) {
@@ -56,6 +68,16 @@ public class ChattingDao {
 
 	public int roomDelete(int group_no) {
 		return session.delete("chattingMapper.roomDelete", group_no);
+	}
+
+	//가입되어 있는 채팅방만 조회
+	public ArrayList<ChatRoom> joinRoomsList(ChatRoom selRoom) {
+		List<ChatRoom> list = session.selectList("chattingMapper.joinRoomsList",selRoom);
+		return (ArrayList<ChatRoom>)list;
+	}
+
+	public int secessionRoomJoin(ChatRoomJoin member) {
+		return session.delete("chattingMapper.secessionRoomJoin",member);
 	}
 
 

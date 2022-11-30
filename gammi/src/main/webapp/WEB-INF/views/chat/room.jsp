@@ -6,20 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
-<!-- 합쳐지고 최소화된 최신 CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<!-- 부가적인 테마 -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(
 			function() {
@@ -79,11 +70,12 @@
 </head>
 <body>
 <c:import url="/WEB-INF/views/common/menubar.jsp" />
-<div style="    background-color: #F7F8F9;">
+<div style="background-color: #F7F8F9;">
 <c:import url="/WEB-INF/views/common/somoimsidebar.jsp"/>
+<div style="margin-left:25%;padding:1px 16px;height:1000px;">
 	<div class="container">
 		<div class="col-6">
-			<h1>[[${room.chatroom_name}]]방의접속 : 방장 닉네임-${ room.m_id }</h1>
+		<br><br><br>
 			<c:if test="${room.m_id eq roommem.m_id }">
 			<form action="roomDelete.do" method="post">
 				<input type = "text" name = "chatroom_no" value=${ room.chatroom_no }>
@@ -121,5 +113,7 @@
 		</div>
 		<div class="col-6"></div>
 	</div>
+</div>
+</div>
 </body>
 </html>

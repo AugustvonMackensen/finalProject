@@ -66,8 +66,13 @@ position: fixed;
 .menu li:nth-child(2) a::before{ content: '\e7f7'; }
 .menu li:nth-child(3) a::before{ content: '\e88a'; }
 .menu li:nth-child(4) a::before{ content: '\e251'; }
-.menu li:nth-child(5) a::before{ content: '\e0d8'; }
-.menu li:nth-child(6) a::before{ content: '\e8b8'; }
+.menu li:nth-child(5) a::before{ content: '\e8b8'; }
+.menu li:nth-child(6) a::before{ content: '\e0d8'; }
+.menu li:nth-child(7) a::before{ content: '\e0d8'; }
+.menu li:nth-child(8) a::before{ content: '\e0d8'; }
+.menu li:nth-child(9) a::before{ content: '\e0d8'; }
+.menu li:nth-child(10) a::before{ content: '\e0d8'; }
+.menu li:nth-child(11) a::before{ content: '\e0d8'; }
 
 @media screen and (max-width:1023px) {
     .menu {
