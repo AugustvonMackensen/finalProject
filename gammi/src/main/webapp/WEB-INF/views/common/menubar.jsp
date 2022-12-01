@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="resources/css/style.css" type="text/css">
     <link rel="stylesheet" href="resources/css/groupgal.css" type="text/css">
     <link rel="stylesheet" href="resources/css/sidebar.css" type="text/css">
+       <link rel="stylesheet" href="resources/css/admin.css" type="text/css">
     <link href="https://webfontworld.github.io/cookierun/CookieRun.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">

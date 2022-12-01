@@ -16,7 +16,7 @@
 	<c:if test="${ !empty groupgals }">
 	   <br><br>
 	    <div class="bgc">
-	    <div class="wrap2">
+			<div class="gal_width">
 	        <br><br>
 	        <h4  style=" font-family:'CookieRun';">음식, 취향에 맞는 사람들끼리 <br> 음식을 전시해보세요!</h4>
 	        <br><br>

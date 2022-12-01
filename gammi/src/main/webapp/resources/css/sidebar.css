@@ -1,91 +1,137 @@
-.div_menu{
-    position: relative;
+.div_menu {
+	position: relative;
 }
 
 .menu {
-    height: 600px;
-    width: 250px;
-    color: #fff;
-    transition: all 0.5s ease;
-    border-radius: 20px;
-    padding: 38px;
-    box-sizing: border-box;
-
-    background: rgb(201, 200, 200);
-    margin-left: 50px;
-position: fixed;
-
-
+	height: 600px;
+	width: 250px;
+	color: #fff;
+	transition: all 0.5s ease;
+	border-radius: 20px;
+	padding: 38px;
+	box-sizing: border-box;
+	background: rgb(201, 200, 200);
+	margin-left: 50px;
+	position: fixed;
 }
+
 .menu ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+	list-style: none;
+	margin: 0;
+	padding: 0;
 }
-.menu a, .menu > label {
-    height: 25px;
-    padding: 20px;
-    cursor: pointer;
-    color: #000;
-    text-decoration: none;
+
+.menu a, .menu>label {
+	height: 25px;
+	padding: 20px;
+	cursor: pointer;
+	color: #000;
+	text-decoration: none;
 }
 
 .menu a:hover {
-    color: #000;
+	color: #000;
 }
-.menu ul li:hover, .menu > label:hover {
-    background-color: #fff;
-    color: #fff;
-    border-radius: 10px;
+
+.menu ul li:hover, .menu>label:hover {
+	background-color: #fff;
+	color: #fff;
+	border-radius: 10px;
 }
+
 .menu div {
+	width: 120px;
     position: absolute;
     left: 50px;
     font-size: 1em;
     font-family: 'Noto Sans KR';
-    padding: 0 0 0 20px;
-    margin-left : 50px;
+    margin-left: 50px;
+    /* text-overflow: ellipsis; */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 #expand-menu {
-    display: none;
+	display: none;
 }
+
 #expand-menu:checked ~ ul {
-    display: block;
-    height: auto;
+	display: block;
+	height: auto;
 }
 
 .menu ::before {
-    font-family: 'Material Icons';
-    font-size: 1.5em;
-    float: left;
-    clear: left;
+	font-family: 'Material Icons';
+	font-size: 1.5em;
+	float: left;
+	clear: left;
 }
 
-.menu li:nth-child(1) a::before{ content: '\f02e'; }
-.menu li:nth-child(2) a::before{ content: '\e7f7'; }
-.menu li:nth-child(3) a::before{ content: '\e88a'; }
-.menu li:nth-child(4) a::before{ content: '\e251'; }
-.menu li:nth-child(5) a::before{ content: '\e8b8'; }
-.menu li:nth-child(6) a::before{ content: '\e0d8'; }
-.menu li:nth-child(7) a::before{ content: '\e0d8'; }
-.menu li:nth-child(8) a::before{ content: '\e0d8'; }
-.menu li:nth-child(9) a::before{ content: '\e0d8'; }
-.menu li:nth-child(10) a::before{ content: '\e0d8'; }
-.menu li:nth-child(11) a::before{ content: '\e0d8'; }
+.menu li:nth-child(1) a::before {
+	content: '\f02e';
+}
+
+.menu li:nth-child(2) a::before {
+	content: '\e7f7';
+}
+
+.menu li:nth-child(3) a::before {
+	content: '\e88a';
+}
+
+.menu li:nth-child(4) a::before {
+	content: '\e251';
+}
+
+.menu li:nth-child(5) a::before {
+	content: '\e8b8';
+}
+
+.menu li:nth-child(6) a::before {
+	content: '\e0d8';
+}
+
+.menu li:nth-child(7) a::before {
+	content: '\e0d8';
+}
+
+.menu li:nth-child(8) a::before {
+	content: '\e0d8';
+}
+
+.menu li:nth-child(9) a::before {
+	content: '\e0d8';
+}
+
+.menu li:nth-child(10) a::before {
+	content: '\e0d8';
+}
+
+.menu li:nth-child(11) a::before {
+	content: '\e0d8';
+}
 
 @media screen and (max-width:1023px) {
-    .menu {
-        width: 60px;
-
-    }
+	.menu {
+		width: 60px;
+	}
 }
+
 @media screen and (max-width:560px) {
-    .menu #expand-menu:not(:checked) ~ ul {
-        display: none;
-    }
+	.menu #expand-menu:not(:checked) ~ ul {
+		display: none;
+	}
 }
 
-.il{
-	    line-height: 3px;
+.il {
+	line-height: 3px;
 }
+
+.v-line {
+    margin-top: -30px;
+    margin-left: 100px;
+    border-left: thick solid #bfc9cd;
+	height: 830px;
+}
+
