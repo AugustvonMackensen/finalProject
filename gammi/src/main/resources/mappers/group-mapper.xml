@@ -36,16 +36,18 @@
 	group by a.group_no,a.GROUP_OWNER, a.GROUP_NAME, a.GROUP_DATE, a.GROUP_INFO, a.GROUP_IMG, a.GROUP_OK
 	</select> -->
 	<select id = "selectAllList" parameterType="Paging" resultMap="resultList">
-	<![CDATA[
 	select *
 	from (select rownum rnum, group_no, GROUP_OWNER, GROUP_NAME,GROUP_DATE, GROUP_INFO, GROUP_IMG, GROUP_OK, "total_mem"
 	from (select a.group_no, a.GROUP_OWNER, a.GROUP_NAME, a.GROUP_DATE, a.GROUP_INFO, a.GROUP_IMG, a.GROUP_OK,count(a.group_no) as "total_mem"
 	from gammigroup a
 	join groupmember b on a.group_no = b.group_no
+	<if test="m_id != null">
+		where b.m_id=#{m_id} and b.member_grade in(1,3,4)
+	</if>
 	group by a.group_no,a.GROUP_OWNER, a.GROUP_NAME, a.GROUP_DATE, a.GROUP_INFO, a.GROUP_IMG, a.GROUP_OK
-	order by a.group_date))
+	order by a.group_date desc))
+	<![CDATA[
 	where rnum >= #{startRow} and rnum <= #{endRow}
-	
 	]]>
 	</select>
 	
@@ -58,6 +60,14 @@
 	select count(*) from GAMMIGROUP
 	where group_name like '%' || #{ keyword } || '%'
 	</select>
+	<select id="selectSearchOListCount" resultType="_int" parameterType="string">
+	select count(*) from GAMMIGROUP
+	where group_owner like '%' || #{ keyword } || '%'
+	</select>
+	<select id="selectJoinListCount" resultType="_int" parameterType="string">
+	select count(*) from groupmember
+	where m_id = #{m_id}
+	</select>
 	
 	<select id="selectSearchTitle" resultType="GammiGroup" parameterType="SearchPaging">
 	<![CDATA[
@@ -69,6 +79,19 @@
 	group by a.group_no,a.GROUP_OWNER, a.GROUP_NAME, a.GROUP_DATE, a.GROUP_INFO, a.GROUP_IMG, a.GROUP_OK
 	order by a.group_date))
 			where rnum >= #{startRow} and rnum <= #{endRow} and group_name like '%' || #{keyword} || '%'
+		]]>
+	</select>
+	
+	<select id="selectSearchOwner" resultType="GammiGroup" parameterType="SearchPaging">
+	<![CDATA[
+	select *
+	from (select rownum rnum, group_no, GROUP_OWNER, GROUP_NAME,GROUP_DATE, GROUP_INFO, GROUP_IMG, GROUP_OK, "total_mem"
+	from (select a.group_no, a.GROUP_OWNER, a.GROUP_NAME, a.GROUP_DATE, a.GROUP_INFO, a.GROUP_IMG, a.GROUP_OK,count(a.group_no) as "total_mem"
+	from gammigroup a
+	join groupmember b on a.group_no = b.group_no
+	group by a.group_no,a.GROUP_OWNER, a.GROUP_NAME, a.GROUP_DATE, a.GROUP_INFO, a.GROUP_IMG, a.GROUP_OK
+	order by a.group_date))
+			where rnum >= #{startRow} and rnum <= #{endRow} and group_owner like '%' || #{keyword} || '%'
 		]]>
 	</select>
 	

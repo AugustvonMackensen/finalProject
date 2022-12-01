@@ -77,6 +77,40 @@ public class GammiGroupController {
 		}
 		return "group/groupSearch";
 	}
+	//가입된 모임 페이지
+	@RequestMapping("joinGroup.do")
+	public String joinGroup(@RequestParam(name="page", required=false) String page, 
+			Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		Member user = (Member)session.getAttribute("loginMember");
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = Integer.parseInt(page);
+		}
+		int limit = 10;
+		int listCount = service.selectJoinListCount(user.getM_id());
+		int maxPage = (int)((double)listCount / limit + 0.9);
+		int startPage = (currentPage / 10) * 10 + 1;
+		int endPage = startPage + 10 - 1;
+		if(maxPage < endPage) {
+			endPage = maxPage;
+		}
+		int startRow = (currentPage - 1) * limit + 1;
+		int endRow = startRow + limit - 1;
+		Paging paging = new Paging(startRow, endRow, user.getM_id());
+		
+		ArrayList<GammiGroup> list = service.groupJoinAllList(paging);
+		if(list != null) {
+			model.addAttribute("groups", list);
+			model.addAttribute("listCount", listCount);
+			model.addAttribute("maxPage", maxPage);
+			model.addAttribute("currentPage", currentPage);
+			model.addAttribute("startPage", startPage);
+			model.addAttribute("endPage", endPage);
+			model.addAttribute("limit", limit);
+		}
+		return "group/groupSearch";
+	}
 	
 	//모임 검색용
 	@RequestMapping(value="groupsearchTitle.do")
@@ -100,7 +134,6 @@ public class GammiGroupController {
 		SearchPaging searchpaging = new SearchPaging(keyword, startRow, endRow);
 		
 		ArrayList<GammiGroup> list = service.selectSearchTitle(searchpaging);
-		
 		model.addAttribute("groups", list);
 		model.addAttribute("listCount", listCount);
 		model.addAttribute("maxPage", maxPage);
@@ -111,9 +144,42 @@ public class GammiGroupController {
 		model.addAttribute("action", "title");
 		model.addAttribute("keyword", keyword);
 		return "group/groupSearch";
-		
 	}
 	
+	//그룹장 검색용
+		@RequestMapping(value="groupsearchOwner.do")
+		public String groupSearchOwnerMethod(@RequestParam("keyword") String keyword, 
+				@RequestParam(name="page", required=false) String page,
+				Model model) {
+			int currentPage = 1;
+			if(page != null) {
+				currentPage = Integer.parseInt(page);
+			}
+			int limit = 10;
+			int listCount = service.selectSearchOListCount(keyword);
+			int maxPage = (int)((double)listCount / limit + 0.9);
+			int startPage = (currentPage / 10) * 10 + 1;
+			int endPage = startPage + 10 - 1;
+			if(maxPage < endPage) {
+				endPage = maxPage;
+			}
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+			SearchPaging searchpaging = new SearchPaging(keyword, startRow, endRow);
+			ArrayList<GammiGroup> list = service.selectSearchOwner(searchpaging);
+			model.addAttribute("groups", list);
+			model.addAttribute("listCount", listCount);
+			model.addAttribute("maxPage", maxPage);
+			model.addAttribute("currentPage", currentPage);
+			model.addAttribute("startPage", startPage);
+			model.addAttribute("endPage", endPage);
+			model.addAttribute("limit", limit);
+			model.addAttribute("action", "owner");
+			model.addAttribute("keyword", keyword);
+			return "group/groupSearch";
+			
+		}
+		
 	//모임 생성
 	@RequestMapping(value="groupinsert.do", method=RequestMethod.POST)
 	public String groupInsertMethod(GammiGroup gammiGroup, Model model, 
@@ -149,10 +215,13 @@ public class GammiGroupController {
 				gammiGroup.setGroup_img(renameFileName);
 			}
 		}
-		if(service.insertNewGroup(gammiGroup) > 0) {
+		int result = service.insertNewGroup(gammiGroup);
+		if(result > 0) {
 			return "redirect:group.do";
 		}else {
-			model.addAttribute("message", "새 게시 원글 등록 실패!");
+			if(result==-1) {
+				model.addAttribute("message", "이미 존재하는 모임입니다.");
+			}
 			return "common/error";
 		}
 	}
@@ -200,9 +269,15 @@ public class GammiGroupController {
 	@RequestMapping(value = "groupMemberManagement.do")
 	public String groupMemberManagement(@RequestParam("gno") int gno, Model model) {
 		ArrayList<GroupMember> gm = service.getAllGM(gno);
+		if(gm!=null) {
 		model.addAttribute("gm", gm);
 		model.addAttribute("gno",gno);
 		return "group/memberManagement";
+		}
+		else{
+		model.addAttribute("message", "존재하지 않는 모임입니다.");
+		return "common/error";
+		}
 	}
 	
 	//멤버 가입 수락
@@ -219,9 +294,7 @@ public class GammiGroupController {
 			gm.setM_id(id);
 			if(state==1) {		//1 수락, 2 거절, 3 추방
 				service.acceptGroupMember(gm);
-			}else if(state==2) {
-				service.refuseGroupMember(gm);
-			}else if(state==3) {
+			}else if(state==3 || state==2) {
 				service.deleteGroupMember(gm);
 			}
 			job = new JSONObject();

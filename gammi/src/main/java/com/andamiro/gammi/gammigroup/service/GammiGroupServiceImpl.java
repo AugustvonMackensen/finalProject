@@ -81,5 +81,25 @@ public class GammiGroupServiceImpl implements GammiGroupService{
 	public ArrayList<GammiGroup> groupAllList(Paging paging) {
 		return dao.groupAllList(paging);
 	}
+
+	@Override
+	public int selectJoinListCount(String m_id) {
+		return dao.selectJoinListCount(m_id);
+	}
+
+	@Override
+	public ArrayList<GammiGroup> groupJoinAllList(Paging paging) {
+		return dao.groupJoinAllList(paging);
+	}
+
+	@Override
+	public int selectSearchOListCount(String keyword) {
+		return dao.selectSearchOListCount(keyword);
+	}
+
+	@Override
+	public ArrayList<GammiGroup> selectSearchOwner(SearchPaging searchpaging) {
+		return dao.selectSearchOwner(searchpaging);
+	}
 	
 }

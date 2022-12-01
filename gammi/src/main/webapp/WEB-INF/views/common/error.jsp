@@ -14,12 +14,12 @@
 <h1 align="center">Error Page</h1>
 <!-- 다른 jsp 에서 exception이 넘어온 경우의 처리 -->
 <c:set var="e" value="<%= exception %>" />
-<c:if test="${ !empty e }">  <!-- if(e != null) 과 같음 -->
-	<h3 align="center"><%-- jsp 페이지 오류 발생 : ${ message } --%></h3>
+<c:if test="${ !empty message }">  <!-- if(e != null) 과 같음 -->
+	<h3 align="center">${message}<%-- jsp 페이지 오류 발생 : ${ message } --%></h3>
 </c:if>
 
 <!-- 서버 측에서 서비스 요청에 대한 에러메세지 리턴한 경우의 처리 -->
-<c:if test="${ empty e }">  <!-- if(e == null) 과 같음 -->
+<c:if test="${ empty message }">  <!-- if(e == null) 과 같음 -->
 	<H3 align="center"><%-- 컨트롤러 요청 실패 메세지 : ${ message } --%></H3>
 </c:if>
 <hr>

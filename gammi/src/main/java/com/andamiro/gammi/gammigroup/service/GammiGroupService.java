@@ -34,5 +34,12 @@ public interface GammiGroupService {
 		public int selectSearchTListCount(String keyword);
 		//키워드 가지고 서칭 페이징용 조회
 		public ArrayList<GammiGroup> selectSearchTitle(SearchPaging searchpaging);
+		//가입된 페이지 목록 갯수 조회
+		public int selectJoinListCount(String m_id);
+		//가입된 모임 조회
+		public ArrayList<GammiGroup> groupJoinAllList(Paging paging);
+		//모임장으로 검색
+		public int selectSearchOListCount(String keyword);
+		public ArrayList<GammiGroup> selectSearchOwner(SearchPaging searchpaging);
 		
 }
