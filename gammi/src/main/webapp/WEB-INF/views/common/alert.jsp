@@ -10,7 +10,6 @@
 <script type="text/javascript"  src="${ pageContext.servletContext.contextPath }/resources/js/jquery-3.6.1.min.js"></script>
 <script type="text/javascript">
 function test(t){
-	alert(t);
 	location.href = "${ pageContext.servletContext.contextPath }/group.do";
 };
 </script>

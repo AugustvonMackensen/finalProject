@@ -116,8 +116,8 @@
 			</ul>
 
 			<div class="writelistbtn">
-				<button class="rightbtn3">목록</button>
-				<button class="rightbtn" onclick="javascript:location.href='${ pageContext.servletContext.contextPath }/group.do';">가입목록</button>
+				<button class="rightbtn3" onclick="javascript:location.href='group.do'">목록</button>
+				<button class="rightbtn" onclick="javascript:location.href='joinGroup.do';">가입목록</button>
 				<button class="rightbtn2" onclick="javascript:location.href='creategroupform.do';">모임생성</button>
 			</div>
 			<br>
@@ -126,7 +126,7 @@
 				<select id="test" onchange="Change()"
 					style="position: relative; border: 1px solid #ccc; left: -198px; width:5rem; height:3rem;  text-align:center">
 					<option value="1">제목</option>
-					<option value="2">키워드</option>
+					<option value="2">그룹장아이디</option>
 				</select>
 				<div id="d1" style="display: block">
 					<form action="groupsearchTitle.do" method="post">
@@ -135,7 +135,7 @@
 					</form>
 				</div>
 				<div id="d2" style="display: none">
-					<form action="groupsearchTitle.do" method="post">
+					<form action="groupsearchOwner.do" method="post">
 						<input type="search" name="keyword" style="width: 26rem;height:3rem; border: 1px solid #ccc; margin-left:-198px; ">
 						<input type="submit" value="검색" style="width: 5.5rem;height:3rem;border:none; margin-left: -7px; background: #555;color: #fff; cursor:pointer;  margin-top:-3px;" class="btn">
 					</form>
@@ -148,7 +148,7 @@
 	<c:if test="${ empty groups }">
 			<div style="display: grid;  place-items: center;  min-height: 80vh;">
 				<h1 style=" font-family: 'Noto Sans KR', sans-serif;">
-				현재 생성된 그룹이 없습니다.
+				해당하는 모임이 없습니다.
 				</h1>
 			</div>
 			<div class="writelistbtn">
@@ -239,6 +239,12 @@
 						<c:param name="page" value="1" />
 					</c:url>
 				</c:if>
+				<c:if test="${ action eq 'owner' }">
+					<c:url var="nsl" value="groupsearchOwner.do">
+						<c:param name="keyword" value="${ keyword }" />
+						<c:param name="page" value="1" />
+					</c:url>
+				</c:if>
 				<a href="${ nsl }">[맨처음]</a> &nbsp;
 	</c:if>
 			<!-- 이전 페이지그룹으로 이동 처리 -->
@@ -250,8 +256,12 @@
 						<c:param name="page" value="${ startPage - 10 }" />
 					</c:url>
 				</c:if>
-
-				
+				<c:if test="${ action eq 'owner' }">
+					<c:url var="nsl" value="groupsearchOwner.do">
+						<c:param name="keyword" value="${ keyword }" />
+						<c:param name="page" value="${ startPage - 10 }" />
+					</c:url>
+				</c:if>
 				<a href="${ nsl }">[이전그룹]</a> &nbsp;
 	
 			<c:if
@@ -270,7 +280,12 @@
 							<c:param name="page" value="${ p }" />
 						</c:url>
 					</c:if>
-
+					<c:if test="${ action eq 'owner' }">
+					<c:url var="nsl" value="groupsearchOwner.do">
+						<c:param name="keyword" value="${ keyword }" />
+						<c:param name="page" value="${ p }" />
+					</c:url>
+					</c:if>
 					<a href="${ nsl }"><font color="blue">${ p }</font></a>
 				</c:if>
 			</c:forEach>
@@ -283,7 +298,12 @@
 						<c:param name="page" value="${ endPage + 10 }" />
 					</c:url>
 				</c:if>
-
+				<c:if test="${ action eq 'owner' }">
+					<c:url var="nsl" value="groupsearchOwner.do">
+						<c:param name="keyword" value="${ keyword }" />
+						<c:param name="page" value="${ endPage + 10 }" />
+					</c:url>
+				</c:if>
 				<a href="${ nsl }">[다음그룹]</a> &nbsp;
 	
 			<c:if
@@ -301,7 +321,12 @@
 						<c:param name="page" value="${ maxPage }" />
 					</c:url>
 				</c:if>
-
+				<c:if test="${ action eq 'owner' }">
+					<c:url var="nsl" value="groupsearchOwner.do">
+						<c:param name="keyword" value="${ keyword }" />
+						<c:param name="page" value="${ maxPage }" />
+					</c:url>
+				</c:if>
 				<a href="${ nsl }">[맨끝]</a> &nbsp;
 	</c:if>
 		</div>
