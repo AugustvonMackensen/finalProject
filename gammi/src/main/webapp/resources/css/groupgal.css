@@ -2,14 +2,11 @@
     background-color: #F7F8F9;
     margin-top: 30px;
 }
-.gal_width {
-    max-width: 1130px;
-    background-color: #F7F8F9;
-}
+
 .ulflex{
     display: flex;
     flex-wrap: wrap;
-    gap: 1em;
+    gap: 5em;
     list-style: none;
 }
 .liflex{
@@ -18,8 +15,8 @@
     flex-grow: 1;
 }
 .thumb{
-    width: 250px;
-    height : 160px;
+    width: 350px;
+    height : 200px;
 }
 .rightbtn2{
     float: right;

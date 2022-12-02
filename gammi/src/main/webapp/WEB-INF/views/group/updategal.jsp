@@ -11,14 +11,15 @@
 <c:import url="/WEB-INF/views/common/menubar.jsp" /> 
 <br>
 <br>
+<br><br>
 <!-- 원글 수정 폼 -->
 <form action="updategal.do" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="gal_no" value="${ gammiGroupGal.gal_no }">
 	<input type="hidden" name="page" value="${ currentPage }">
-	<c:if test="${ !empty gammiGroupGal.gal_original_image }">
+	<c:if test="${ !empty gal_img.gal_ori_image }">
 	<!-- 첨부파일이 있는 공지글이라면 -->
-		<input type="hidden" name="gal_original_image" value="${ gammiGroupGal.gal_original_image }">
-		<input type="hidden" name="gal_rename_image" value="${ gammiGroupGal.gal_rename_image }">
+		<input type="hidden" name="gal_ori_image" value="${ gal_img.gal_ori_image }">
+		<input type="hidden" name="gal_rename_image" value="${ gal_img.gal_rename_image }">
 	</c:if>
 <table class="type02" align="center">
 	<tr><th scope="row">제 목</th><td><input class="inputds"  type="text" name="gal_title" value="${ gammiGroupGal.gal_title }"></td></tr>
@@ -27,12 +28,12 @@
 	<tr><th scope="row">첨부파일</th>
 		<td>
 			<!-- 원래 첨부파일이 있는 경우 -->
-			<c:if test="${ !empty gammiGroupGal.gal_original_image }">
-				${ gammiGroupGal.gal_rename_image } &nbsp; 
+			<c:if test="${ !empty gal_img.gal_ori_image }">
+				${ gal_img.gal_rename_image } &nbsp; 
 				<input type="checkbox" name="delFlag" value="yes"> 파일삭제 <br>
 			</c:if>
 			<br>
-			새로 첨부 : <input type="file" name="upfile">
+			새로 첨부 : <input multiple="multiple" type="file" name="file" />
 		</td>
 	</tr>
 	<tr><th scope="row">내 용</th><td><textarea class="inputdss" rows="5" cols="50" name="gal_content">${ gammiGroupGal.gal_content }</textarea></td></tr>

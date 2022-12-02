@@ -7,6 +7,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.andamiro.gammi.common.Paging;
+import com.andamiro.gammi.gammigroup.vo.GammiGroup;
 import com.andamiro.gammi.gammigroup.vo.GroupMember;
 import com.andamiro.gammi.gammigroupgal.vo.GalleryImg;
 import com.andamiro.gammi.gammigroupgal.vo.GammiGroupGal;
@@ -16,10 +18,7 @@ public class GammiGroupGalDao {
 	@Autowired
 	private SqlSessionTemplate session;
 	
-	public ArrayList<GammiGroupGal> groupAllList() {
-		List<GammiGroupGal> list =session.selectList("groupgalMapper.selectAllList"); 
-		return (ArrayList<GammiGroupGal>)list;
-	}
+
 
 	public int insertNewGroupGal(GammiGroupGal gammiGroupGal) {
 		return session.insert("groupgalMapper.insertGroupGal",gammiGroupGal);
@@ -50,7 +49,15 @@ public class GammiGroupGalDao {
 		return (ArrayList<GalleryImg>)list;
 	}
 
+	public int selectListCount() {
+		return session.selectOne("groupgalMapper.selectListCount");
+	}
+
+	public ArrayList<GammiGroupGal> groupAllList(Paging paging) {
+		List<GammiGroupGal> list =session.selectList("groupgalMapper.selectAllList",paging); 
+		return (ArrayList<GammiGroupGal>)list;
+	}
+
+	}
 
 
-
-}

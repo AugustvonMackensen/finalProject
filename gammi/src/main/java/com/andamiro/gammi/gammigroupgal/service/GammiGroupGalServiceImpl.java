@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.andamiro.gammi.common.Paging;
 import com.andamiro.gammi.gammigroup.vo.GammiGroup;
 import com.andamiro.gammi.gammigroup.vo.GroupMember;
 import com.andamiro.gammi.gammigroupgal.dao.GammiGroupGalDao;
@@ -19,10 +20,7 @@ public class GammiGroupGalServiceImpl implements GammiGroupGalService {
 	@Autowired
 	private GammiGroupGalDao dao;
 
-	@Override
-	public ArrayList<GammiGroupGal> groupAllList() {
-		return dao.groupAllList();
-	}
+
 
 	@Override
 	public int insertNewGroupGal(GammiGroupGal gammiGroupGal) {
@@ -57,6 +55,16 @@ public class GammiGroupGalServiceImpl implements GammiGroupGalService {
 	@Override
 	public ArrayList<GalleryImg> selectgal_img(int gal_no) {
 		return dao.selectgal_img(gal_no);
+	}
+
+	@Override
+	public int selectListCount() {
+		return dao.selectListCount();
+	}
+
+	@Override
+	public ArrayList<GammiGroupGal> groupAllList(Paging paging) {
+		return dao.groupAllList(paging);
 	}
 
 

@@ -9,7 +9,6 @@
 
 /*------------------------------------------------------------------
 [Table of contents]
-
 1.  Template default CSS
 	1.1	Variables
 	1.2	Mixins
@@ -93,7 +92,7 @@ sidebar_about {
 }
 
 button#img_btn.btm_image {
-	margin-left: 115px;
+	margin-left: 170px;
 	margin-top: 5px;
 	background: white;
 	width: 30px;
@@ -104,7 +103,7 @@ button#img_btn.btm_image {
 }
 
 button#img_btn2.btm_image2 {
-	margin-left: 60px;
+	margin-left: 101px;
 	margin-top: 0px;
 	background: white;
 	width: 30px;
@@ -618,7 +617,7 @@ transparent;
 	border-radius: 80px;
 	position: absolute;
 	border: 3.4px solid rgb(255, 113, 0);
-	margin-left: 9em;
+	margin-left: 11.3em;
 	background-color: rgb(255, 113, 0);
 	color: white;
 }
