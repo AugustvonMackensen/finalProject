@@ -18,6 +18,9 @@
     <link href="https://fonts.googleapis.com/css?family=Unna:400,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&family=Noto+Sans+KR:wght@500;700&display=swap" rel="stylesheet">
     <!-- Css Styles -->
+    <link rel="stylesheet" href="resources/css/media.css" type="text/css">
+        <link rel="stylesheet" href="resources/css/css.css">
+      <link rel="stylesheet" href="resources/css/style2.css" type="text/css">
     <link rel="stylesheet" href="resources/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="resources/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="resources/css/elegant-icons.css" type="text/css">
