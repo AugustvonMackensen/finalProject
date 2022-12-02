@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.andamiro.gammi.chatting.vo.GroupNotice;
 import com.andamiro.gammi.common.Paging;
 import com.andamiro.gammi.common.SearchPaging;
 import com.andamiro.gammi.gammigroup.service.GammiGroupService;
@@ -210,8 +211,7 @@ public class GammiGroupController {
 					e.printStackTrace();
 					model.addAttribute("message", "전송파일 저장 실패!");
 					return "common/error";
-				} 
-				
+				}
 				gammiGroup.setGroup_img(renameFileName);
 			}
 		}
@@ -269,7 +269,9 @@ public class GammiGroupController {
 	@RequestMapping(value = "groupMemberManagement.do")
 	public String groupMemberManagement(@RequestParam("gno") int gno, Model model) {
 		ArrayList<GroupMember> gm = service.getAllGM(gno);
+		GammiGroup group = service.selectOneGroup(gno);
 		if(gm!=null) {
+		model.addAttribute("group",group);
 		model.addAttribute("gm", gm);
 		model.addAttribute("gno",gno);
 		return "group/memberManagement";
@@ -292,14 +294,28 @@ public class GammiGroupController {
 			GroupMember gm = new GroupMember();
 			gm.setGroup_no(Integer.parseInt(no));
 			gm.setM_id(id);
-			if(state==1) {		//1 수락, 2 거절, 3 추방
+			if(state==1) {		//1 수락, 3 추방
 				service.acceptGroupMember(gm);
-			}else if(state==3 || state==2) {
+			}else if(state==3) {
 				service.deleteGroupMember(gm);
 			}
 			job = new JSONObject();
 			job.put("group_no", Integer.parseInt(no));
 			return job.toJSONString();  
 		}
-	
+	//소모임 제거
+		@RequestMapping("delGroup.do")
+		public String groupDelete(@RequestParam("gno")int gno, HttpServletRequest request){
+			GammiGroup group = service.selectOneGroup(gno);
+			if(group.getGroup_img()!=null) {
+				String savePath = request.getSession().getServletContext().getRealPath("resources/groupImg");
+				try {
+					new File(savePath + "\\" + group.getGroup_img()).delete();
+				} catch (Exception e) {
+					
+				}
+			}
+			service.deleteGroup(group);
+			return "redirect:group.do";
+		}
 }

@@ -54,8 +54,10 @@ function mGrade(no, id, num){
 						</p>
 						<p style=" font-family: 'Noto Sans KR', sans-serif;">가입 날짜 : ${ gm.member_grade_date }</p>
 						<div class="writelistbtn2">
+						<c:if test="${ group.group_owner eq sessionScope.loginMember.m_id  }">
 							<button class="rightbtn3"
 								onclick="mGrade(${gm.group_no}, '${ gm.m_id }', 3);">추방하기</button>
+						</c:if>
 						</div>
 						<br>
 						<br>
@@ -70,12 +72,14 @@ function mGrade(no, id, num){
 						<p style=" font-family: 'Noto Sans KR', sans-serif;">${gm.m_id}:님</p>
 						<p style=" font-family: 'Noto Sans KR', sans-serif;">가입 신청날짜 : ${ gm.member_grade_date }</p>
 						<div class="writelistbtn2">
+						<c:if test="${ group.group_owner eq sessionScope.loginMember.m_id  }">
 							<button class="rightbtn3"
 								onclick="mGrade(${gm.group_no}, '${ gm.m_id }', 1);">가입
 								수락</button>
 							<button class="rightbtn3"
-								onclick="mGrade(${gm.group_no}, '${ gm.m_id }', 2);">가입
+								onclick="mGrade(${gm.group_no}, '${ gm.m_id }', 3);">가입
 								거절</button>
+						</c:if>
 						</div>
 						<br>
 					</c:if>
@@ -89,12 +93,14 @@ function mGrade(no, id, num){
 						<p style=" font-family: 'Noto Sans KR', sans-serif;">${gm.m_id}:님</p>
 						<p style=" font-family: 'Noto Sans KR', sans-serif;">가입 신청날짜 : ${ gm.member_grade_date }</p>
 						<div class="writelistbtn2">
+						<c:if test="${ group.group_owner eq sessionScope.loginMember.m_id  }">
 							<button class="rightbtn3"
 								onclick="mAccept(${gm.group_no}, '${ gm.m_id }',1);">가입
 								수락</button>
 							<button class="rightbtn3"
-								onclick="mRefuse(${gm.group_no}, '${ gm.m_id }',2);">가입
+								onclick="mRefuse(${gm.group_no}, '${ gm.m_id }',3);">가입
 								거절</button>
+						</c:if>
 						</div>
 						<br>
 

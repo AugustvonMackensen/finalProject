@@ -26,21 +26,14 @@
 	href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&family=Noto+Sans+KR:wght@500;700&display=swap"
 	rel="stylesheet">
 <!-- Css Styles -->
-<link rel="stylesheet" href="resources/css/bootstrap.min.css"
-	type="text/css">
-<link rel="stylesheet" href="resources/css/font-awesome.min.css"
-	type="text/css">
-<link rel="stylesheet" href="resources/css/elegant-icons.css"
-	type="text/css">
-<link rel="stylesheet" href="resources/css/owl.carousel.min.css"
-	type="text/css">
-<link rel="stylesheet" href="resources/css/slicknav.min.css"
-	type="text/css">
+<link rel="stylesheet" href="resources/css/bootstrap.min.css" 	type="text/css">
+<link rel="stylesheet" href="resources/css/font-awesome.min.css"	type="text/css">
+<link rel="stylesheet" href="resources/css/elegant-icons.css"	type="text/css">
+<link rel="stylesheet" href="resources/css/owl.carousel.min.css"	type="text/css">
+<link rel="stylesheet" href="resources/css/slicknav.min.css"	type="text/css">
 <link rel="stylesheet" href="resources/css/style.css" type="text/css">
-<link rel="stylesheet" href="resources/css/band-clone.css"
-	type="text/css">
-<link href="https://webfontworld.github.io/cookierun/CookieRun.css"
-	rel="stylesheet">
+<link rel="stylesheet" href="resources/css/band-clone.css" type="text/css">
+<link href="https://webfontworld.github.io/cookierun/CookieRun.css"	rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <script type="text/javascript"
 	src="${ pageContext.servletContext.contextPath }/resources/js/jquery-3.6.1.min.js"></script>
@@ -106,7 +99,7 @@
 						<div class="nameleader">
 							<p class="roomname">소모임이름 : ${ groups.group_name }</p>
 							<p class="roomabout">모임 설명 : ${ groups.group_info }</p>
-							<p class="roomsize">멤버 명 리더 : ${ groups.group_owner }</p>
+							<p class="roomsize">모임 리더 : ${ groups.group_owner }</p>
 							<p class="roomabout">${ groups.total_mem }/10명</p>
 						</div>
 					</div>

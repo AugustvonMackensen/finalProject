@@ -31,7 +31,7 @@ $().ready(function () {
             $(".rightbtn3").click(function () {
                 Swal.fire({
                     icon: 'success',
-                    title: '가입완료!',
+                    title: '가입신청 완료!!',
                 });
             });
         });
