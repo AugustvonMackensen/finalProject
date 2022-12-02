@@ -41,5 +41,7 @@ public interface GammiGroupService {
 		//모임장으로 검색
 		public int selectSearchOListCount(String keyword);
 		public ArrayList<GammiGroup> selectSearchOwner(SearchPaging searchpaging);
+		//그룹 삭제
+		public int deleteGroup(GammiGroup group);
 		
 }

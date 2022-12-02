@@ -26,15 +26,6 @@
 	
 	<!-- 전체 목록 조회 -->
 	<!-- 
-	<select id = "selectAllList" resultType="GammiGroup">
-	select * from GAMMIGROUP
-	</select> -->
-	<!-- <select id = "selectAllList" resultType="GammiGroup">
-	select a.group_no, a.GROUP_OWNER, a.GROUP_NAME, a.GROUP_DATE, a.GROUP_INFO, a.GROUP_IMG, a.GROUP_OK,count(a.group_no) as "total_mem"
-	from gammigroup a
-	join groupmember b on a.group_no = b.group_no
-	group by a.group_no,a.GROUP_OWNER, a.GROUP_NAME, a.GROUP_DATE, a.GROUP_INFO, a.GROUP_IMG, a.GROUP_OK
-	</select> -->
 	<select id = "selectAllList" parameterType="Paging" resultMap="resultList">
 	select *
 	from (select rownum rnum, group_no, GROUP_OWNER, GROUP_NAME,GROUP_DATE, GROUP_INFO, GROUP_IMG, GROUP_OK, "total_mem"
@@ -42,9 +33,27 @@
 	from gammigroup a
 	join groupmember b on a.group_no = b.group_no
 	<if test="m_id != null">
-		where b.m_id=#{m_id} and b.member_grade in(1,3,4)
+		where b.member_grade in(1,3,4)
 	</if>
 	group by a.group_no,a.GROUP_OWNER, a.GROUP_NAME, a.GROUP_DATE, a.GROUP_INFO, a.GROUP_IMG, a.GROUP_OK
+	order by a.group_date desc))
+	<![CDATA[
+	where rnum >= #{startRow} and rnum <= #{endRow}
+	]]>
+	</select>
+	 -->
+	<select id = "selectAllList" parameterType="Paging" resultMap="resultList">
+	select *
+	from (select rownum rnum, group_no, GROUP_OWNER, GROUP_NAME,GROUP_DATE, GROUP_INFO, GROUP_IMG, GROUP_OK, "total_mem"
+	from (select a.group_no, a.GROUP_OWNER, a.GROUP_NAME, a.GROUP_DATE, a.GROUP_INFO, a.GROUP_IMG, a.GROUP_OK,b."total_mem"
+	from gammigroup a
+	join ( select group_no, count(*) as "total_mem"
+	from groupmember
+	where member_grade in (3,4)
+ 	<if test="m_id != null">
+		  and group_no in (select group_no from groupmember where m_id= #{m_id})
+	</if>
+ 	group by group_no ) b on a.group_no = b.group_no
 	order by a.group_date desc))
 	<![CDATA[
 	where rnum >= #{startRow} and rnum <= #{endRow}
@@ -125,7 +134,11 @@
 		insert into groupmember
 		values(default, (select max(group_no) from gammigroup where group_owner=#{group_owner}) , #{group_owner}, 4, default)
 	</insert>
-	
+	<!-- 그룹 추가에 따라오는 공지사항 생성 -->
+	<insert id = "insertGroupNotice" parameterType="GammiGroup">
+	insert into groupnotice
+	values(default, (select max(group_no) from gammigroup where group_owner=#{group_owner}), #{group_owner}, '신규공지사항',  sysdate)
+	</insert>
 	<!-- 가입신청 -->
 	<insert id="createApplication" parameterType="GroupMember">
 		insert into groupmember
@@ -139,7 +152,11 @@
 		where group_no =#{gno}
 		order by member_grade_date, member_grade
 	</select>
-	
+	<!-- 그룹 제거 -->
+	<delete id="deleteGroup" parameterType ="GammiGroup">
+	delete from gammigroup
+	where group_no=#{group_no}
+	</delete>
 	<!-- 모임 탈퇴/추방처리 -->
 	<delete id="deleteGroupMember" parameterType="GroupMember">
 	delete from groupmember

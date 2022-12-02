@@ -101,5 +101,10 @@ public class GammiGroupServiceImpl implements GammiGroupService{
 	public ArrayList<GammiGroup> selectSearchOwner(SearchPaging searchpaging) {
 		return dao.selectSearchOwner(searchpaging);
 	}
+
+	@Override
+	public int deleteGroup(GammiGroup group) {
+		return dao.deleteGroup(group);
+	}
 	
 }

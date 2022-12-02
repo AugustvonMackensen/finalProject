@@ -23,13 +23,13 @@ public class GammiGroupDao {
 	}
 
 	public int insertNewGroup(GammiGroup gammiGroup) {
-		int result=-1, result2=0;
+		int result=-1, result2=0, result3=0;
 		try {
 		result = session.insert("groupMapper.insertGroup",gammiGroup);
 		result2 = session.insert("groupMapper.insertGoupMember",gammiGroup);
+		result3 = session.insert("groupMapper.insertGroupNotice",gammiGroup);
 		}catch (Exception e) {
 			result=-1;
-			result2=-1;
 		}
 		finally {
 		return result;
@@ -101,6 +101,10 @@ public class GammiGroupDao {
 	public ArrayList<GammiGroup> selectSearchOwner(SearchPaging searchpaging) {
 		List<GammiGroup> list =session.selectList("groupMapper.selectSearchOwner", searchpaging); 
 		return (ArrayList<GammiGroup>)list;
+	}
+
+	public int deleteGroup(GammiGroup group) {
+		return session.delete("groupMapper.deleteGroup",group);
 	}
 
 }
