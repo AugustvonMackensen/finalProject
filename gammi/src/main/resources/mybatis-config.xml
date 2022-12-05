@@ -17,10 +17,15 @@
 		<typeAlias type="com.andamiro.gammi.common.Paging" alias="Paging" />
 		<typeAlias type="com.andamiro.gammi.common.SearchPaging" alias="SearchPaging" />
 		<typeAlias type="com.andamiro.gammi.notice.vo.Notice" alias="Notice" />
+		<typeAlias type="com.andamiro.gammi.board.model.vo.Board" alias="Board" />
+		<typeAlias type="com.andamiro.gammi.board.model.vo.BoardReply" alias="BoardReply" />
+		
 	
 	</typeAliases>
 	
 	<mappers>
+		<mapper resource="mappers/board-mapper.xml" />
+		<mapper resource="mappers/boardreply-mapper.xml" />
 		<mapper resource="mappers/group-mapper.xml" />
 		<mapper resource="mappers/member-mapper.xml" />
 		<mapper resource="mappers/recipe-mapper.xml" />
