@@ -1112,7 +1112,7 @@ transparent;
 
 .categories__post__item.categories__post__item--large .categories__post__item__pic
 	{
-	height: 533px;
+	height: 433px;
 }
 
 .categories__post__item.categories__post__item--large .categories__post__item__text .post__label--large
@@ -1175,15 +1175,15 @@ transparent;
 .categories__post__item__pic {
 	position: relative;
 	margin-bottom: 25px;
-	height: 506px;
+	height: 306px;
 }
 
 .categories__post__item__pic.small__item {
-	height: 253px;
+	height: 353px;
 }
 
 .categories__post__item__pic.smaller__large {
-	height: 380px;
+	height: 280px;
 }
 
 .categories__post__item__pic .post__meta {
@@ -1202,7 +1202,7 @@ transparent;
 	font-size: 26px;
 	color: #111111;
 	font-weight: 900;
-	line-height: 14px;
+	line-height: 8px;
 	font-family: "Nunito Sans", sans-serif;
 }
 
@@ -1631,7 +1631,7 @@ transparent;
 }
 
 .sidebar__feature__item__list__single {
-	margin-bottom: 30px;
+	margin-bottom: 50px;
 }
 
 .sidebar__feature__item__list__single:last-child {
@@ -1677,7 +1677,7 @@ transparent;
 }
 
 .sidebar__feature__item__list__single .post__text h5 {
-	margin-top: 5px;
+	margin-top: 20px;
 }
 
 .sidebar__feature__item__list__single .post__text h5 a {

@@ -60,16 +60,16 @@ function camSearch(){
 				<div class="row">
 					<div class="col-lg-8 col-md-8">
 						<div class="sidebar__item__title">
-							<h6 style="font-family: 'CookieRun'; font-size: 20px">주간 레시피
+							<h6 style="font-family: 'CookieRun'; font-size: 25px">주간 레시피
 								랭킹</h6>
 						</div>
 						<div class="categories__post__item categories__post__item--large">
-							<div class="categories__post__item__pic set-bg"
-								style="background-color: gray;">
+							<a href="#" target="_blank"><div class="categories__post__item__pic set-bg"
+								style="background-image: url(resources/img/food2.jpg);">
 								<div class="post__meta">
 									<h4 style="color: gold;">1위</h4>
 								</div>
-							</div>
+							</div></a>
 							<div class="categories__post__item__text">
 								<span class="post__label">Recipe</span>
 								<h3>
@@ -77,24 +77,19 @@ function camSearch(){
 								</h3>
 								<ul class="post__widget">
 									<li>조회수 :</li>
-									<li>작성날짜 :</li>
 								</ul>
-								<p>하여도 것은 없는 힘차게 오직 것이다.보라, 있다. 청춘의 싶이 생생하며, 하여도 것은 없는 힘차게
-									오직 것이다.보라, 있다. 청춘의 싶이 생생하며, 그것을 있으랴? 얼마나 위하여 그들의 작고 끝에 옷을 모래뿐일
-									끓는다. 때에 그것을 있으랴? 얼마나 위하여 그들의 작고 끝에 옷을 모래뿐일 끓는다. 때에, 황금시대의 없으면
-									이상, 예가 힘있다. 뭇 사람은 할지니, 가는 군영과 때에, 공자는 인생에 열락의 약동하다. 같은 현저하게 능히
-									무엇을 사막이다. 작고 풀밭에 얼음 청춘에서</p>
+					
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-lg-6 col-md-6 col-sm-6">
 								<div class="categories__post__item">
-									<div class="categories__post__item__pic small__item set-bg"
+									<a href="#" target="_blank"><div class="categories__post__item__pic small__item set-bg"
 										style="background-color: gray;">
 										<div class="post__meta">
 											<h4 style="color: #898989;">2위</h4>
 										</div>
-									</div>
+									</div></a>
 									<div class="categories__post__item__text">
 										<span class="post__label">Recipe</span>
 										<h3>
@@ -102,22 +97,20 @@ function camSearch(){
 										</h3>
 										<ul class="post__widget">
 											<li>조회수 :</li>
-											<li>작성날짜 :</li>
+
+
 										</ul>
-										<p>하여도 것은 없는 힘차게 오직 것이다.보라, 있다. 청춘의 싶이 생생하며, 그것을 있으랴? 얼마나
-											위하여 그들의 작고 끝에 옷을 모래뿐일 끓는다. 때에, 황금시대의 없으면 이상, 예가 힘있다. 뭇 사람은
-											할지니, 가는 군영과 때에, 공자는 인생에 열락의 약동하다. 같은 현저하게 능히 무엇을 사막이다. 작고 풀밭에
-											얼음 청춘에서.</p>
+						
 									</div>
 								</div>
 								<div class="categories__post__item">
-									<div class="categories__post__item__pic set-bg"
+									<a href="#" target="_blank"><div class="categories__post__item__pic set-bg"
 										style="background-color: gray;">
 										<div class="post__meta">
 											<h4>4위</h4>
 
 										</div>
-									</div>
+									</div></a>
 									<div class="categories__post__item__text">
 										<span class="post__label">Recipe</span>
 										<h3>
@@ -125,23 +118,19 @@ function camSearch(){
 										</h3>
 										<ul class="post__widget">
 											<li>조회수 :</li>
-											<li>작성날짜 :</li>
 
 										</ul>
-										<p>하여도 것은 없는 힘차게 오직 것이다.보라, 있다. 청춘의 싶이 생생하며, 그것을 있으랴? 얼마나
-											위하여 그들의 작고 끝에 옷을 모래뿐일 끓는다. 때에, 황금시대의 없으면 이상, 예가 힘있다. 뭇 사람은
-											할지니, 가는 군영과 때에, 공자는 인생에 열락의 약동하다. 같은 현저하게 능히 무엇을 사막이다. 작고 풀밭에
-											얼음 청춘에서.</p>
+						
 									</div>
 								</div>
 
 								<div class="categories__post__item">
-									<div class="categories__post__item__pic smaller__large set-bg"
+									<a href="#" target="_blank"><div class="categories__post__item__pic smaller__large set-bg"
 										style="background-color: gray;">
 										<div class="post__meta">
 											<h4>6위</h4>
 										</div>
-									</div>
+									</div></a>
 									<div class="categories__post__item__text">
 										<span class="post__label">Recipe</span>
 										<h3>
@@ -149,25 +138,22 @@ function camSearch(){
 										</h3>
 										<ul class="post__widget">
 											<li>조회수 :</li>
-											<li>작성날짜 :</li>
+
 
 										</ul>
-										<p>하여도 것은 없는 힘차게 오직 것이다.보라, 있다. 청춘의 싶이 생생하며, 그것을 있으랴? 얼마나
-											위하여 그들의 작고 끝에 옷을 모래뿐일 끓는다. 때에, 황금시대의 없으면 이상, 예가 힘있다. 뭇 사람은
-											할지니, 가는 군영과 때에, 공자는 인생에 열락의 약동하다. 같은 현저하게 능히 무엇을 사막이다. 작고 풀밭에
-											얼음 청춘에서.</p>
+						
 									</div>
 								</div>
 							</div>
 							<div class="col-lg-6 col-md-6 col-sm-6">
 								<div class="categories__post__item">
-									<div class="categories__post__item__pic smaller__large set-bg"
+									<a href="#" target="_blank"><div class="categories__post__item__pic smaller__large set-bg"
 										style="background-color: gray;">
 										<div class="post__meta">
 											<h4 style="color: #ab7966;">3위</h4>
 
 										</div>
-									</div>
+									</div></a>
 									<div class="categories__post__item__text">
 										<span class="post__label">RECIPE</span>
 										<h3>
@@ -175,12 +161,10 @@ function camSearch(){
 										</h3>
 										<ul class="post__widget">
 											<li>조회수 :</li>
-											<li>작성날짜 :</li>
+
 
 										</ul>
-										<p>하여도 것은 없는 힘차게 오직 것이다.보라, 있다. 청춘의 싶이 생생하며, 그것을 있으랴? 얼마나
-											위하여 그들의 작고 끝에 옷을 모래뿐일 끓는다. 때에, 황금시대의 없으면 이상, 예가 힘있다. 뭇 사람은
-											할지니, 가는 군영과 때에, 공자는 인생에 열락의 약동하다.</p>
+					
 									</div>
 								</div>
 								<div class="categories__post__item__small">
@@ -191,12 +175,12 @@ function camSearch(){
 									<div class="posted__by">Mark Twain</div>
 								</div>
 								<div class="categories__post__item">
-									<div class="categories__post__item__pic smaller__large set-bg"
+									<a href="#" target="_blank"><div class="categories__post__item__pic smaller__large set-bg"
 										style="background-color: gray;">
 										<div class="post__meta">
 											<h4>5위</h4>
 										</div>
-									</div>
+									</div></a>
 									<div class="categories__post__item__text">
 										<span class="post__label">RECIPE</span>
 										<h3>
@@ -204,20 +188,18 @@ function camSearch(){
 										</h3>
 										<ul class="post__widget">
 											<li>조회수 :</li>
-											<li>작성날짜 :</li>
+
 										</ul>
-										<p>하여도 것은 없는 힘차게 오직 것이다.보라, 있다. 청춘의 싶이 생생하며, 그것을 있으랴? 얼마나
-											위하여 그들의 작고 끝에 옷을 모래뿐일 끓는다. 때에, 황금시대의 없으면 이상, 예가 힘있다. 뭇 사람은
-											할지니, 가는 군영과 때에, 공자는 인생에 열락의 약동하다.</p>
+
 									</div>
 								</div>
 								<div class="categories__post__item">
-									<div class="categories__post__item__pic set-bg"
+									<a href="#" target="_blank"><div class="categories__post__item__pic set-bg"
 										style="background-color: gray;">
 										<div class="post__meta">
 											<h4>7위</h4>
 										</div>
-									</div>
+									</div></a>
 									<div class="categories__post__item__text">
 										<span class="post__label">Recipe</span>
 										<h3>
@@ -225,11 +207,9 @@ function camSearch(){
 										</h3>
 										<ul class="post__widget">
 											<li>조회수 :</li>
-											<li>작성날짜 :</li>
+
 										</ul>
-										<p>하여도 것은 없는 힘차게 오직 것이다.보라, 있다. 청춘의 싶이 생생하며, 그것을 있으랴? 얼마나
-											위하여 그들의 작고 끝에 옷을 모래뿐일 끓는다. 때에, 황금시대의 없으면 이상, 예가 힘있다. 뭇 사람은
-											할지니, 가는 군영과 때에, 공자는 인생에 열락의 약동하다.</p>
+
 									</div>
 								</div>
 							</div>
@@ -240,7 +220,7 @@ function camSearch(){
 						<div class="sidebar__item">
 							<div class="sidebar__about__item">
 								<div class="sidebar__item__title">
-									<h6 style="font-family: 'CookieRun'; font-size: 20px">한식뉴스</h6>
+									<h6 style="font-family: 'CookieRun'; font-size: 25px">한식뉴스</h6>
 								</div>
 								<img class="sidebar_about"
 									src="resources/img/sidebar/sidebar-about.jpg" alt="">
@@ -255,7 +235,7 @@ function camSearch(){
 
 							<div class="sidebar__feature__item">
 								<div class="sidebar__item__title">
-									<h6 style="font-family: 'CookieRun'; font-size: 20px">최신
+									<h6 style="font-family: 'CookieRun'; font-size: 25px">최신
 										공지 게시글</h6>
 								</div>
 
@@ -266,7 +246,7 @@ function camSearch(){
 
 										</div>
 										<div class="post__text">
-											<span>Dinner</span>
+
 											<h5 style="font-family: 'CookieRun'; font-size: 20px">
 												<a href="#">진짜 맛있는 오징어탕</a>
 											</h5>
@@ -278,7 +258,7 @@ function camSearch(){
 
 										</div>
 										<div class="post__text">
-											<span>Smoothie</span>
+					
 											<h5 style="font-family: 'CookieRun'; font-size: 20px">
 												<a href="#">진짜 맛없는 삼계탕</a>
 											</h5>
@@ -290,7 +270,7 @@ function camSearch(){
 
 										</div>
 										<div class="post__text">
-											<span>Desert</span>
+								
 											<h5 style="font-family: 'CookieRun'; font-size: 20px">
 												<a href="#">진짜 맛있는 닭</a>
 											</h5>
@@ -302,7 +282,7 @@ function camSearch(){
 
 										</div>
 										<div class="post__text">
-											<span>Vegan</span>
+									
 											<h5 style="font-family: 'CookieRun'; font-size: 20px">
 												<a href="#">진짜 맛없다 이건</a>
 											</h5>
@@ -312,7 +292,7 @@ function camSearch(){
 							</div>
 							<div class="sidebar__feature__item">
 								<div class="sidebar__item__title">
-									<h6 style="font-family: 'CookieRun'; font-size: 20px">최다
+									<h6 style="font-family: 'CookieRun'; font-size: 25px">최다
 										조회 게시글</h6>
 								</div>
 
@@ -323,7 +303,7 @@ function camSearch(){
 
 										</div>
 										<div class="post__text">
-											<span>Dinner</span>
+									
 											<h5 style="font-family: 'CookieRun'; font-size: 20px">
 												<a href="#">진짜 맛있는 오징어탕</a>
 											</h5>
@@ -335,7 +315,7 @@ function camSearch(){
 
 										</div>
 										<div class="post__text">
-											<span>Smoothie</span>
+							
 											<h5 style="font-family: 'CookieRun'; font-size: 20px">
 												<a href="#">진짜 맛없는 삼계탕</a>
 											</h5>
@@ -347,7 +327,7 @@ function camSearch(){
 
 										</div>
 										<div class="post__text">
-											<span>Desert</span>
+						
 											<h5 style="font-family: 'CookieRun'; font-size: 20px">
 												<a href="#">진짜 맛있는 닭</a>
 											</h5>
@@ -359,7 +339,7 @@ function camSearch(){
 
 										</div>
 										<div class="post__text">
-											<span>Vegan</span>
+								
 											<h5 style="font-family: 'CookieRun'; font-size: 20px">
 												<a href="#">진짜 맛없다 이건</a>
 											</h5>
