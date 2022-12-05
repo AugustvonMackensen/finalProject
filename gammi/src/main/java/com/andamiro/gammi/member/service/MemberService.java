@@ -2,6 +2,8 @@ package com.andamiro.gammi.member.service;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletResponse;
+
 import com.andamiro.gammi.common.Paging;
 import com.andamiro.gammi.member.vo.Member;
 
@@ -26,4 +28,11 @@ public interface MemberService {
 	int deleteMember(String m_id);
 
 	Member selectByMail(String m_email);
+
+	int chkSelectForPwd(Member loginMember);
+
+	int findPwd(Member member);
+
+
+
 }

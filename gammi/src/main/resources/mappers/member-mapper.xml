@@ -69,7 +69,8 @@
 		set m_pw = #{ m_pw },
 			m_email = #{ m_email },
 			m_nickname = #{ m_nickname},
-			m_birth = #{ m_birth }
+			m_birth = #{ m_birth },
+			m_name = #{ m_name }
 		where m_id = #{ m_id } 
 	</update>
 	
@@ -78,12 +79,25 @@
 		where m_id = #{ m_id }
 	</delete>
 	
-	
-	<!-- 이메일로 회원조회 -->
 	<select id="selectByMail" parameterType="string" resultType="Member">
 		select * from member
 		where m_email = #{ m_email }
 	</select>
+	
+	<!-- 임시비밀번호 발급을 위한 회원 확인 -->
+	<select id="chkSelectForPwd" parameterType="Member" resultType="_int">
+		select count(m_name) from member
+		where m_id = #{ m_id } and m_email = #{ m_email }
+	</select>
+	
+	<!-- 비밀번호 분실 : 임시비밀번호 발급 -->
+	<update id="findPwd" parameterType="Member">
+		update member
+		set m_pw = #{ m_pw }
+		where m_id = #{ m_id } and m_email = #{ m_가email }
+	</update>
+	
+	
 
 </mapper>
 

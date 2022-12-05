@@ -55,8 +55,18 @@ public class MemberDao {
 		return session.delete("memberMapper.deleteMember", m_id);
 	}
 
+
 	public Member selectByMail(String m_email) {
 		return session.selectOne("memberMapper.selectByMail", m_email);
 	}
+
+	public int chkSelectForPwd(Member loginMember) {
+		return session.selectOne("memberMapper.chkSelectForPwd", loginMember);
+	}
+
+	public int findPwd(Member member) {
+		return session.update("memberMapper.findPwd", member);
+	}
+
 	 
 }

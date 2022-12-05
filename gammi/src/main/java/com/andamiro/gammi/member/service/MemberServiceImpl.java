@@ -2,6 +2,8 @@ package com.andamiro.gammi.member.service;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -64,6 +66,21 @@ public class MemberServiceImpl implements MemberService{
 	public Member selectByMail(String m_email) {
 		return memberDao.selectByMail(m_email);
 	}
+
+	@Override
+	public int chkSelectForPwd(Member loginMember) {
+		return memberDao.chkSelectForPwd(loginMember);
+	}
+
+	@Override
+	public int findPwd(Member member) {
+		return memberDao.findPwd(member);
+	}
+
+
+
+	
+
 	
 	
 }
