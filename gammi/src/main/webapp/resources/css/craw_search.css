@@ -1,0 +1,20 @@
+.craw_main{
+    display: flex;
+
+}
+
+.craw_img {
+    width: 300px;
+    height: 300px;
+}
+.craw_recipe{
+   display: flex;
+}
+
+.craw_recipe .model{
+   width : 300px;
+   height : 250px;
+   background : gray;
+   flex: 1 1 30%;
+   margin : 10px
+}
