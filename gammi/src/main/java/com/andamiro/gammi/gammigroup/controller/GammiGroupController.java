@@ -24,6 +24,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.andamiro.gammi.chatting.vo.GroupNotice;
+import com.andamiro.gammi.common.Paging;
+import com.andamiro.gammi.common.SearchPaging;
 import com.andamiro.gammi.gammigroup.service.GammiGroupService;
 import com.andamiro.gammi.gammigroup.vo.GammiGroup;
 import com.andamiro.gammi.gammigroup.vo.GroupMember;
@@ -44,19 +47,140 @@ public class GammiGroupController {
 	
 	//모임 전체 목록 페이지
 	@RequestMapping("group.do")
-	public String groupSearch(Model model) {
-		ArrayList<GammiGroup> allList = service.groupAllList();
-		if(allList!=null) {
-			model.addAttribute("groups",allList);
-			model.addAttribute("size", allList.size());
-		}else
-		{
-			model.addAttribute("size",0);
-		}
+	public String groupSearch(@RequestParam(name="page", required=false) String page, 
+			Model model) {
 		
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = Integer.parseInt(page);
+		}
+		int limit = 10;
+		int listCount = service.selectListCount();
+		int maxPage = (int)((double)listCount / limit + 0.9);
+		int startPage = (currentPage / 10) * 10 + 1;
+		int endPage = startPage + 10 - 1;
+		if(maxPage < endPage) {
+			endPage = maxPage;
+		}
+		int startRow = (currentPage - 1) * limit + 1;
+		int endRow = startRow + limit - 1;
+		Paging paging = new Paging(startRow, endRow);
+		
+		ArrayList<GammiGroup> list = service.groupAllList(paging);
+		if(list != null) {
+			model.addAttribute("groups", list);
+			model.addAttribute("listCount", listCount);
+			model.addAttribute("maxPage", maxPage);
+			model.addAttribute("currentPage", currentPage);
+			model.addAttribute("startPage", startPage);
+			model.addAttribute("endPage", endPage);
+			model.addAttribute("limit", limit);
+		}
+		return "group/groupSearch";
+	}
+	//가입된 모임 페이지
+	@RequestMapping("joinGroup.do")
+	public String joinGroup(@RequestParam(name="page", required=false) String page, 
+			Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		Member user = (Member)session.getAttribute("loginMember");
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = Integer.parseInt(page);
+		}
+		int limit = 10;
+		int listCount = service.selectJoinListCount(user.getM_id());
+		int maxPage = (int)((double)listCount / limit + 0.9);
+		int startPage = (currentPage / 10) * 10 + 1;
+		int endPage = startPage + 10 - 1;
+		if(maxPage < endPage) {
+			endPage = maxPage;
+		}
+		int startRow = (currentPage - 1) * limit + 1;
+		int endRow = startRow + limit - 1;
+		Paging paging = new Paging(startRow, endRow, user.getM_id());
+		
+		ArrayList<GammiGroup> list = service.groupJoinAllList(paging);
+		if(list != null) {
+			model.addAttribute("groups", list);
+			model.addAttribute("listCount", listCount);
+			model.addAttribute("maxPage", maxPage);
+			model.addAttribute("currentPage", currentPage);
+			model.addAttribute("startPage", startPage);
+			model.addAttribute("endPage", endPage);
+			model.addAttribute("limit", limit);
+		}
 		return "group/groupSearch";
 	}
 	
+	//모임 검색용
+	@RequestMapping(value="groupsearchTitle.do")
+	public String groupSearchNameMethod(@RequestParam("keyword") String keyword, 
+			@RequestParam(name="page", required=false) String page,
+			Model model) {
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = Integer.parseInt(page);
+		}
+		int limit = 10;
+		int listCount = service.selectSearchTListCount(keyword);
+		int maxPage = (int)((double)listCount / limit + 0.9);
+		int startPage = (currentPage / 10) * 10 + 1;
+		int endPage = startPage + 10 - 1;
+		if(maxPage < endPage) {
+			endPage = maxPage;
+		}
+		int startRow = (currentPage - 1) * limit + 1;
+		int endRow = startRow + limit - 1;
+		SearchPaging searchpaging = new SearchPaging(keyword, startRow, endRow);
+		
+		ArrayList<GammiGroup> list = service.selectSearchTitle(searchpaging);
+		model.addAttribute("groups", list);
+		model.addAttribute("listCount", listCount);
+		model.addAttribute("maxPage", maxPage);
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("limit", limit);
+		model.addAttribute("action", "title");
+		model.addAttribute("keyword", keyword);
+		return "group/groupSearch";
+	}
+	
+	//그룹장 검색용
+		@RequestMapping(value="groupsearchOwner.do")
+		public String groupSearchOwnerMethod(@RequestParam("keyword") String keyword, 
+				@RequestParam(name="page", required=false) String page,
+				Model model) {
+			int currentPage = 1;
+			if(page != null) {
+				currentPage = Integer.parseInt(page);
+			}
+			int limit = 10;
+			int listCount = service.selectSearchOListCount(keyword);
+			int maxPage = (int)((double)listCount / limit + 0.9);
+			int startPage = (currentPage / 10) * 10 + 1;
+			int endPage = startPage + 10 - 1;
+			if(maxPage < endPage) {
+				endPage = maxPage;
+			}
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+			SearchPaging searchpaging = new SearchPaging(keyword, startRow, endRow);
+			ArrayList<GammiGroup> list = service.selectSearchOwner(searchpaging);
+			model.addAttribute("groups", list);
+			model.addAttribute("listCount", listCount);
+			model.addAttribute("maxPage", maxPage);
+			model.addAttribute("currentPage", currentPage);
+			model.addAttribute("startPage", startPage);
+			model.addAttribute("endPage", endPage);
+			model.addAttribute("limit", limit);
+			model.addAttribute("action", "owner");
+			model.addAttribute("keyword", keyword);
+			return "group/groupSearch";
+			
+		}
+		
 	//모임 생성
 	@RequestMapping(value="groupinsert.do", method=RequestMethod.POST)
 	public String groupInsertMethod(GammiGroup gammiGroup, Model model, 
@@ -74,7 +198,7 @@ public class GammiGroupController {
 						new SimpleDateFormat("yyyyMMddHHmmss");
 				//변경할 파일이름 만들기
 				String renameFileName = sdf.format(
-						new java.sql.Date(System.currentTimeMillis()))+"_"+gammiGroup.getGroup_name();	
+						new java.sql.Date(System.currentTimeMillis()));
 				renameFileName += "." + fileName.substring(fileName.lastIndexOf(".") + 1);
 				
 				//파일 객체 만들기
@@ -87,15 +211,17 @@ public class GammiGroupController {
 					e.printStackTrace();
 					model.addAttribute("message", "전송파일 저장 실패!");
 					return "common/error";
-				} 
-				
+				}
 				gammiGroup.setGroup_img(renameFileName);
 			}
 		}
-		if(service.insertNewGroup(gammiGroup) > 0) {
+		int result = service.insertNewGroup(gammiGroup);
+		if(result > 0) {
 			return "redirect:group.do";
 		}else {
-			model.addAttribute("message", "새 게시 원글 등록 실패!");
+			if(result==-1) {
+				model.addAttribute("message", "이미 존재하는 모임입니다.");
+			}
 			return "common/error";
 		}
 	}
@@ -116,6 +242,7 @@ public class GammiGroupController {
 		model.addAttribute("group", group);
 		model.addAttribute("memberCount",memberCount);
 		model.addAttribute("member", check);
+		model.addAttribute("gno",group.getGroup_no());
 		if(check!=null && check.getMember_grade()>2) {		//가입된 회원
 			return "group/groupMain";
 		}else {		    	//미가입 회원
@@ -142,55 +269,53 @@ public class GammiGroupController {
 	@RequestMapping(value = "groupMemberManagement.do")
 	public String groupMemberManagement(@RequestParam("gno") int gno, Model model) {
 		ArrayList<GroupMember> gm = service.getAllGM(gno);
+		GammiGroup group = service.selectOneGroup(gno);
+		if(gm!=null) {
+		model.addAttribute("group",group);
 		model.addAttribute("gm", gm);
+		model.addAttribute("gno",gno);
 		return "group/memberManagement";
+		}
+		else{
+		model.addAttribute("message", "존재하지 않는 모임입니다.");
+		return "common/error";
+		}
 	}
 	
 	//멤버 가입 수락
-	@RequestMapping(value = "groupmAccept.do", method=RequestMethod.POST)
-	@ResponseBody
-	public String groupmAccept(@RequestBody String param, HttpServletResponse response) throws ParseException {
-		JSONParser jparser = new JSONParser();
-		JSONObject job = (JSONObject)jparser.parse(param);
-		String no = (String)job.get("group_no");
-		String id = (String)job.get("m_id");
-		GroupMember gm = new GroupMember();
-		gm.setGroup_no(Integer.parseInt(no));
-		gm.setM_id(id);
-		service.acceptGroupMember(gm);
-		job = new JSONObject();
-		job.put("group_no", Integer.parseInt(no));
-		return job.toJSONString();  
-	}
-	//멤버 추방 및 탈퇴
-	@RequestMapping(value = "groupExile.do", method=RequestMethod.POST)
-	@ResponseBody
-	public String groupExile(@RequestBody String param, HttpServletResponse response) throws ParseException {
-		JSONParser jparser = new JSONParser();
-		JSONObject job = (JSONObject)jparser.parse(param);
-		String no = (String)job.get("group_no");
-		String id = (String)job.get("m_id");
-		GroupMember gm = new GroupMember();
-		gm.setGroup_no(Integer.parseInt(no));
-		gm.setM_id(id);
-		service.deleteGroupMember(gm);
-		job = new JSONObject();
-		job.put("group_no", Integer.parseInt(no));
-		return job.toJSONString();  
-	}
-	
-	//----------------------채팅
-	@RequestMapping(value = "/chatting", method = RequestMethod.GET)
-	public ModelAndView chat(
-			ModelAndView mv,
-			HttpServletRequest request
-			) {
-		HttpSession session = request.getSession();
-		Member user = (Member)session.getAttribute("loginMember");
-		mv.setViewName("meeting/chat");
-		mv.addObject("user", user);
-		mv.addObject("articleOwner", "jin");
-		
-		return mv;
-	}
+		@RequestMapping(value = "mGrade.do", method=RequestMethod.POST)
+		@ResponseBody
+		public String groupmGrade(@RequestBody String param, HttpServletResponse response) throws ParseException {
+			JSONParser jparser = new JSONParser();
+			JSONObject job = (JSONObject)jparser.parse(param);
+			int state = Integer.parseInt((String)job.get("num"));
+			String no = (String)job.get("group_no");
+			String id = (String)job.get("m_id");
+			GroupMember gm = new GroupMember();
+			gm.setGroup_no(Integer.parseInt(no));
+			gm.setM_id(id);
+			if(state==1) {		//1 수락, 3 추방
+				service.acceptGroupMember(gm);
+			}else if(state==3) {
+				service.deleteGroupMember(gm);
+			}
+			job = new JSONObject();
+			job.put("group_no", Integer.parseInt(no));
+			return job.toJSONString();  
+		}
+	//소모임 제거
+		@RequestMapping("delGroup.do")
+		public String groupDelete(@RequestParam("gno")int gno, HttpServletRequest request){
+			GammiGroup group = service.selectOneGroup(gno);
+			if(group.getGroup_img()!=null) {
+				String savePath = request.getSession().getServletContext().getRealPath("resources/groupImg");
+				try {
+					new File(savePath + "\\" + group.getGroup_img()).delete();
+				} catch (Exception e) {
+					
+				}
+			}
+			service.deleteGroup(group);
+			return "redirect:group.do";
+		}
 }

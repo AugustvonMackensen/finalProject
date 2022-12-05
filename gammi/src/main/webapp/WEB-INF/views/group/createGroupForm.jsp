@@ -18,17 +18,16 @@
  -->
  <br><br><br><br><br><br>
 <form action="groupinsert.do" method="post" enctype="multipart/form-data">
-<table align="center" width="500" border="1" cellspacing="0" 
-cellpadding="5">
-	<tr><th>그룹명</th><td><input type="text" name="group_name"></td></tr>
+<table align="center" width="500" border="1" cellspacing="0"  cellpadding="5">
+	<tr><th>그룹명</th><td><input type="text" name="group_name" required></td></tr>
 	<tr><th>작성자</th>
-	<td><input type="text" name="group_owner" readonly value="${ sessionScope.loginMember.m_id }"></td></tr>
+	<td><input type="text" name="group_owner" readonly value="${ sessionScope.loginMember.m_id }" required></td></tr>
 	<tr><th>첨부파일</th><td><input type="file" name="upfile"></td></tr>
-	<tr><th>내 용</th><td><textarea rows="5" cols="50" name="group_info"></textarea></td></tr>
+	<tr><th>내 용</th><td><textarea rows="5" cols="50" name="group_info" required></textarea></td></tr>
 	<tr><th colspan="2">
 		<input type="submit" value="등록하기"> &nbsp; 
 		<input type="reset" value="작성취소"> &nbsp; 
-		<button onclick="javascript:history.go(-1);">목록</button>
+		<button type="button" onclick="javascript:location.href='group.do';">목록</button>
 	</th></tr>
 </table>
 </form>

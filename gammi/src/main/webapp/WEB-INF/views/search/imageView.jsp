@@ -15,9 +15,11 @@
   text-align: center;
 }
 </style>
+<script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css"/>
 <script type="text/javascript" src="${ pageContext.servletContext.contextPath }/resources/js/jquery-3.6.1.min.js"></script>
 <script type="text/javascript">
-
+Dropzone.autodiscover = false;
 $(function(){
 	$('#imgUpload').click(function(e){
 		//기본 클릭 동작 방지
@@ -32,16 +34,26 @@ function fileTransmit(fileObj){
 	form.submit();
 }
 
-function dragover(ev){
-	ev.preventDefault();
-}
-
-function allowDrop(ev) {
-  ev.preventDefault();
-  var form = $('#transmitImg');
-  $('#imgFile').value = ev.dataTransfer.getData('file');
-  form.submit();
-}
+const dropzone = new Dropzone('div.my-dropzone', {
+	url: 'transmitImg.do',
+	method: 'post',
+	maxFiles: 1,
+	uploadMultiple: false,
+	acceptedFiles: '.jpeg, .jpg, .png, .JPEG, .PNG, .JPG',
+	init: function(){
+		var myDropZone = this;
+		
+		//학습 성공시 처리할 내역
+		this.on('success', function(file){
+			console.log("드래그 앤 드랍 및 학습 성공");
+		});
+		
+		//학습 실패시
+		this.on('error', function(file){
+			alert("에러가 발생하였습니다.");
+		});
+	}
+})
 </script>
 </head>
 <body>
@@ -53,7 +65,7 @@ function allowDrop(ev) {
 <br><br><br>
 <!-- input 태그 감추기 -->
 <div>
-<form id="transmitImg" class="sendImgForm" action="imgTransmission.do" method="post" enctype="multipart/form-data">
+<form id="transmitImg" class="sendImgForm" action="transmitImg.do" method="post" enctype="multipart/form-data">
 	<input type="file" id="imgFile" name="imgFile" class="imgFile" onchange="fileTransmit(this)" accept="image/*">
 </form>
 </div>

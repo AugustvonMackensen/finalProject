@@ -11,22 +11,29 @@
     <meta name="keywords" content="Foodeiblog, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title></title>
+    <title>ANDAMIRO | Gammi</title>
 
     <!-- Google Font -->
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Unna:400,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&family=Noto+Sans+KR:wght@500;700&display=swap" rel="stylesheet">
     <!-- Css Styles -->
+    <link rel="stylesheet" href="resources/css/media.css" type="text/css">
+        <link rel="stylesheet" href="resources/css/css.css">
+      <link rel="stylesheet" href="resources/css/style2.css" type="text/css">
     <link rel="stylesheet" href="resources/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="resources/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="resources/css/elegant-icons.css" type="text/css">
     <link rel="stylesheet" href="resources/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="resources/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="resources/css/style.css" type="text/css">
-      <link rel="stylesheet" href="resources/css/admin.css" type="text/css">
+    <link rel="stylesheet" href="resources/css/groupgal.css" type="text/css">
+    <link rel="stylesheet" href="resources/css/sidebar.css" type="text/css">
+       <link rel="stylesheet" href="resources/css/admin.css" type="text/css">
     <link href="https://webfontworld.github.io/cookierun/CookieRun.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <script type="text/javascript">
     function showPopup(hasFilter) {
     	const popup = document.querySelector('#popup');
@@ -44,21 +51,7 @@
     	const popup = document.querySelector('#popup');
       popup.classList.add('hide');
     }
-    
-    function imgSearch(){
-    	
-    	location.href="imgSearch.do";
-    }
-    
-    function keywordSearch(){
-    	location.href="result.do";
-    }
-    
-    function camSearch(){
-    	location.href="camSearch.do";
-    }
     </script>
-</head>
 </head>
 <body>
  <header class="header">
