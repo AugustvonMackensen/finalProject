@@ -5,6 +5,7 @@ import java.util.Random;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
+import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -48,6 +49,19 @@ public class MailSendService {
 		} catch(MessagingException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public String sendTempPwd(String m_id, String m_email) {
+		String memberKey = 
+				RandomStringUtils.random(10, 33, 125, false, false);
+		String setFrom = "holyromanempire16th@gmail.com";
+		String toMail = m_email;
+		String title = "임시 비밀번호를 발급해드립니다.";
+		String content = "안녕하세요. " + m_id + "님, <br>" +
+				"임시비밀번호는 " + memberKey + "입니다. <br>" +
+				"임시비밀번호로 로그인 후, 비밀번호를 변경해 주세요.";
+		mailSend(setFrom, toMail, title, content);
+		return memberKey;
 	}
 
 }
