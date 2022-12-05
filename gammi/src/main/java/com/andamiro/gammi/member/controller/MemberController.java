@@ -11,15 +11,20 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.andamiro.gammi.common.Paging;
@@ -45,6 +50,24 @@ public class MemberController {
 	@RequestMapping("enrollPage.do")
 	public String moveEnrollPage() {
 		return "member/enrollPage";
+	}
+	
+	// 로그인 페이지 이동 
+	@RequestMapping("loginPage.do")
+	public String moveLoginPage() {
+		return "member/loginPage";
+	}
+				
+	//아이디찾기 페이지 이동 
+	@RequestMapping("moveIdRecovery.do") 
+	public String moveIdFindPage() {
+		return "member/idFind";
+		}
+	
+	//비밀번호 찾기 페이지 이동 
+	@RequestMapping("movePwdRecovery.do")
+	public String movePwdRecoveryPage() {
+		return "member/findPw";
 	}
 	
 	//수정페이지 이동 
@@ -131,11 +154,7 @@ public class MemberController {
 			out.close();
 		}
 		
-		// 로그인 페이지 이동 
-		@RequestMapping("loginPage.do")
-		public String moveLoginPage() {
-			return "member/loginPage";
-		}
+		
 		
 		@RequestMapping(value="login.do", method=RequestMethod.POST)
 		public String loginMethod(Member member, 
@@ -328,8 +347,8 @@ public class MemberController {
 			}
 		}
 		
-		//아이디찾기 
-		@RequestMapping("IdRecovery.do")
+		//아이디 찾기
+		@RequestMapping("idRecovery.do")
 		public ModelAndView idRecovery(@RequestParam("m_email") String m_email, ModelAndView mv) {
 			Member loginMember = memberService.selectByMail(m_email);
 			
@@ -344,5 +363,33 @@ public class MemberController {
 			return mv;
 			
 		}
+		
+		//비밀번호 찾기 : 임시비밀번호 발급
+		@PostMapping("findPwd.do")
+		public void passRecovery(Member loginMember, 
+				HttpServletResponse response) throws IOException {
+			response.setContentType("text/html;charset=utf-8");
+			PrintWriter out = response.getWriter();
+			String userid = loginMember.getM_id();
+			String email = loginMember.getM_email();
+			//아이디 조회에 실패하면, 오류메세지 출력
+			if(memberService.chkSelectForPwd(loginMember) == 0) {
+				out.print("등록된 아이디 또는 이메일이 없습니다.");
+				out.close();
+			}else {
+				String tempKey = mailService.sendTempPwd(userid, email);
+				loginMember.setM_pw(bcryptPasswordEncoder.encode(tempKey));
+				memberService.findPwd(loginMember);
+				out.print("인증번호가 발송되었습니다. <br>");
+				out.print("<a href=\"main.do\">홈으로 이동</a>");
+				out.close();
+			}
+			
+		}
+		
+		//카카오 로그인 
+		
+		
+		
 		
 }

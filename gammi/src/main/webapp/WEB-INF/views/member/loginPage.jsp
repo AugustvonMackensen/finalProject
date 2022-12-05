@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,7 +50,13 @@ div#loginForm form input[type=submit] {
 <form action="login.do" method="post">
 	<label>아이디 : <input type="text" name="m_id" class="pos"></label> <br>
 	<label>암 호 : <input type="password" name="m_pw" class="pos"></label> <br>
-	<input type="submit" value="로그인">
+	<input type="submit" value="로그인"> <br><br><br>
+	
+	<c:url var="mvfindId" value="/moveIdRecovery.do" />
+	<a href="${ mvfindId }">아이디 찾기</a> &nbsp; &nbsp; | &nbsp;
+	
+	<c:url var="mvfindPwd" value="/movePwdRecovery.do" />
+	<a href="${ mvfindPwd }">비밀번호 찾기</a> <br><br>
 </form>
 </div>
 
