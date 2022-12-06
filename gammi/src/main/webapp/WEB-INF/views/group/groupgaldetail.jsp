@@ -33,7 +33,7 @@
                     </dl>
                 </div>
                 <div class="cont">
-                    ${ gammiGroupGal.gal_content } <br>
+                    <textarea readonly name="gal_content" cols="150" style="overflow: auto; height: 220px; border: none; resize:none;">${gammiGroupGal.gal_content }</textarea>
                     <c:forEach items="${ gal_img }"  var ="gal_img">
                     <img class="thumb" src = "resources/groupGalImg/${ gal_img.gal_rename_image }"></td></tr>
                      </c:forEach>

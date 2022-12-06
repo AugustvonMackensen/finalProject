@@ -58,6 +58,10 @@ public class GammiGroupGalDao {
 		return (ArrayList<GammiGroupGal>)list;
 	}
 
+	public int deleteGalImg(GalleryImg gal_img) {
+		return session.delete("groupgalMapper.deleteGalImg",gal_img);
+	}
+
 	}
 
 

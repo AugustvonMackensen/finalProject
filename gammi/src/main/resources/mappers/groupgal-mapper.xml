@@ -69,22 +69,14 @@ select *from (select rownum rnum, gal_no, group_no, gal_id, gal_title, gal_date,
       update gallery
       set gal_title = #{gal_title}, 
          gal_content = #{gal_content}
-         <if test="gal_ori_image != null">
-            , 
-            gal_ori_image = #{gal_ori_image},
-            gal_rename_image = #{gal_rename_image}
-         </if>
-         <if test="gal_rename_image == null">
-            , 
-            gal_ori_image = null,
-            gal_rename_image = null
-         </if>
       where gal_no = #{ gal_no }
    </update>
-   
         <delete id="deletegal" parameterType="GammiGroupGal">
       delete from gallery
          where gal_no = #{gal_no}
    </delete>
-
+	<delete id="deleteGalImg" parameterType="GalleryImg">
+	delete from galleryimg
+	where gal_rename_image = #{gal_rename_image}
+	</delete>
 </mapper>
