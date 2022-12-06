@@ -67,6 +67,11 @@ public class GammiGroupGalServiceImpl implements GammiGroupGalService {
 		return dao.groupAllList(paging);
 	}
 
+	@Override
+	public int deleteGalImg(GalleryImg gal_img) {
+		return dao.deleteGalImg(gal_img);
+	}
+
 
 
 

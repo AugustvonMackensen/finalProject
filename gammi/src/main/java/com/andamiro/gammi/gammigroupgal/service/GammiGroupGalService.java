@@ -19,6 +19,7 @@ public interface GammiGroupGalService {
 	int insertNewGroupGalImg(GalleryImg gal_img);	//이미지테이블 저장
 	ArrayList<GalleryImg> selectgal_img(int gal_no);//이미지 가져오기
 	int selectListCount();
+	int deleteGalImg(GalleryImg gal_img);
 
 
 

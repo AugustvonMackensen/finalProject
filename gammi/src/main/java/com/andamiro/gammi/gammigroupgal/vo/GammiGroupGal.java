@@ -31,14 +31,9 @@ public class GammiGroupGal implements Serializable {
 		this.gal_image = gal_image;
 	}
 
-
-
-
-
 	public int getGal_no() {
 		return gal_no;
 	}
-
 
 	public void setGal_no(int gal_no) {
 		this.gal_no = gal_no;

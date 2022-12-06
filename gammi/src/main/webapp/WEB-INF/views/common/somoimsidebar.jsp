@@ -85,7 +85,7 @@ function secessionChatRoom(gno, id, chatno, chatroom_name){
     <div class="menu">
     <ul class="div_ul">
         <li><a href="groupMemberManagement.do?gno= ${ gno }" class="item"><div>멤버관리</div></a></li>
-        <li><a href="#" class="item"><div>공지사항</div></a></li>
+        <li><a href="selectGroup.do?selectGroupNo=${gno }" class="item"><div>모임메인화면</div></a></li>
         <li><a href="groupgal.do?gno=${ gno }" class="item"><div>갤러리게시판</div></a></li>
         <li><a href="#" class="item"><div>캘린더</div></a></li>
         <li><a href="${ pageContext.servletContext.contextPath }/rooms.do?gno=${ gno }" class="item"><div>자유채팅방관리</div></a></li>
