@@ -38,33 +38,14 @@ public class RecipeServiceImpl implements RecipeService {
 	}
 
 	@Override
-	public int deleteRecipe(int recipe_num) {
-		return recipeDao.deleteRecipe(recipe_num);
-	}
-
-	@Override
 	public Recipe selectRecipe(int recipe_num) {
 		return recipeDao.selectRecipe(recipe_num);
 	}
 
-	@Override
-	public int insertRecipe(Recipe recipe) {
-		return recipeDao.insertRecipe(recipe);
-	}
-
-	@Override
-	public int updateRecipe(Recipe recipe) {
-		return recipeDao.updateRecipe(recipe);
-	}
 
 	@Override
 	public ArrayList<Recipe> selectSearchTitle(SearchPaging searchpaging) {
 		return recipeDao.selectSearchTitle(searchpaging);
-	}
-
-	@Override
-	public ArrayList<Recipe> selectSearchContent(SearchPaging searchpaging) {
-		return recipeDao.selectSearchContent(searchpaging);
 	}
 
 	@Override
@@ -77,12 +58,4 @@ public class RecipeServiceImpl implements RecipeService {
 		return recipeDao.selectSearchTListCount(keyword);
 	}
 
-	@Override
-	public int selectSearchCListCount(String keyword) {
-		return recipeDao.selectSearchCListCount(keyword);
-	}
-
-
-
-	
 } // class end

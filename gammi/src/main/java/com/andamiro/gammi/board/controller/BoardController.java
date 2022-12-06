@@ -18,10 +18,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.andamiro.gammi.board.model.service.BoardReplyService;
 import com.andamiro.gammi.board.model.service.BoardService;
 import com.andamiro.gammi.board.model.vo.Board;
-import com.andamiro.gammi.board.model.vo.BoardReply;
 import com.andamiro.gammi.common.Paging;
 import com.andamiro.gammi.common.SearchDate;
 import com.andamiro.gammi.common.SearchPaging;
@@ -35,9 +33,7 @@ public class BoardController {
 	
 	@Autowired
 	private BoardService boardService;
-	@Autowired
-	private BoardReplyService boardreplyService;
-	
+
 	@RequestMapping("ListView.do")
 	public ModelAndView boardListMethod(
 			@RequestParam(name="page", required=false) String page,
@@ -114,14 +110,12 @@ public class BoardController {
 		
 		//해당 게시글 조회
 		Board board = boardService.selectBoard(b_no);
-		ArrayList<BoardReply> replylist = boardreplyService.replyList(b_no); 
 
 		
 		if(board !=null) {
 
 			mv.addObject("board", board);
 			mv.addObject("currentPage", currentPage);
-			mv.addObject("replylist", replylist);
 			mv.setViewName("board/boardDetailView"); //디테일만 바꿈
 			
 		}else {

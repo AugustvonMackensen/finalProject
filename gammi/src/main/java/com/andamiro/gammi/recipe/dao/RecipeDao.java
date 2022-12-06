@@ -36,29 +36,12 @@ public class RecipeDao {
 		return session.update("recipeMapper.addReadCount", recipe_num);
 	}
 
-	public int deleteRecipe(int recipe_num) {
-		return session.delete("recipeMapper.deleteRecipe", recipe_num);
-	}
-
 	public Recipe selectRecipe(int recipe_num) {
 		return session.selectOne("recipeMapper.selectRecipe", recipe_num);
 	}
 
-	public int insertRecipe(Recipe recipe) {
-		return session.insert("recipeMapper.insertRecipe", recipe);
-	}
-
-	public int updateRecipe(Recipe recipe) {
-		return session.update("recipeMapper.updateRecipe", recipe);
-	}
-
 	public ArrayList<Recipe> selectSearchTitle(SearchPaging searchpaging) {
 		List<Recipe> list = session.selectList("recipeMapper.searchTitle", searchpaging);
-		return (ArrayList<Recipe>)list;
-	}
-
-	public ArrayList<Recipe> selectSearchContent(SearchPaging searchpaging) {
-		List<Recipe> list = session.selectList("recipeMapper.searchContent", searchpaging);
 		return (ArrayList<Recipe>)list;
 	}
 
@@ -70,12 +53,5 @@ public class RecipeDao {
 	public int selectSearchTListCount(String keyword) {
 		return session.selectOne("recipeMapper.getSearchTListCount", keyword);
 	}
-
-	public int selectSearchCListCount(String keyword) {
-		return session.selectOne("recipeMapper.getSearchCListCount", keyword);
-	}
-
-
-
 	
 } // class end

@@ -99,19 +99,11 @@ function modalOpen(recipe_title, recipe_readcount, recipe_date, imgBox, recipe_c
 	<!-- 상대경로로 대상 파일의 위치를 지정한 경우 -->
 	<c:import url="../common/menubar.jsp" />
 	<link rel="stylesheet" href="resources/css/modal.css">
-	<!--레시피 디테일뷰 (모달창) -->
-	<jsp:include page="./recipeDetailView.jsp"></jsp:include>
-
 	<div class="container001">
 		<hr>
 		<!-- <h1 align="center">레시피 리스트</h1> -->
 		<!-- => 로그인한 회원만 게시글 등록(쓰기) 버튼이 보이게 함 -->
 		<br>
-		<center>
-			<c:if test="${ sessionScope.loginMember.admin eq 'Y' }">
-				<button onclick="showWriteForm();">새 레시피 등록</button>
-			</c:if>
-		</center>
 
 		<div align="center">
 			<select id="test" onchange="Change()"
