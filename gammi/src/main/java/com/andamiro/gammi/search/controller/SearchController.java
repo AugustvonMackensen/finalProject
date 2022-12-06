@@ -2,15 +2,13 @@ package com.andamiro.gammi.search.controller;
 
 import java.io.File;
 import java.io.FileOutputStream;
-
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.codehaus.plexus.util.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,9 +17,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.andamiro.gammi.search.foodinfo.vo.Foodinfo;
+import com.andamiro.gammi.search.service.SearchService;
+
 @Controller
 public class SearchController {
 	private Logger logger = LoggerFactory.getLogger(getClass());
+	
+	@Autowired
+	private SearchService searchService;
+	
 	@RequestMapping("imgSearch.do")
 	public String imgSearch() {
 		return "search/imageView";
@@ -29,6 +34,12 @@ public class SearchController {
 	
 	@GetMapping("result.do")
 	public ModelAndView searchResult(@RequestParam("keyword") String keyword, ModelAndView mv) {
+		Foodinfo foodinfo = searchService.selectFoodByKeyword(keyword);
+		String food_name = foodinfo.getFood_name();
+		String food_content = foodinfo.getFood_content();
+		
+		mv.addObject("food_name", food_name);
+		mv.addObject("food_content", food_content);
 		mv.addObject("keyword", keyword);
 		mv.setViewName("food/searchView");
 		return mv;

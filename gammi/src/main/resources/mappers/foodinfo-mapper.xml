@@ -3,14 +3,9 @@
 "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="foodinfoMapper">
-	<resultMap type="Foodinfo" id="searchResultFoodinfo">
-		<id column="food_no" property="food_no" />
-		<result column="food_name" property="food_name" />
-		<result column="food_content" property="food_content" />
-	</resultMap>
 	
 	<select id="selectFoodByKeyword" parameterType="string" resultType="Foodinfo">
 		select * from foodinfo
-		where food_name like %#{ keyword}%
+		where food_name = #{ keyword }
 	</select>
 </mapper>

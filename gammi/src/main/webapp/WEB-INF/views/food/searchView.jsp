@@ -1,8 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8" errorPage="error.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <c:set var="keyword" value="${ requestScope.keyword }" />
 <c:set var="imgPath" value="${ requestScope.imgPath }" />
+<c:set var="food_name" value="${ requestScope.food_name }" />
+<c:set var="food_content" value="${ requestScope.food_content }" />
 <!DOCTYPE html>
 <html lang="ko">
 <link
@@ -38,14 +43,17 @@
    <br>
    <div class="bgc">
       <section>
-
          <h3 style="font-family: 'CookieRun'; font-size: 30px;">${ keyword}에
             대한 정보를 확인해보세요!</h3>
          <div class="craw_main">
            <img class="craw_img" src="${ imgPath }">
-            <p>크롤링 데이터 정보</p>
+            <p></p>
          </div>
-
+         <div>
+	        ${ food_name }<br>
+	        ${ food_content }
+         </div>
+		
       </section>
       <br>
       <section>
