@@ -25,7 +25,25 @@
                     $("#writerDiv").css("display", "block");
                 }
             }
-            </script>
+            
+            
+            //로그인 제한/가능 레디오 체크가 변경되었을 때 실행되는 함수
+            function changeLogin(element){
+            	//선택한 radio의 name 속성의 이름에서 userid 분리 추출함
+            	var m_id = element.name.substring(9);
+            	console.log("changeLogin : " + m_id);
+            	if(element.checked == true && element.value == "N"){
+            		//로그인 제한을 체크했다면
+            		console.log("로그인 제한 체크함");
+            		location.href="${pageContext.servletContext.contextPath}/loginok.do?m_id=" + m_id + "&login_ok=N";
+            	} else {
+            		console.log("로그인 제한 해제함");
+            		location.href="${pageContext.servletContext.contextPath}/loginok.do?m_id=" + m_id + "&login_ok=Y";
+            	}
+            } 
+</script>
+            
+            
 </head>
 <body>
 <c:import url="/WEB-INF/views/common/menubar.jsp" />
@@ -119,7 +137,7 @@
                 </tr>
                 </thead>
                 <tbody> 
-                    <c:forEach items="${ requestScope.list }" var="m">
+                    <%-- <c:forEach items="${ requestScope.list }" var="m">
                         <tr>
                               <td>지디</td>
                             <td>얍</td>
@@ -134,7 +152,7 @@
                                 </c:if>
                             </td>
                         </tr>
-                    </c:forEach>
+                    </c:forEach> --%>
                 </tbody>
             </table>
           </div>

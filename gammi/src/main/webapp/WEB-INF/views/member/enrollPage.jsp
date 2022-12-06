@@ -169,11 +169,12 @@
 </script>
 </head>
 <body>
+<c:import url="/WEB-INF/views/common/menubar.jsp" />
+<br>
 	<form action="enroll.do" method="post" onsubmit="return validate();">
 		<div class="wrap">
 			<div class="login">
-			<br>
-				<h1 align="center" style="color: #0d6efd;">회원 가입 페이지</h1>
+				<h3 align="center" style="font-family: 'Noto Sans KR', sans-serif; font-size : 40px">회원 가입 페이지</h3><br>
 				<div class="textForm">
 					<input class="id" type="text" name="m_id" id="m_id" oninput="dupCheckId();" placeholder="*아이디를 입력해주세요." required><br>
 					 <span id="idDupCheckMsg"></span>

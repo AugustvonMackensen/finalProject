@@ -4,61 +4,45 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="resources/css/login.css" type="text/css">
+      <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
 <title></title>
-<style type="text/css">
-h1 {
-	font-size: 48pt;
-	color: navy;
-}
-div {
-	width: 500px;
-	height: 200px;
-	border: 2px solid navy; 
-	position: relative; /* 본래 표시될 위치기준 상대적 위치로 지정 */
-	left: 300px;
-}
-div form {
-	font-size: 16pt;
-	color: navy;
-	font-weight: bold;
-	margin: 10px;
-	padding: 10px;
-}
-div#loginForm form input.pos {
-	position: absolute; /* 절대좌표로 위치 지정 */
-	left: 120px;
-	width: 300px;
-	height: 25px;
-}
-div#loginForm form input[type=submit] {
-	margin: 10px;
-	width: 250px;
-	height: 40px;
-	position: absolute;
-	left: 120px;
-	background: navy;
-	color: white;
-	font-size: 16pt;
-	font-weight: bold;
-}
-</style>
 </head>
 <body>
-<h1 align="center">로그인</h1>
-<div id="loginForm">
+<c:import url="/WEB-INF/views/common/menubar.jsp" />
+
 <form action="login.do" method="post">
-	<label>아이디 : <input type="text" name="m_id" class="pos"></label> <br>
-	<label>암 호 : <input type="password" name="m_pw" class="pos"></label> <br>
-	<input type="submit" value="로그인"> <br><br><br>
-	
+<div class="wrap">
+<div class="login">
+<a href="main.do"><h3  style="font-size:50px; 	font-family: 'Noto Sans KR', sans-serif;">Gammi</h3></a>
+<div class="login_id">
+	<h4 style="	font-family: 'Noto Sans KR', sans-serif;">아이디</h4>
+	<input type="text" name="m_id" class="pos" placeholder="ID(아이디)"  >
+	</div>
+	<div class="login_pw">
+	<h4 style="	font-family: 'Noto Sans KR', sans-serif;">비밀번호</h4>
+	 <input type="password" name="m_pw" class="pos" placeholder="비밀번호">
+	 </div>
+	<div class="submit">
+	<input style="	font-family: 'Noto Sans KR', sans-serif;" type="submit" value="로그인">
+	</div>
+	<br>
+	<div class="loginmenu">
+	<div class="schid">
 	<c:url var="mvfindId" value="/moveIdRecovery.do" />
-	<a href="${ mvfindId }">아이디 찾기</a> &nbsp; &nbsp; | &nbsp;
-	
+	<a href="${ mvfindId }"><p style="	font-family: 'Noto Sans KR', sans-serif;">아이디 찾기</p></a>
+	</div>
+	<span style="margin-top: 8px;">|</span>
+	<div class="schpw">
 	<c:url var="mvfindPwd" value="/movePwdRecovery.do" />
-	<a href="${ mvfindPwd }">비밀번호 찾기</a> <br><br>
-</form>
+	<a href="${ mvfindPwd }"><p style="	font-family: 'Noto Sans KR', sans-serif;">비밀번호 찾기</p></a>
+	</div>
+	</div>
 </div>
+</div>
+</form>
+<c:import url="/WEB-INF/views/common/footer.jsp" />
 
 </body>
 </html>

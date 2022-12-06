@@ -33,6 +33,10 @@ public interface MemberService {
 
 	int findPwd(Member member);
 
+	int updateLoginok(Member member);
+
+	int aupdateMember(Member member);
+
 
 
 }

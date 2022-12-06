@@ -20,24 +20,30 @@
 			<div class="gal_width">
 	        <br><br>
 				<h4 style="font-family:'CookieRun';">${ group.group_name } 모임에 오신것을 환영합니다.</h4>
+				<h4 style="font-family:'CookieRun';">멤버관리를 통해 자기만의 소모임을 만들어보세요!	 </h4><br>
+							<div class="thumb">
+							<c:if test="${ empty groups.group_img }">
+							<img class="thumb" src="resources/img/banner.png" alt="무사진">
+							</c:if>
+							<c:if test="${ !empty groups.group_img }">
+							<img class="thumb" src = "resources/groupImg/${ groups.group_img }">
+							</c:if>
+						</div>
+				<br>
+				<div>
 				<c:if test="${ group.group_owner eq member.m_id }">
 				<button class = "rightbtn2" onclick="javascript:location.href='delGroup.do?gno=${ group.group_no }'">그룹 해체</button>
 				</c:if>
 			</div>
 			<div>
-			<p>모임장 : ${ group.group_owner }</p>
-			<div class="imgbox">
-							<c:if test="${ empty groups.group_img }">
-							<img class="img3" src="resources/img/banner.png" alt="무사진">
-							</c:if>
-							<c:if test="${ !empty groups.group_img }">
-							<img class="img3" src = "resources/groupImg/${ groups.group_img }">
-							</c:if>
-						</div>
+			<h3 style="font-family: 'Noto Sans KR', sans-serif;">모임장 : ${ group.group_owner }</h3>
+		    <div>
+			<h3 style="font-family: 'Noto Sans KR', sans-serif;">모임 소개 : ${ group.group_info }</h3>
 			</div>
-			<div>
-			<p>모임 소개 : ${ group.group_info }</p>
+
 			</div>
+			<br>
+
 </div>
 </div>
 <br>

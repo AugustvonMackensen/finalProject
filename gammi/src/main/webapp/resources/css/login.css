@@ -1,16 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<style>
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Noto Sans KR", sans-serif;
+	font-family: 'Noto Sans KR', sans-serif;
   }
   
   a {
@@ -46,6 +38,16 @@
     color: tomato;
     font-size: 2em;
   }
+  .login_sns {
+    padding: 20px;
+    display: flex;
+  }
+  
+  .login_sns li {
+    padding: 0px 15px;
+  }
+  
+  
   .login_id {
     margin-top: 20px;
     width: 80%;
@@ -59,11 +61,10 @@
     padding: 0px 20px;
     border: 1px solid lightgray;
     outline: none;
-    
   }
   
   .login_pw {
-    margin-top: 80px;
+    margin-top: 20px;
     width: 80%;
   }
   
@@ -71,14 +72,15 @@
     width: 100%;
     height: 50px;
     border-radius: 30px;
-    margin-top: 30px;
+    margin-top: 10px;
     padding: 0px 20px;
     border: 1px solid lightgray;
     outline: none;
   }
+
   
   .submit {
-    margin-top: 70px;
+    margin-top: 50px;
     width: 80%;
     color: rgb(255, 255, 255);
   }
@@ -88,30 +90,27 @@
     border: 0;
     outline: none;
     border-radius: 40px;
-    background: linear-gradient(to left, rgb(255, 77, 46), rgb(255, 155, 47));
+	background : #ab7021;
+	color : white;
     font-size: 1.2em;
     letter-spacing: 2px;
   }
-</style>
-<title></title>
-</head>
-<body>
-<c:import url="/WEB-INF/views/common/menubar.jsp" />
-<form action="idRecovery.do">
+.loginmenu {
+    display: flex;
+    flex-direction: row;
+    font-size: 20px;
+}
+.loginmenu .schid {
+    margin: 10px;
+}
+.loginmenu .schpw {
+    margin: 10px;
+}
+.loginmenu .join {
+    margin: 10px;
+}
 
-<div class="wrap">
-<div class="login">
-
-<h3 style="	font-family: 'Noto Sans KR', sans-serif; font-zie : 40px" >아이디 찾기</h3>
-<div class="login_pw">
-<h4 style="	font-family: 'Noto Sans KR', sans-serif;">이메일 :</h4>
- <input type="email" name="m_email" placeholder="회원님의 이메일 주소를 입력하세요.">
- <input style="background-color : #ab7021; color : white;" type="submit" value="아이디찾기">
-</div>
-
-</div>
-</div>
-</form>
-
-</body>
-</html>
+.nav_img {
+    width: 300px;
+    margin-top: 20px;
+}

@@ -24,7 +24,7 @@
   
   .wrap {
     width: 100%;
-    height: 800px;
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -105,20 +105,20 @@
 
  <div class="wrap">
  <div class="login">
- <h1 style="color: #0d6efd;">비밀번호 찾기</h1>
+ <h3 style="font-family: 'Noto Sans KR', sans-serif; font-size : 40px">비밀번호 찾기</h3>
 <div class="login_id">
-<h4 style="margin-top : 40px;">아이디입력</h4>
+<h4 style="margin-top : 40px; font-family: 'Noto Sans KR', sans-serif;">아이디입력</h4>
 <input type="text" name="m_id"><br>
 </div>
 
 <div class="login_pw">
-<h4>이메일</h4>
+<h4 style="font-family: 'Noto Sans KR', sans-serif;">이메일</h4>
  <input type="email" name="m_email">
-<input style="background: linear-gradient(105deg, rgba(91,104,235,1) 0%, rgba(40,225,253,1) 100%); margin-top:30px;" type="submit" value="비밀번호 찾기 ">
+<input style="background:#ab7021; color:white; margin-top:30px; font-family: 'Noto Sans KR', sans-serif;" type="submit" value="비밀번호찾기 ">
 </div>
 </div>
 </div>
 </form>
-<c:import url="/WEB-INF/views/common/footer.jsp" />
+
 </body>
 </html>

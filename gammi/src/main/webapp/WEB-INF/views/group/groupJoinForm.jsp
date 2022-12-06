@@ -32,58 +32,85 @@ $().ready(function () {
                 Swal.fire({
                     icon: 'success',
                     title: '가입신청 완료!!',
+                    timer: 2000,
+                }).then(function(){
+                	var form = document.createElement('form');
+                	form.setAttribute('method', 'post');
+                	form.setAttribute('action','applicationGroup.do');
+                	document.charset="utf-8";
+                	var values = {
+                			"group_no": ${group.group_no},
+                			"m_id": "${ sessionScope.loginMember.m_id }"
+                	};
+                	for(var key in values){
+                		var field = document.createElement('input');
+                		field.setAttribute('type', 'hidden');
+                		field.setAttribute('name', key);
+                		field.setAttribute('value', values[key]);
+                		form.appendChild(field);
+                	}
+                	document.body.appendChild(form);
+                	form.submit();
                 });
             });
         });
+
 </script>
 </head>
 <body>
 	<c:import url="/WEB-INF/views/common/menubar.jsp" />
-	
-	<div class="container">
+<div class="bgc">
+
+	<div style="height: 100%; display:flex; justify-content: center; align-items:center; min-height: 100vh; width:1000px;" class="container">
+
 		<form action="applicationGroup.do" align="center" method="post">
+			<div style="border :1px solid; width:500px; height : 450px; border-radius :20px;">
 			<ul style="list-style: none">
 			<input type="hidden" name="group_no" value="${ group.group_no }">
 			<input type="hidden" name="m_id" value="${ sessionScope.loginMember.m_id }">
+			<br><br>
+
 				<li>
 				<span style="font-family: 'CookieRun'; font-size: 20px">
 				그룹명 : &nbsp;&nbsp;&nbsp;<input type="text"
-							style="border: 0 solid black;"
-							value="${ group.group_name }" name="group_name" id ="group_name"></td>
+							style="border: 0 solid black; background: #F7F8F9; font-size : 20px;"
+							value="${ group.group_name }" name="group_name" id ="group_name">
 				</span>
 				</li>
 				<li>
 				<span style="font-family: 'CookieRun'; font-size: 20px">
 				현재 가입인원 : &nbsp;&nbsp;&nbsp;<input type="text"
-							style="border: 0 solid black;"
-							value="${ memberCount }명"></td>
+							style="border: 0 solid black; background: #F7F8F9; font-size : 20px;"
+							value="${ memberCount }명">
 				</span>
 				</li>
 				
 				<li>
 				<span style="font-family: 'CookieRun'; font-size: 20px">
 				그룹장 이름 : &nbsp;&nbsp;&nbsp;<input type="text"
-							style="border: 0 solid black;"
-							value="${ group.group_owner }" name="group_owner"></td>
+							style="border: 0 solid black; background: #F7F8F9; font-size : 20px;"
+							value="${ group.group_owner }" name="group_owner">
 				</span>
 				</li>
 				
 				<li>
 				<span style="font-family: 'CookieRun'; font-size: 20px">
 				그룹 설명 : &nbsp;&nbsp;&nbsp;<input type="textarea"
-							style="border: 0 solid black;"
-							value="${ group.group_info }" name="group_info"></td>
+							style="border: 0 solid black; background: #F7F8F9; font-size : 20px;"
+							value="${ group.group_info }" name="group_info">
 				</span>
 				</li>
 				<li>
 				<div class="writelistbtn">
-							<button class="rightbtn3">가입신청</button>
+							<button type="button" class="rightbtn3">가입신청</button>
 							<button onclick="javascript:history.go(-1); return false;"
 								class="rightbtn3">돌아가기</button>
 				</div>
 				</li>
 			</ul>
+			</div>
 		</form>
+	</div>
 	</div>
 	<c:import url="/WEB-INF/views/common/footer.jsp" />
 </body>
