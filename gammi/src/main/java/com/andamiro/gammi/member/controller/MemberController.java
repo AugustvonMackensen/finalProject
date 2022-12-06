@@ -28,6 +28,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.andamiro.gammi.common.Paging;
+import com.andamiro.gammi.gammigroup.service.GammiGroupService;
 import com.andamiro.gammi.member.service.MemberService;
 import com.andamiro.gammi.member.vo.Member;
 
@@ -217,7 +218,7 @@ public class MemberController {
 				return "common/error";
 			}
 		}
-		
+		// 회원리스트
 		@RequestMapping("mlist.do")
 		public ModelAndView memberListViewMethod(@RequestParam(name="page", required=false) String page, ModelAndView mv) {
 			
@@ -254,6 +255,7 @@ public class MemberController {
 				mv.addObject("startPage", startPage);
 				mv.addObject("endPage", endPage);
 				mv.addObject("limit", limit);
+
 				mv.setViewName("member/admin");
 			}else {
 				mv.addObject("message", 
@@ -263,6 +265,37 @@ public class MemberController {
 			
 			return mv;
 		}
+		
+		//로그인 제한/가능 변경 처리용
+		@RequestMapping("loginok.do")
+		public String changeLoginOKMethod(Member member, Model model) {
+			logger.info("loginok.do : " + member.getM_id() + ", " + member.getLogin_ok());
+				
+			if(memberService.updateLoginok(member) > 0) {
+				return "redirect:mlist.do";
+			} else {
+				model.addAttribute("message", "로그인 제한/허용 처리 오류");
+				return "common/error";
+			}
+		}
+		   
+		 //관리자 회원 정보 수정
+			@RequestMapping(value="amupdate.do", method=RequestMethod.POST)
+			public String memberUpdate(Member member, Model model) {		
+				logger.info("amupdate.do : " + member);
+				
+				logger.info("after : " + member);
+				
+				if(memberService.aupdateMember(member) > 0) {
+					return "redirect:mlist.do";
+				}else {
+					model.addAttribute("message", member.getM_id() + " : 회원 정보 수정 실패!");
+					return "common/error";
+				}
+				
+			}
+		
+		
 		
 		//이메일 인증
 		@ResponseBody

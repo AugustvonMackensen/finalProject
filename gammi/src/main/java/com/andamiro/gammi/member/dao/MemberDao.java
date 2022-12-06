@@ -68,5 +68,13 @@ public class MemberDao {
 		return session.update("memberMapper.findPwd", member);
 	}
 
+	public int updateLoginok(Member member) {
+		return session.update("memberMapper.updateLoginOK", member);
+	}
+
+	public int aupdateMember(Member member) {
+		return session.update("memberMapper.aupdateMember", member);
+	}
+
 	 
 }

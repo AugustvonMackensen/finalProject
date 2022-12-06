@@ -77,6 +77,16 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.findPwd(member);
 	}
 
+	@Override
+	public int updateLoginok(Member member) {
+		return memberDao.updateLoginok(member);
+	}
+
+	@Override
+	public int aupdateMember(Member member) {
+		return memberDao.aupdateMember(member);
+	}
+
 
 
 	

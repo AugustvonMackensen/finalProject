@@ -82,9 +82,13 @@ table.qa-table tbody tr th{;
 <body>
 <c:import url="/WEB-INF/views/common/menubar.jsp" />
 <br>
-<h1 align="center">회원 정보 수정 페이지</h1>
+
 <br>
+	<div style="height: 100%; display: flex; justify-content: center; align-items: center; min-height: 100vh; width: 1000px;" class="container">
+
 <form action="mupdate.do" method="post">
+	<h3 style="font-family: 'Noto Sans KR', sans-serif;" align="center">회원 정보 수정 페이지</h3>
+	<br>
 	<input type="hidden" name="origin_userpwd" value="${ member.m_pw }">
 <table class="qa-table">
 	<tbody>
@@ -132,8 +136,8 @@ table.qa-table tbody tr th{;
 	</tbody>
 </table>
 </form>
+	</div>
 
-<hr style="clear:both;">
 <c:import url="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>
