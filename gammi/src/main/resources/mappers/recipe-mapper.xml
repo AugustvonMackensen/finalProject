@@ -16,15 +16,25 @@
 		
 	</resultMap>
 	
-	<!-- <select id="selectTop5" resultMap="resultTop5">
+	<select id="selectTop5" resultType="Recipe">
 		<![CDATA[
 		select *
-		from (select rownum rnum, recipe_num, recipe_title, recipe_date
+		from (select rownum rnum, recipe_num, recipe_title, recipe_img,recipe_url,recipe_readcount,recipe_readcount_week
 		      from (select * from recipe
-		            order by recipe_date desc, recipe_num desc))
+		            order by recipe_readcount desc))
 		where rnum >= 1 and rnum <= 5
 		]]>
-	</select> -->
+	</select>
+	
+	<select id="selectTop7" resultType="Recipe">
+		<![CDATA[
+		select *
+		from (select rownum rnum, recipe_num, recipe_title, recipe_img,recipe_url,recipe_readcount,recipe_readcount_week
+		      from (select * from recipe
+		            order by recipe_readcount desc))
+		where rnum >= 1 and rnum <= 7
+		]]>
+	</select>
 	
 	<select id="getListCount" resultType="_int">
 		select count(*) from recipe

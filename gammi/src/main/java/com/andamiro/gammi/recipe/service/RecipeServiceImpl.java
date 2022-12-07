@@ -82,6 +82,16 @@ public class RecipeServiceImpl implements RecipeService {
 		return recipeDao.selectSearchCListCount(keyword);
 	}
 
+	@Override
+	public ArrayList<Recipe> selectTop5() {
+		return recipeDao.selectTop5();
+	}
+
+	@Override
+	public ArrayList<Recipe> selectTop7() {
+		return recipeDao.selectTop7();
+	}
+
 
 
 	

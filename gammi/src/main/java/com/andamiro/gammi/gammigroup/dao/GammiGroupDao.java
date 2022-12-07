@@ -23,11 +23,10 @@ public class GammiGroupDao {
 	}
 
 	public int insertNewGroup(GammiGroup gammiGroup) {
-		int result=-1, result2=0, result3=0;
+		int result=-1, result2=0;
 		try {
 		result = session.insert("groupMapper.insertGroup",gammiGroup);
 		result2 = session.insert("groupMapper.insertGoupMember",gammiGroup);
-		result3 = session.insert("groupMapper.insertGroupNotice",gammiGroup);
 		}catch (Exception e) {
 			result=-1;
 		}

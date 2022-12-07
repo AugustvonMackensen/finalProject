@@ -64,8 +64,11 @@ function camSearch(){
 								랭킹</h6>
 						</div>
 						<div class="categories__post__item categories__post__item--large">
-							<a href="#" target="_blank"><div class="categories__post__item__pic set-bg"
-								style="background-image: url(resources/img/food2.jpg);">
+							<a href="${r_list[0].recipe_url }" target="_blank"><div class="categories__post__item__pic set-bg"
+								style="background-image: url(${r_list[0].recipe_img });     background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+   ">
 								<div class="post__meta">
 									<h4 style="color: gold;">1위</h4>
 								</div>
@@ -73,19 +76,18 @@ function camSearch(){
 							<div class="categories__post__item__text">
 								<span class="post__label">Recipe</span>
 								<h3>
-									<a href="#" style="font-family: 'Noto Sans KR', sans-serif;">제목~</a>
+									<a href="${r_list[0].recipe_url }" target="_blank" style="font-family: 'Noto Sans KR', sans-serif;">${r_list[0].recipe_title }</a>
 								</h3>
 								<ul class="post__widget">
-									<li>조회수 :</li>
+									<li>조회수 : ${r_list[0].recipe_readcount }</li>
 								</ul>
-					
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-lg-6 col-md-6 col-sm-6">
 								<div class="categories__post__item">
-									<a href="#" target="_blank"><div class="categories__post__item__pic small__item set-bg"
-										style="background-color: gray;">
+									<a href="${r_list[1].recipe_url }" target="_blank"><div class="categories__post__item__pic small__item set-bg"
+										style="background-image: url(${r_list[1].recipe_img });">
 										<div class="post__meta">
 											<h4 style="color: #898989;">2위</h4>
 										</div>
@@ -93,19 +95,16 @@ function camSearch(){
 									<div class="categories__post__item__text">
 										<span class="post__label">Recipe</span>
 										<h3>
-											<a href="#" style="font-family: 'Noto Sans KR', sans-serif;">제목~</a>
+											<a href="${r_list[1].recipe_url }"  target="_blank"  style="font-family: 'Noto Sans KR', sans-serif;">${r_list[1].recipe_title }</a>
 										</h3>
 										<ul class="post__widget">
-											<li>조회수 :</li>
-
-
+											<li>조회수 : ${r_list[1].recipe_readcount }</li>
 										</ul>
-						
 									</div>
 								</div>
 								<div class="categories__post__item">
-									<a href="#" target="_blank"><div class="categories__post__item__pic set-bg"
-										style="background-color: gray;">
+									<a href="${r_list[3].recipe_url }" target="_blank"><div class="categories__post__item__pic set-bg"
+										style="background-image: url(${r_list[3].recipe_img });">
 										<div class="post__meta">
 											<h4>4위</h4>
 
@@ -114,10 +113,10 @@ function camSearch(){
 									<div class="categories__post__item__text">
 										<span class="post__label">Recipe</span>
 										<h3>
-											<a href="#" style="font-family: 'Noto Sans KR', sans-serif;">제목~</a>
+											<a href="${r_list[3].recipe_url }"  target="_blank"  style="font-family: 'Noto Sans KR', sans-serif;">${r_list[3].recipe_title }</a>
 										</h3>
 										<ul class="post__widget">
-											<li>조회수 :</li>
+											<li>조회수 : ${r_list[3].recipe_readcount }</li>
 
 										</ul>
 						
@@ -125,8 +124,8 @@ function camSearch(){
 								</div>
 
 								<div class="categories__post__item">
-									<a href="#" target="_blank"><div class="categories__post__item__pic smaller__large set-bg"
-										style="background-color: gray;">
+									<a href="${r_list[5].recipe_url }" target="_blank"><div class="categories__post__item__pic smaller__large set-bg"
+										style="background-image: url(${r_list[5].recipe_img });">
 										<div class="post__meta">
 											<h4>6위</h4>
 										</div>
@@ -134,10 +133,10 @@ function camSearch(){
 									<div class="categories__post__item__text">
 										<span class="post__label">Recipe</span>
 										<h3>
-											<a href="#" style="font-family: 'Noto Sans KR', sans-serif;">제목~</a>
+											<a href="${r_list[5].recipe_url }" target="_blank"  style="font-family: 'Noto Sans KR', sans-serif;">${r_list[5].recipe_title }</a>
 										</h3>
 										<ul class="post__widget">
-											<li>조회수 :</li>
+											<li>조회수 : ${r_list[5].recipe_readcount }</li>
 
 
 										</ul>
@@ -147,8 +146,8 @@ function camSearch(){
 							</div>
 							<div class="col-lg-6 col-md-6 col-sm-6">
 								<div class="categories__post__item">
-									<a href="#" target="_blank"><div class="categories__post__item__pic smaller__large set-bg"
-										style="background-color: gray;">
+									<a href="${r_list[2].recipe_url }" target="_blank"><div class="categories__post__item__pic smaller__large set-bg"
+										style="background-image: url(${r_list[2].recipe_img });">
 										<div class="post__meta">
 											<h4 style="color: #ab7966;">3위</h4>
 
@@ -157,10 +156,10 @@ function camSearch(){
 									<div class="categories__post__item__text">
 										<span class="post__label">RECIPE</span>
 										<h3>
-											<a href="#" style="font-family: 'Noto Sans KR', sans-serif;">제목~</a>
+											<a href="${r_list[2].recipe_url }" target="_blank"  style="font-family: 'Noto Sans KR', sans-serif;">${r_list[2].recipe_title }</a>
 										</h3>
 										<ul class="post__widget">
-											<li>조회수 :</li>
+											<li>조회수 : ${r_list[2].recipe_readcount }</li>
 
 
 										</ul>
@@ -169,14 +168,13 @@ function camSearch(){
 								</div>
 								<div class="categories__post__item__small">
 
-									<p>Part of the secret of success in life is to eat what you
-										like and let the food fight it out inside. 인생에서 성공하는 비결 중 하나는
-										좋아하는 음식을 먹고 힘내 싸우는 것이다.</p>
-									<div class="posted__by">Mark Twain</div>
+									<p>안다미로는 순우리말로, '그릇에 넘치도록 많이'란 뜻이다. 이런 뜻이 있어
+									 식당 이름 중에 이 낱말을 간판으로 건 집이 전국 각지에 상당히 많다.</p>
+									<div class="posted__by">-감미-</div>
 								</div>
 								<div class="categories__post__item">
-									<a href="#" target="_blank"><div class="categories__post__item__pic smaller__large set-bg"
-										style="background-color: gray;">
+									<a href="${r_list[4].recipe_url }" target="_blank"><div class="categories__post__item__pic smaller__large set-bg"
+										style="background-image: url(${r_list[4].recipe_img });">
 										<div class="post__meta">
 											<h4>5위</h4>
 										</div>
@@ -184,18 +182,18 @@ function camSearch(){
 									<div class="categories__post__item__text">
 										<span class="post__label">RECIPE</span>
 										<h3>
-											<a href="#" style="font-family: 'Noto Sans KR', sans-serif;">제목~</a>
+											<a href="${r_list[4].recipe_url }" target="_blank"  style="font-family: 'Noto Sans KR', sans-serif;">${r_list[4].recipe_title }</a>
 										</h3>
 										<ul class="post__widget">
-											<li>조회수 :</li>
+											<li>조회수 : ${r_list[4].recipe_readcount }</li>
 
 										</ul>
 
 									</div>
 								</div>
 								<div class="categories__post__item">
-									<a href="#" target="_blank"><div class="categories__post__item__pic set-bg"
-										style="background-color: gray;">
+									<a href="${r_list[6].recipe_url }" target="_blank"><div class="categories__post__item__pic set-bg"
+										style="background-image: url(${r_list[6].recipe_img });">
 										<div class="post__meta">
 											<h4>7위</h4>
 										</div>
@@ -203,13 +201,11 @@ function camSearch(){
 									<div class="categories__post__item__text">
 										<span class="post__label">Recipe</span>
 										<h3>
-											<a href="#" style="font-family: 'Noto Sans KR', sans-serif;">제목~</a>
+											<a href="${r_list[6].recipe_url }" target="_blank"  style="font-family: 'Noto Sans KR', sans-serif;">${r_list[6].recipe_title }</a>
 										</h3>
 										<ul class="post__widget">
-											<li>조회수 :</li>
-
+											<li>조회수 : ${r_list[6].recipe_readcount }</li>
 										</ul>
-
 									</div>
 								</div>
 							</div>
