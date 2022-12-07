@@ -42,10 +42,6 @@ public class BoardServiceImpl implements BoardService {
 		return boardDao.delectBoard(board);
 	}
 
-	@Override
-	public ArrayList<Board> selectNewTop3() {
-		return boardDao.selectNewTop3();
-	}
 
 	@Override
 	public ArrayList<Board> selectList(Paging page) {
@@ -80,6 +76,11 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public ArrayList<Board> selectSearchWriter(SearchPaging searchpaging) {
 		return boardDao.selectSearchWriter(searchpaging);
+	}
+
+	@Override
+	public ArrayList<Board> selectNewTop4() {
+		return boardDao.selectNewTop4();
 	}
 	
 }

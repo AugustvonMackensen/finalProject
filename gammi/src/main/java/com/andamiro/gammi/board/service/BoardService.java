@@ -15,7 +15,6 @@ public interface BoardService {
 	int deleteBoard(Board board);
 	int updateAddReadcount(int b_no);  //상세보기시에 조회수 1증가 처리용
 	int selectListCount();	//총 게시글 갯수 조회용(페이지 수 계산용)
-	ArrayList<Board> selectNewTop3();
 	ArrayList<Board> selectSearchTitle(SearchPaging searchpaging);
 	
 	
@@ -23,6 +22,7 @@ public interface BoardService {
 	int selectSearchTListCount(String keyword);
 	int selectSearchWListCount(String keyword);
 	ArrayList<Board> selectSearchWriter(SearchPaging searchpaging);
+	ArrayList<Board> selectNewTop4(); //메인 탑 4
 	
 	
 	

@@ -16,6 +16,24 @@
       <result column="b_rename_image" property="b_rename_image" />
       
    </resultMap>
+   
+   	<resultMap type="Board" id="resultBoardTop4">
+		<id column="b_no" property="b_no" />
+		<result column="b_title" property="b_title" />
+		<result column="b_date" property="b_date" />		
+	</resultMap>
+   
+   
+   
+   	<select id="selectNewTop4" resultMap="resultBoardTop4">
+		<![CDATA[
+		select *
+		from (select rownum rnum, b_no, b_title, b_date
+		      from (select * from board
+		            order by B_READCOUNT desc))
+		where rnum >= 1 and rnum <= 4
+		]]>
+	</select>
 
    <!--  리스트 전체 목록 보기  -->
    <select id="selectAll" resultType="board">

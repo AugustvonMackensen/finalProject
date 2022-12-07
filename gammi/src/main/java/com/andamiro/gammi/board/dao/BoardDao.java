@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.andamiro.gammi.board.vo.Board;
 import com.andamiro.gammi.common.Paging;
 import com.andamiro.gammi.common.SearchPaging;
+import com.andamiro.gammi.notice.vo.Notice;
 
 @Repository("boardDao")
 public class BoardDao {
@@ -18,10 +19,6 @@ public class BoardDao {
 	@Autowired
 	private SqlSessionTemplate session;
 	
-	public ArrayList<Board> selectNewTop3(){
-		List<Board> list = session.selectList("boardMapper.selectNewTop3");
-		return (ArrayList<Board>)list;
-	}
 	
 	public ArrayList<Board> selectList(){
 		List<Board> list = session.selectList("boardMapper.selectAll");
@@ -78,6 +75,11 @@ public class BoardDao {
 
 	public int selectSearchWListCount(String keyword) {
 		return session.selectOne("boardMapper.getSearchWListCount", keyword);
+	}
+
+	public ArrayList<Board> selectNewTop4() {
+		List<Board> list = session.selectList("boardMapper.selectNewTop4");
+		return (ArrayList<Board>)list;
 	}
 
 	

@@ -281,3 +281,27 @@
        border:1px solid;
        font-family: 'Noto Sans KR', sans-serif;
     }
+    
+.rightbtn10 {
+	float : right;
+    margin: 10px 0px 0px 0px;
+    font-size: 12px;
+    width: 5rem;
+    border-radius: 10px;
+    height: 3.2rem;
+    background-color: #444;
+    color: #fff;
+    border: 0;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+.rightbtn11 {
+	margin: 10px 10px 10px 10px;
+    font-size: 12px;
+    width: 5rem;
+    border-radius: 10px;
+    height: 3.2rem;
+    background-color: #5a7999;
+    color: white;
+    border: 3px solid #5a7999;
+    font-family: 'Noto Sans KR', sans-serif;
+}

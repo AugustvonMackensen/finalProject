@@ -9,27 +9,44 @@
 </head>
 <body>
 <c:import url="/WEB-INF/views/common/menubar.jsp" />
-<hr>
-<h2 align="center">새로운 모임 생성</h2>
-<!-- form 태그에서 입력된 값들(문자열)과 첨부파일을 같이 전송하려면,
-	반드시 enctype 속성을 form 태그에 추가해야 됨
-	enctype="multipart/form-data" 값을 지정해야 함
-	method="post" 로 지정해야 함
- -->
- <br><br><br><br><br><br>
+
 <form action="groupinsert.do" method="post" enctype="multipart/form-data">
-<table align="center" width="500" border="1" cellspacing="0"  cellpadding="5">
-	<tr><th>그룹명</th><td><input type="text" name="group_name" required></td></tr>
-	<tr><th>작성자</th>
-	<td><input type="text" name="group_owner" readonly value="${ sessionScope.loginMember.m_id }" required></td></tr>
-	<tr><th>첨부파일</th><td><input type="file" name="upfile"></td></tr>
-	<tr><th>내 용</th><td><textarea rows="5" cols="50" name="group_info" required></textarea></td></tr>
-	<tr><th colspan="2">
-		<input type="submit" value="등록하기"> &nbsp; 
-		<input type="reset" value="작성취소"> &nbsp; 
-		<button type="button" onclick="javascript:location.href='group.do';">목록</button>
-	</th></tr>
-</table>
+    <div class="board_wrap">
+        <div class="board_title">
+            <strong>모임생성</strong>
+           <p>모임을 빠르고 정확하게 만들수있습니다.</p>
+        </div>
+        <div class="board_write_wrap">
+            <div class="board_write">
+                <div class="title">
+                    <dl>
+                        <dt>그룹명</dt>
+                        <dd><input type="text" name="group_name" required></dd>
+                    </dl>
+                </div>
+                <div class="info">
+                    <dl>
+                        <dt>작성자</dt>
+                        <dd><input type="text" name="group_owner" readonly value="${ sessionScope.loginMember.m_id }" required></dd>
+                    </dl>
+                    <dl>
+                        <dt>첨부파일</dt>
+                        <dd>				<!-- 	<input type="file" name="upfile" -->
+                            <input type="file" name="upfile">
+                        </dd>
+                    </dl>
+                </div>
+                <div class="cont">
+                    <textarea rows="5" cols="50" name="group_info" required></textarea>
+                </div>
+            </div>
+            <div class="bt_wrap">
+                <input class="rightbtn7" type="submit" value="등록하기">
+                &nbsp; <input class="rightbtn9" type="reset" value="작성취소"> &nbsp;
+                <button class="rightbtn8" onclick="javascript:location.href='group.do';">목록</button>
+        </div>
+        </div>
+    </div>
 </form>
 <br>
 <hr>

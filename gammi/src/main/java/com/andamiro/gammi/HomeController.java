@@ -13,9 +13,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+
+import com.andamiro.gammi.board.service.BoardService;
+import com.andamiro.gammi.board.vo.Board;
+import com.andamiro.gammi.notice.service.NoticeService;
+import com.andamiro.gammi.notice.vo.Notice;
 import com.andamiro.gammi.recipe.service.RecipeService;
 import com.andamiro.gammi.recipe.vo.Recipe;
-
 /**
  * Handles requests for the application home page.
  */
@@ -25,7 +29,14 @@ public class HomeController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 	@Autowired
+	private BoardService boardservice;
+	
+	@Autowired
+	private NoticeService noticeservice;
+	
+  @Autowired
 	private RecipeService recipeService;
+  
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
@@ -45,7 +56,11 @@ public class HomeController {
 
 	@RequestMapping("main.do")
 	public String forwardMainView(Model model){
+		ArrayList<Notice> noticelist = noticeservice.selectNewTop4();
+		ArrayList<Board> boardlist = boardservice.selectNewTop4();
 		ArrayList<Recipe> recipelist = recipeService.selectTop7();
+		model.addAttribute("b_list", boardlist);
+		model.addAttribute("n_list", noticelist);
 		model.addAttribute("r_list",recipelist);
 		return "common/main";  //내보낼 뷰파일명 리턴
 	}
