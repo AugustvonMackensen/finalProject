@@ -137,10 +137,10 @@
 		values(default, (select max(group_no) from gammigroup where group_owner=#{group_owner}) , #{group_owner}, 4, default)
 	</insert>
 	<!-- 그룹 추가에 따라오는 공지사항 생성 -->
-	<insert id = "insertGroupNotice" parameterType="GammiGroup">
+	<!-- <insert id = "insertGroupNotice" parameterType="GammiGroup">
 	insert into groupnotice
 	values(default, (select max(group_no) from gammigroup where group_owner=#{group_owner}), #{group_owner}, '신규공지사항',  sysdate)
-	</insert>
+	</insert> -->
 	<!-- 가입신청 -->
 	<insert id="createApplication" parameterType="GroupMember">
 		insert into groupmember

@@ -9,8 +9,6 @@ import com.andamiro.gammi.recipe.vo.Recipe;
 
 public interface RecipeService {
 
-//	ArrayList<Recipe> selectTop5();
-
 	int selectListCount();
 
 	ArrayList<Recipe> selectList(Paging paging);
@@ -34,6 +32,10 @@ public interface RecipeService {
 	int selectSearchTListCount(String keyword);
 
 	int selectSearchCListCount(String keyword);
+//----------------------------------------------------
+	public ArrayList<Recipe> selectTop5();
+
+	public ArrayList<Recipe> selectTop7();
 
 
 
