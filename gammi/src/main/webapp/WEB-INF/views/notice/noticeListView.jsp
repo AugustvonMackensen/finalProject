@@ -136,8 +136,7 @@ function Change() {
 				</table>
 				
 		<c:if test="${ sessionScope.loginMember.admin eq 'Y' }">
-			<button class="rightbtn" onclick="javascript:location.href='movewrite.do';">
-				공지글 등록</button>
+			<button class="rightbtn" onclick="javascript:location.href='movewrite.do';"> 공지글 등록</button>
 		</c:if>
 
 				<button class="rightbtn3"

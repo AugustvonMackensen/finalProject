@@ -21,8 +21,8 @@ public class NoticeDao {
 	@Autowired
 	private SqlSessionTemplate session;
 	
-	public ArrayList<Notice> selectNewTop3(){
-		List<Notice> list = session.selectList("noticeMapper.selectNewTop3");
+	public ArrayList<Notice> selectNewTop4(){
+		List<Notice> list = session.selectList("noticeMapper.selectNewTop4");
 		return (ArrayList<Notice>)list;
 	}
 	

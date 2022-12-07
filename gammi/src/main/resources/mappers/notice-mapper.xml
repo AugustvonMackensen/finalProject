@@ -15,19 +15,19 @@
 		<result column="notice_readcount" property="notice_readcount" />
 	</resultMap>
 	
-	<resultMap type="Notice" id="resultNoticeTop3">
+	<resultMap type="Notice" id="resultNoticeTop4">
 		<id column="notice_num" property="notice_num" />
 		<result column="notice_title" property="notice_title" />
 		<result column="notice_date" property="notice_date" />		
 	</resultMap>
 	
-	<select id="selectNewTop3" resultMap="resultNoticeTop3">
+	<select id="selectNewTop4" resultMap="resultNoticeTop4">
 		<![CDATA[
 		select *
 		from (select rownum rnum, notice_num, notice_title, notice_date
 		      from (select * from notice
 		            order by notice_date desc, notice_num desc))
-		where rnum >= 1 and rnum <= 3
+		where rnum >= 1 and rnum <= 4
 		]]>
 	</select>
 	

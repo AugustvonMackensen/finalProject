@@ -1,17 +1,22 @@
 package com.andamiro.gammi;
 
-import java.io.File;
-import java.io.IOException;
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.andamiro.gammi.board.service.BoardService;
+import com.andamiro.gammi.board.vo.Board;
+import com.andamiro.gammi.notice.service.NoticeService;
+import com.andamiro.gammi.notice.vo.Notice;
 
 /**
  * Handles requests for the application home page.
@@ -20,6 +25,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	
+	@Autowired
+	private BoardService boardservice;
+	
+	@Autowired
+	private NoticeService noticeservice;
+	
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -39,7 +51,13 @@ public class HomeController {
 	}
 
 	@RequestMapping("main.do")
-	public String forwardMainView(){
+	public String forwardMainView(Model model){
+		
+		ArrayList<Notice> noticelist = noticeservice.selectNewTop4();
+		ArrayList<Board> boardlist = boardservice.selectNewTop4();
+		
+		model.addAttribute("b_list", boardlist);
+		model.addAttribute("n_list", noticelist);
 		return "common/main";  //내보낼 뷰파일명 리턴
 	}
 }

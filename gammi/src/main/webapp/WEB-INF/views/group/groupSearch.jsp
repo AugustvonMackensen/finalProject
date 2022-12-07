@@ -59,7 +59,7 @@ function Change(){
 		<br><br><br><br><br>
 		<div class="wrap2">
 			<h4 style="font-family: 'CookieRun';">
-				음식, 취향에 맞는 사람들끼리 <br> 채팅을 즐겨보세요!
+				음식, 취향에 맞는 <br>모임을 찾아보세요!
 			</h4>
 			<ul class="container2">
 			<c:forEach var="groups" items="${groups}" varStatus="groups_status"> 

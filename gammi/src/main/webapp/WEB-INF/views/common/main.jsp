@@ -6,6 +6,8 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&family=Noto+Sans+KR:wght@500;700&display=swap"
 	rel="stylesheet">
+	<script type="text/javascript" 
+src="${ pageContext.servletContext.contextPath }/resources/js/jquery-3.6.1.min.js"></script>
 <script type="text/javascript">
 function imgSearch(){
 	
@@ -20,6 +22,7 @@ function keywordSearch(){
 function camSearch(){
 	location.href="camSearch.do";
 }
+
 </script>
 </head>
 <body>
@@ -31,16 +34,15 @@ function camSearch(){
 	</div>
 	<div>
 		<div class="header__logo">
-			<br>
-			<br> <a href="./index.html"><h1
+			<br> <br> <a href="./index.html"><h1
 					style="font-family: 'CookieRun'; font-size: 50px; color: white; letter-spacing: 5px;">
 					음식이 맛있다!<br>감미
-				</h1></a><br>
-			<br>
-			<br>
+				</h1></a><br> <br> <br>
 			<div class="search-box">
-				<input id="searchKeyword" name="keyword" class="search-txt" type="text" placeholder="음식을 입력해주세요.">
-				<button type="button" class="btm_image" id="img_btn" onclick="camSearch();">
+				<input id="searchKeyword" name="keyword" class="search-txt"
+					type="text" placeholder="음식을 입력해주세요.">
+				<button type="button" class="btm_image" id="img_btn"
+					onclick="camSearch();">
 					<img class="btn_image2" src="resources/img/camera4.png">
 				</button>
 				<button type="button" class="btm_image2" id="img_btn2"
@@ -64,12 +66,13 @@ function camSearch(){
 								랭킹</h6>
 						</div>
 						<div class="categories__post__item categories__post__item--large">
-							<a href="#" target="_blank"><div class="categories__post__item__pic set-bg"
-								style="background-image: url(resources/img/food2.jpg);">
-								<div class="post__meta">
-									<h4 style="color: gold;">1위</h4>
-								</div>
-							</div></a>
+							<a href="#" target="_blank"><div
+									class="categories__post__item__pic set-bg"
+									style="background-image: url(resources/img/food2.jpg);">
+									<div class="post__meta">
+										<h4 style="color: gold;">1위</h4>
+									</div>
+								</div></a>
 							<div class="categories__post__item__text">
 								<span class="post__label">Recipe</span>
 								<h3>
@@ -78,18 +81,19 @@ function camSearch(){
 								<ul class="post__widget">
 									<li>조회수 :</li>
 								</ul>
-					
+
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-lg-6 col-md-6 col-sm-6">
 								<div class="categories__post__item">
-									<a href="#" target="_blank"><div class="categories__post__item__pic small__item set-bg"
-										style="background-color: gray;">
-										<div class="post__meta">
-											<h4 style="color: #898989;">2위</h4>
-										</div>
-									</div></a>
+									<a href="#" target="_blank"><div
+											class="categories__post__item__pic small__item set-bg"
+											style="background-color: gray;">
+											<div class="post__meta">
+												<h4 style="color: #898989;">2위</h4>
+											</div>
+										</div></a>
 									<div class="categories__post__item__text">
 										<span class="post__label">Recipe</span>
 										<h3>
@@ -100,17 +104,18 @@ function camSearch(){
 
 
 										</ul>
-						
+
 									</div>
 								</div>
 								<div class="categories__post__item">
-									<a href="#" target="_blank"><div class="categories__post__item__pic set-bg"
-										style="background-color: gray;">
-										<div class="post__meta">
-											<h4>4위</h4>
+									<a href="#" target="_blank"><div
+											class="categories__post__item__pic set-bg"
+											style="background-color: gray;">
+											<div class="post__meta">
+												<h4>4위</h4>
 
-										</div>
-									</div></a>
+											</div>
+										</div></a>
 									<div class="categories__post__item__text">
 										<span class="post__label">Recipe</span>
 										<h3>
@@ -120,17 +125,18 @@ function camSearch(){
 											<li>조회수 :</li>
 
 										</ul>
-						
+
 									</div>
 								</div>
 
 								<div class="categories__post__item">
-									<a href="#" target="_blank"><div class="categories__post__item__pic smaller__large set-bg"
-										style="background-color: gray;">
-										<div class="post__meta">
-											<h4>6위</h4>
-										</div>
-									</div></a>
+									<a href="#" target="_blank"><div
+											class="categories__post__item__pic smaller__large set-bg"
+											style="background-color: gray;">
+											<div class="post__meta">
+												<h4>6위</h4>
+											</div>
+										</div></a>
 									<div class="categories__post__item__text">
 										<span class="post__label">Recipe</span>
 										<h3>
@@ -141,19 +147,20 @@ function camSearch(){
 
 
 										</ul>
-						
+
 									</div>
 								</div>
 							</div>
 							<div class="col-lg-6 col-md-6 col-sm-6">
 								<div class="categories__post__item">
-									<a href="#" target="_blank"><div class="categories__post__item__pic smaller__large set-bg"
-										style="background-color: gray;">
-										<div class="post__meta">
-											<h4 style="color: #ab7966;">3위</h4>
+									<a href="#" target="_blank"><div
+											class="categories__post__item__pic smaller__large set-bg"
+											style="background-color: gray;">
+											<div class="post__meta">
+												<h4 style="color: #ab7966;">3위</h4>
 
-										</div>
-									</div></a>
+											</div>
+										</div></a>
 									<div class="categories__post__item__text">
 										<span class="post__label">RECIPE</span>
 										<h3>
@@ -164,7 +171,7 @@ function camSearch(){
 
 
 										</ul>
-					
+
 									</div>
 								</div>
 								<div class="categories__post__item__small">
@@ -175,12 +182,13 @@ function camSearch(){
 									<div class="posted__by">Mark Twain</div>
 								</div>
 								<div class="categories__post__item">
-									<a href="#" target="_blank"><div class="categories__post__item__pic smaller__large set-bg"
-										style="background-color: gray;">
-										<div class="post__meta">
-											<h4>5위</h4>
-										</div>
-									</div></a>
+									<a href="#" target="_blank"><div
+											class="categories__post__item__pic smaller__large set-bg"
+											style="background-color: gray;">
+											<div class="post__meta">
+												<h4>5위</h4>
+											</div>
+										</div></a>
 									<div class="categories__post__item__text">
 										<span class="post__label">RECIPE</span>
 										<h3>
@@ -194,12 +202,13 @@ function camSearch(){
 									</div>
 								</div>
 								<div class="categories__post__item">
-									<a href="#" target="_blank"><div class="categories__post__item__pic set-bg"
-										style="background-color: gray;">
-										<div class="post__meta">
-											<h4>7위</h4>
-										</div>
-									</div></a>
+									<a href="#" target="_blank"><div
+											class="categories__post__item__pic set-bg"
+											style="background-color: gray;">
+											<div class="post__meta">
+												<h4>7위</h4>
+											</div>
+										</div></a>
 									<div class="categories__post__item__text">
 										<span class="post__label">Recipe</span>
 										<h3>
@@ -240,54 +249,18 @@ function camSearch(){
 								</div>
 
 								<div class="sidebar__feature__item__list">
+									<c:forEach var = "notice" items="${ n_list }" varStatus="notice_status">
 									<div class="sidebar__feature__item__list__single">
 										<div class="post__meta">
-											<h4>01</h4>
-
+											<h4>0${ notice_status.count }</h4>
 										</div>
 										<div class="post__text">
-
 											<h5 style="font-family: 'CookieRun'; font-size: 20px">
-												<a href="#">진짜 맛있는 오징어탕</a>
+												<a target="_blank" href="ndetail.do?notice_num=${ notice.notice_num }">${ notice.notice_title }</a>
 											</h5>
 										</div>
 									</div>
-									<div class="sidebar__feature__item__list__single">
-										<div class="post__meta">
-											<h4>02</h4>
-
-										</div>
-										<div class="post__text">
-					
-											<h5 style="font-family: 'CookieRun'; font-size: 20px">
-												<a href="#">진짜 맛없는 삼계탕</a>
-											</h5>
-										</div>
-									</div>
-									<div class="sidebar__feature__item__list__single">
-										<div class="post__meta">
-											<h4>03</h4>
-
-										</div>
-										<div class="post__text">
-								
-											<h5 style="font-family: 'CookieRun'; font-size: 20px">
-												<a href="#">진짜 맛있는 닭</a>
-											</h5>
-										</div>
-									</div>
-									<div class="sidebar__feature__item__list__single">
-										<div class="post__meta">
-											<h4>04</h4>
-
-										</div>
-										<div class="post__text">
-									
-											<h5 style="font-family: 'CookieRun'; font-size: 20px">
-												<a href="#">진짜 맛없다 이건</a>
-											</h5>
-										</div>
-									</div>
+									</c:forEach>
 								</div>
 							</div>
 							<div class="sidebar__feature__item">
@@ -297,57 +270,23 @@ function camSearch(){
 								</div>
 
 								<div class="sidebar__feature__item__list">
+								<c:forEach var = "board" items="${ b_list }" varStatus="board_status">
 									<div class="sidebar__feature__item__list__single">
 										<div class="post__meta">
-											<h4>01</h4>
+											<h4>0${ board_status.count }</h4>
 
 										</div>
 										<div class="post__text">
-									
-											<h5 style="font-family: 'CookieRun'; font-size: 20px">
-												<a href="#">진짜 맛있는 오징어탕</a>
-											</h5>
-										</div>
-									</div>
-									<div class="sidebar__feature__item__list__single">
-										<div class="post__meta">
-											<h4>02</h4>
 
-										</div>
-										<div class="post__text">
-							
 											<h5 style="font-family: 'CookieRun'; font-size: 20px">
-												<a href="#">진짜 맛없는 삼계탕</a>
+												<a target="_blank" href="bdetail.do?b_no=${ board.b_no }">${ board.b_title }</a>
 											</h5>
 										</div>
 									</div>
-									<div class="sidebar__feature__item__list__single">
-										<div class="post__meta">
-											<h4>03</h4>
-
-										</div>
-										<div class="post__text">
-						
-											<h5 style="font-family: 'CookieRun'; font-size: 20px">
-												<a href="#">진짜 맛있는 닭</a>
-											</h5>
-										</div>
-									</div>
-									<div class="sidebar__feature__item__list__single">
-										<div class="post__meta">
-											<h4>04</h4>
-
-										</div>
-										<div class="post__text">
-								
-											<h5 style="font-family: 'CookieRun'; font-size: 20px">
-												<a href="#">진짜 맛없다 이건</a>
-											</h5>
-										</div>
-									</div>
+								</c:forEach>
 								</div>
 							</div>
-							
+
 						</div>
 					</div>
 				</div>

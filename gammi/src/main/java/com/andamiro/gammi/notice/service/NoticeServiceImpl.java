@@ -45,8 +45,8 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 
 	@Override
-	public ArrayList<Notice> selectNewTop3() {
-		return noticeDao.selectNewTop3();
+	public ArrayList<Notice> selectNewTop4() {
+		return noticeDao.selectNewTop4();
 	}
 
 	@Override
