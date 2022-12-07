@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.andamiro.gammi.common.Paging;
+import com.andamiro.gammi.common.SearchPaging;
 import com.andamiro.gammi.gammigroup.vo.GammiGroup;
 import com.andamiro.gammi.gammigroup.vo.GroupMember;
 import com.andamiro.gammi.gammigroupgal.vo.GalleryImg;
@@ -60,6 +61,24 @@ public class GammiGroupGalDao {
 
 	public int deleteGalImg(GalleryImg gal_img) {
 		return session.delete("groupgalMapper.deleteGalImg",gal_img);
+	}
+
+	public int selectSearchTListCount(String keyword) {
+		return session.selectOne("groupgalMapper.getSearchTListCount", keyword);
+	}
+
+	public ArrayList<GammiGroupGal> selectSearchTitle(SearchPaging searchpaging) {
+		List<GammiGroupGal> list = session.selectList("groupgalMapper.searchTitle",searchpaging );
+		return (ArrayList<GammiGroupGal>)list;
+	}
+
+	public int selectSearchCListCount(String keyword) {
+		return session.selectOne("groupgalMapper.getSearchCListCount", keyword);
+	}
+
+	public ArrayList<GammiGroupGal> selectSearchContent(SearchPaging searchpaging) {
+		List<GammiGroupGal> list = session.selectList("groupgalMapper.searchContent",searchpaging);
+		return (ArrayList<GammiGroupGal>)list;
 	}
 
 	}

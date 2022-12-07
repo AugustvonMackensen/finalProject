@@ -108,12 +108,12 @@
  <h3 style="font-family: 'Noto Sans KR', sans-serif; font-size : 40px">비밀번호 찾기</h3>
 <div class="login_id">
 <h4 style="margin-top : 40px; font-family: 'Noto Sans KR', sans-serif;">아이디입력</h4>
-<input type="text" name="m_id"><br>
+<input type="text" name="m_id"  placeholder="아이디(ID)입력"><br>
 </div>
 
 <div class="login_pw">
 <h4 style="font-family: 'Noto Sans KR', sans-serif;">이메일</h4>
- <input type="email" name="m_email">
+ <input type="email" name="m_email"  placeholder="회원님의 이메일 주소를 입력하세요.">
 <input style="background:#ab7021; color:white; margin-top:30px; font-family: 'Noto Sans KR', sans-serif;" type="submit" value="비밀번호찾기 ">
 </div>
 </div>

@@ -67,7 +67,7 @@
                             <ul>
                                 <li ><a style="font-family: 'Noto Sans KR', sans-serif;" href="main.do">홈</a></li>
                                 <li><a style="font-family: 'Noto Sans KR', sans-serif;" href="nlist.do">공지사항</a></li>
-                                <li><a style="font-family: 'Noto Sans KR', sans-serif;" href="#">자유게시판</a></li>
+                      			<li><a style="font-family: 'Noto Sans KR', sans-serif;" href="ListView.do">자유게시판</a></li>
 								<li><a style="font-family: 'Noto Sans KR', sans-serif;" href="group.do">소모임</a></li>
 								<li><a style="font-family: 'Noto Sans KR', sans-serif;" href="#">레시피</a></li>
 								<li><a style="font-family: 'Noto Sans KR', sans-serif;" href="#">한식관련뉴스</a></li>
@@ -80,7 +80,7 @@
                             <ul>
                                 <li ><a style="font-family: 'Noto Sans KR', sans-serif;" href="main.do">홈</a></li>
                                 <li><a style="font-family: 'Noto Sans KR', sans-serif;" href="nlist.do">공지사항</a></li>
-                                <li><a style="font-family: 'Noto Sans KR', sans-serif;" href="#">자유게시판</a></li>
+                               <li><a style="font-family: 'Noto Sans KR', sans-serif;" href="ListView.do">자유게시판</a></li>
 								<li><a style="font-family: 'Noto Sans KR', sans-serif;" href="group.do">소모임</a></li>
 								<li><a style="font-family: 'Noto Sans KR', sans-serif;" href="#">레시피</a></li>
 								<li><a style="font-family: 'Noto Sans KR', sans-serif;" href="#">한식관련뉴스</a></li>
@@ -98,7 +98,7 @@
                             <ul>
                                 <li ><a style="font-family: 'Noto Sans KR', sans-serif;" href="main.do">홈</a></li>
                                 <li><a style="font-family: 'Noto Sans KR', sans-serif;" href="nlist.do">공지사항</a></li>
-                                <li><a style="font-family: 'Noto Sans KR', sans-serif;" href="#">자유게시판</a></li>
+                         <li><a style="font-family: 'Noto Sans KR', sans-serif;" href="ListView.do">자유게시판</a></li>
 								<li><a style="font-family: 'Noto Sans KR', sans-serif;" href="group.do">소모임</a></li>
 								<li><a style="font-family: 'Noto Sans KR', sans-serif;" href="starlist.do">레시피</a></li>
 								<li><a style="font-family: 'Noto Sans KR', sans-serif;" href="#">한식관련뉴스</a></li>

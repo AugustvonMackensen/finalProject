@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="groupgalreplyMapper">
+
+<resultMap type="GammiGroupGalReply" id="resultList">
+		<result property="reply_no" column="reply_no" />
+		<result property="gal_no" column="gal_no" />
+		<result property="reply_id" column="reply_id" />
+		<result property="reply_date" column="reply_date" />
+		<result property="reply_content" column="reply_content" />
+	</resultMap>
+	
+		<!-- 댓글 목록 -->
+		<select id="selectGroupGalReply" parameterType="_int" resultMap="resultList">
+		select * from galleryreply
+		where gal_no = #{ gal_no }
+	</select>
+	
+		<!-- 댓글작성 -->
+	<insert id="replyWrite" parameterType="GammiGroupGalReply">
+		insert into galleryreply(reply_no, gal_no, reply_id, reply_date, reply_content)
+		<if test="reply_no == 0">
+			values (default, #{ gal_no }, #{ reply_id }, sysdate, #{ reply_content })
+		</if>
+		<if test="reply_no != 0">
+			values ((select max(reply_no)+1 from galleryreply), #{ gal_no }, #{ reply_id }, sysdate, #{ reply_content })
+		</if>
+	</insert>
+	
+	<!-- 댓글수정 -->
+	<update id="greplyModify" parameterType="GammiGroupGalReply">
+		update galleryreply 
+		set	reply_content = #{ reply_content }
+		where reply_no=#{ reply_no }
+	</update>
+	
+		<!-- 댓글 삭제 -->
+	<delete id="greplyDelete" parameterType="_int">
+		delete from galleryreply
+		where reply_no = ${ reply_no }	
+	</delete>
+	
+</mapper>

@@ -20,10 +20,12 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.andamiro.gammi.common.Paging;
-import com.andamiro.gammi.gammigroup.vo.GammiGroup;
+import com.andamiro.gammi.common.SearchPaging;
+import com.andamiro.gammi.gammigroupgal.service.GammiGroupGalReplyService;
 import com.andamiro.gammi.gammigroupgal.service.GammiGroupGalService;
 import com.andamiro.gammi.gammigroupgal.vo.GalleryImg;
 import com.andamiro.gammi.gammigroupgal.vo.GammiGroupGal;
+import com.andamiro.gammi.gammigroupgal.vo.GammiGroupGalReply;
 
 
 @Controller
@@ -32,7 +34,8 @@ public class GammiGroupGalController {
 
 	@Autowired
 	private GammiGroupGalService service;
-
+	@Autowired
+	private GammiGroupGalReplyService replyservice;
 
 	// 갤러리 리스트 페이지
 	@RequestMapping("groupgal.do")
@@ -52,7 +55,7 @@ public class GammiGroupGalController {
 		}
 		int startRow = (currentPage - 1) * limit + 1;
 		int endRow = startRow + limit - 1;
-		Paging paging = new Paging(startRow, endRow);
+		Paging paging = new Paging(startRow, endRow,gno);
 
 		ArrayList<GammiGroupGal> list = service.groupAllList(paging);
 		if(list != null) {
@@ -123,15 +126,25 @@ public class GammiGroupGalController {
 
 	// 게시글 상세보기 처리용
 	@RequestMapping("groupgaldetail.do")
-	public ModelAndView groupgalDetailMethod(ModelAndView mv,GammiGroupGal gammiGroupGal) {
+	public ModelAndView groupgalDetailMethod(ModelAndView mv,GammiGroupGal 
+			gammiGroupGal, @RequestParam("gal_no") int gal_no,
+			@RequestParam(name="page", required=false) String page) {
+		
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = Integer.parseInt(page);
+		}
 
 		//해당 게시글 조회
 		gammiGroupGal =  service.selectgroupgal(gammiGroupGal.getGal_no());
 		ArrayList<GalleryImg> gal_img = service.selectgal_img(gammiGroupGal.getGal_no());
+		ArrayList<GammiGroupGalReply> replylist = replyservice.replyList(gal_no); 
 		if(gammiGroupGal !=null) {
 			mv.addObject("gammiGroupGal", gammiGroupGal);
 			mv.addObject("gal_img",gal_img);
 			mv.addObject("gno",gammiGroupGal.getGroup_no());
+			mv.addObject("currentPage", currentPage);
+			mv.addObject("replylist", replylist);
 			mv.setViewName("group/groupgaldetail"); //디테일만 바꿈
 
 		}else {
@@ -260,4 +273,116 @@ public class GammiGroupGalController {
 			return "common/error";
 		}
 	}
+	
+	
+	 //공지글 제목 검색용
+    @RequestMapping(value="searchTitle.do", method=RequestMethod.POST)
+    public String groupgalSearchTitleMethod(
+    	@RequestParam("gno") int gno,
+          @RequestParam("keyword") String keyword, 
+          @RequestParam(name="page", required=false) String page,
+          Model model) {
+       int currentPage = 1;
+       if(page != null) {
+          currentPage = Integer.parseInt(page);
+       }
+   	   int limit = 10;
+       int listCount = service.selectSearchTListCount(keyword);
+       int maxPage = (int)((double)listCount / limit + 0.9);
+       int startPage = (currentPage / 10) * 10 + 1;
+       int endPage = startPage + 10 - 1;
+       if(maxPage < endPage) {
+          endPage = maxPage;
+       }
+       
+       //쿼리문에 전달할 현재 페이지에 적용할 목록의 시작행과 끝행 계산
+       int startRow = (currentPage - 1) * limit + 1;
+       int endRow = startRow + limit - 1;
+       
+       //페이징 계산 처리 끝 ---------------------------------------
+       SearchPaging searchpaging = new SearchPaging(keyword, startRow, endRow, gno);
+       
+       ArrayList<GammiGroupGal> list = service.selectSearchTitle(searchpaging);
+       
+       if(list.size() > 0) {
+          model.addAttribute("groupgals", list);
+          model.addAttribute("listCount", listCount);
+          model.addAttribute("maxPage", maxPage);
+          model.addAttribute("currentPage", currentPage);
+          model.addAttribute("startPage", startPage);
+          model.addAttribute("endPage", endPage);
+          model.addAttribute("limit", limit);
+          model.addAttribute("action", "title");
+          model.addAttribute("keyword", keyword);
+          model.addAttribute("gno", gno);
+          return "group/groupgal";
+       }else {
+          model.addAttribute("message", 
+                keyword + "로 검색된 게시글 정보가 없습니다.");
+          return "common/error";
+       }
+    }
+    
+  //공지글 내용 검색용
+  	@RequestMapping(value="searchContent.do", method=RequestMethod.POST)
+  	public String groupgalSearchContentMethod(
+  			@RequestParam("gno") int gno,
+  			@RequestParam("keyword") String keyword, 
+  			@RequestParam(name="page", required=false) String page,
+  			Model model) {
+  		int currentPage = 1;
+  		if(page != null) {
+  			currentPage = Integer.parseInt(page);
+  		}
+  		
+  		//한 페이지에 게시글 10개씩 출력되게 하는 경우
+  		//페이징 계산 처리 -- 별도의 클래스로 작성해도 됨 ---------------
+  		//별도의 클래스의 메소드에서 Paging 을 리턴하면 됨
+  		int limit = 10;  //한 페이지에 출력할 목록 갯수
+  		//전체 검색 키워드 갯수 계산을 위해 총 목록 갯수 조회해 옴
+  		int listCount = service.selectSearchCListCount(keyword);
+  		//페이지 수 계산
+  		//주의 : 목록이 11개이면 페이지 수는 2페이지가 됨
+  		// 나머지 목록 1개도 1페이지가 필요함
+  		int maxPage = (int)((double)listCount / limit + 0.9);
+  		//현재 페이지가 포함된 페이지 그룹의 시작값 지정
+  		// => 뷰 아래쪽에 표시할 페이지 수를 10개로 하는 경우
+  		int startPage = (currentPage / 10) * 10 + 1;
+  		//현재 페이지가 포함된 페이지 그룹의 끝값 지정
+  		int endPage = startPage + 10 - 1;
+  		
+  		if(maxPage < endPage) {
+  			endPage = maxPage;
+  		}
+  		
+  		//쿼리문에 전달할 현재 페이지에 적용할 목록의 시작행과 끝행 계산
+  		int startRow = (currentPage - 1) * limit + 1;
+  		int endRow = startRow + limit - 1;
+  		
+  		//페이징 계산 처리 끝 ---------------------------------------
+  		SearchPaging searchpaging = new SearchPaging(keyword, startRow, endRow, gno);
+  		
+  		ArrayList<GammiGroupGal> list = service.selectSearchContent(searchpaging);
+  		
+  		if(list.size() > 0) {
+  			model.addAttribute("groupgals", list);
+  			model.addAttribute("listCount", listCount);
+  			model.addAttribute("maxPage", maxPage);
+  			model.addAttribute("currentPage", currentPage);
+  			model.addAttribute("startPage", startPage);
+  			model.addAttribute("endPage", endPage);
+  			model.addAttribute("limit", limit);
+  			model.addAttribute("action", "content");
+  			model.addAttribute("keyword", keyword);
+  		    model.addAttribute("gno", gno);
+  			
+            return "group/groupgal";
+  		}else {
+  			model.addAttribute("groupgals",null);
+  			return "group/groupgal";
+  		}
+  	}
+    
+   
+
 }

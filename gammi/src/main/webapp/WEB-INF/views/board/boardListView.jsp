@@ -76,18 +76,19 @@ function Change() {
 									style="width: 26rem; height: 3rem; border: 1px solid #ccc; margin-left: -198px;">
 								<input type="submit" value="검색"
 									style="width: 5.5rem; height: 3rem; border: none; margin-left: -5px; background: #555; color: #fff; cursor: pointer; margin-top: -3px;"
-									class="btn" name="title">
+									class="btn">
 							</form>
 
 						</div>
 
 						<div id="d2" style="display: none">
-							<form action="bsearchContent.do" method="get">
+							<form action="bsearchWriter.do" method="get">
+								
 								<input type="search" name="keyword"
 									style="width: 26rem; height: 3rem; border: 1px solid #ccc; margin-left: -198px;">
 								<input type="submit" value="검색"
 									style="width: 5.5rem; height: 3rem; margin-left: -5px; border: none; background: #555; color: #fff; cursor: pointer; margin-top: -3px;"
-									class="btn" name="content">
+									class="btn" >
 							</form>
 
 						</div>
@@ -228,10 +229,9 @@ function Change() {
 					</c:url>
 				</c:if>
 
-				<c:if test="${ action eq 'date' }">
-					<c:url var="nsl" value="bsearchDate.do">
-						<c:param name="begin" value="${ begin }" />
-						<c:param name="end" value="${ end }" />
+				<c:if test="${ action eq 'writer' }">
+					<c:url var="nsl" value="bsearchWriter.do">
+						<c:param name="keyword" value="${ keyword }" />
 						<c:param name="page" value="1" />
 					</c:url>
 				</c:if>
@@ -247,10 +247,9 @@ function Change() {
 					</c:url>
 				</c:if>
 
-				<c:if test="${ action eq 'date' }">
-					<c:url var="nsl" value="bsearchDate.do">
-						<c:param name="begin" value="${ begin }" />
-						<c:param name="end" value="${ end }" />
+				<c:if test="${ action eq 'writer' }">
+					<c:url var="nsl" value="bsearchWriter.do">
+						<c:param name="keyword" value="${ keyword }" />
 						<c:param name="page" value="${ startPage - 10 }" />
 					</c:url>
 				</c:if>
@@ -273,10 +272,9 @@ function Change() {
 						</c:url>
 					</c:if>
 
-					<c:if test="${ action eq 'date' }">
-						<c:url var="nsl" value="bsearchDate.do">
-							<c:param name="begin" value="${ begin }" />
-							<c:param name="end" value="${ end }" />
+					<c:if test="${ action eq 'writer' }">
+						<c:url var="nsl" value="bsearchWriter.do">
+							<c:param name="keyword" value="${ keyword }" />
 							<c:param name="page" value="${ p }" />
 						</c:url>
 					</c:if>
@@ -293,10 +291,9 @@ function Change() {
 					</c:url>
 				</c:if>
 
-				<c:if test="${ action eq 'date' }">
-					<c:url var="nsl" value="bsearchDate.do">
-						<c:param name="begin" value="${ begin }" />
-						<c:param name="end" value="${ end }" />
+				<c:if test="${ action eq 'writer' }">
+					<c:url var="nsl" value="bsearchWriter.do">
+						<c:param name="keyword" value="${ keyword }" />
 						<c:param name="page" value="${ endPage + 10 }" />
 					</c:url>
 				</c:if>
@@ -318,10 +315,9 @@ function Change() {
 					</c:url>
 				</c:if>
 
-				<c:if test="${ action eq 'date' }">
-					<c:url var="nsl" value="bsearchDate.do">
-						<c:param name="begin" value="${ begin }" />
-						<c:param name="end" value="${ end }" />
+				<c:if test="${ action eq 'writer' }">
+					<c:url var="nsl" value="bsearchWriter.do">
+						<c:param name="keyword" value="${ keyword }" />
 						<c:param name="page" value="${ maxPage }" />
 					</c:url>
 				</c:if>

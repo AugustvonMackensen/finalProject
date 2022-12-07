@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="boardMapper">
+
+   <resultMap id="resultBoard" type="Board" >
+      <result column="b_no" property="b_no" />
+      <result column="b_writer" property="b_writer" />
+      <result column="b_title" property="b_title" />
+      <result column="b_date" property="b_date" />
+      <result column="b_content" property="b_content" />
+      <result column="b_upfile" property="b_upfile" />
+      <result column="b_readcount" property="b_readcount" />
+      <result column="b_original_image" property="b_original_image" />
+      <result column="b_rename_image" property="b_rename_image" />
+      
+   </resultMap>
+
+   <!--  리스트 전체 목록 보기  -->
+   <select id="selectAll" resultType="board">
+      select * 
+      from board
+   </select> 
+   
+   <!-- 조회수 1증가 -->
+   <update id="addReadCount" parameterType="_int" >
+      update board
+      set b_readcount = b_readcount + 1
+      where b_no = #{ b_no }
+   </update>
+   
+   
+   <!-- 번호로 상세보기  -->
+   <select id="selectBoard" parameterType="_int" resultMap="resultBoard" >
+      select * from board
+      where b_no = #{ b_no }
+   </select>
+   
+
+   
+   <select id="getListCount" resultType="_int">
+      select count(*) from board
+   </select>
+   
+   <!-- 페이징 처리 -->
+      <select id="selectList" parameterType="Paging" resultType="Board">
+      <![CDATA[
+         SELECT *  
+         FROM (SELECT ROWNUM RNUM, b_no, b_writer, 
+                    b_title, b_date, b_content, b_upfile,b_readcount, b_original_image, b_rename_image 
+                FROM (SELECT * FROM BOARD 
+                       ORDER BY b_no DESC))  
+         where rnum >= #{startRow} and rnum <= #{endRow}
+      ]]>
+   </select>
+   
+   <!-- 원글 작성 -->
+   
+   <insert id="insertOrigin" parameterType="board">
+      insert into board (b_writer, 
+            b_title, b_date, b_content, b_upfile,
+            b_readcount,
+            b_original_image, 
+            b_rename_image)
+      values ( 
+            #{b_writer}, #{b_title}, 
+            sysdate, #{b_content}, #{b_upfile},
+            0,
+            #{b_original_image}, 
+            #{b_rename_image})
+   </insert>
+   
+   <!-- 원글 수정용  -->
+   <update id="updateOrigin" parameterType="board">
+      update board
+      set b_title = #{b_title}, 
+         b_content = #{b_content}
+         <if test="b_original_image != null">
+            , 
+            b_original_image = #{b_original_image},
+            b_rename_image = #{b_rename_image}
+         </if>
+         <if test="b_rename_image == null">
+            , 
+            b_original_image = null,
+            b_rename_image = null
+         </if>
+      where b_no = #{ b_no }
+   </update>
+   
+   <!-- 원글 삭제용 -->
+   
+      <delete id="deleteboard" parameterType="_int">
+      delete from board
+         where b_no = #{b_no}
+   </delete>
+   
+   
+   <!-- 검색제목 -->
+      <select id="searchTitle" resultMap="resultBoard" parameterType="SearchPaging">
+      <![CDATA[
+         SELECT *  
+         FROM (SELECT ROWNUM RNUM, b_no, b_writer, 
+                      b_title, b_date, b_content, b_upfile, b_readcount, b_original_image, b_rename_image 
+	           FROM (SELECT * FROM BOARD 
+	                	  where b_title like '%' || #{ keyword } || '%'
+                       	  ORDER BY b_no DESC))  
+         where rnum >= #{startRow} and rnum <= #{endRow}
+      ]]>
+   </select>
+   
+   <!-- 검색작성자 -->
+   <select id="searchWriter" resultMap="resultBoard" parameterType="SearchPaging">
+      <![CDATA[
+         SELECT *  
+         FROM (SELECT ROWNUM RNUM, b_no, b_writer, 
+               		  b_title, b_date, b_content, b_upfile, b_readcount, b_original_image, b_rename_image 
+	           FROM (SELECT * FROM BOARD 
+	           		 where b_writer like '%' || #{ keyword } || '%'
+                     ORDER BY b_no DESC))  
+     	 where rnum >= #{startRow} and rnum <= #{endRow}
+      ]]>
+   </select>
+   
+   <select id="getSearchTListCount" resultType="_int" parameterType="string">
+		select count(*) from board
+		where b_title like '%' || #{ keyword } || '%'
+	</select>
+    
+    <select id="getSearchWListCount" resultType="_int" parameterType="string">
+		select count(*) from board
+		where b_writer like '%' || #{ keyword } || '%'
+	</select>
+
+
+</mapper>
