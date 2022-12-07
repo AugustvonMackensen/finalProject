@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>   
 
 <!DOCTYPE html>
 <html>
@@ -51,11 +51,59 @@
                 </c:url>
                 <button class="rightbtn9" onclick="javascript:location.href='${ ndel }';">글삭제</button>
                 <button class="rightbtn8" onclick="javascript:history.go(-1);">목록</button>
+                	<c:if test="${ !empty sessionScope.loginMember and sessionScope.loginMember.m_id ne gammiGroupGal.gal_id }">
+						<input type="button" value="댓글달기" onclick="javascript:return showreplybox();">
+					</c:if>
+					
+					<table class="board-table">
+					<c:forEach items="${ requestScope.replylist }" var="br">
+						<tbody> 
+							<c:if test="${ br.reply_id eq sessionScope.loginMember.m_id }">
+								<form action="greplyup.do" method="POST">
+								<input type="hidden" name="gal_no" value="${ br.gal_no }">
+								<input type="hidden" name="page" value="${ currentPage }">
+								<tr>
+									<td><input type="text" name="reply_no" value="${ br.reply_no }" readonly></td>
+									<td><input type="text" name="reply_id" value="${ br.reply_id }" readonly></td>
+									<td><fmt:formatDate value="${ br.reply_date }" pattern="yyyy-MM-dd" /></td>
+								</tr>
+								<tr colspen="4"><td><textarea rows="5" cols="100" name="reply_content">${ br.reply_content }</textarea></td>
+								</tr>
+								
+								<tr colspen="4">
+									<td align="right" >
+										<input type="submit" value="수정">&nbsp; 
+										<input type="button" value="삭제" onclick="javascript:location.href='greplydel.do?gal_no=${ br.gal_no }&reply_no=${ br.reply_no }&page=${ currentPage }';return false;">
+									</td>
+								</tr>
+								</form>
+							</c:if>
+						</tbody>
+					</c:forEach>
+				</table>
+<script>
+	function showreplybox() {
+		document.getElementById("replybox").style.display = "inline";
+		return false;
+	}
+</script>
+<div id="replybox" style="display: none;">
+	
+	<form action="greply.do" method="GET">
+	<input type="hidden" name="gal_no" value="${ requestScope.gammiGroupGal.gal_no }">
+	<input type="hidden" name="page" value="${ requestScope.currentPage }">
+	<input type="text" name="reply_id" value="${ sessionScope.loginMember.m_id }"><br>
+		<textarea rows="5" cols="100" name="reply_content"></textarea>
+		<input type="submit" value="등록하기">
+	</form>
+</div>
             </div>
         </div>
     </div>
+    
+
 <br>
-<hr>
+
 <c:import url="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>

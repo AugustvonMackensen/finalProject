@@ -44,6 +44,7 @@ cellpadding="5">
 		<c:url var="movenup" value="/bmoveup.do">
 			<c:param name="b_no" value="${ board.b_no }" />			
 		</c:url>
+		<c:if test="${ !empty sessionScope.loginMember and sessionScope.loginMember.m_id eq board.b_writer }">
 		<button onclick="javascript:location.href='${ movenup }';">수정페이지로 이동</button>
 		<!-- 삭제하기 버튼 -->
 		<c:url var="bdel" value="/bdel.do">
@@ -51,9 +52,56 @@ cellpadding="5">
 			<c:param name="rfile" value="${ board.b_rename_image }" />
 		</c:url>
 		<button onclick="javascript:location.href='${ bdel }';">글삭제</button>
+		</c:if>
+		
+		<c:if test="${ !empty sessionScope.loginMember and sessionScope.loginMember.m_id ne board.b_writer }">
+		<input type="button" value="댓글달기" onclick="javascript:return showreplybox();">
+		</c:if>
 	</th></tr>
 </table>
 <br>
+<table class="board-table">
+					<c:forEach items="${ requestScope.replylist }" var="br">
+						<tbody> 
+							<c:if test="${ br.br_id eq loginMember.m_id }">
+								<form action="replyup.do" method="POST">
+								<input type="hidden" name="b_no" value="${ br.b_no }">
+								<input type="hidden" name="page" value="${ currentPage }">
+								<tr>
+									<td><input type="text" name="br_no" value="${ br.br_no }" readonly></td>
+									<td><input type="text" name="br_id" value="${ br.br_id }" readonly></td>
+									<td><fmt:formatDate value="${ br.br_date }" pattern="yyyy-MM-dd" /></td>
+								</tr>
+								<tr colspen="4"><td><textarea rows="5" cols="100" name="br_content">${ br.br_content }</textarea></td>
+								</tr>
+								
+								<tr colspen="4">
+									<td align="right" >
+										<input type="submit" value="수정">&nbsp; 
+										<input type="button" value="삭제" onclick="javascript:location.href='replydel.do?b_no=${ br.b_no }&br_no=${ br.br_no }&page=${ currentPage }';return false;">
+									</td>
+								</tr>
+								</form>
+							</c:if>
+						</tbody>
+					</c:forEach>
+				</table>
+<script>
+	function showreplybox() {
+		document.getElementById("replybox").style.display = "inline";
+		return false;
+	}
+</script>
+<div id="replybox" style="display: none;">
+	
+	<form action="breply.do" method="GET">
+	<input type="hidden" name="b_no" value="${ requestScope.board.b_no }">
+	<input type="hidden" name="page" value="${ requestScope.currentPage }">
+	<input type="text" name="br_id" value="${ sessionScope.loginMember.m_id }"><br>
+		<textarea rows="5" cols="100" name="br_content"></textarea>
+		<input type="submit" value="등록하기">
+	</form>
+</div>
 <hr>
 <c:import url="/WEB-INF/views/common/footer.jsp" />
 </body>

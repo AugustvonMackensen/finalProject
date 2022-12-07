@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.andamiro.gammi.common.Paging;
+import com.andamiro.gammi.common.SearchPaging;
 import com.andamiro.gammi.gammigroup.vo.GammiGroup;
 import com.andamiro.gammi.gammigroup.vo.GroupMember;
 import com.andamiro.gammi.gammigroupgal.dao.GammiGroupGalDao;
@@ -70,6 +71,26 @@ public class GammiGroupGalServiceImpl implements GammiGroupGalService {
 	@Override
 	public int deleteGalImg(GalleryImg gal_img) {
 		return dao.deleteGalImg(gal_img);
+	}
+
+	@Override
+	public int selectSearchTListCount(String keyword) {
+		return dao.selectSearchTListCount(keyword);
+	}
+
+	@Override
+	public ArrayList<GammiGroupGal> selectSearchTitle(SearchPaging searchpaging) {
+		return dao.selectSearchTitle(searchpaging);
+	}
+
+	@Override
+	public int selectSearchCListCount(String keyword) {
+		return dao.selectSearchCListCount(keyword);
+	}
+
+	@Override
+	public ArrayList<GammiGroupGal> selectSearchContent(SearchPaging searchpaging) {
+		return dao.selectSearchContent(searchpaging);
 	}
 
 
