@@ -38,37 +38,18 @@
 <script type="text/javascript"
 	src="${ pageContext.servletContext.contextPath }/resources/js/jquery-3.6.1.min.js"></script>
 <script type="text/javascript">
-
-
-    function showPopup(hasFilter) {
-       const popup = document.querySelector('#popup');
-      
-      if (hasFilter) {
-         popup.classList.add('has-filter');
-      } else {
-         popup.classList.remove('has-filter');
-      }
-      
-      popup.classList.remove('hide');
+function Change(){
+    var key = test.value;
+    if(key==1){
+    document.all["d1"].style.display="block";
+    document.all["d2"].style.display="none";
     }
-
-    function closePopup() {
-       const popup = document.querySelector('#popup');
-      popup.classList.add('hide');
+    if(key==2){
+    document.all["d1"].style.display="none";
+    document.all["d2"].style.display="block";
     }
-    
-    function Change(){
-        var key = test.value;
-        if(key==1){
-        document.all["d1"].style.display="block";
-        document.all["d2"].style.display="none";
-        }
-        if(key==2){
-        document.all["d1"].style.display="none";
-        document.all["d2"].style.display="block";
-        }
-    }
-    </script>
+}
+</script>
 </head>
 <body>
 	<c:import url="/WEB-INF/views/common/menubar.jsp" />
@@ -109,13 +90,12 @@
 			</ul>
 
 			<div class="writelistbtn">
-				<button class="rightbtn3" onclick="javascript:location.href='group.do'">목록</button>
+				<button class="rightbtn3" onclick="javascript:location.href='group.do'">전체목록</button>
 				<button class="rightbtn" onclick="javascript:location.href='joinGroup.do';">가입목록</button>
 				<button class="rightbtn2" onclick="javascript:location.href='creategroupform.do';">모임생성</button>
 			</div>
 			<br>
-			<div
-				style="display: flex; justify-content: center; margin: 0px 0px 0px 200px;">
+			<div style="display: flex; justify-content: center; margin: 0px 0px 0px 200px;">
 				<select id="test" onchange="Change()"
 					style="position: relative; border: 1px solid #ccc; left: -198px; width:5rem; height:3rem;  text-align:center">
 					<option value="1">제목</option>
@@ -145,6 +125,7 @@
 				</h1>
 			</div>
 			<div class="writelistbtn">
+				<button class="rightbtn3" onclick="javascript:location.href='group.do'">전체목록</button>
 				<button class="rightbtn2" onclick="javascript:location.href='creategroupform.do';">모임생성</button>
 			</div>
 		</c:if>
