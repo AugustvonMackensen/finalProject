@@ -22,17 +22,55 @@
 	</resultMap>
 	
 	<select id = "selectAllList" parameterType="Paging" resultMap="resultList">
-select *from (select rownum rnum, gal_no, group_no, gal_id, gal_title, gal_date, gal_content,"gal_image"
+	select *from (select rownum rnum, gal_no, group_no, gal_id, gal_title, gal_date, gal_content,"gal_image"
 	from (select a.gal_no, a.group_no, a.gal_id, a.gal_title, a.gal_date, a.gal_content, min(b.gal_rename_image) as "gal_image"
     from gallery a
 	join galleryimg b on a.gal_no = b.gal_no
+	where a.group_no=#{group_no}
     group by a.gal_no, a.group_no, a.gal_id, a.gal_title, a.gal_date, a.gal_content
      ))	
      <![CDATA[
 	where rnum >= #{startRow} and rnum <= #{endRow}
 	]]>
-
 	</select>
+
+	<select id="searchTitle" parameterType="SearchPaging" resultMap="resultList">
+	select *from (select rownum rnum, gal_no, group_no, gal_id, gal_title, gal_date, gal_content,"gal_image"
+	from (select a.gal_no, a.group_no, a.gal_id, a.gal_title, a.gal_date, a.gal_content, min(b.gal_rename_image) as "gal_image"
+    from gallery a
+	join galleryimg b on a.gal_no = b.gal_no
+	where a.gal_title like '%' || #{keyword} || '%' and a.group_no=#{group_no}
+    group by a.gal_no, a.group_no, a.gal_id, a.gal_title, a.gal_date, a.gal_content
+     ))	
+     <![CDATA[
+	where rnum >= #{startRow} and rnum <= #{endRow}
+	]]>
+	</select>
+	
+		<select id="searchContent" parameterType="SearchPaging" resultMap="resultList">
+	select *from (select rownum rnum, gal_no, group_no, gal_id, gal_title, gal_date, gal_content,"gal_image"
+	from (select a.gal_no, a.group_no, a.gal_id, a.gal_title, a.gal_date, a.gal_content, min(b.gal_rename_image) as "gal_image"
+    from gallery a
+	join galleryimg b on a.gal_no = b.gal_no
+	where a.gal_content like '%' || #{keyword} || '%' and a.group_no=#{group_no}
+    group by a.gal_no, a.group_no, a.gal_id, a.gal_title, a.gal_date, a.gal_content
+     ))	
+     <![CDATA[
+	where rnum >= #{startRow} and rnum <= #{endRow}
+	]]>
+	</select>
+
+	
+	<select id="getSearchTListCount" resultType="_int" parameterType="string">
+		select count(*) from gallery
+		where gal_title like '%' || #{ keyword } || '%'
+	</select>
+	
+	<select id="getSearchCListCount" resultType="_int" parameterType="string">
+		select count(*) from gallery
+		where gal_content like '%' || #{ keyword } || '%'
+	</select>	
+	
 	
 	<select id="selectListCount" resultType="_int">
 	select count(*) from gallery

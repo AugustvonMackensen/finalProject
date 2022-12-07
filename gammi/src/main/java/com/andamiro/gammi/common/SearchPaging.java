@@ -8,6 +8,7 @@ public class SearchPaging {
 	private int endRow;
 	private Date begin;
 	private Date end;
+	private int group_no;
 	
 	public SearchPaging() {}
 
@@ -27,6 +28,22 @@ public class SearchPaging {
 	}
 
 	
+	public SearchPaging(String keyword, int startRow, int endRow, int group_no) {
+		super();
+		this.keyword = keyword;
+		this.startRow = startRow;
+		this.endRow = endRow;
+		this.group_no = group_no;
+	}
+
+	public int getGroup_no() {
+		return group_no;
+	}
+
+	public void setGroup_no(int group_no) {
+		this.group_no = group_no;
+	}
+
 	public String getKeyword() {
 		return keyword;
 	}
@@ -70,7 +87,9 @@ public class SearchPaging {
 	@Override
 	public String toString() {
 		return "SearchPaging [keyword=" + keyword + ", startRow=" + startRow + ", endRow=" + endRow + ", begin=" + begin
-				+ ", end=" + end + "]";
+				+ ", end=" + end + ", group_no=" + group_no + "]";
 	}
+
+	
 
 }

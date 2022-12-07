@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="boardreplyMapper">
+ <!-- 댓글 조회 -->
+ 	<resultMap type="BoardReply" id="resultBoardReply" >
+		<id column="br_no" property="br_no" /> 
+		<result column="b_no" property="b_no" />
+		<result column="br_id" property="br_id" />
+		<result column="br_date" property="br_date" /> 
+		<result column="br_content" property="br_content" /> 
+	</resultMap>
+	
+	<!-- 댓글 목록 -->
+		<select id="selectBoardReply" parameterType="_int" resultMap="resultBoardReply">
+		select * from boardreply
+		where b_no = #{ b_no }
+	</select>
+	
+	<!-- 댓글작성 -->
+	<insert id="replyWrite" parameterType="BoardReply">
+		insert into boardreply(br_no, b_no, br_id, br_date, br_content)
+		<if test="br_no == 0">
+			values (default, #{ b_no }, #{ br_id }, sysdate, #{ br_content })
+		</if>
+		<if test="br_no != 0">
+			values ((select max(br_no)+1 from boardreply), #{ b_no }, #{ br_id }, sysdate, #{ br_content })
+		</if>
+	</insert>
+	
+	
+	<!-- 댓글수정 -->
+	<update id="replyModify" parameterType="BoardReply">
+		update boardreply 
+		set	br_content = #{ br_content }
+		where br_no=#{ br_no }
+	</update>
+	
+	
+	<!-- 댓글 삭제 -->
+	<delete id="replyDelete" parameterType="_int">
+		delete from boardreply
+		where br_no = ${ br_no }	
+	</delete>
+
+	
+</mapper>

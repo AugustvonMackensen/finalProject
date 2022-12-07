@@ -213,7 +213,7 @@
 				<div class="textForm">
 					<div class="mailcheck">
 						<input type="text" id="validnum" name="validnum"
-							class="mailcheck-input" placeholder="인증번호" disabled="disabled"
+							class="mailcheck-input" placeholder="*인증번호" disabled="disabled"
 							maxlength="6" oninput="chkCode();" required> <span
 							id="validchkMessage"></span>
 					</div>

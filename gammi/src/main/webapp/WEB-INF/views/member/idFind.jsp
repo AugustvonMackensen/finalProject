@@ -104,7 +104,7 @@
 
 <h3 style="	font-family: 'Noto Sans KR', sans-serif; font-zie : 40px" >아이디 찾기</h3>
 <div class="login_pw">
-<h4 style="	font-family: 'Noto Sans KR', sans-serif;">이메일 :</h4>
+<h4 style="	font-family: 'Noto Sans KR', sans-serif;">이메일</h4>
  <input type="email" name="m_email" placeholder="회원님의 이메일 주소를 입력하세요.">
  <input style="background-color : #ab7021; color : white;" type="submit" value="아이디찾기">
 </div>
