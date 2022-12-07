@@ -85,9 +85,10 @@
 	from (select a.group_no, a.GROUP_OWNER, a.GROUP_NAME, a.GROUP_DATE, a.GROUP_INFO, a.GROUP_IMG, a.GROUP_OK,count(a.group_no) as "total_mem"
 	from gammigroup a
 	join groupmember b on a.group_no = b.group_no
+	where a.group_name like '%' || #{keyword} || '%'
 	group by a.group_no,a.GROUP_OWNER, a.GROUP_NAME, a.GROUP_DATE, a.GROUP_INFO, a.GROUP_IMG, a.GROUP_OK
 	order by a.group_date))
-			where rnum >= #{startRow} and rnum <= #{endRow} and group_name like '%' || #{keyword} || '%'
+			where rnum >= #{startRow} and rnum <= #{endRow}
 		]]>
 	</select>
 	
@@ -98,9 +99,10 @@
 	from (select a.group_no, a.GROUP_OWNER, a.GROUP_NAME, a.GROUP_DATE, a.GROUP_INFO, a.GROUP_IMG, a.GROUP_OK,count(a.group_no) as "total_mem"
 	from gammigroup a
 	join groupmember b on a.group_no = b.group_no
+	where a.group_owner like '%' || #{keyword} || '%'
 	group by a.group_no,a.GROUP_OWNER, a.GROUP_NAME, a.GROUP_DATE, a.GROUP_INFO, a.GROUP_IMG, a.GROUP_OK
 	order by a.group_date))
-			where rnum >= #{startRow} and rnum <= #{endRow} and group_owner like '%' || #{keyword} || '%'
+			where rnum >= #{startRow} and rnum <= #{endRow}
 		]]>
 	</select>
 	

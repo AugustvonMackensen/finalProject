@@ -23,9 +23,12 @@
 		<typeAlias type="com.andamiro.gammi.chatting.vo.ChatRoom" alias="ChatRoom" />
 		<typeAlias type="com.andamiro.gammi.chatting.vo.ChatMessage" alias="ChatMessage" />
 		<typeAlias type="com.andamiro.gammi.chatting.vo.ChatRoomJoin" alias="ChatRoomJoin" />
+		<typeAlias type="com.andamiro.gammi.calendar.vo.GammiCalendar" alias="GammiCalendar" />
+		
 	</typeAliases>
 	
 	<mappers>
+		<mapper resource="mappers/calendar-mapper.xml" />
 		<mapper resource="mappers/group-mapper.xml" />
 		<mapper resource="mappers/member-mapper.xml" />
 		<mapper resource="mappers/recipe-mapper.xml" />
