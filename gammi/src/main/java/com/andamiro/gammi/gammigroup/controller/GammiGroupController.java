@@ -57,7 +57,7 @@ public class GammiGroupController {
 		int limit = 10;
 		int listCount = service.selectListCount();
 		int maxPage = (int)((double)listCount / limit + 0.9);
-		int startPage = (currentPage / 10) * 10 + 1;
+		int startPage = (currentPage%10==0)? currentPage-9 :  (currentPage / 10) * 10 + 1 ;
 		int endPage = startPage + 10 - 1;
 		if(maxPage < endPage) {
 			endPage = maxPage;
@@ -91,11 +91,12 @@ public class GammiGroupController {
 		int limit = 10;
 		int listCount = service.selectJoinListCount(user.getM_id());
 		int maxPage = (int)((double)listCount / limit + 0.9);
-		int startPage = (currentPage / 10) * 10 + 1;
+		int startPage = (currentPage%10==0)? currentPage-9 :  (currentPage / 10) * 10 + 1 ;
 		int endPage = startPage + 10 - 1;
 		if(maxPage < endPage) {
 			endPage = maxPage;
 		}
+		
 		int startRow = (currentPage - 1) * limit + 1;
 		int endRow = startRow + limit - 1;
 		Paging paging = new Paging(startRow, endRow, user.getM_id());
@@ -125,7 +126,7 @@ public class GammiGroupController {
 		int limit = 10;
 		int listCount = service.selectSearchTListCount(keyword);
 		int maxPage = (int)((double)listCount / limit + 0.9);
-		int startPage = (currentPage / 10) * 10 + 1;
+		int startPage = (currentPage%10==0)? currentPage-9 :  (currentPage / 10) * 10 + 1 ;
 		int endPage = startPage + 10 - 1;
 		if(maxPage < endPage) {
 			endPage = maxPage;
@@ -135,19 +136,17 @@ public class GammiGroupController {
 		SearchPaging searchpaging = new SearchPaging(keyword, startRow, endRow);
 		
 		ArrayList<GammiGroup> list = service.selectSearchTitle(searchpaging);
-		logger.info("######################키워드 : " + keyword);
-		logger.info("######################action : " + "title");
-		logger.info("######################리스트갯수! : " + listCount);
-		logger.info("######################그룹리스트 : " + list);
-		model.addAttribute("groups", list);
-		model.addAttribute("listCount", listCount);
-		model.addAttribute("maxPage", maxPage);
-		model.addAttribute("currentPage", currentPage);
-		model.addAttribute("startPage", startPage);
-		model.addAttribute("endPage", endPage);
-		model.addAttribute("limit", limit);
-		model.addAttribute("action", "title");
-		model.addAttribute("keyword", keyword);
+		if(list != null) {
+			model.addAttribute("groups", list);
+			model.addAttribute("listCount", listCount);
+			model.addAttribute("maxPage", maxPage);
+			model.addAttribute("currentPage", currentPage);
+			model.addAttribute("startPage", startPage);
+			model.addAttribute("endPage", endPage);
+			model.addAttribute("limit", limit);
+			model.addAttribute("action", "title");
+			model.addAttribute("keyword", keyword);
+		}
 		return "group/groupSearch";
 	}
 	
@@ -163,7 +162,7 @@ public class GammiGroupController {
 			int limit = 10;
 			int listCount = service.selectSearchOListCount(keyword);
 			int maxPage = (int)((double)listCount / limit + 0.9);
-			int startPage = (currentPage / 10) * 10 + 1;
+			int startPage = (currentPage%10==0)? currentPage-9 :  (currentPage / 10) * 10 + 1 ;
 			int endPage = startPage + 10 - 1;
 			if(maxPage < endPage) {
 				endPage = maxPage;
@@ -172,10 +171,7 @@ public class GammiGroupController {
 			int endRow = startRow + limit - 1;
 			SearchPaging searchpaging = new SearchPaging(keyword, startRow, endRow);
 			ArrayList<GammiGroup> list = service.selectSearchOwner(searchpaging);
-			logger.info("######################키워드 : " + keyword);
-			logger.info("######################action : " + "owner");
-			logger.info("######################리스트갯수! : " + listCount);
-			logger.info("######################그룹리스트 : " + list);
+			
 			model.addAttribute("groups", list);
 			model.addAttribute("listCount", listCount);
 			model.addAttribute("maxPage", maxPage);
