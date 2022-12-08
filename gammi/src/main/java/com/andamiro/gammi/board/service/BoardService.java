@@ -23,6 +23,7 @@ public interface BoardService {
 	int selectSearchWListCount(String keyword);
 	ArrayList<Board> selectSearchWriter(SearchPaging searchpaging);
 	ArrayList<Board> selectNewTop4(); //메인 탑 4
+	ArrayList<Board> selectSearchCount(SearchPaging searchpaging);
 	
 	
 	

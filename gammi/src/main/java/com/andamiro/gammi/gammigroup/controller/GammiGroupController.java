@@ -198,17 +198,13 @@ public class GammiGroupController {
 			String fileName = mfile.getOriginalFilename();
 			
 			if(fileName != null && fileName.length() > 0) {
-				SimpleDateFormat sdf = 
-						new SimpleDateFormat("yyyyMMddHHmmss");
-				//변경할 파일이름 만들기
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 				String renameFileName = sdf.format(
 						new java.sql.Date(System.currentTimeMillis()));
 				renameFileName += "." + fileName.substring(fileName.lastIndexOf(".") + 1);
 				
-				//파일 객체 만들기
 				File renameFile = new File(savePath + "\\" + renameFileName);
 				
-				//업로드된 파일 저장시키고, 바로 이름바꾸기 실행함
 				try {
 					mfile.transferTo(renameFile);
 				} catch (Exception e) {					

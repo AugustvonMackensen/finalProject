@@ -94,7 +94,7 @@
 	<update id="findPwd" parameterType="Member">
 		update member
 		set m_pw = #{ m_pw }
-		where m_id = #{ m_id } and m_email = #{ m_가email }
+		where m_id = #{ m_id } and m_email = #{ m_email }
 	</update>
 	
 	

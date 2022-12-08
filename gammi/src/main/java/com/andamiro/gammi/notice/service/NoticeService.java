@@ -24,5 +24,6 @@ public interface NoticeService {
 	int selectSearchCListCount(String keyword);
 	ArrayList<Notice> selectSearchContent(SearchPaging searchpaging);
 	ArrayList<Notice> selectStarlist(Paging paging);
+	ArrayList<Notice> selectSearchReadcount(SearchPaging searchpaging);
 
 }
