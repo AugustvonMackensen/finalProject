@@ -6,7 +6,6 @@
 <!DOCTYPE html>
 <html>
 <head>
->
 <meta charset="UTF-8">
 <title></title>
 </head>
@@ -37,8 +36,7 @@
 					<c:forEach items="${ gal_img }" var="gal_img">
 						<img class="thumb"
 							src="resources/groupGalImg/${ gal_img.gal_rename_image }">
-						</td>
-						</tr>
+
 					</c:forEach>
 				</div>
 
@@ -53,22 +51,17 @@
 					<c:param name="gal_no" value="${ gammiGroupGal.gal_no }" />
 					<c:param name="gno" value="${ gammiGroupGal.group_no }" />
 				</c:url>
-				<button class="rightbtn9"
-					onclick="javascript:location.href='${ ndel }';">글삭제</button>
+				<button class="rightbtn9" onclick="javascript:location.href='${ ndel }';">글삭제</button>
 				<button class="rightbtn8" onclick="javascript:history.go(-1);">목록</button>
 
 				<input class="rightbtn11" type="button" value="댓글달기"
 					onclick="javascript:return showreplybox();">
-
-				<hr style="border-bottom: 1px solid #b1b1b1;">
 				<div>
 					<c:forEach items="${ requestScope.replylist }" var="br">
-
-
-
 						<form action="greplyup.do" method="POST">
 							<input type="hidden" name="gal_no" value="${ br.gal_no }">
 							<input type="hidden" name="page" value="${ currentPage }">
+							<hr style="border-bottom: 1px solid #b1b1b1;">
 							<div style="display: flex;">
 								<input
 									style="float: left; border: 0; font-size: 20px; margin: 5px; width: 95px;"
@@ -85,17 +78,14 @@
 									rows="5" cols="100" name="reply_content">${ br.reply_content }</textarea>
 								<br>
 								<c:if test="${ br.reply_id eq sessionScope.loginMember.m_id }">
-								<div style="display: flex; flex-direction: row-reverse;">
-									<input class="rightbtn10" type="submit" value="수정">&nbsp; 
+									<div style="display: flex; flex-direction: row-reverse;">
+										<input class="rightbtn10" type="submit" value="수정">&nbsp;
 										<input class="rightbtn9" type="button" value="삭제"
-										onclick="javascript:location.href='greplydel.do?gal_no=${ br.gal_no }&reply_no=${ br.reply_no }&page=${ currentPage }';return false;">
-										</div>
-												</c:if>
+											onclick="javascript:location.href='greplydel.do?gal_no=${ br.gal_no }&reply_no=${ br.reply_no }&page=${ currentPage }';return false;">
+									</div>
+								</c:if>
 							</div>
-
-					
 						</form>
-
 					</c:forEach>
 				</div>
 				<hr style="border-bottom: 1px solid #b1b1b1;">
@@ -106,7 +96,6 @@
 					}
 				</script>
 				<div id="replybox" style="display: none;">
-
 					<form action="greply.do" method="GET">
 						<input type="hidden" name="gal_no"
 							value="${ requestScope.gammiGroupGal.gal_no }"> <input
