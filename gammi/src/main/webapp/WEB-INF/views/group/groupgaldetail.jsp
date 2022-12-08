@@ -36,8 +36,11 @@
 					<c:forEach items="${ gal_img }" var="gal_img">
 						<img class="thumb"
 							src="resources/groupGalImg/${ gal_img.gal_rename_image }">
+											
 
 					</c:forEach>
+
+
 				</div>
 
 			</div>

@@ -72,7 +72,7 @@
 					</c:url>
 					<button class="rightbtn9" onclick="javascript:location.href='${ bdel }';">글삭제</button>
 				</c:if>
-				<button class="rightbtn8 onclick="javascript:history.go(-1);">목록</button>
+						<button class="rightbtn8" onclick="javascript:location.href='${ pageContext.servletContext.contextPath }/ListView.do';">목록</button>
 				<c:url var="movenup" value="/bmoveup.do">
 					<c:param name="b_no" value="${ board.b_no }" />
 				</c:url>

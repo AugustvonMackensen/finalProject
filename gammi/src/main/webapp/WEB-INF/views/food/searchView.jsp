@@ -1,60 +1,62 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8" errorPage="error.jsp"%>
+	pageEncoding="UTF-8" errorPage="error.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="keyword" value="${ requestScope.keyword }" />
 <c:set var="imgPath" value="${ requestScope.imgPath }" />
 <!DOCTYPE html>
 <html lang="ko">
 <link
-   href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&family=Noto+Sans+KR:wght@500;700&display=swap"
-   rel="stylesheet">
-       <link rel="stylesheet" href="resources/css/craw_search.css" type="text/css">
+	href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&family=Noto+Sans+KR:wght@500;700&display=swap"
+	rel="stylesheet">
+<link rel="stylesheet" href="resources/css/craw_search.css"
+	type="text/css">
+
 <body>
-   <c:import url="/WEB-INF/views/common/menubar.jsp" />
-   <div id="preloder">
-      <div class="loader"></div>
-   </div>
-   <div>
-      <div class="header__logo">
-         <br> <br> <a href="./index.html"><h1
-               style="font-family: 'CookieRun'; font-size: 50px; color: white; letter-spacing: 5px;">
-               음식이 맛있다!<br>감미
-            </h1></a><br> <br> <br>
-         <div class="search-box">
-<input id="keyword" class="search-txt" type="text" value="${ keyword }" placeholder="음식을 입력해주세요.">
-            <button type="button" class="btm_image" id="img_btn"
-               onclick="camSearch();">
-               <img class="btn_image2" src="resources/img/camera4.png">
-            </button>
-            <button type="button2" class="btm_image2" id="img_btn2"
-               onclick="imgSearch();">
-               <img class="btn_image3" src="resources/img/picture.png">
-            </button>
-            <input class="search-button" type="button" value="검색"
-               onclick="keywordSearch();">
-         </div>
-      </div>
-   </div>
-   <br>
-   <div class="bgc">
-      <section>
+	<c:import url="/WEB-INF/views/common/menubar.jsp" />
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
+	<div>
+		<div class="header__logo">
+			<br> <br> <a href="./index.html"><h1
+					style="font-family: 'CookieRun'; font-size: 50px; color: white; letter-spacing: 5px;">
+					음식이 맛있다!<br>감미
+				</h1></a><br> <br> <br>
+			<div class="search-box">
+				<input id="keyword" class="search-txt" type="text"
+					value="${ keyword }" placeholder="음식을 입력해주세요.">
+				<button type="button" class="btm_image" id="img_btn"
+					onclick="camSearch();">
+					<img class="btn_image2" src="resources/img/camera4.png">
+				</button>
+				<button type="button2" class="btm_image2" id="img_btn2"
+					onclick="imgSearch();">
+					<img class="btn_image3" src="resources/img/picture.png">
+				</button>
+				<input class="search-button" type="button" value="검색"
+					onclick="keywordSearch();">
+			</div>
+		</div>
+	</div>
+	<br>
+	<div class="bgc">
+		<section>
 
-         <h3 style="font-family: 'CookieRun'; font-size: 30px;">${ keyword}에
-            대한 정보를 확인해보세요!</h3>
-         <div class="craw_main">
-           <img class="craw_img" src="${ imgPath }">
-            <p>크롤링 데이터 정보</p>
-         </div>
+			<h3 style="font-family: 'CookieRun'; font-size: 30px;">${ keyword}에
+				대한 정보를 확인해보세요!</h3>
+			<div class="craw_main">
+				<img class="craw_img" src="${ imgPath }">
+				<p>크롤링 데이터 정보</p>
+			</div>
 
-      </section>
-      <br>
-      <section>
-         <h3 style="font-family: 'CookieRun'; font-size: 30px;">${ keyword}에
-            대한 맛집 정보입니다!</h3>
-<div id="map" style="width:50%;height:550px;"></div>
-
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9a6ce1083b2328d5c7a283595f746ae1&libraries=services"></script>
-<script>
+		</section>
+		<br>
+		<section>
+			<h3 style="font-family: 'CookieRun'; font-size: 30px;">${ keyword}에
+				대한 맛집 정보입니다!</h3>
+			<div id="map" style="width: 50%; height: 550px;"></div>
+			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9a6ce1083b2328d5c7a283595f746ae1&libraries=services"></script>
+			<script>
 // 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
 var infowindow = new kakao.maps.InfoWindow({zIndex:1});
 
@@ -71,7 +73,7 @@ var map = new kakao.maps.Map(mapContainer, mapOption);
 var ps = new kakao.maps.services.Places(); 
 
 // 키워드로 장소를 검색합니다
-ps.keywordSearch("${ keyword}", placesSearchCB); 
+ps.keywordSearch('${keyword}', placesSearchCB); 
 
 // 키워드 검색 완료 시 호출되는 콜백함수 입니다
 function placesSearchCB (data, status, pagination) {
@@ -108,26 +110,38 @@ function displayMarker(place) {
     });
 }
 </script>
-      </section>
-      <section>
-      <br>
-         <div>
-            <h3 style="font-family: 'CookieRun'; font-size: 30px;">${ keyword}에
-               대한 레시피 정보입니다!</h3>
-            <div class="craw_recipe">
-               <div class="model">1</div>
-               <div class="model">2</div>
-               <div class="model">3</div>
-               <div class="model">4</div>
-                  <div class="model">4</div>
-            </div>
-         </div>
-      </section>
-   </div>
+		</section>
+		<section>
+			<br>
+			<div>
+				<h3 style="font-family: 'CookieRun'; font-size: 30px;">${ keyword }에
+					대한 레시피 정보입니다!</h3>
+				<div class="craw_recipe">
+					<br>
+					<br>
+					<ul>
+					<c:forEach var="recipe" items="${ recipe_list }"
+						varStatus="recipe_status">
+						<li class="model">
+							<a target="_blank" href="${recipe.recipe_url }"> <img class="thumb"
+								src="${recipe.recipe_img }">
+								<div>
+								<p class="overdiv">${ recipe.recipe_title }</p>
+								</div>
+							</a>
+							</li>
+								</ul>
+					</c:forEach>
+				
+				</div>
+			</div>
+	</div>
+	</section>
+	</div>
 
 
-   <!-- Categories Section End -->
-   <c:import url="/WEB-INF/views/common/footer.jsp" />
+	<!-- Categories Section End -->
+	<c:import url="/WEB-INF/views/common/footer.jsp" />
 
 </body>
 

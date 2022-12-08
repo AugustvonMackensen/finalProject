@@ -6,7 +6,6 @@
 .ulflex{
     display: flex;
     flex-wrap: wrap;
-    gap: 5em;
     list-style: none;
 }
 .liflex{
@@ -15,8 +14,12 @@
     flex-grow: 1;
 }
 .thumb{
-    width: 350px;
-    height : 200px;
+			width: 290px;
+            height: 290px;
+            border: 10px solid #FAFAFA;
+            overflow: hidden;
+            object-fit: cover;
+
 }
 .rightbtn2{
     float: right;

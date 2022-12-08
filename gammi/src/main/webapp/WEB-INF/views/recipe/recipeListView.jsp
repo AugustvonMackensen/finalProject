@@ -17,8 +17,11 @@
 <title></title>
 <style>
 .container001 {
-	margin: 115px;
+	display : flex;
+	margin: 100px;
 	text-align: center;
+	flex-wrap: wrap;
+	gap: 15px;
 }
 .image {
 	
@@ -46,33 +49,15 @@ a:visited {
 	<!-- 상대경로로 대상 파일의 위치를 지정한 경우 -->
 	<c:import url="../common/menubar.jsp" />
 
-	<div class="container001">
+<div style="max-width: 1907px; margin : 0 auto;">
 		<hr>
 		<br>
-		<div align="center">
-			<select id="test" onchange="Change()"
-				style="width: 6rem; height: 3rem; border: 3px solid #f8f9fa; position: relative; top: 48px; text-align: center; right: 318px;">
-				<option value="1">제목</option>
-			</select>
 
-			<div id="d1" style="display: block">
-				<form action="rsearchTitle.do" method="get">
-					<input type="search" name="keyword"
-						style="width: 25rem; height: 3rem; border: 3px solid #f8f9fa;">
-					&nbsp; &nbsp; &nbsp; <input type="submit" value="검색"
-						style="width: 6rem; height: 3rem; border: none; background-color: orange; cursor: pointer;"
-						class="btn">
-				</form>
-			</div>
-		</div>
 
 		<!-- 목록 출력 영역 -->
 		<br>
-		<table align="center">
-			<tr>
-				<th align="left">총 ${ listCount } 개의 맛있는 레시피가 있습니다</th>
-			</tr>
-		</table>
+				<h3 style="margin-left: 120px; font-family: 'CookieRun';">총 ${ listCount } 개의 맛있는 레시피가 있습니다.</h3>
+							<div class="container001">
 		<c:if test="${ requestScope.list.size() == 0 }">등록된 이미지가 없습니다.</c:if>
 		<c:if test="${ requestScope.list.size()!= 0 }">
 			<c:forEach items="${ requestScope.list }" var="rec" varStatus="vs">
@@ -93,6 +78,23 @@ a:visited {
 		</c:if>
 	</div>
 	<br>
+			<div style="display: flex; justify-content: center; margin: 0px 0px 0px 200px;">
+			<select id="test" onchange="Change()"
+				style="position: relative; border: 1px solid #ccc; left: -198px; width: 5rem; height: 3rem; text-align: center">
+				<option value="1">제목</option>
+			</select>
+
+			<div id="d1" style="display: block">
+				<form action="rsearchTitle.do" method="get">
+					<input type="search" name="keyword"
+						style="width: 26rem; height: 3rem; border: 1px solid #ccc; margin-left: -198px;">
+					&nbsp; &nbsp; &nbsp; <input type="submit" value="검색"
+						style="width: 5.5rem; height: 3rem; border: none; margin-left: -40px; background: #555; color: #fff; cursor: pointer; margin-top: -3px;"
+						class="btn">
+				</form>
+			</div>
+		</div>
+		<br>
 	<!-- 으아아아아아아아아아아아아아아아아아아아아 -->
 	<c:if test="${ empty action }">
 		<!-- 전체 목록 페이징 처리 -->
@@ -228,6 +230,8 @@ a:visited {
 	</c:if>
 		</div>
 	</c:if>
+	<br>
+	</div>
 	<!-- 검색 목록 페이징 처리 -->
 	<c:import url="/WEB-INF/views/common/footer.jsp" />
 </body>
