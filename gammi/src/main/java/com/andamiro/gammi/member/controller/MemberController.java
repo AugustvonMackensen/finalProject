@@ -189,7 +189,7 @@ public class MemberController {
 				status.setComplete();  //로그인 요청 성공, 200 전송함
 				
 				//로그인 성공시 내보낼 뷰파일명 지정
-				viewName =  "common/main";
+				viewName =  "../../index";
 			}else {  //로그인 실패
 				model.addAttribute("message", 
 						"로그인 실패 : 아이디나 암호 확인하세요.<br>"
@@ -211,7 +211,7 @@ public class MemberController {
 			
 			if(session != null) {
 				session.invalidate(); //세션 객체를 없앰
-				return "common/main";
+				return "../../index";
 			}else {
 				model.addAttribute("message", 
 						"로그인 세션이 존재하지 않습니다.");
