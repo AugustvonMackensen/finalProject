@@ -116,7 +116,7 @@ function Change(){
 			</div>
 		</div>
 		<br>
-	</div>
+
 	</c:if>
 	<c:if test="${ empty groups }">
 			<div style="display: grid;  place-items: center;  min-height: 80vh;">
@@ -301,6 +301,9 @@ function Change(){
 	</c:if>
 		</div>
 	</c:if>
+			<br>
+		</div>
+
 	<!-- 검색 목록 페이징 처리 -->
 	
 	<c:import url="/WEB-INF/views/common/footer.jsp" />

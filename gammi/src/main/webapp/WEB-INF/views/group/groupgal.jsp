@@ -24,7 +24,7 @@ function Change(){
 	<c:import url="/WEB-INF/views/common/menubar.jsp" />
 	<div style="background-color: #F7F8F9;">
 		<c:import url="/WEB-INF/views/common/somoimsidebar.jsp" />
-		<div style="margin-left: 15%; padding: 1px 16px; height: 1000px;">
+		<div style=" max-width: 1726px; margin-left: 20%; padding: 1px 16px;">
 			<c:if test="${ !empty groupgals }">
 				<div class="bgc">
 					<div class="gal_width">

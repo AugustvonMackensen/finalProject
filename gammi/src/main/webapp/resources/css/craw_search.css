@@ -1,20 +1,17 @@
-.craw_main{
-    display: flex;
 
-}
-
-.craw_img {
-    width: 300px;
-    height: 300px;
-}
 .craw_recipe{
    display: flex;
-}
+    text-align: center;
+    flex-wrap: wrap;
+    justify-content: center;
 
-.craw_recipe .model{
-   width : 300px;
-   height : 250px;
-   background : gray;
-   flex: 1 1 30%;
-   margin : 10px
+}
+.overdiv {
+	width: 300px; 
+	text-overflow: ellipsis; 
+	white-space: nowrap; 
+	overflow: hidden;
+}
+.model {
+	margin : 0px 30px 0px 30px;
 }
