@@ -82,6 +82,11 @@ public class BoardDao {
 		return (ArrayList<Board>)list;
 	}
 
+	public ArrayList<Board> selectSearchCount(SearchPaging searchpaging) {
+		List<Board> list = session.selectList("boardMapper.selectSearchCount", searchpaging);
+		return (ArrayList<Board>)list;
+	}
+
 	
 
 }

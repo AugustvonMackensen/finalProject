@@ -14,6 +14,14 @@
 	<c:import url="/WEB-INF/views/common/menubar.jsp" />
 	
 	<form action="bup.do" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="b_no" value="${ board.b_no }">
+		<c:if test="${ !empty board.b_original_image }">
+			<!-- 첨부파일이 있는 공지글이라면 -->
+			<input type="hidden" name="b_original_image"
+				value="${ board.b_original_image }">
+			<input type="hidden" name="b_rename_image"
+				value="${ board.b_rename_image }">
+		</c:if>
 	    <div class="board_wrap">
         <div class="board_title">
             <strong>${ board.b_title }</strong>

@@ -88,4 +88,9 @@ public class NoticeDao {
 		return (ArrayList<Notice>)list;
 	}
 
+	public ArrayList<Notice> selectSearchReadcount(SearchPaging searchpaging) {
+		List<Notice> list = session.selectList("noticeMapper.selectSearchReadcount", searchpaging);
+		return (ArrayList<Notice>)list;
+	}
+
 }

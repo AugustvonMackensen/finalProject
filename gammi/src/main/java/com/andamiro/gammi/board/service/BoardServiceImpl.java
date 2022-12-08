@@ -82,5 +82,10 @@ public class BoardServiceImpl implements BoardService {
 	public ArrayList<Board> selectNewTop4() {
 		return boardDao.selectNewTop4();
 	}
+
+	@Override
+	public ArrayList<Board> selectSearchCount(SearchPaging searchpaging) {
+		return boardDao.selectSearchCount(searchpaging);
+	}
 	
 }

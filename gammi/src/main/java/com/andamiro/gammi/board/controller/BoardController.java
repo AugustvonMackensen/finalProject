@@ -40,18 +40,10 @@ public class BoardController {
 	@Autowired
 	private BoardReplyService boardreplyService;
 	
-	
-	
-	
-	
-	
-	
-	
 	@RequestMapping("ListView.do")
 	public ModelAndView boardListMethod(
 			@RequestParam(name="page", required=false) String page,
 			ModelAndView mv) {
-		
 		int currentPage = 1;
 		if(page != null) {
 			currentPage = Integer.parseInt(page);
@@ -64,7 +56,7 @@ public class BoardController {
 
 		int maxPage = (int)((double)listCount / limit + 0.9);
 
-		int startPage = (currentPage / 10) * 10 + 1;
+		int startPage = (currentPage%10==0)? currentPage-9 :  (currentPage / 10) * 10 + 1 ;
 		int endPage = startPage + 10 - 1;
 		
 		if(maxPage < endPage) {
@@ -156,13 +148,7 @@ public class BoardController {
 				//전송온 파일이름 추출함
 				String fileName = mfile.getOriginalFilename();
 				
-				//다른 공지글의 첨부파일과
-				//파일명이 중복되어서 오버라이팅되는 것을 막기 위해
-				//파일명을 변경해서 폴더에 저장하는 방식을 사용할 수 있음
-				//변경 파일명 : 년월일시분초.확장자
 				if(fileName != null && fileName.length() > 0) {
-					//바꿀 파일명에 대한 문자열 만들기
-					//공지글 등록 요청시점의 날짜시간정보를 이용함
 					SimpleDateFormat sdf = 
 							new SimpleDateFormat("yyyyMMddHHmmss");
 					//변경할 파일이름 만들기
@@ -225,54 +211,33 @@ public class BoardController {
 				@RequestParam(name="delFlag", required=false) String delFlag,
 				@RequestParam(name="upfile", required=false) MultipartFile mfile,
 				HttpServletRequest request) {
-			
+			logger.info(mfile+"");
+			logger.info(delFlag+"");
+			logger.info(board+"");
 			//게시 원글 첨부파일 저장 폴더 경로 지정
-			String savePath = request.getSession()
-					.getServletContext().getRealPath(
-							"resources/b_reupfiles");
-			
-			//첨부파일 수정 처리된 경우 --------------------------------
-			//1. 원래 첨부파일이 있는데 삭제를 선택한 경우
-			if(board.getB_original_image() != null 
-					&& delFlag != null && delFlag.equals("yes")) {
-				//저장 폴더에서 파일을 삭제함
+			String savePath = request.getSession().getServletContext().getRealPath("resources/b_upfiles");
+			if(board.getB_original_image() != null && delFlag != null && delFlag.equals("yes")) {
 				new File(savePath + "\\" + board.getB_rename_image()).delete();
-				//board 의 파일정보도 제거함
 				board.setB_original_image(null);
 				board.setB_rename_image(null);
 			}
 			
 			//2. 새로운 첨부파일이 있을 때 : 게시글 첨부파일은 1개만 가능한 경우
 			if(!mfile.isEmpty()) {
-				//저장 폴더의 이전 파일은 삭제함
 				if(board.getB_original_image() != null) {
-					//저장 폴더에서 파일을 삭제함
 					new File(savePath + "\\" + board.getB_rename_image()).delete();
-					//board 의 파일정보도 제거함
 					board.setB_original_image(null);
 					board.setB_rename_image(null);
 				}
 				
 				//이전 첨부파일이 없을 때 --------------------------
-				//전송온 파일이름 추출함
 				String fileName = mfile.getOriginalFilename();
 				
-				//다른 공지글의 첨부파일과
-				//파일명이 중복되어서 오버라이팅되는 것을 막기 위해
-				//파일명을 변경해서 폴더에 저장하는 방식을 사용할 수 있음
-				//변경 파일명 : 년월일시분초.확장자
 				if(fileName != null && fileName.length() > 0) {
-					//바꿀 파일명에 대한 문자열 만들기
-					//공지글 등록 요청시점의 날짜시간정보를 이용함
-					SimpleDateFormat sdf = 
-							new SimpleDateFormat("yyyyMMddHHmmss");
-					//변경할 파일이름 만들기
-					String renameFileName = sdf.format(
-							new java.sql.Date(System.currentTimeMillis()));
-					//원본 파일의 확장자를 추출해서, 변경 파일명에 붙여줌
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+					String renameFileName = sdf.format(new java.sql.Date(System.currentTimeMillis()));
 					renameFileName += "." + fileName.substring(fileName.lastIndexOf(".") + 1);
 					
-					//파일 객체 만들기
 					File originFile = new File(savePath + "\\" + fileName);
 					File renameFile = new File(savePath + "\\" + renameFileName);
 					
@@ -285,18 +250,15 @@ public class BoardController {
 						return "common/error";
 					} 
 					
-					//board 객체에 첨부파일명 기록 저장하기
 					board.setB_original_image(fileName);
 					board.setB_rename_image(renameFileName);
-				}  //이름바꾸기해서 저장 처리
+				}
 				
 			}  //새로운 첨부파일이 있을 때만
 			
 			//-------------------------------------------------------------
-			
+			logger.info(board+"");
 			if(boardService.updateBoard(board) > 0) {
-				//원글 수정 성공시 상세보기 페이지를 내보낸다면
-				
 				model.addAttribute("b_no", board.getB_no());
 				return "redirect:bdetail.do";
 			}else {
@@ -315,7 +277,7 @@ public class BoardController {
 				if(board.getB_rename_image() != null) {
 					new File(request.getSession()
 							.getServletContext()
-							.getRealPath("resources/board_upfiles")
+							.getRealPath("resources/b_upfiles")
 							+ "\\" + board.getB_rename_image()).delete();
 				}
 				
@@ -345,7 +307,7 @@ public class BoardController {
 		
 		int maxPage = (int)((double)listCount / limit + 0.9);
 		
-		int startPage = (currentPage / 10) * 10 + 1;
+		int startPage = (currentPage%10==0)? currentPage-9 :  (currentPage / 10) * 10 + 1 ;
 		
 		int endPage = startPage + 10 - 1;
 		
@@ -379,9 +341,52 @@ public class BoardController {
 			return "common/error";
 		}
 	}
-
 	
-	   //공지글 작성자 검색용
+	   //조회순 출력
+    @RequestMapping(value="bsearchReadCount.do", method=RequestMethod.GET)
+    public String bsearchReadCountMethod(
+    		@RequestParam("keyword") String keyword, 
+			@RequestParam(name="page", required=false) String page,
+			Model model) {
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = Integer.parseInt(page);
+		}
+		
+		int limit = 10;  //한 페이지에 출력할 목록 갯수
+		int listCount = boardService.selectListCount();
+		int maxPage = (int)((double)listCount / limit + 0.9);
+		int startPage = (currentPage%10==0)? currentPage-9 :  (currentPage / 10) * 10 + 1 ;
+		int endPage = startPage + 10 - 1;
+		if(maxPage < endPage) {
+			endPage = maxPage;
+		}
+		
+		int startRow = (currentPage - 1) * limit + 1;
+		int endRow = startRow + limit - 1;
+		
+		SearchPaging searchpaging = new SearchPaging(keyword, startRow, endRow);
+		ArrayList<Board> list = boardService.selectSearchCount(searchpaging);
+		
+		if(list.size() > 0) {
+			model.addAttribute("list", list);
+			model.addAttribute("listCount", listCount);
+			model.addAttribute("maxPage", maxPage);
+			model.addAttribute("currentPage", currentPage);
+			model.addAttribute("startPage", startPage);
+			model.addAttribute("endPage", endPage);
+			model.addAttribute("limit", limit);
+			model.addAttribute("action", "readcount");
+			model.addAttribute("keyword", keyword);
+			return "board/boardListView";
+		}else {
+			model.addAttribute("message", keyword + "로 검색된 공지글 정보가 없습니다.");
+			return "common/error";
+		}
+	}
+	
+	
+	
     @RequestMapping(value="bsearchWriter.do", method=RequestMethod.GET)
     public String boardSearchWriterMethod(
     		@RequestParam("keyword") String keyword, 
@@ -399,7 +404,7 @@ public class BoardController {
 		
 		int maxPage = (int)((double)listCount / limit + 0.9);
 		
-		int startPage = (currentPage / 10) * 10 + 1;
+		int startPage = (currentPage%10==0)? currentPage-9 :  (currentPage / 10) * 10 + 1 ;
 		
 		int endPage = startPage + 10 - 1;
 		
@@ -432,12 +437,25 @@ public class BoardController {
 			return "common/error";
 		}
 	}
-	
-	    
-	
-		
-	
-	
-	
+    //게시글 첨부파일 다운로드 처리용
+  	@RequestMapping("bfdown.do")
+  	public ModelAndView fileDownMethod(ModelAndView mv, 
+  			HttpServletRequest request, 
+  			@RequestParam("ofile") String originalFileName,
+  			@RequestParam("rfile") String renameFileName) {
+  		
+  		//공지사항 첨부파일 저장 폴더 경로 지정
+  		String savePath = request.getSession()
+  				.getServletContext().getRealPath(
+  						"resources/b_upfiles");
+  		File renameFile = new File(savePath + "\\" + renameFileName);
+  		File originFile = new File(originalFileName);
+  		
+  		mv.setViewName("filedown");
+  		mv.addObject("renameFile", renameFile);
+  		mv.addObject("originFile", originFile);
+  		
+  		return mv;
+  	}
 }
 

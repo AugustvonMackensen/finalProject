@@ -55,8 +55,6 @@
       where b_no = #{ b_no }
    </select>
    
-
-   
    <select id="getListCount" resultType="_int">
       select count(*) from board
    </select>
@@ -137,6 +135,18 @@
 	           FROM (SELECT * FROM BOARD 
 	           		 where b_writer like '%' || #{ keyword } || '%'
                      ORDER BY b_no DESC))  
+     	 where rnum >= #{startRow} and rnum <= #{endRow}
+      ]]>
+   </select>
+   
+   <!-- 조회순 출력 -->
+   <select id="selectSearchCount" resultMap="resultBoard" parameterType="SearchPaging">
+      <![CDATA[
+         SELECT *  
+         FROM (SELECT ROWNUM RNUM, b_no, b_writer, 
+               		  b_title, b_date, b_content, b_upfile, b_readcount, b_original_image, b_rename_image 
+	           FROM (SELECT * FROM BOARD
+                     ORDER BY b_readcount DESC, b_no desc))  
      	 where rnum >= #{startRow} and rnum <= #{endRow}
       ]]>
    </select>

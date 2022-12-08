@@ -37,9 +37,10 @@
                 </dl>
                     <dl>
                         <dt>첨부파일</dt>
+                        <dd>
                         <!-- 첨부파일이 있다면, 파일명 클릭시 다운로드 실행되게 함 -->
-                        <c:if test="${ !empty notice.notice_original_filename }">
-                            <c:url var="nfd" value="nfdown.do">
+                        <c:if test="${ !empty notice.notice_rename_filename }">
+                            <c:url var="nfd" value="/nfdown.do">
                                 <c:param name="ofile" value="${ notice.notice_original_filename }" />
                                 <c:param name="rfile" value="${ notice.notice_rename_filename }" />
                             </c:url>
@@ -49,6 +50,7 @@
                         <c:if test="${ empty notice.notice_original_filename }">
                             &nbsp;
 			            </c:if>
+			            </dd>
                     </dl>
                 </div>
                 <div class="cont">
