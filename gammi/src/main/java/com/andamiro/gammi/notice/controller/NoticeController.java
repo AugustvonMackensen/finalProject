@@ -76,20 +76,10 @@ public class NoticeController {
 			currentPage = Integer.parseInt(page);
 		}
 		
-		//한 페이지에 게시글 10개씩 출력되게 하는 경우
-		//페이징 계산 처리 -- 별도의 클래스로 작성해도 됨 ---------------
-		//별도의 클래스의 메소드에서 Paging 을 리턴하면 됨
-		int limit = 10;  //한 페이지에 출력할 목록 갯수
-		//전체 페이지 갯수 계산을 위해 총 목록 갯수 조회해 옴
+		int limit = 10;
 		int listCount = noticeService.selectListCount();
-		//페이지 수 계산
-		//주의 : 목록이 11개이면 페이지 수는 2페이지가 됨
-		// 나머지 목록 1개도 1페이지가 필요함
 		int maxPage = (int)((double)listCount / limit + 0.9);
-		//현재 페이지가 포함된 페이지 그룹의 시작값 지정
-		// => 뷰 아래쪽에 표시할 페이지 수를 10개로 하는 경우
-		int startPage = (currentPage / 10) * 10 + 1;
-		//현재 페이지가 포함된 페이지 그룹의 끝값 지정
+		int startPage = (currentPage%10==0)? currentPage-9 :  (currentPage / 10) * 10 + 1 ;
 		int endPage = startPage + 10 - 1;
 		
 		if(maxPage < endPage) {
@@ -119,63 +109,50 @@ public class NoticeController {
 	}
 	
 	
-	//게시글 페이지 단위로 목록보기 요청 처리용
+	//게시글 조회수로 목록보기 요청 처리용
 	@RequestMapping("nstarlist.do")
-	public ModelAndView noticeStarlistMethod(
+	public String noticeStarlistMethod(
+			@RequestParam("keyword") String keyword, 
 			@RequestParam(name="page", required=false) String page,
-			ModelAndView mv) {
-		
+			Model model) {
 		int currentPage = 1;
 		if(page != null) {
 			currentPage = Integer.parseInt(page);
 		}
 		
-		//한 페이지에 게시글 10개씩 출력되게 하는 경우
-		//페이징 계산 처리 -- 별도의 클래스로 작성해도 됨 ---------------
-		//별도의 클래스의 메소드에서 Paging 을 리턴하면 됨
-		int limit = 10;  //한 페이지에 출력할 목록 갯수
-		//전체 페이지 갯수 계산을 위해 총 목록 갯수 조회해 옴
+		int limit = 10;
 		int listCount = noticeService.selectListCount();
-		//페이지 수 계산
-		//주의 : 목록이 11개이면 페이지 수는 2페이지가 됨
-		// 나머지 목록 1개도 1페이지가 필요함
 		int maxPage = (int)((double)listCount / limit + 0.9);
-		//현재 페이지가 포함된 페이지 그룹의 시작값 지정
-		// => 뷰 아래쪽에 표시할 페이지 수를 10개로 하는 경우
-		int startPage = (currentPage / 10) * 10 + 1;
-		//현재 페이지가 포함된 페이지 그룹의 끝값 지정
+		int startPage = (currentPage%10==0)? currentPage-9 :  (currentPage / 10) * 10 + 1 ;
 		int endPage = startPage + 10 - 1;
-		
 		if(maxPage < endPage) {
 			endPage = maxPage;
 		}
 		
-		//쿼리문에 전달할 현재 페이지에 적용할 목록의 시작행과 끝행 계산
 		int startRow = (currentPage - 1) * limit + 1;
 		int endRow = startRow + limit - 1;
-		Paging paging = new Paging(startRow, endRow);
 		
 		//페이징 계산 처리 끝 ---------------------------------------
+		SearchPaging searchpaging = new SearchPaging(keyword, startRow, endRow);
 		
-		ArrayList<Notice> list = noticeService.selectStarlist(paging);
+		ArrayList<Notice> list = noticeService.selectSearchReadcount(searchpaging);
 		
-		if(list != null && list.size() > 0) {
-			mv.addObject("list", list);
-			mv.addObject("listCount", listCount);
-			mv.addObject("maxPage", maxPage);
-			mv.addObject("currentPage", currentPage);
-			mv.addObject("startPage", startPage);
-			mv.addObject("endPage", endPage);
-			mv.addObject("limit", limit);
-			
-			mv.setViewName("notice/noticeListView");
+		if(list.size() > 0) {
+			model.addAttribute("list", list);
+			model.addAttribute("listCount", listCount);
+			model.addAttribute("maxPage", maxPage);
+			model.addAttribute("currentPage", currentPage);
+			model.addAttribute("startPage", startPage);
+			model.addAttribute("endPage", endPage);
+			model.addAttribute("limit", limit);
+			model.addAttribute("action", "readcount");
+			model.addAttribute("keyword", keyword);
+			return "notice/noticeListView";
 		}else {
-			mv.addObject("message", 
-					currentPage + " 페이지 목록 조회 실패.");
-			mv.setViewName("common/error");
+			model.addAttribute("message", 
+					keyword + "로 검색된 공지글 정보가 없습니다.");
+			return "common/error";
 		}
-		
-		return mv;
 	}
 	
 
@@ -191,27 +168,15 @@ public class NoticeController {
 			currentPage = Integer.parseInt(page);
 		}
 		
-		//한 페이지에 게시글 10개씩 출력되게 하는 경우
-		//페이징 계산 처리 -- 별도의 클래스로 작성해도 됨 ---------------
-		//별도의 클래스의 메소드에서 Paging 을 리턴하면 됨
-		int limit = 10;  //한 페이지에 출력할 목록 갯수
-		//전체 검색 키워드 갯수 계산을 위해 총 목록 갯수 조회해 옴
+		int limit = 10;
 		int listCount = noticeService.selectSearchTListCount(keyword);
-		//페이지 수 계산
-		//주의 : 목록이 11개이면 페이지 수는 2페이지가 됨
-		// 나머지 목록 1개도 1페이지가 필요함
 		int maxPage = (int)((double)listCount / limit + 0.9);
-		//현재 페이지가 포함된 페이지 그룹의 시작값 지정
-		// => 뷰 아래쪽에 표시할 페이지 수를 10개로 하는 경우
-		int startPage = (currentPage / 10) * 10 + 1;
-		//현재 페이지가 포함된 페이지 그룹의 끝값 지정
+		int startPage = (currentPage%10==0)? currentPage-9 :  (currentPage / 10) * 10 + 1 ;
 		int endPage = startPage + 10 - 1;
-		
 		if(maxPage < endPage) {
 			endPage = maxPage;
 		}
 		
-		//쿼리문에 전달할 현재 페이지에 적용할 목록의 시작행과 끝행 계산
 		int startRow = (currentPage - 1) * limit + 1;
 		int endRow = startRow + limit - 1;
 		
@@ -249,27 +214,16 @@ public class NoticeController {
 			currentPage = Integer.parseInt(page);
 		}
 		
-		//한 페이지에 게시글 10개씩 출력되게 하는 경우
-		//페이징 계산 처리 -- 별도의 클래스로 작성해도 됨 ---------------
-		//별도의 클래스의 메소드에서 Paging 을 리턴하면 됨
-		int limit = 10;  //한 페이지에 출력할 목록 갯수
-		//전체 검색 키워드 갯수 계산을 위해 총 목록 갯수 조회해 옴
+		int limit = 10;
 		int listCount = noticeService.selectSearchCListCount(keyword);
-		//페이지 수 계산
-		//주의 : 목록이 11개이면 페이지 수는 2페이지가 됨
-		// 나머지 목록 1개도 1페이지가 필요함
 		int maxPage = (int)((double)listCount / limit + 0.9);
-		//현재 페이지가 포함된 페이지 그룹의 시작값 지정
-		// => 뷰 아래쪽에 표시할 페이지 수를 10개로 하는 경우
-		int startPage = (currentPage / 10) * 10 + 1;
-		//현재 페이지가 포함된 페이지 그룹의 끝값 지정
+		int startPage = (currentPage%10==0)? currentPage-9 :  (currentPage / 10) * 10 + 1 ;
 		int endPage = startPage + 10 - 1;
 		
 		if(maxPage < endPage) {
 			endPage = maxPage;
 		}
 		
-		//쿼리문에 전달할 현재 페이지에 적용할 목록의 시작행과 끝행 계산
 		int startRow = (currentPage - 1) * limit + 1;
 		int endRow = startRow + limit - 1;
 		
@@ -362,15 +316,10 @@ public class NoticeController {
 				.getServletContext().getRealPath(
 						"resources/notice_upfiles");
 		
-		//첨부파일이 있을 때만 업로드된 파일을 지정된 폴더로 옮기기
 		if(!mfile.isEmpty()) {
 			//전송온 파일이름 추출함
 			String fileName = mfile.getOriginalFilename();
 			
-			//다른 공지글의 첨부파일과
-			//파일명이 중복되어서 오버라이팅되는 것을 막기 위해
-			//파일명을 변경해서 폴더에 저장하는 방식을 사용할 수 있음
-			//변경 파일명 : 년월일시분초.확장자
 			if(fileName != null && fileName.length() > 0) {
 				//바꿀 파일명에 대한 문자열 만들기
 				//공지글 등록 요청시점의 날짜시간정보를 이용함
@@ -397,7 +346,7 @@ public class NoticeController {
 				
 				//notice 객체에 첨부파일명 기록 저장하기
 				notice.setNotice_original_filename(fileName);
-				notice.setNotice_rename_filename(fileName);
+				notice.setNotice_rename_filename(renameFileName);
 			}
 			
 		}  //첨부파일이 있을 때만
@@ -413,25 +362,23 @@ public class NoticeController {
 	//첨부파일 다운로드 요청 처리용
 	@RequestMapping("nfdown.do")
 	public ModelAndView fileDownMethod(ModelAndView mv, 
-			HttpServletRequest request, 
-			@RequestParam("ofile") String originalFileName,
-			@RequestParam("rfile") String renameFileName) {
-		//공지사항 첨부파일 저장 폴더 경로 지정
-		String savePath = request.getSession()
-				.getServletContext().getRealPath(
-						"resources/notice_upfiles");
-		
-		//저장 폴더에서 읽을 파일에 대한 파일 객체 생성함		
-		File renameFile = new File(savePath + "\\" + renameFileName);
-		//파일다운시 내보낼 파일 객체 생성
-		File originFile = new File(originalFileName);
-		
-		mv.setViewName("filedown"); //등록된 파일다운로드 처리용 뷰클래스의 id명
-		mv.addObject("renameFile", renameFile);
-		mv.addObject("originFile", originFile);
-		
-		return mv;
-	}
+  			HttpServletRequest request, 
+  			@RequestParam("ofile") String originalFileName,
+  			@RequestParam("rfile") String renameFileName) {
+  		
+  		//공지사항 첨부파일 저장 폴더 경로 지정
+  		String savePath = request.getSession()
+  				.getServletContext().getRealPath(
+  						"resources/notice_upfiles");
+  		File renameFile = new File(savePath + "\\" + renameFileName);
+  		File originFile = new File(originalFileName);
+  		
+  		mv.setViewName("filedown");
+  		mv.addObject("renameFile", renameFile);
+  		mv.addObject("originFile", originFile);
+  		
+  		return mv;
+  	}
 	
 	//공지글 수정 요청 처리용
 	@RequestMapping(value="nupdate.do", method=RequestMethod.POST)
@@ -467,30 +414,18 @@ public class NoticeController {
 				notice.setNotice_rename_filename(null);
 			}
 			
-			//이전 첨부파일이 없을 때 --------------------------
-			//전송온 파일이름 추출함
 			String fileName = mfile.getOriginalFilename();
 			
-			//다른 공지글의 첨부파일과
-			//파일명이 중복되어서 오버라이팅되는 것을 막기 위해
-			//파일명을 변경해서 폴더에 저장하는 방식을 사용할 수 있음
-			//변경 파일명 : 년월일시분초.확장자
 			if(fileName != null && fileName.length() > 0) {
-				//바꿀 파일명에 대한 문자열 만들기
-				//공지글 등록 요청시점의 날짜시간정보를 이용함
 				SimpleDateFormat sdf = 
 						new SimpleDateFormat("yyyyMMddHHmmss");
-				//변경할 파일이름 만들기
 				String renameFileName = sdf.format(
 						new java.sql.Date(System.currentTimeMillis()));
-				//원본 파일의 확장자를 추출해서, 변경 파일명에 붙여줌
 				renameFileName += "." + fileName.substring(fileName.lastIndexOf(".") + 1);
 				
-				//파일 객체 만들기
 				File originFile = new File(savePath + "\\" + fileName);
 				File renameFile = new File(savePath + "\\" + renameFileName);
 				
-				//업로드된 파일 저장시키고, 바로 이름바꾸기 실행함
 				try {
 					mfile.transferTo(renameFile);
 				} catch (Exception e) {					

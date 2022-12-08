@@ -43,8 +43,8 @@
 						<dt>첨부파일</dt>
 						<dd>
 							<c:if test="${ !empty board.b_original_image }">
-								<%-- <c:url var="nfd" value="/bfdown.do"> --%>
-								<c:url var="nfd" value="/bdetail.do">
+								<c:url var="nfd" value="/bfdown.do">
+								<%-- <c:url var="nfd" value="/bdetail.do"> --%>
 									<c:param name="ofile" value="${ board.b_original_image }" />
 									<c:param name="rfile" value="${ board.b_rename_image }" />
 								</c:url>
@@ -72,7 +72,7 @@
 					</c:url>
 					<button class="rightbtn9" onclick="javascript:location.href='${ bdel }';">글삭제</button>
 				</c:if>
-				<button class="rightbtn8 onclick="javascript:history.go(-1);">목록</button>
+				<button class="rightbtn8" onclick="javascript:location.href='ListView.do';">목록</button>
 				<c:url var="movenup" value="/bmoveup.do">
 					<c:param name="b_no" value="${ board.b_no }" />
 				</c:url>

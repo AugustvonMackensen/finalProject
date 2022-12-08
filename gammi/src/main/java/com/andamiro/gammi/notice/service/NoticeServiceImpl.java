@@ -88,5 +88,11 @@ public class NoticeServiceImpl implements NoticeService {
 	public ArrayList<Notice> selectStarlist(Paging paging) {
 		return noticeDao.selectStarlist(paging);
 	}
+
+
+	@Override
+	public ArrayList<Notice> selectSearchReadcount(SearchPaging searchpaging) {
+		return noticeDao.selectSearchReadcount(searchpaging);
+	}
 	
 }

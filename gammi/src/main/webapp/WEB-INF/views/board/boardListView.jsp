@@ -64,7 +64,7 @@
 						<div
 							style="text-align: right; margin-top: -20px; margin-right: 33px;">
 							<span><a class="visted"
-								href="${ pageContext.servletContext.contextPath }/ListView.do">조회순</a></span>
+								href="${ pageContext.servletContext.contextPath }/bsearchReadCount.do?keyword='readcount'">조회순</a></span>
 							<span>|</span> <a class="visted"
 								href="${ pageContext.servletContext.contextPath }/ListView.do">최신순</a>
 						</div>
@@ -171,15 +171,16 @@
 	</c:if>
 				<!-- 이전 페이지그룹으로 이동 처리 -->
 				<c:if
-					test="${ (currentPage - 10) < startPage and (currentPage - 10) > 1 }">
+					test="${ (currentPage - 10) < startPage and (currentPage - 10) > 0 }">
 					<c:url var="bl2" value="/ListView.do">
-						<c:param name="page" value="${ startPage - 10 }" />
+						<c:if test="${currentPage%10==0 }">
+						<c:param name="page" value="${ startPage-1 }" />
+					</c:if>
+					<c:if test="${currentPage%10!=0 }">
+						<c:param name="page" value="${ currentPage - (currentPage%10) }" />
+					</c:if>
 					</c:url>
 					<a href="${ bl2 }">[이전그룹]</a> &nbsp;
-	</c:if>
-				<c:if
-					test="${ !((currentPage - 10) < startPage and (currentPage - 10) > 1) }">
-		[이전그룹] &nbsp;
 	</c:if>
 				<!-- 현재 페이지가 속한 페이지 그룹 페이지 숫자 출력 -->
 				<c:forEach var="p" begin="${ startPage }" end="${ endPage }"
@@ -195,21 +196,16 @@
 					</c:if>
 				</c:forEach>
 				<!-- 다음 페이지그룹으로 이동 처리 -->
-				<c:if
-					test="${ (currentPage + 10) > endPage and (currentPage + 10) < maxPage }">
+				<c:if test="${ (currentPage + 10) > endPage and ((endPage%10)==0) and listCount > ( endPage*limit ) }">
 					<c:url var="bl4" value="/ListView.do">
-						<c:param name="page" value="${ endPage + 10 }" />
+						<c:param name="page" value="${ endPage + 1 }" />
 					</c:url>
 					<a href="${ bl4 }">[다음그룹]</a> &nbsp;
-	</c:if>
-				<c:if
-					test="${ !((currentPage + 10) > endPage and (currentPage + 10) < maxPage) }">
-		[다음그룹] &nbsp;
-	</c:if>
+				</c:if>
 				<!-- 끝페이지로 이동 처리 -->
 				<c:if test="${ currentPage eq maxPage }">
-		[맨끝] &nbsp; 
-	</c:if>
+					[맨끝] &nbsp; 
+				</c:if>
 				<c:if test="${ currentPage < maxPage }">
 					<c:url var="bl5" value="/ListView.do">
 						<c:param name="page" value="${ maxPage }" />
@@ -243,6 +239,13 @@
 							<c:param name="page" value="1" />
 						</c:url>
 					</c:if>
+					
+					<c:if test="${ action eq 'readcount' }">
+						<c:url var="nsl" value="bsearchReadCount.do">
+							<c:param name="keyword" value="${ keyword }" />
+							<c:param name="page" value="1" />
+						</c:url>
+					</c:if>
 					<a href="${ nsl }">[맨처음]</a> &nbsp;
 	</c:if>
 				<!-- 이전 페이지그룹으로 이동 처리 -->
@@ -251,21 +254,39 @@
 					<c:if test="${ action eq 'title' }">
 						<c:url var="nsl" value="bsearchTitle.do">
 							<c:param name="keyword" value="${ keyword }" />
-							<c:param name="page" value="${ startPage - 10 }" />
+							<c:if test="${currentPage%10==0 }">
+								<c:param name="page" value="${ startPage-1 }" />
+							</c:if>
+							<c:if test="${currentPage%10!=0 }">
+								<c:param name="page" value="${ currentPage - (currentPage%10) }" />
+							</c:if>
 						</c:url>
 					</c:if>
 
 					<c:if test="${ action eq 'writer' }">
 						<c:url var="nsl" value="bsearchWriter.do">
 							<c:param name="keyword" value="${ keyword }" />
-							<c:param name="page" value="${ startPage - 10 }" />
+							<c:if test="${currentPage%10==0 }">
+								<c:param name="page" value="${ startPage-1 }" />
+							</c:if>
+							<c:if test="${currentPage%10!=0 }">
+								<c:param name="page" value="${ currentPage - (currentPage%10) }" />
+							</c:if>
+						</c:url>
+					</c:if>
+					
+					<c:if test="${ action eq 'readcount' }">
+						<c:url var="nsl" value="bsearchReadCount.do">
+							<c:param name="keyword" value="${ keyword }" />
+							<c:if test="${currentPage%10==0 }">
+								<c:param name="page" value="${ startPage-1 }" />
+							</c:if>
+							<c:if test="${currentPage%10!=0 }">
+								<c:param name="page" value="${ currentPage - (currentPage%10) }" />
+							</c:if>
 						</c:url>
 					</c:if>
 					<a href="${ nsl }">[이전그룹]</a> &nbsp;
-	</c:if>
-				<c:if
-					test="${ !((currentPage - 10) < startPage and (currentPage - 10) > 1) }">
-		[이전그룹] &nbsp;
 	</c:if>
 				<!-- 현재 페이지가 속한 페이지 그룹 페이지 숫자 출력 -->
 				<c:forEach var="p" begin="${ startPage }" end="${ endPage }"
@@ -287,6 +308,13 @@
 								<c:param name="page" value="${ p }" />
 							</c:url>
 						</c:if>
+						
+						<c:if test="${ action eq 'readcount' }">
+							<c:url var="nsl" value="bsearchReadCount.do">
+								<c:param name="keyword" value="${ keyword }" />
+								<c:param name="page" value="${ p }" />
+							</c:url>
+						</c:if>
 						<a href="${ nsl }">${ p }</a>
 					</c:if>
 				</c:forEach>
@@ -296,22 +324,25 @@
 					<c:if test="${ action eq 'title' }">
 						<c:url var="nsl" value="bsearchTitle.do">
 							<c:param name="keyword" value="${ keyword }" />
-							<c:param name="page" value="${ endPage + 10 }" />
+						<c:param name="page" value="${ endPage + 1 }" />
 						</c:url>
 					</c:if>
 
 					<c:if test="${ action eq 'writer' }">
 						<c:url var="nsl" value="bsearchWriter.do">
 							<c:param name="keyword" value="${ keyword }" />
-							<c:param name="page" value="${ endPage + 10 }" />
+						<c:param name="page" value="${ endPage + 1 }" />
 						</c:url>
 					</c:if>
+					
+					<c:if test="${ action eq 'readcount' }">
+					<c:url var="nsl" value="bsearchReadCount.do">
+						<c:param name="keyword" value="${ keyword }" />
+						<c:param name="page" value="${ endPage + 1 }" />
+					</c:url>
+				</c:if>
 					<a href="${ nsl }">[다음그룹]</a> &nbsp;
-	</c:if>
-				<c:if
-					test="${ !((currentPage + 10) > endPage and (currentPage + 10) < maxPage) }">
-		[다음그룹] &nbsp;
-	</c:if>
+				</c:if>
 				<!-- 끝페이지로 이동 처리 -->
 				<c:if test="${ currentPage eq maxPage }">
 		[맨끝] &nbsp; 
@@ -326,6 +357,13 @@
 
 					<c:if test="${ action eq 'writer' }">
 						<c:url var="nsl" value="bsearchWriter.do">
+							<c:param name="keyword" value="${ keyword }" />
+							<c:param name="page" value="${ maxPage }" />
+						</c:url>
+					</c:if>
+					
+					<c:if test="${ action eq 'readcount' }">
+						<c:url var="nsl" value="bsearchReadCount.do">
 							<c:param name="keyword" value="${ keyword }" />
 							<c:param name="page" value="${ maxPage }" />
 						</c:url>

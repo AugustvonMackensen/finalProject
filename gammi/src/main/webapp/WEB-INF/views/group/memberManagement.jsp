@@ -50,7 +50,7 @@ function mGrade(no, id, num){
 				<br>
 				<c:forEach var="gm" items="${gm}" varStatus="mem_status">
 					<c:if test="${ gm.member_grade  == 3 }">
-						<p style=" font-family: 'Noto Sans KR', sans-serif;">${gm.m_id}:님
+						<p style=" font-family: 'Noto Sans KR', sans-serif;">${gm.m_id}님
 						</p>
 						<p style=" font-family: 'Noto Sans KR', sans-serif;">가입 날짜 : ${ gm.member_grade_date }</p>
 						<div class="writelistbtn2">
@@ -86,27 +86,6 @@ function mGrade(no, id, num){
 				</c:forEach>
 				<hr class="hline">
 				<br>
-				<h3 style=" font-family: 'Noto Sans KR', sans-serif;">가입거절한 목록</h3>
-				<br>
-				<c:forEach var="gm" items="${gm}" varStatus="mem_status">
-					<c:if test="${ gm.member_grade == 2 }">
-						<p style=" font-family: 'Noto Sans KR', sans-serif;">${gm.m_id}:님</p>
-						<p style=" font-family: 'Noto Sans KR', sans-serif;">가입 신청날짜 : ${ gm.member_grade_date }</p>
-						<div class="writelistbtn2">
-						<c:if test="${ group.group_owner eq sessionScope.loginMember.m_id  }">
-							<button class="rightbtn3"
-								onclick="mAccept(${gm.group_no}, '${ gm.m_id }',1);">가입
-								수락</button>
-							<button class="rightbtn3"
-								onclick="mRefuse(${gm.group_no}, '${ gm.m_id }',3);">가입
-								거절</button>
-						</c:if>
-						</div>
-						<br>
-
-					</c:if>
-				</c:forEach>
-
 			</div>
 		</div>
 	</div>
