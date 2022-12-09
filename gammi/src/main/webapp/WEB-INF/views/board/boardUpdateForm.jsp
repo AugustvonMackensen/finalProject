@@ -48,25 +48,8 @@
                             <c:if test="${ !empty board.b_original_image }">
                             <input type="checkbox" name="delFlag" value="yes"> 파일삭제 <br>
                                 </c:if> <br>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <div class="preview-zone hidden">
-                                                <div class="box2 box-solid">
-                                                    <div class="box-header with-border"></div>
-                                                    <div class="box-body"></div>
-                                                </div>
-                                            </div>
-                                            <div class="dropzone-wrapper">
-                                                <div class="dropzone-desc">
-                                                    <i class="glyphicon glyphicon-download-alt"></i>
-                                                    <p>이미지 파일을 업로드</p>
-                                                </div>
-                                                <input type="file" name="upfile" class="dropzone">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> <!-- 새로 첨부 : <input type="file" name="upfile"> --></dd>
+                                 <input type="file" name="upfile">
+ 								</dd>
                     </dl>
                 </div>
                 <div class="cont">
@@ -76,7 +59,7 @@
             <div class="bt_wrap">
                 <input class="rightbtn7" type="submit" value="수정하기">&nbsp; 
                 <input class="rightbtn9" type="reset" value="수정취소"> &nbsp;
-				<button class="rightbtn8" onclick="javascript:history.go(-1);">이전페이지</button>
+				<button type="button"  class="rightbtn8" onclick="javascript:history.go(-1);">이전페이지</button>
             </div>
         </div>
     </div>

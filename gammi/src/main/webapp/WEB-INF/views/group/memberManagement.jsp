@@ -8,8 +8,7 @@
 <link rel="stylesheet" href="resources/css/band-clone.css"
 	type="text/css">
 </head>
-<script type="text/javascript"
-	src="${ pageContext.servletContext.contextPath }/resources/js/jquery-3.6.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
 //멤버 상태 변경(가입수락, 가입 거부 처리, 추방처리)
 function mGrade(no, id, num){

@@ -35,25 +35,7 @@
                     <dl>
                         <dt>첨부파일</dt>
                         <dd>				<!-- 	<input type="file" name="upfile" -->
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <div class="preview-zone hidden">
-                                            <div class="box2 box-solid">
-                                                <div class="box-header with-border"></div>
-                                                <div class="box-body"></div>
-                                            </div>
-                                        </div>
-                                        <div class="dropzone-wrapper">
-                                            <div class="dropzone-desc">
-                                                <i class="glyphicon glyphicon-download-alt"></i>
-                                                <p>이미지 파일을 업로드</p>
-                                            </div>
-                                            <input type="file" name="upfile" class="dropzone">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+     	<input type="file" name="upfile">
         </dd>
                     </dl>
                 </div>
@@ -64,7 +46,7 @@
             <div class="bt_wrap">
                 <input class="rightbtn7" type="submit" value="등록하기">
                 &nbsp; <input class="rightbtn9" type="reset" value="작성취소"> &nbsp;
-                <button class="rightbtn8" onclick="javascript:history.go(-1); return false;">목록</button>
+                <button type="button" class="rightbtn8" onclick="javascript:history.go(-1); return false;">목록</button>
         </div>
         </div>
     </div>

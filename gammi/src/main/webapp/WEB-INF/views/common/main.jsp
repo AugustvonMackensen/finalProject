@@ -6,8 +6,7 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&family=Noto+Sans+KR:wght@500;700&display=swap"
 	rel="stylesheet">
-<script type="text/javascript"
-	src="${ pageContext.servletContext.contextPath }/resources/js/jquery-3.6.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
 	function imgSearch() {
 
