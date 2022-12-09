@@ -84,7 +84,7 @@ table.qa-table tbody tr th{;
 <br>
 
 <br>
-	<div style="height: 100%; display: flex; justify-content: center; align-items: center; min-height: 100vh; width: 1000px;" class="container">
+	<div style="height: 70%; display: flex; justify-content: center; align-items: center;  width: 1000px;" class="container">
 
 <form action="mupdate.do" method="post">
 	<h3 style="font-family: 'Noto Sans KR', sans-serif;" align="center">회원 정보 수정 페이지</h3>

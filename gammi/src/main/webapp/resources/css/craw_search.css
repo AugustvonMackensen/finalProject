@@ -6,6 +6,10 @@
     justify-content: center;
 
 }
+.craw_img{
+	width: 300px;
+	height: 300px;
+}
 .overdiv {
 	width: 300px; 
 	text-overflow: ellipsis; 

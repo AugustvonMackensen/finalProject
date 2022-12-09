@@ -97,6 +97,11 @@
 		where m_id = #{ m_id } and m_email = #{ m_email }
 	</update>
 	
+	<update id="updateLoginOK" parameterType="Member">
+		update member
+		set login_ok = #{ login_ok }
+		where m_id = #{ m_id }
+	</update>
 	
 
 </mapper>
