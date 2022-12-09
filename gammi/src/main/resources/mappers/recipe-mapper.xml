@@ -12,11 +12,12 @@
 		<result column="recipe_readcount_week" property="recipe_readcount_week" />
 	</resultMap>
 	
-	<select id="selectTop5" resultType="Recipe">
+	<select id="selectTop5" resultType="Recipe" parameterType="string">
 		<![CDATA[
 		select *
 		from (select rownum rnum, recipe_num, recipe_title, recipe_img,recipe_url,recipe_readcount,recipe_readcount_week
 		      from (select * from recipe
+		      where recipe_title like '%' || #{ keyword } || '%'
 		            order by recipe_readcount desc))
 		where rnum >= 1 and rnum <= 5
 		]]>

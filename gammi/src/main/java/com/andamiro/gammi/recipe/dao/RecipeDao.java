@@ -36,8 +36,8 @@ public class RecipeDao {
 		return session.selectOne("recipeMapper.getSearchTListCount", keyword);
 	}
 
-	public ArrayList<Recipe> selectTop5() {
-		List<Recipe> list = session.selectList("recipeMapper.selectTop5");
+	public ArrayList<Recipe> selectTop5(String keyword) {
+		List<Recipe> list = session.selectList("recipeMapper.selectTop5", keyword);
 		return (ArrayList<Recipe>)list;
 	}
 
