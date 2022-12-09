@@ -9,7 +9,7 @@
 <style type="text/css">
 table#outer { border:2px solid navy; }
 </style>
-<script type="text/javascript" src="${ pageContext.servletContext.contextPath }/resources/js/jquery-3.6.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
 function validate(){
 	//비밀번호 유효성 검사

@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="resources/js/jquery-3.6.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
 var fileNoArry = new Array();
 var fileNameArry = new Array();

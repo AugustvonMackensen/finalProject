@@ -8,8 +8,7 @@
 <meta charset="UTF-8">
 <title></title>
 
-<script type="text/javascript"
-	src="${ pageContext.servletContext.contextPath }/resources/js/jquery-3.6.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
 	//아이디 중복 체크 확인을 위한 ajax 실행 처리용 함수
 	//ajax(Asynchronous Javascript And Xml) : 

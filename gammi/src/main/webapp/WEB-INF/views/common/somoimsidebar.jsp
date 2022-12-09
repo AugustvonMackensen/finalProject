@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
-<script type="text/javascript" src="${ pageContext.servletContext.contextPath }/resources/js/jquery-3.6.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
 $(function(){
 	$.ajax({
@@ -87,7 +87,7 @@ function secessionChatRoom(gno, id, chatno, chatroom_name){
         <li><a href="groupMemberManagement.do?gno= ${ gno }" class="item"><div>멤버목록</div></a></li>
         <li><a href="selectGroup.do?selectGroupNo=${gno }" class="item"><div>모임메인화면</div></a></li>
         <li><a href="groupgal.do?gno=${ gno }" class="item"><div>갤러리게시판</div></a></li>
-        <li><a href="calendarOpen.do?gno=${ gno }" class="item"><div>캘린더</div></a></li>
+        <li><a target="_blank" href="calendarOpen.do?gno=${ gno }" class="item"><div>캘린더</div></a></li>
         <li><a href="${ pageContext.servletContext.contextPath }/rooms.do?gno=${ gno }" class="item"><div>자유채팅방관리</div></a></li>
         <hr>
     </ul>

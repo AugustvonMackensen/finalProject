@@ -48,9 +48,10 @@
 					</div>
 				</div>
 				<div class="bt_wrap">
+				<button type="button" class="rightbtn8" onclick="javascript:location.href='ListView.do';">목록</button>
 	                <input class="rightbtn7" type="submit" value="등록하기">
                 &nbsp; <input class="rightbtn9" type="reset" value="작성취소"> &nbsp;
-<button class="rightbtn3" onclick="javascript:history.go(-1);">이전페이지로 이동</button>
+
 
 
 				</div>

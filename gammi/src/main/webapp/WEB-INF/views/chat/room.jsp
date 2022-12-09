@@ -117,7 +117,7 @@ div#msgArea{
 <div style="background-color: #F7F8F9;">
 <c:import url="/WEB-INF/views/common/somoimsidebar.jsp"/>
 <div style="margin-left:10%;padding:1px 16px;height:1000px;">
-	<div class="container" style="border-radius: 20px; border: 1px solid; width: 700px;">
+	<div class="container" style="border-radius: 20px; box-shadow : 5px 5px 5px 5px gray; height: 580px; border: 1px solid; width: 700px;">
 		<div class = "writelistbtn" style="text-align: center;">
 		<br><br>
 		<p>채팅방 ${room.chatroom_name } 입니다. 방장 : ${ room.m_id }</p>
@@ -150,11 +150,12 @@ div#msgArea{
 					</c:forEach>
 				</c:if>
 			</div>
-			<div class="col-6">
-				<div class="input-group mb-3" style="width: 500px;">
+			<div class="col-6" style="margin-top: 30px;">
+				<div class="input-group mb-3" style="width: 500px; margin-left: 4.8rem; ">
 					<input type="text" id="msg" class="form-control">
 					<div class="input-group-append" >
-						<button class="btn btn-outline-secondary" type="button"
+						<button style="background-color: #767676;
+    color: white;" class="btn btn-outline-secondary" type="button"
 							id="button-send">전송</button>
 					</div>
 				</div>

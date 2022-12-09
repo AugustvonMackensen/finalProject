@@ -9,7 +9,7 @@
 <title></title>
 <link rel="stylesheet" href="resources/css/style2.css" type="text/css">
 <link rel="stylesheet" href="resources/css/media.css" type="text/css">
-<script src="resources/js/jquery-3.6.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
 $(function(){
 	$("#file_add").on('click',function(){ $('#multi-add').click(); });
