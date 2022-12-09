@@ -38,8 +38,8 @@ public class RecipeServiceImpl implements RecipeService {
 	}
 
 	@Override
-	public ArrayList<Recipe> selectTop5() {
-		return recipeDao.selectTop5();
+	public ArrayList<Recipe> selectTop5(String keyword) {
+		return recipeDao.selectTop5(keyword);
 	}
 
 	@Override

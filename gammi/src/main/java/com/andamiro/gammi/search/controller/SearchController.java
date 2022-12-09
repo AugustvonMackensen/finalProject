@@ -21,6 +21,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.andamiro.gammi.recipe.service.RecipeService;
 import com.andamiro.gammi.recipe.vo.Recipe;
+import com.andamiro.gammi.search.foodinfo.vo.Foodinfo;
+import com.andamiro.gammi.search.service.SearchService;
 
 
 
@@ -32,6 +34,9 @@ public class SearchController {
 	@Autowired
 	private RecipeService service;
 	
+	@Autowired
+	private SearchService searchService;
+	
 	private Logger logger = LoggerFactory.getLogger(getClass());
 	@RequestMapping("imgSearch.do")
 	public String imgSearch() {
@@ -40,8 +45,10 @@ public class SearchController {
 	
 	@GetMapping("result.do")
 	public ModelAndView searchResult(@RequestParam("keyword") String keyword, ModelAndView mv) {
-		ArrayList<Recipe> list = service.selectTop5();
+		ArrayList<Recipe> list = service.selectTop5(keyword);
+		Foodinfo food_info = searchService.selectFoodByKeyword(keyword);
 		
+		mv.addObject("food_info", food_info);
 		mv.addObject("recipe_list", list);
 		mv.addObject("keyword", keyword);
 		mv.setViewName("food/searchView");

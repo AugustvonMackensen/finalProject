@@ -5,15 +5,25 @@
 <c:set var="imgPath" value="${ requestScope.imgPath }" />
 <!DOCTYPE html>
 <html lang="ko">
-<link
-	href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&family=Noto+Sans+KR:wght@500;700&display=swap"
-	rel="stylesheet">
-<link rel="stylesheet" href="resources/css/craw_search.css"
-	type="text/css">
+
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&family=Noto+Sans+KR:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="resources/css/craw_search.css" type="text/css">
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="resources/js/map.js"></script>
-<script>
 
+<script type="text/javascript">
+function imgSearch() {
+	location.href = "imgSearch.do";
+}
+
+function keywordSearch() {
+	var keyword = $("#keyword").val();
+	location.href = "result.do?keyword=" + keyword;
+}
+
+function camSearch() {
+	location.href = "camSearch.do";
+}
 </script>
 <body>
 	<c:import url="/WEB-INF/views/common/menubar.jsp" />
@@ -49,8 +59,9 @@
 			<h3 style="font-family: 'CookieRun'; font-size: 30px;">${ keyword}에
 				대한 정보를 확인해보세요!</h3>
 			<div class="craw_main">
-				<img class="craw_img" src="${ imgPath }">
-				<p>크롤링 데이터 정보</p>
+				<img class="craw_img" src="${ food_info.recipe_img }">
+				
+				<p>${ food_info.food_content }</p>
 			</div>
 
 		</section>
@@ -119,28 +130,25 @@ function displayMarker(place) {
 				<div class="craw_recipe">
 					<br> <br>
 					<ul>
-						<c:forEach var="recipe" items="${ recipe_list }"
-							varStatus="recipe_status">
-							<li class="model"><a target="_blank"
-								href="${recipe.recipe_url }"> <img class="thumb"
-									src="${recipe.recipe_img }">
-									<div>
-										<p class="overdiv">${ recipe.recipe_title }</p>
-									</div>
-							</a></li>
-					</ul>
+					<c:forEach var="recipe" items="${ recipe_list }"
+						varStatus="recipe_status">
+						<li class="model">
+							<a target="_blank" href="${recipe.recipe_url }"> <img class="thumb"
+								src="${recipe.recipe_img }">
+								<div>
+								<p class="overdiv">${ recipe.recipe_title }<br>조회수 : ${recipe.recipe_readcount }회</p>
+								</div>
+							</a>
+							</li>
+							</ul>
 					</c:forEach>
-
 				</div>
 			</div>
 	</div>
 	</section>
 	</div>
-
-
 	<!-- Categories Section End -->
 	<c:import url="/WEB-INF/views/common/footer.jsp" />
-
 </body>
 
 </html>

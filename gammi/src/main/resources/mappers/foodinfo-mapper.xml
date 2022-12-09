@@ -7,10 +7,25 @@
 		<id column="food_no" property="food_no" />
 		<result column="food_name" property="food_name" />
 		<result column="food_content" property="food_content" />
+		<result column="recipe_img" property="recipe_img"/>
 	</resultMap>
 	
 	<select id="selectFoodByKeyword" parameterType="string" resultType="Foodinfo">
-		select * from foodinfo
-		where food_name like %#{ keyword}%
+		select *
+		from (select rownum rnum,food_no, food_name, food_content, recipe_img
+		from foodinfo
+		cross join (select recipe_img
+		from recipe
+		where recipe_title like '%' || #{keyword} || '%' order by recipe_readcount)
+		where food_name =#{keyword})
+		where rnum =1
+		order by food_no
+	</select>
+	
+	<select id="keywordInfokeyword" parameterType="string" resultType="string">
+	select food_name
+	from (select rownum rnum, food_name
+	from foodinfo
+	where food_name like '%' || #{keyword} || '%' ) where rnum=1
 	</select>
 </mapper>

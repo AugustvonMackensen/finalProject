@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.andamiro.gammi.common.Paging;
 import com.andamiro.gammi.common.SearchPaging;
 import com.andamiro.gammi.recipe.vo.Recipe;
+import com.andamiro.gammi.search.foodinfo.vo.Foodinfo;
 
 
 public interface RecipeService {
@@ -20,16 +21,8 @@ public interface RecipeService {
 	int selectSearchTListCount(String keyword);
 
 //----------------------------------------------------
-	public ArrayList<Recipe> selectTop5();
+	public ArrayList<Recipe> selectTop5(String keyword);
 
 	public ArrayList<Recipe> selectTop7();
-
-
-
-	
-	
-	
-
-
 
 }

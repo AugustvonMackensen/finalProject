@@ -8,8 +8,25 @@ public class Foodinfo implements Serializable{
 	private int food_no;
 	private String food_name;
 	private String food_content;
+	private String recipe_img;
 	
 	public Foodinfo() {}
+
+	public String getRecipe_img() {
+		return recipe_img;
+	}
+
+	public void setRecipe_img(String recipe_img) {
+		this.recipe_img = recipe_img;
+	}
+
+	public Foodinfo(int food_no, String food_name, String food_content, String recipe_img) {
+		super();
+		this.food_no = food_no;
+		this.food_name = food_name;
+		this.food_content = food_content;
+		this.recipe_img = recipe_img;
+	}
 
 	public Foodinfo(int food_no, String food_name, String food_content) {
 		this.food_no = food_no;
@@ -47,7 +64,9 @@ public class Foodinfo implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Foodinfo [food_no=" + food_no + ", food_name=" + food_name + ", food_content=" + food_content + "]";
+		return "Foodinfo [food_no=" + food_no + ", food_name=" + food_name + ", food_content=" + food_content
+				+ ", recipe_img=" + recipe_img + "]";
 	}
+
 	
 }

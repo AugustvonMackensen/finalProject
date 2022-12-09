@@ -35,6 +35,7 @@
 <link rel="stylesheet" href="resources/css/band-clone.css" type="text/css">
 <link href="https://webfontworld.github.io/cookierun/CookieRun.css"	rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
 function Change(){
