@@ -6,7 +6,7 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&family=Noto+Sans+KR:wght@500;700&display=swap"
 	rel="stylesheet">
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+ <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script type="text/javascript">
 	function imgSearch() {
 
@@ -21,6 +21,17 @@
 	function camSearch() {
 		location.href = "camSearch.do";
 	}
+
+
+</script>
+<script>
+$(function(){
+$("#searchKeyword").keydown(function (key) {
+    if (key.keyCode == 13) {
+    	keywordSearch();
+    }
+});
+});
 </script>
 </head>
 <body>
@@ -231,69 +242,72 @@
 						</div>
 					</div>
 					<div class="col-lg-4 col-md-4">
-                  <div class="sidebar__item">
-                     <div class="sidebar__about__item">
-                        <div class="sidebar__item__title">
-                           <h6 style="font-family: 'CookieRun'; font-size: 25px">한식뉴스</h6>
-                        </div>
-                        <img class="sidebar_about"
-                           src="resources/img/sidebar/sidebar-about.jpg" alt="">
-                        <h6>
-                           Hi every one! I,m <span>Lena Mollein.</span>
-                        </h6>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                           sed do eiusmod tempor incididunt ut labore et dolore magna
-                           aliqua.</p>
-                        <a href="#" class="primary-btn">Read more</a>
-                     </div>
+						<div class="sidebar__item">
+							<div class="sidebar__about__item">
+								<div class="sidebar__item__title">
+									<h6 style="font-family: 'CookieRun'; font-size: 25px">한식뉴스</h6>
+								</div>
+								<img class="sidebar_about"
+									src="resources/img/sidebar/sidebar-about.jpg" alt="">
+								<h6>
+									Hi every one! I,m <span>Lena Mollein.</span>
+								</h6>
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+									sed do eiusmod tempor incididunt ut labore et dolore magna
+									aliqua.</p>
+								<a href="#" class="primary-btn">Read more</a>
+							</div>
 
-                     <div class="sidebar__feature__item">
-                        <div class="sidebar__item__title">
-                           <h6 style="font-family: 'CookieRun'; font-size: 25px">최신
-                              공지 게시글</h6>
-                        </div>
+							<div class="sidebar__feature__item">
+								<div class="sidebar__item__title">
+									<h6 style="font-family: 'CookieRun'; font-size: 25px">최신
+										공지 게시글</h6>
+								</div>
 
-                        <div class="sidebar__feature__item__list">
-                           <c:forEach var = "notice" items="${ n_list }" varStatus="notice_status">
-                           <div class="sidebar__feature__item__list__single">
-                              <div class="post__meta">
-                                 <h4>0${ notice_status.count }</h4>
-                              </div>
-                              <div class="post__text">
-                                 <h5 style="font-family: 'CookieRun'; font-size: 20px">
-                                    <a target="_blank" href="ndetail.do?notice_num=${ notice.notice_num }">${ notice.notice_title }</a>
-                                 </h5>
-                              </div>
-                           </div>
-                           </c:forEach>
-                        </div>
-                     </div>
-                     <div class="sidebar__feature__item">
-                        <div class="sidebar__item__title">
-                           <h6 style="font-family: 'CookieRun'; font-size: 25px">최다
-                              조회 게시글</h6>
-                        </div>
+								<div class="sidebar__feature__item__list">
+									<c:forEach var="notice" items="${ n_list }"
+										varStatus="notice_status">
+										<div class="sidebar__feature__item__list__single">
+											<div class="post__meta">
+												<h4>0${ notice_status.count }</h4>
+											</div>
+											<div class="post__text">
+												<h5 style="font-family: 'CookieRun'; font-size: 20px">
+													<a target="_blank"
+														href="ndetail.do?notice_num=${ notice.notice_num }">${ notice.notice_title }</a>
+												</h5>
+											</div>
+										</div>
+									</c:forEach>
+								</div>
+							</div>
+							<div class="sidebar__feature__item">
+								<div class="sidebar__item__title">
+									<h6 style="font-family: 'CookieRun'; font-size: 25px">최다
+										조회 게시글</h6>
+								</div>
 
-                        <div class="sidebar__feature__item__list">
-                        <c:forEach var = "board" items="${ b_list }" varStatus="board_status">
-                           <div class="sidebar__feature__item__list__single">
-                              <div class="post__meta">
-                                 <h4>0${ board_status.count }</h4>
+								<div class="sidebar__feature__item__list">
+									<c:forEach var="board" items="${ b_list }"
+										varStatus="board_status">
+										<div class="sidebar__feature__item__list__single">
+											<div class="post__meta">
+												<h4>0${ board_status.count }</h4>
 
-                              </div>
-                              <div class="post__text">
+											</div>
+											<div class="post__text">
 
-                                 <h5 style="font-family: 'CookieRun'; font-size: 20px">
-                                    <a target="_blank" href="bdetail.do?b_no=${ board.b_no }">${ board.b_title }</a>
-                                 </h5>
-                              </div>
-                           </div>
-                        </c:forEach>
-                        </div>
-                     </div>
+												<h5 style="font-family: 'CookieRun'; font-size: 20px">
+													<a target="_blank" href="bdetail.do?b_no=${ board.b_no }">${ board.b_title }</a>
+												</h5>
+											</div>
+										</div>
+									</c:forEach>
+								</div>
+							</div>
 
-                  </div>
-               </div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
