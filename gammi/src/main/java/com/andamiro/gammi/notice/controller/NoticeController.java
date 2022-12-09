@@ -321,8 +321,6 @@ public class NoticeController {
 			String fileName = mfile.getOriginalFilename();
 			
 			if(fileName != null && fileName.length() > 0) {
-				//바꿀 파일명에 대한 문자열 만들기
-				//공지글 등록 요청시점의 날짜시간정보를 이용함
 				SimpleDateFormat sdf = 
 						new SimpleDateFormat("yyyyMMddHHmmss");
 				//변경할 파일이름 만들기
@@ -392,6 +390,8 @@ public class NoticeController {
 				.getServletContext().getRealPath(
 						"resources/notice_upfiles");
 		
+		
+		
 		//첨부파일 수정 처리된 경우 --------------------------------
 		//1. 원래 첨부파일이 있는데 삭제를 선택한 경우
 		if(notice.getNotice_original_filename() != null 
@@ -405,6 +405,8 @@ public class NoticeController {
 		
 		//2. 새로운 첨부파일이 있을 때 : 공지글 첨부파일은 1개만 가능한 경우
 		if(!mfile.isEmpty()) {
+			
+			
 			//저장 폴더의 이전 파일은 삭제함
 			if(notice.getNotice_original_filename() != null) {
 				//저장 폴더에서 파일을 삭제함

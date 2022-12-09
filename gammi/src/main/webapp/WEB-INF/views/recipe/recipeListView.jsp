@@ -33,7 +33,7 @@ a:visited {
 	color: pink;
 }
 </style>
-<script type="text/javascript" src="${ pageContext.servletContext.contextPath }/resources/js/jquery-3.6.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
 	// 레시피 검색 (내용, 제목 선택 버튼)
 	function Change() {

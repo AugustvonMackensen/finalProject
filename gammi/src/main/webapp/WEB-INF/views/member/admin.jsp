@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script type="text/javascript" src="${ pageContext.servletContext.contextPath }/resources/js/jquery-3.6.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <meta charset="UTF-8">
         <script type="text/javascript">
             $(function(){

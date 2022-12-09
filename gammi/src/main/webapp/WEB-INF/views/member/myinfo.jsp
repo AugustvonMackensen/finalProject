@@ -40,8 +40,7 @@ table.type09 td {
 <meta charset="UTF-8">
 <title></title>
 </head>
-<script type="text/javascript"
-	src="${ pageContext.servletContext.contextPath }/resources/js/jquery-3.6.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <body>
 	<c:import url="/WEB-INF/views/common/menubar.jsp" />
 <div class="bgc">	
