@@ -12,6 +12,7 @@
                     showDiv();
                 });
             });
+            
             function showDiv(){
                 if($('input[name=item]').eq(0).is(":checked")){
                 	 location.href="mlist.do";

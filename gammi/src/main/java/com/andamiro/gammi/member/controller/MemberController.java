@@ -351,7 +351,7 @@ public class MemberController {
 			}
 			return "member/admin";
 		}
-		
+		 
 		//로그인 제한/가능 변경 처리용
 		@RequestMapping(value="loginok.do", method=RequestMethod.POST)
 		public ResponseEntity<String> changeLoginOKMethod(@RequestBody String param) throws ParseException {

@@ -10,7 +10,7 @@ import com.andamiro.gammi.common.SearchPaging;
 import com.andamiro.gammi.gammigroup.dao.GammiGroupDao;
 import com.andamiro.gammi.gammigroup.vo.GammiGroup;
 import com.andamiro.gammi.gammigroup.vo.GroupMember;
-
+ 
 @Service("groupService")
 public class GammiGroupServiceImpl implements GammiGroupService{
 	

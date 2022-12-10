@@ -6,7 +6,7 @@ import com.andamiro.gammi.common.Paging;
 import com.andamiro.gammi.common.SearchPaging;
 import com.andamiro.gammi.gammigroup.vo.GammiGroup;
 import com.andamiro.gammi.gammigroup.vo.GroupMember;
-
+ 
 public interface GammiGroupService {
 		//그룹 신규 생성
 		public int insertNewGroup(GammiGroup gammiGroup);

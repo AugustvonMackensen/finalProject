@@ -16,7 +16,7 @@ import com.andamiro.gammi.gammigroup.vo.GroupMember;
 public class GammiGroupDao {
 	@Autowired
 	private SqlSessionTemplate session;
-
+ 
 	public ArrayList<GammiGroup> groupAllList(Paging paging) {
 		List<GammiGroup> list =session.selectList("groupMapper.selectAllList",paging); 
 		return (ArrayList<GammiGroup>)list;

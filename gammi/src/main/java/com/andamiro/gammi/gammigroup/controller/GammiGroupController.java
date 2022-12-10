@@ -36,7 +36,7 @@ import com.andamiro.gammi.member.vo.Member;
 @Controller
 public class GammiGroupController {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
-	
+	 
 	@Autowired
 	private GammiGroupService service;
 	

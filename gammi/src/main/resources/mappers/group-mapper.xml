@@ -14,7 +14,7 @@
 		<result property="group_ok" column="group_ok" />
 		<result property="total_mem" column="total_mem" />
 	</resultMap>
-	
+	 
 	<resultMap type="GroupMember" id="GMList">
 		<id property="join_no" column="join_no" />
 		<result property="group_no" column="group_no" />

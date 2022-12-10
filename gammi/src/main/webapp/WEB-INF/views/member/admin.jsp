@@ -12,7 +12,7 @@
                     showDiv();
                 });
             });
-            
+             
             function showDiv(){
                 if($('input[name=item]').eq(1).is(":checked")){
                     location.href="glist.do";
