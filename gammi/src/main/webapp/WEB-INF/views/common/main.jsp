@@ -6,7 +6,7 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&family=Noto+Sans+KR:wght@500;700&display=swap"
 	rel="stylesheet">
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+ <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script type="text/javascript">
 	function imgSearch() {
 
@@ -21,6 +21,17 @@
 	function camSearch() {
 		location.href = "camSearch.do";
 	}
+
+
+</script>
+<script>
+$(function(){
+$("#searchKeyword").keydown(function (key) {
+    if (key.keyCode == 13) {
+    	keywordSearch();
+    }
+});
+});
 </script>
 </head>
 <body>

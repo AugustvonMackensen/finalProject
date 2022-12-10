@@ -45,7 +45,7 @@ table.type09 td {
 	<c:import url="/WEB-INF/views/common/menubar.jsp" />
 <div class="bgc">	
 	<div
-		style="height: 100%; display: flex; justify-content: center; align-items: center; min-height: 100vh; width: 1000px;"
+		style="height: 100%; display: flex; justify-content: center; align-items: center; min-height: 80vh; width: 1000px;"
 		class="container">
 		<div>
 			<table class="type09">
