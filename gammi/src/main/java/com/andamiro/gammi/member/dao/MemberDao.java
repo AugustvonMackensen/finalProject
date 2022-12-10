@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.andamiro.gammi.common.Paging;
+import com.andamiro.gammi.common.SearchPaging;
 import com.andamiro.gammi.member.vo.Member;
+import com.andamiro.gammi.notice.vo.Notice;
 
 @Repository("memberDao")
 public class MemberDao {
@@ -74,6 +76,24 @@ public class MemberDao {
 
 	public int aupdateMember(Member member) {
 		return session.update("memberMapper.aupdateMember", member);
+	}
+
+	public ArrayList<Member> userIDSearch(SearchPaging searchpaging) {
+		List<Member> list = session.selectList("memberMapper.userIDSearch",searchpaging);
+		return (ArrayList<Member>)list;
+	}
+
+	public int userIDSearchCount(String keyword) {
+		return session.selectOne("memberMapper.userIDSearchCount",keyword);
+	}
+
+	public int loginOKCount(String keyword) {
+		return session.selectOne("memberMapper.loginOKCount",keyword);
+	}
+
+	public ArrayList<Member> loginOKSearch(SearchPaging searchpaging) {
+		List<Member> list = session.selectList("memberMapper.loginOKSearch",searchpaging);
+		return (ArrayList<Member>)list;
 	}
 
 	 

@@ -62,8 +62,12 @@
 		<interceptor>
 			<mapping path="/group.do" />
 			<mapping path="/selectGroup.do" />
-			<mapping path="/chat/" />
-			<mapping path="/recipe/**" />
+			<mapping path="/ListView.do" />
+			<mapping path="/room.do" />
+			<mapping path="/rooms.do" />
+			<mapping path="/groupgal.do" />
+			<mapping path="/groupMemberManagement.do" />
+			<mapping path="/bdetail.do/**"/>
 			<beans:bean
 				class="com.andamiro.gammi.common.intercepter.LoginCheckIntercepter"
 				id="loginCheckIntercepter" />

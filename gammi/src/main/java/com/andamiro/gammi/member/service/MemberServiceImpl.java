@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.andamiro.gammi.common.Paging;
+import com.andamiro.gammi.common.SearchPaging;
 import com.andamiro.gammi.member.dao.MemberDao;
 import com.andamiro.gammi.member.vo.Member;
+import com.andamiro.gammi.notice.vo.Notice;
 
 @Service("memberService")
 public class MemberServiceImpl implements MemberService{
@@ -85,6 +87,26 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public int aupdateMember(Member member) {
 		return memberDao.aupdateMember(member);
+	}
+
+	@Override
+	public int userIDSearchCount(String keyword) {
+		return memberDao.userIDSearchCount(keyword);
+	}
+
+	@Override
+	public ArrayList<Member> userIDSearch(SearchPaging searchpaging) {
+		return memberDao.userIDSearch(searchpaging);
+	}
+
+	@Override
+	public int loginOKCount(String keyword) {
+		return memberDao.loginOKCount(keyword);
+	}
+
+	@Override
+	public ArrayList<Member> loginOKSearch(SearchPaging searchpaging) {
+		return memberDao.loginOKSearch(searchpaging);
 	}
 
 
