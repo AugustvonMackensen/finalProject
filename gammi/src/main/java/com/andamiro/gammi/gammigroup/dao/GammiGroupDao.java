@@ -16,7 +16,7 @@ import com.andamiro.gammi.gammigroup.vo.GroupMember;
 public class GammiGroupDao {
 	@Autowired
 	private SqlSessionTemplate session;
-
+ 
 	public ArrayList<GammiGroup> groupAllList(Paging paging) {
 		List<GammiGroup> list =session.selectList("groupMapper.selectAllList",paging); 
 		return (ArrayList<GammiGroup>)list;
@@ -104,6 +104,37 @@ public class GammiGroupDao {
 
 	public int deleteGroup(GammiGroup group) {
 		return session.delete("groupMapper.deleteGroup",group);
+	}
+
+	public int updateGroupok(GammiGroup group) {
+		return session.update("groupMapper.updateGroupok",group);
+	}
+
+	public int groupOKCount(String keyword) {
+		return session.selectOne("groupMapper.groupOKCount", keyword);
+	}
+
+	public ArrayList<GammiGroup> groupOKSearch(SearchPaging searchpaging) {
+		List<GammiGroup> list =session.selectList("groupMapper.groupOKSearch", searchpaging); 
+		return (ArrayList<GammiGroup>)list;
+	}
+
+	public int admin_groupListCount() {
+		return session.selectOne("groupMapper.admin_groupListCount");
+	}
+
+	public ArrayList<GammiGroup> admin_groupList(Paging paging) {
+		List<GammiGroup> list =session.selectList("groupMapper.admin_groupList", paging); 
+		return (ArrayList<GammiGroup>)list;
+	}
+
+	public int admin_ownerCount(String keyword) {
+		return session.selectOne("groupMapper.admin_ownerCount", keyword);
+	}
+
+	public ArrayList<GammiGroup> admin_ownerSearch(SearchPaging searchpaging) {
+		List<GammiGroup> list =session.selectList("groupMapper.admin_ownerSearch", searchpaging); 
+		return (ArrayList<GammiGroup>)list;
 	}
 
 }

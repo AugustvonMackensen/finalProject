@@ -14,7 +14,7 @@
 		<result property="group_ok" column="group_ok" />
 		<result property="total_mem" column="total_mem" />
 	</resultMap>
-	
+	 
 	<resultMap type="GroupMember" id="GMList">
 		<id property="join_no" column="join_no" />
 		<result property="group_no" column="group_no" />
@@ -178,6 +178,65 @@
 	set member_grade = 2, member_grade_date = default
 	where group_no=#{group_no} and m_id = #{m_id}
 	</update>
+	
+	<!-- 모임 제한 변경 -->
+	<update id="updateGroupok" parameterType="GammiGroup">
+	update gammigroup
+	set group_ok = #{group_ok}
+	where group_name = #{group_name}
+	</update>
+	
+	<!-- admin 모임관리 전체 갯수 -->
+	<select id ="admin_groupListCount" resultType="_int" parameterType="string">
+	select count(*) from GAMMIGROUP
+	</select>
+	
+	<!-- admin 모임관리 전체 리스트 -->
+	<select id="admin_groupList" resultType="GammiGroup" parameterType="Paging">
+	<![CDATA[
+	select *
+	from (select rownum rnum, group_no, GROUP_OWNER, GROUP_NAME,GROUP_DATE, GROUP_INFO, GROUP_IMG, GROUP_OK
+	from gammigroup
+	order by group_date)
+	where rnum >= #{startRow} and rnum <= #{endRow}
+	]]>
+	</select>
+	
+	<!-- 모임제한 갯수 -->
+	<select id ="groupOKCount" resultType="_int" parameterType="string">
+	select count(*) from GAMMIGROUP
+	where group_ok =#{ keyword }
+	</select>
+	
+	<!-- 모임제한 리스트 -->
+	<select id="groupOKSearch" resultType="GammiGroup" parameterType="SearchPaging">
+	<![CDATA[
+	select *
+	from (select rownum rnum, group_no, GROUP_OWNER, GROUP_NAME,GROUP_DATE, GROUP_INFO, GROUP_IMG, GROUP_OK
+	from gammigroup
+	where group_ok =#{ keyword }
+	order by group_date)
+	where rnum >= #{startRow} and rnum <= #{endRow}
+	]]>
+	</select>
+	
+	<!-- admin 그룹장 검색 갯수 -->
+	<select id ="admin_ownerCount" resultType="_int" parameterType="string">
+	select count(*) from GAMMIGROUP
+	where group_owner =#{ keyword }
+	</select>
+	
+	<!-- admin 그룹장 검색 리스트 -->
+	<select id="admin_ownerSearch" resultType="GammiGroup" parameterType="SearchPaging">
+	<![CDATA[
+	select *
+	from (select rownum rnum, group_no, GROUP_OWNER, GROUP_NAME,GROUP_DATE, GROUP_INFO, GROUP_IMG, GROUP_OK
+	from gammigroup
+	where group_owner =#{ keyword }
+	order by group_date)
+	where rnum >= #{startRow} and rnum <= #{endRow}
+	]]>
+	</select>
 </mapper>
 
 
