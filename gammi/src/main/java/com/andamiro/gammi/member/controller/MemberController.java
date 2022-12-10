@@ -8,14 +8,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -347,15 +353,17 @@ public class MemberController {
 		}
 		
 		//로그인 제한/가능 변경 처리용
-		@RequestMapping("loginok.do")
-		public String changeLoginOKMethod(Member member, Model model) {
-			logger.info("loginok.do : " + member.getM_id() + ", " + member.getLogin_ok());
-				
+		@RequestMapping(value="loginok.do", method=RequestMethod.POST)
+		public ResponseEntity<String> changeLoginOKMethod(@RequestBody String param) throws ParseException {
+			JSONParser jparser = new JSONParser();
+			JSONObject json = (JSONObject)jparser.parse(param);
+			Member member =new Member();
+			member.setM_id((String)json.get("m_id"));
+			member.setLogin_ok((String)json.get("login_ok"));
 			if(memberService.updateLoginok(member) > 0) {
-				return "redirect:mlist.do";
+				return new ResponseEntity<String>("success", HttpStatus.OK);
 			} else {
-				model.addAttribute("message", "로그인 제한/허용 처리 오류");
-				return "common/error";
+				return new ResponseEntity<String>("failed", HttpStatus.REQUEST_TIMEOUT);
 			}
 		}
 		   

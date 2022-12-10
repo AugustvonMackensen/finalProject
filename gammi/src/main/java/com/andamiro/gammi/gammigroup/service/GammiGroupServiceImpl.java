@@ -106,5 +106,40 @@ public class GammiGroupServiceImpl implements GammiGroupService{
 	public int deleteGroup(GammiGroup group) {
 		return dao.deleteGroup(group);
 	}
+
+	@Override
+	public int updateGroupok(GammiGroup group) {
+		return dao.updateGroupok(group);
+	}
+
+	@Override
+	public int groupOKCount(String upperCase) {
+		return dao.groupOKCount(upperCase);
+	}
+
+	@Override
+	public ArrayList<GammiGroup> groupOKSearch(SearchPaging searchpaging) {
+		return dao.groupOKSearch(searchpaging);
+	}
+
+	@Override
+	public int admin_groupListCount() {
+		return dao.admin_groupListCount();
+	}
+
+	@Override
+	public ArrayList<GammiGroup> admin_groupList(Paging paging) {
+		return dao.admin_groupList(paging);
+	}
+
+	@Override
+	public int admin_ownerCount(String keyword) {
+		return dao.admin_ownerCount(keyword);
+	}
+
+	@Override
+	public ArrayList<GammiGroup> admin_ownerSearch(SearchPaging searchpaging) {
+		return dao.admin_ownerSearch(searchpaging);
+	}
 	
 }

@@ -14,6 +14,8 @@ import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,7 +26,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.andamiro.gammi.chatting.vo.GroupNotice;
 import com.andamiro.gammi.common.Paging;
 import com.andamiro.gammi.common.SearchPaging;
 import com.andamiro.gammi.gammigroup.service.GammiGroupService;
@@ -317,5 +318,144 @@ public class GammiGroupController {
 			}
 			service.deleteGroup(group);
 			return "redirect:group.do";
+		}
+		
+		//모임 제한/가능 변경 처리용
+		@RequestMapping(value="groupok.do", method=RequestMethod.POST)
+		public ResponseEntity<String> changeLoginOKMethod(@RequestBody String param) throws ParseException {
+			GammiGroup group = new GammiGroup();
+			JSONParser jparser = new JSONParser();
+			JSONObject json = (JSONObject)jparser.parse(param);
+			group.setGroup_name((String)json.get("group_name"));
+			group.setGroup_ok((String)json.get("group_ok"));
+			if(service.updateGroupok(group) > 0) {
+				return new ResponseEntity<String>("success", HttpStatus.OK);
+			} else {
+				return new ResponseEntity<String>("failed", HttpStatus.REQUEST_TIMEOUT);
+			}
+		}
+		
+		//admin 회원정보 내 그룹제한
+		@RequestMapping("glist.do")
+		public ModelAndView memberListViewMethod(@RequestParam(name="page", required=false) String page, ModelAndView mv) {
+			int currentPage = 1;
+			if(page != null) {
+				currentPage = Integer.parseInt(page);
+			}
+			int limit = 10;  
+			int listCount = service.admin_groupListCount();
+			int maxPage = (int)((double)listCount / limit + 0.9);
+			int startPage = (currentPage%10==0)? currentPage-9 :  (currentPage / 10) * 10 + 1 ;
+			int endPage = startPage + 10 - 1;
+			if(maxPage < endPage) {
+				endPage = maxPage;
+			}
+			
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+			Paging paging = new Paging(startRow, endRow);
+			
+			//페이징 계산 처리 끝 ---------------------------------------
+			
+			ArrayList<GammiGroup> list = service.admin_groupList(paging);
+			
+			if(list != null && list.size() > 0) {
+				mv.addObject("list", list);
+				mv.addObject("listCount", listCount);
+				mv.addObject("maxPage", maxPage);
+				mv.addObject("currentPage", currentPage);
+				mv.addObject("startPage", startPage);
+				mv.addObject("endPage", endPage);
+				mv.addObject("limit", limit);
+
+				mv.setViewName("member/admin_group");
+			}else {
+				mv.addObject("message", 
+						currentPage + " 회원 목록 조회 실패.");
+				mv.setViewName("common/error");
+			}
+			return mv;
+		}
+		//admin 모임관리(모임장아이디 검색)
+		@RequestMapping(value="gsearowner.do", method=RequestMethod.GET)
+		public String gsearowner(
+				@RequestParam("keyword") String keyword, 
+				@RequestParam(name="page", required=false) String page,
+				Model model) {
+			int currentPage = 1;
+			if(page != null) {
+				currentPage = Integer.parseInt(page);
+			}
+			
+			int limit = 10;
+			int listCount = service.admin_ownerCount(keyword);
+			int maxPage = (int)((double)listCount / limit + 0.9);
+			int startPage = (currentPage%10==0)? currentPage-9 :  (currentPage / 10) * 10 + 1 ;
+			int endPage = startPage + 10 - 1;
+			if(maxPage < endPage) {
+				endPage = maxPage;
+			}
+			
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+			
+			//페이징 계산 처리 끝 ---------------------------------------
+			SearchPaging searchpaging = new SearchPaging(keyword, startRow, endRow);
+			
+			ArrayList<GammiGroup> list = service.admin_ownerSearch(searchpaging);
+			
+			if(list.size() > 0) {
+				model.addAttribute("list", list);
+				model.addAttribute("listCount", listCount);
+				model.addAttribute("maxPage", maxPage);
+				model.addAttribute("currentPage", currentPage);
+				model.addAttribute("startPage", startPage);
+				model.addAttribute("endPage", endPage);
+				model.addAttribute("limit", limit);
+				model.addAttribute("action", "owner");
+				model.addAttribute("keyword", keyword);
+			}
+			return "member/admin_group";
+		}
+		
+		//admin 모임관리(제한여부 검색)
+		@RequestMapping(value="gsearchGOk.do", method=RequestMethod.GET)
+		public String gsearchGok(
+				@RequestParam("keyword") String keyword, 
+				@RequestParam(name="page", required=false) String page,
+				Model model) {
+			int currentPage = 1;
+			if(page != null) {
+				currentPage = Integer.parseInt(page);
+			}
+			int limit = 10;
+			int listCount = service.groupOKCount(keyword.toUpperCase());
+			int maxPage = (int)((double)listCount / limit + 0.9);
+			int startPage = (currentPage%10==0)? currentPage-9 :  (currentPage / 10) * 10 + 1 ;
+			int endPage = startPage + 10 - 1;
+			if(maxPage < endPage) {
+				endPage = maxPage;
+			}
+			
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+			
+			//페이징 계산 처리 끝 ---------------------------------------
+			SearchPaging searchpaging = new SearchPaging(keyword.toUpperCase(), startRow, endRow);
+			
+			ArrayList<GammiGroup> list = service.groupOKSearch(searchpaging);
+			
+			if(list.size() > 0) {
+				model.addAttribute("list", list);
+				model.addAttribute("listCount", listCount);
+				model.addAttribute("maxPage", maxPage);
+				model.addAttribute("currentPage", currentPage);
+				model.addAttribute("startPage", startPage);
+				model.addAttribute("endPage", endPage);
+				model.addAttribute("limit", limit);
+				model.addAttribute("action", "groupok");
+				model.addAttribute("keyword", keyword);
+			}
+			return "member/admin_group";
 		}
 }

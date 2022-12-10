@@ -43,5 +43,20 @@ public interface GammiGroupService {
 		public ArrayList<GammiGroup> selectSearchOwner(SearchPaging searchpaging);
 		//그룹 삭제
 		public int deleteGroup(GammiGroup group);
+		//모임 제한
+		public int updateGroupok(GammiGroup group);
+		
+		//admin 모임관리 전체 페이징처리
+		public int admin_groupListCount();
+		public ArrayList<GammiGroup> admin_groupList(Paging paging);
+		
+		//모임제한여부 페이징처리
+		public int groupOKCount(String upperCase);
+		public ArrayList<GammiGroup> groupOKSearch(SearchPaging searchpaging);
+		
+		//admin 그룹장 검색 페이징처리
+		public int admin_ownerCount(String keyword);
+		public ArrayList<GammiGroup> admin_ownerSearch(SearchPaging searchpaging);
+		
 		
 }
