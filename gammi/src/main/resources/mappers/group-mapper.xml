@@ -54,7 +54,7 @@
 		  and group_no in (select group_no from groupmember where m_id= #{m_id})
 	</if>
  	group by group_no ) b on a.group_no = b.group_no
-	order by a.group_date desc))
+	order by a.group_date desc) where group_ok ='Y')
 	<![CDATA[
 	where rnum >= #{startRow} and rnum <= #{endRow}
 	]]>
@@ -87,7 +87,7 @@
 	join groupmember b on a.group_no = b.group_no
 	where a.group_name like '%' || #{keyword} || '%'
 	group by a.group_no,a.GROUP_OWNER, a.GROUP_NAME, a.GROUP_DATE, a.GROUP_INFO, a.GROUP_IMG, a.GROUP_OK
-	order by a.group_date))
+	order by a.group_date) where group_ok ='Y')
 			where rnum >= #{startRow} and rnum <= #{endRow}
 		]]>
 	</select>
@@ -101,7 +101,7 @@
 	join groupmember b on a.group_no = b.group_no
 	where a.group_owner like '%' || #{keyword} || '%'
 	group by a.group_no,a.GROUP_OWNER, a.GROUP_NAME, a.GROUP_DATE, a.GROUP_INFO, a.GROUP_IMG, a.GROUP_OK
-	order by a.group_date))
+	order by a.group_date) where group_ok ='Y')
 			where rnum >= #{startRow} and rnum <= #{endRow}
 		]]>
 	</select>

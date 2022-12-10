@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletResponse;
 
 import com.andamiro.gammi.common.Paging;
+import com.andamiro.gammi.common.SearchPaging;
 import com.andamiro.gammi.member.vo.Member;
+import com.andamiro.gammi.notice.vo.Notice;
 
 public interface MemberService {
  
@@ -36,6 +38,14 @@ public interface MemberService {
 	int updateLoginok(Member member);
 
 	int aupdateMember(Member member);
+
+	int userIDSearchCount(String keyword);
+
+	ArrayList<Member> userIDSearch(SearchPaging searchpaging);
+
+	int loginOKCount(String keyword);
+
+	ArrayList<Member> loginOKSearch(SearchPaging searchpaging);
 
 
 

@@ -24,9 +24,11 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.andamiro.gammi.common.Paging;
+import com.andamiro.gammi.common.SearchPaging;
 import com.andamiro.gammi.gammigroup.service.GammiGroupService;
 import com.andamiro.gammi.member.service.MemberService;
 import com.andamiro.gammi.member.vo.Member;
+import com.andamiro.gammi.notice.vo.Notice;
 
 @Controller
 public class MemberController {
@@ -220,20 +222,15 @@ public class MemberController {
 		// 회원리스트
 		@RequestMapping("mlist.do")
 		public ModelAndView memberListViewMethod(@RequestParam(name="page", required=false) String page, ModelAndView mv) {
-			
 			int currentPage = 1;
 			if(page != null) {
 				currentPage = Integer.parseInt(page);
 			}
-			
 			int limit = 10;  
 			int listCount = memberService.selectListCount();
-			
 			int maxPage = (int)((double)listCount / limit + 0.9);
-
-			int startPage = (currentPage / 10) * 10 + 1;
+			int startPage = (currentPage%10==0)? currentPage-9 :  (currentPage / 10) * 10 + 1 ;
 			int endPage = startPage + 10 - 1;
-			
 			if(maxPage < endPage) {
 				endPage = maxPage;
 			}
@@ -263,6 +260,90 @@ public class MemberController {
 			}
 			
 			return mv;
+		}
+		
+		//admin 회원관리(회원아이디 검색)
+		@RequestMapping(value="msearchId.do", method=RequestMethod.GET)
+		public String userIDMethod(
+				@RequestParam("keyword") String keyword, 
+				@RequestParam(name="page", required=false) String page,
+				Model model) {
+			int currentPage = 1;
+			if(page != null) {
+				currentPage = Integer.parseInt(page);
+			}
+			
+			int limit = 10;
+			int listCount = memberService.userIDSearchCount(keyword);
+			int maxPage = (int)((double)listCount / limit + 0.9);
+			int startPage = (currentPage%10==0)? currentPage-9 :  (currentPage / 10) * 10 + 1 ;
+			int endPage = startPage + 10 - 1;
+			if(maxPage < endPage) {
+				endPage = maxPage;
+			}
+			
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+			
+			//페이징 계산 처리 끝 ---------------------------------------
+			SearchPaging searchpaging = new SearchPaging(keyword, startRow, endRow);
+			
+			ArrayList<Member> list = memberService.userIDSearch(searchpaging);
+			
+			if(list.size() > 0) {
+				model.addAttribute("list", list);
+				model.addAttribute("listCount", listCount);
+				model.addAttribute("maxPage", maxPage);
+				model.addAttribute("currentPage", currentPage);
+				model.addAttribute("startPage", startPage);
+				model.addAttribute("endPage", endPage);
+				model.addAttribute("limit", limit);
+				model.addAttribute("action", "userid");
+				model.addAttribute("keyword", keyword);
+			}
+			return "member/admin";
+		}
+		
+		//admin 회원관리(제한여부 검색)
+		@RequestMapping(value="msearchLogin.do", method=RequestMethod.GET)
+		public String loginOKMethod(
+				@RequestParam("keyword") String keyword, 
+				@RequestParam(name="page", required=false) String page,
+				Model model) {
+			int currentPage = 1;
+			if(page != null) {
+				currentPage = Integer.parseInt(page);
+			}
+			logger.info("msearchLogin");
+			int limit = 10;
+			int listCount = memberService.loginOKCount(keyword.toUpperCase());
+			int maxPage = (int)((double)listCount / limit + 0.9);
+			int startPage = (currentPage%10==0)? currentPage-9 :  (currentPage / 10) * 10 + 1 ;
+			int endPage = startPage + 10 - 1;
+			if(maxPage < endPage) {
+				endPage = maxPage;
+			}
+			
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+			
+			//페이징 계산 처리 끝 ---------------------------------------
+			SearchPaging searchpaging = new SearchPaging(keyword.toUpperCase(), startRow, endRow);
+			
+			ArrayList<Member> list = memberService.loginOKSearch(searchpaging);
+			
+			if(list.size() > 0) {
+				model.addAttribute("list", list);
+				model.addAttribute("listCount", listCount);
+				model.addAttribute("maxPage", maxPage);
+				model.addAttribute("currentPage", currentPage);
+				model.addAttribute("startPage", startPage);
+				model.addAttribute("endPage", endPage);
+				model.addAttribute("limit", limit);
+				model.addAttribute("action", "login");
+				model.addAttribute("keyword", keyword);
+			}
+			return "member/admin";
 		}
 		
 		//로그인 제한/가능 변경 처리용

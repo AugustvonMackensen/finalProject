@@ -232,19 +232,25 @@
 					</div>
 					<div class="col-lg-4 col-md-4">
                   <div class="sidebar__item">
-                     <div class="sidebar__about__item">
+                     <div class="sidebar__feature__item">
                         <div class="sidebar__item__title">
-                           <h6 style="font-family: 'CookieRun'; font-size: 25px">한식뉴스</h6>
+                           <h6 style="font-family: 'CookieRun'; font-size: 25px">최신
+                              한식뉴스</h6>
                         </div>
-                        <img class="sidebar_about"
-                           src="resources/img/sidebar/sidebar-about.jpg" alt="">
-                        <h6>
-                           Hi every one! I,m <span>Lena Mollein.</span>
-                        </h6>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                           sed do eiusmod tempor incididunt ut labore et dolore magna
-                           aliqua.</p>
-                        <a href="#" class="primary-btn">Read more</a>
+                        <div class="sidebar__feature__item__list">
+                           <c:forEach var = "news" items="${ news_list }" varStatus="notice_status">
+                           <div class="sidebar__feature__item__list__single">
+                              <div class="post__meta">
+                                 <h4>0${ notice_status.count }</h4>
+                              </div>
+                              <div class="post__text">
+                                 <h5 style="font-family: 'CookieRun'; font-size: 20px">
+                                    <a target="_blank" href="${ news.news_link }">${ news.news_title }</a>
+                                 </h5>
+                              </div>
+                           </div>
+                           </c:forEach>
+                        </div>
                      </div>
 
                      <div class="sidebar__feature__item">

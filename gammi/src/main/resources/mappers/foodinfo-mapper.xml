@@ -16,7 +16,7 @@
 		from foodinfo
 		cross join (select recipe_img
 		from recipe
-		where recipe_title like '%' || #{keyword} || '%' order by recipe_readcount)
+		where recipe_title like '%' || #{keyword} || '%' order by recipe_readcount desc)
 		where food_name =#{keyword})
 		where rnum =1
 		order by food_no

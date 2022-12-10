@@ -98,7 +98,49 @@
 	</update>
 	
 	
-
+	
+	<!-- admin 회원정보 조회 -->
+	<select id="userIDSearchCount" parameterType="string" resultType="_int">
+	select count(*)
+	from member
+	where m_id like '%' || #{ keyword } || '%'
+	</select>
+	
+	<select id="userIDSearch" parameterType="SearchPaging" resultType="Member">
+	<![CDATA[
+	select *  
+			from (select rownum rnum, m_name, m_id, 
+						  m_nickname, m_pw, 
+						  m_email,  
+			               m_birth, admin, 
+			               login_ok
+			       from (select * from member
+			       		   where m_id like '%' || #{ keyword } || '%'
+			               order by m_id desc )) 
+			where rnum >= #{startRow} and rnum <= #{endRow}
+	]]>
+	</select>
+	
+	<select id="loginOKCount" parameterType="string" resultType="_int">
+	select count(*)
+	from member
+	where login_ok like '%' || #{ keyword } || '%'
+	</select>
+	
+	<select id="loginOKSearch" parameterType="SearchPaging" resultType="Member">
+	<![CDATA[
+	select *  
+			from (select rownum rnum, m_name, m_id, 
+						  m_nickname, m_pw, 
+						  m_email,  
+			               m_birth, admin, 
+			               login_ok
+			       from (select * from member
+			       		   where login_ok like '%' || #{ keyword } || '%'
+			               order by m_id desc )) 
+			where rnum >= #{startRow} and rnum <= #{endRow}
+	]]>
+	</select>
 </mapper>
 
 
