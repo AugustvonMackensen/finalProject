@@ -64,6 +64,7 @@
 <div class="bgc">
 <section class="notice">
     <div class="page-title">
+        <br><br>
         <div class="container">
             <h4 style=" font-family: 'Noto Sans KR', sans-serif; text-align: center;">전체 그룹수 :${listCount} </h4>
         </div>
@@ -74,7 +75,7 @@
           <div class="container">
               <div class="search-window">
                     <div style="display:flex;  justify-content: center;  margin: 0px 0px 0px 200px;">
-                        <select id="test" onchange="Change()"  style="position: relative; border: 1px solid #ccc; left: -198px; width:5rem; height:3rem;  text-align:center">
+                        <select id="test" onchange="Change()"  style="position: relative; border: 1px solid #ccc; left: -198px; width:11rem; height:3rem;  text-align:center">
                         <option value="1">그룹장아이디</option>
                         <option value="2">모임제한여부검색(Y,N)</option>
                          </select>
@@ -193,7 +194,7 @@
 	</c:if>
 </div>
 </c:if>
-
+<br>
 <c:if test="${ !empty action }">
 
 <!-- 검색 목록 페이징 처리 -->
@@ -308,6 +309,9 @@
 		<a href="${ nsl }">[맨끝]</a> &nbsp;
 	</c:if>
 </div>
+
 </c:if> <!-- 검색 목록 페이징 처리 -->
+<br>
+<c:import url="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>
