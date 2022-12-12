@@ -8,7 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.json.simple.JSONObject;
+import org.codehaus.jackson.JsonNode;
+import org.json.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
@@ -33,8 +34,8 @@ import com.andamiro.gammi.common.Paging;
 import com.andamiro.gammi.common.SearchPaging;
 import com.andamiro.gammi.gammigroup.service.GammiGroupService;
 import com.andamiro.gammi.member.service.MemberService;
+
 import com.andamiro.gammi.member.vo.Member;
-import com.andamiro.gammi.notice.vo.Notice;
 
 @Controller
 public class MemberController {
@@ -53,6 +54,14 @@ public class MemberController {
 	
 	@Autowired
 	private GammiGroupService service;
+	
+	@Autowired
+	private KakaoLoginAuth kakaoLoginAuth;
+	
+	@Autowired
+	private void setKakaoLoginAuth(KakaoLoginAuth kakaoLoginAuth) {
+		this.kakaoLoginAuth = kakaoLoginAuth;
+	}
 	
 	// 회원가입 이동 
 	@RequestMapping("enrollPage.do")
@@ -77,6 +86,8 @@ public class MemberController {
 	public String movePwdRecoveryPage() {
 		return "member/findPw";
 	}
+	
+	
 	
 	//수정페이지 이동 
 	@RequestMapping("moveup.do")
@@ -507,10 +518,5 @@ public class MemberController {
 			}
 			
 		}
-		
-		//카카오 로그인 
-		
-		
-		
-		
+
 }
