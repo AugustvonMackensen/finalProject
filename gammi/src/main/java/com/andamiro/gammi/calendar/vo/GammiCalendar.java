@@ -14,6 +14,21 @@ public class GammiCalendar implements Serializable{
 	private Date start_date;
 	private Date end_date;
 	private int allday;
+	private String dbStart_date;
+	private String dbEnd_date;
+	
+	public String getDbStart_date() {
+		return dbStart_date;
+	}
+	public void setDbStart_date(String dbStart_date) {
+		this.dbStart_date = dbStart_date;
+	}
+	public String getDbEnd_date() {
+		return dbEnd_date;
+	}
+	public void setDbEnd_date(String dbEnd_date) {
+		this.dbEnd_date = dbEnd_date;
+	}
 	public GammiCalendar() {
 		super();
 	}
