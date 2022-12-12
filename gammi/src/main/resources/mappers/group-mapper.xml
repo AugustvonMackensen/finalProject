@@ -223,7 +223,7 @@
 	<!-- admin 그룹장 검색 갯수 -->
 	<select id ="admin_ownerCount" resultType="_int" parameterType="string">
 	select count(*) from GAMMIGROUP
-	where group_owner =#{ keyword }
+	where group_owner like '%' || #{keyword} || '%'
 	</select>
 	
 	<!-- admin 그룹장 검색 리스트 -->
@@ -232,7 +232,7 @@
 	select *
 	from (select rownum rnum, group_no, GROUP_OWNER, GROUP_NAME,GROUP_DATE, GROUP_INFO, GROUP_IMG, GROUP_OK
 	from gammigroup
-	where group_owner =#{ keyword }
+	where group_owner like '%' || #{keyword} || '%'
 	order by group_date)
 	where rnum >= #{startRow} and rnum <= #{endRow}
 	]]>

@@ -21,4 +21,15 @@
 	where group_no = #{ gno }
 	</select>
 	
+	<!-- 날짜 데이터 저장 -->
+	<insert id="saveCal" parameterType="GammiCalendar">
+	insert into gammicalendar
+	values(default, #{group_no},#{cal_writer},#{cal_title},' ',to_date(#{dbStart_date},'YYYY-MM-DD HH24:MI:SS'), to_date(#{dbEnd_date},'YYYY-MM-DD HH24:MI:SS'),#{allday})
+	</insert>
+	
+	<!-- 날짜 데이터 제거 -->
+	<delete id="removeCal" parameterType="GammiCalendar">
+	delete from gammicalendar
+	where cal_id=#{cal_id}
+	</delete>
 </mapper>

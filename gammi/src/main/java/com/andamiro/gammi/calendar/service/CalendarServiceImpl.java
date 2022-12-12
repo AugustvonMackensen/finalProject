@@ -18,4 +18,14 @@ public class CalendarServiceImpl implements CalendarService{
 		return dao.calenList(gno);
 	}
 
+	@Override
+	public int saveCal(GammiCalendar cal) {
+		return dao.saveCal(cal);
+	}
+
+	@Override
+	public int removeCal(GammiCalendar cal) {
+		return dao.removeCal(cal);
+	}
+
 }

@@ -24,6 +24,28 @@ public class CalendarDao {
 		}
 		
 	}
+
+	public int saveCal(GammiCalendar cal) {
+		int result=0;
+		try {
+			result = session.insert("calendarMapper.saveCal", cal);
+		}catch(Exception e) {
+			result= -1;
+		}finally {
+			return result;
+		}
+	}
+
+	public int removeCal(GammiCalendar cal) {
+		int result=0;
+		try {
+			result = session.delete("calendarMapper.removeCal", cal);
+		}catch(Exception e) {
+			result= -1;
+		}finally {
+			return result;
+		}
+	}
 	
 }
 
