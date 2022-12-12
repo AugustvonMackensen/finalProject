@@ -25,9 +25,6 @@ import com.andamiro.gammi.search.foodinfo.vo.Foodinfo;
 import com.andamiro.gammi.search.service.SearchService;
 
 
-
-
-
 @Controller
 public class SearchController {
 
@@ -62,7 +59,7 @@ public class SearchController {
 	
 
 	@PostMapping("transmitImg.do")
-	public String transmitImg(@RequestParam("imgFile") MultipartFile file
+	public String transmitImg(@RequestParam("file") MultipartFile file
 			,HttpServletRequest request) {
 		String imgFilePath = request.getSession().getServletContext().getRealPath("/resources/uploaded_foodImage");
 		String fileName = file.getOriginalFilename();
