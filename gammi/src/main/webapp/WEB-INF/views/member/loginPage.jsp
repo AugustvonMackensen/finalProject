@@ -57,7 +57,12 @@
         
         
       </script>
-      
+      <style>
+      .sothumb {
+      width:350px;
+       height : 60px;
+      }
+      </style>
 <title></title>
 </head>
 <body>
@@ -90,20 +95,20 @@
 	<a href="${ mvfindPwd }"><p style="	font-family: 'Noto Sans KR', sans-serif;">비밀번호 찾기</p></a>
 	</div>
 	</div>
-</div>
-
-<div id="kakao_id_login" class="kakao_id_login" style="text-align: center">
+	<div id="kakao_id_login" class="kakao_id_login" style="text-align: center">
 	<a href="<c:url value='${kakaoUrl}'/>" class="cp"> 
-		<img width="230" height="60" src="${ pageContext.servletContext.contextPath }/resources/img/kakao_login.png" alt="카카오로그인">
+		<img class="sothumb"  src="${ pageContext.servletContext.contextPath }/resources/img/kakao_login.png" alt="카카오로그인">
 	</a>
 	</div>
 	
 	<div id="ndfin" style="text-align:center">
 	<a href="${naverUrl}" id='.cp_naver'>
-		<img width="230" height="60" src="${ pageContext.servletContext.contextPath }/resources/img/naver.png" alt="네이버로그인">
+		<img class="sothumb" style="width:350px; height : 60px;"  src="${ pageContext.servletContext.contextPath }/resources/img/naver.png" alt="네이버로그인">
 	</a>
 </div>
-<br>
+</div>
+
+
 	
 </div>
 </form>

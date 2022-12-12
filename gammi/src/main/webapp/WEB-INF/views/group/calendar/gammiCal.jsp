@@ -47,31 +47,49 @@
   #external-events p {
     margin: 1.5em 0;
     font-size: 11px;
-    color: #666;
+    color: #777;
   }
+  .fc .fc-daygrid-day.fc-day-today {
+    background-color: rgba(255,220,40,.15) !important;
+    background-color: var(--fc-today-bg-color,rgba(255,220,40,.15)) !important;
+}
  
   #external-events p input {
     margin: 0;
     vertical-align: middle;
   }
- 
+.fc .fc-daygrid-day-frame {
+	background : white;
+}
+.fc-scrollgrid-sync-inner{
+	background : white;
+}
+
+
   #calendar-wrap {
     margin-left: 200px;
   }
  
-  #calendar1 {
-    max-width: 1100px;
+  #calendar {
+    max-width: 1500px;
     margin: 0 auto;
   }
+  
+  
+  
+  
+  
+  .fc-day-number.fc-sat.fc-past { color:#0000FF; }     /* 토요일 */
+    .fc-day-number.fc-sun.fc-past { color:#FF0000; }    /* 일요일 */
 </style>
 </head>
 <body>
 <c:import url="/WEB-INF/views/common/menubar.jsp" />
 	<div style="background-color: #F7F8F9;">
 		<c:import url="/WEB-INF/views/common/somoimsidebar.jsp" />
-		<div style="padding: 1px 16px; height: 800px; display: flex; margin-left: 20%; max-width: 1100px;">
+		<div >
 			<!-- calendar 태그 -->
-			<div id='calendar'>
+			<div style="padding: 1px 16px; width:60%; height: 800px; display: flex; margin-left: 30%; max-width: 900px;" id="calendar">
 			</div>
 		</div>
 </div>
@@ -190,7 +208,10 @@
           headerToolbar: {
             left: 'prev,next today',
             center: 'title',
-            right: 'dayGridMonth,timeGridWeek,timeGridDay'
+            right: 'dayGridMonth,timeGridWeek,timeGridDay',
+            backgroundColor : 'rgba(255,220,40,.15) !important; var(--fc-today-bg-color,rgba(255,220,40,.15)) !important;'
+    
+ 	
           },
           initialDate: "${sysTime}", // 초기 로딩 날짜.
           navLinks: true, // can click day/week names to navigate views
@@ -237,5 +258,7 @@
     	}
 });
 </script>
+
+<c:import url="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>
