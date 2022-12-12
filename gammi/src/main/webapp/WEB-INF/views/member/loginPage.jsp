@@ -7,6 +7,57 @@
     <link rel="stylesheet" href="resources/css/login.css" type="text/css">
       <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
+<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script type="text/javascript"
+	src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js"
+	charset="utf-8"></script>
+<script type="text/javascript">
+        //애플리케이션 등록하고 발급받은 javascript 앱키를 사용해야 함
+        Kakao.init('c3ecbcd41bfe29231bd45758bb64ea58');
+        //sdk 초기화여부 판단
+        console.log(Kakao.isInitialized());
+
+        //카카오 로그인
+        function kakaoLogin() {
+          Kakao.Auth.login({
+            success: function (response) {
+              Kakao.API.request({
+                url: '/v2/user/me',
+                success: function (response) {
+                  console.log(response)
+                },
+                fail: function (error) {
+                  console.log(error)
+                },
+              })
+            },
+            fail: function (error) {
+              console.log(error);
+            },
+          })
+        }
+
+        //카카오로그아웃  
+        function kakaoLogout() {
+          if (Kakao.Auth.getAccessToken()) {
+            Kakao.API.request({
+              url: '/v1/user/unlink',
+              success: function (response) {
+                console.log(response)
+              },
+              fail: function (error) {
+                console.log(error)
+              },
+            })
+            Kakao.Auth.setAccessToken(undefined)
+          }
+        }
+       
+        
+        
+        
+      </script>
+      
 <title></title>
 </head>
 <body>
@@ -40,6 +91,20 @@
 	</div>
 	</div>
 </div>
+
+<div id="kakao_id_login" class="kakao_id_login" style="text-align: center">
+	<a href="<c:url value='${kakaoUrl}'/>" class="cp"> 
+		<img width="230" height="60" src="${ pageContext.servletContext.contextPath }/resources/img/kakao_login.png" alt="카카오로그인">
+	</a>
+	</div>
+	
+	<div id="ndfin" style="text-align:center">
+	<a href="${naverUrl}" id='.cp_naver'>
+		<img width="230" height="60" src="${ pageContext.servletContext.contextPath }/resources/img/naver.png" alt="네이버로그인">
+	</a>
+</div>
+<br>
+	
 </div>
 </form>
 <c:import url="/WEB-INF/views/common/footer.jsp" />
