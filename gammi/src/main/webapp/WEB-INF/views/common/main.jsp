@@ -43,7 +43,7 @@ $("#searchKeyword").keydown(function (key) {
 	</div>
 	<div>
 		<div class="header__logo">
-			<br> <br> <a href="./index.html"><h1
+			<br> <br> <a href="main.do"><h1
 					style="font-family: 'CookieRun'; font-size: 50px; color: white; letter-spacing: 5px;">
 					음식이 맛있다!<br>감미
 				</h1></a><br> <br> <br>
