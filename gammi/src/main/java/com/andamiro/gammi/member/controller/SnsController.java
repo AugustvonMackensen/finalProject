@@ -107,6 +107,10 @@ public class SnsController {
 		Member loginMember = memberService.selectMember(member.getM_id());
 		if (loginMember == null) {
 			int result = memberService.insertMember(member);
+			if(result<0){
+				model.addAttribute("message", "이미 존재하는 아이디입니다.");
+				return "common/error";
+			}
 		} else {
 			loginMember = member;
 		}
@@ -152,6 +156,8 @@ public class SnsController {
 			if (result <= 0) {
 				model.addAttribute("message", "카카오 로그인 등록실패");
 				return "common/error";
+			}else {
+				loginMember = memberService.selectMember(member.getM_id());
 			}
 		} else {
 			loginMember = member;

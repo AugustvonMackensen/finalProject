@@ -59,8 +59,8 @@ public class GammiGroupGalServiceImpl implements GammiGroupGalService {
 	}
 
 	@Override
-	public int selectListCount() {
-		return dao.selectListCount();
+	public int selectListCount(int gno) {
+		return dao.selectListCount(gno);
 	}
 
 	@Override

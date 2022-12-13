@@ -19,7 +19,11 @@ public class MemberDao {
 	private SqlSessionTemplate session;
 
 	public int insertMember(Member member) {
+		try {
 		return session.insert("memberMapper.insertMember",member);
+		}catch(Exception e) {
+			return -1;
+		}
 	}
 
 	public int selectDupCheckId(String m_id) {

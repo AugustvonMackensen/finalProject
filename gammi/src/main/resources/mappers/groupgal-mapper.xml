@@ -72,8 +72,8 @@
 	</select>	
 	
 	
-	<select id="selectListCount" resultType="_int">
-	select count(*) from gallery
+	<select id="selectListCount" parameterType="_int" resultType="_int">
+	select count(*) from gallery where group_no=#{gno}
 	</select>
 	
 	<select id="selectgal" parameterType="_int" resultType="GammiGroupGal">
@@ -94,7 +94,7 @@
 	   <!-- 번호로 상세보기  -->
    <select id="selectgroupgal" parameterType="_int" resultType="GammiGroupGal">
       select * from gallery
-      where gal_no = #{ gal_no }
+      where gal_no = #{ gal_no } 
    </select>
    	<!-- 이미지 호출용 -->
    	<select id ="selectgal_img" parameterType="_int" resultType="GalleryImg">

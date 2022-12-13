@@ -1,16 +1,12 @@
 package com.andamiro.gammi.notice.controller;
 
 import java.io.File;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,13 +15,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.andamiro.gammi.common.Paging;
-import com.andamiro.gammi.common.SearchDate;
 import com.andamiro.gammi.common.SearchPaging;
+import com.andamiro.gammi.member.service.MemberService;
 import com.andamiro.gammi.member.vo.Member;
 import com.andamiro.gammi.notice.service.NoticeService;
 import com.andamiro.gammi.notice.vo.Notice;
@@ -39,6 +34,8 @@ public class NoticeController {
 	@Autowired
 	private NoticeService noticeService;
 	
+	@Autowired
+	private MemberService memberService;
 	// 뷰 페이지 이동 처리용 ---------------------------------------------------------------
 	
 	// 새 공지글 등록 페이지로 이동
@@ -267,6 +264,7 @@ public class NoticeController {
 			model.addAttribute("notice", notice);
 			
 			Member loginMember = (Member)session.getAttribute("loginMember");
+			loginMember = memberService.selectMember(loginMember.getM_id());
 			if(loginMember != null && loginMember.getAdmin().equals("Y")) {
 				//관리자가 상세보기를 요청했을 때
 				return "notice/noticeAdminDetailView";
