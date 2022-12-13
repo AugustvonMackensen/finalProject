@@ -1,54 +1,85 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title></title>
+<style>
+#container {
+	margin: 0px auto;
+	width: 500px;
+	height: 375px;
+}
+
+#videoElement {
+	width: 500px;
+	height: 375px;
+}
+
+#canvas {
+	width: 500px;
+	border: 1px solid;
+}
+
+.rightbtn3 {
+	margin: 20px 0px 20px 0px;
+	font-size: 12px;
+	width: 5rem;
+	border-radius: 10px;
+	height: 3.2rem;
+	background-color: #fff;
+	color: #7c7474;;
+	border: 1px solid #aaa;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+</style>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
-<body>
-<div class="cam-wrap">
-	<video id="video" playsinline autoplay></video>
-</div>
 <br>
-<button id="snap">촬영하기</button><br>
-<canvas id="canvas" width="640" height="480"></canvas>
+<br>
+<div class="bgc">
+	<div style="max-width: 1130px; margin: 0 auto;">
+		<br>
+		<h4 style="font-family: 'CookieRun';">
+			사진을 찍어<br> 음식을 검색해보세요!
+		</h4>
+		<body>
+			<c:import url="/WEB-INF/views/common/menubar.jsp" />
+			<div id="container">
+				<video autoplay="true" id="videoElement">
+
+				</video>
+			</div>
+			<br>
+
+			<div style="margin: 0 auto; width: 500px">
+				<canvas id="canvas" width="640" height="480"></canvas>
+				<button class="rightbtn7" id="snap">촬영하기</button>
+				&nbsp;
+				<button class="rightbtn3"
+					onclick="javascript:location.href='main.do';">홈으로</button>
+			</div>
+	</div>
+</div>
 <script>
-'use strict';
-
-const video = document.getElementById('video');
-const canvas = document.getElementById('canvas');
-const snap = document.getElementById('snap');
-
-const constraints = {
-		audio: false,
-		video: {
-			width: 640, height: 480
-			
-		}
-};
-
-//카메라 접속
-async function init(){
-	try{
-		const stream = await navigator.mediaDevices.getUserMedia(constraints);
-		handleSuccess(stream);
+var video = document.querySelector("#videoElement");
+ 
+if (navigator.mediaDevices.getUserMedia) {
+	  navigator.mediaDevices.getUserMedia({ video: true })
+	    .then(function (stream) {
+	      video.srcObject = stream;
+	    })
+	    .catch(function (err0r) {
+	      console.log("Something went wrong!");
+	    });
 	}
-	catch(e){
-		alert("카메라가 연결되지 않았거나 카메라 연결 시 문제가 있습니다.");
-	}
-}
-
-//카메라 접속 성공 시 
-function handleSuccess(stream){
-	window.stream = stream;
-	video.srcObject = stream;
-}
-
-init();
-
+	
+	
 //이미지 그리기
+const snap = document.getElementById("snap");
+const canvas = document.getElementById('canvas');
 var context = canvas.getContext('2d');
 snap.onclick = function(){
 	context.drawImage(video, 0, 0, 640, 480);
@@ -72,8 +103,7 @@ snap.onclick = function(){
 		}
 	});
 }
-
-
 </script>
+<c:import url="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>
