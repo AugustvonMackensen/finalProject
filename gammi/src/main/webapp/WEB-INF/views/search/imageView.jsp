@@ -21,31 +21,43 @@ $(function(){
 		$('#imgFile').click();
 	});
 	
+
 	const dropzone = new Dropzone('div.dropzone', {
 		url: 'transmitImg.do',
 		method: 'post',
 		maxFiles: 1,
+		parallelUploads: 1,
+		autoQueue: true,
 		uploadMultiple: false,
 		addRemoveLinks: false,
-		timeout: 300000,
 		acceptedFiles: '.jpeg, .jpg, .png, .JPEG, .PNG, .JPG',
 		init: function(){
 			var myDropZone = this;
 			
 			//학습 성공시 처리할 내역
-			this.on('success', function(file){
-				console.log("드래그 앤 드랍 및 학습 성공");
+			this.on('success', function(data, response){
+				var keyword = response;
+				const url = "result.do?keyword=" + keyword;
+				location.href = url;
+				//const encoded = encodeURI(url);
+				//location.href = encoded;
 			});
-			
+						
 			//학습 실패시
-			this.on('error', function(file){
+			this.on('error', function(data, response){
 				alert("에러가 발생하였습니다.");
 			});
-		}
+		}	
 	});
+	
 });
 
 function fileTransmit(fileObj){
+	var form = $('#dnd');
+	form.submit();
+}
+
+function upFileTransmit(fileObj){
 	var form = $('#transmitImg');
 	form.submit();
 }
@@ -62,9 +74,14 @@ function fileTransmit(fileObj){
 <br><br><br>
 <!-- input 태그 감추기 -->
 <div>
-<form id="transmitImg" class="sendImgForm" action="transmitImg.do" method="post" enctype="multipart/form-data">
+<form id="transmitImg" class="sendImgForm" action="upImg.do" method="post" enctype="multipart/form-data">
+	<input type="file" id="imgFile" name="imgFile" class="imgFile" onchange="upFileTransmit(this)" accept="image/*">
+</form>
+
+<form id="dnd" class="dragAndDropForm" action="transmitImg.do" method="post" enctype="multipart/form-data">
 	<input type="file" id="file" name="file" class="imgFile" onchange="fileTransmit(this)" accept="image/*">
 </form>
+
 </div>
 </body>
 </html>

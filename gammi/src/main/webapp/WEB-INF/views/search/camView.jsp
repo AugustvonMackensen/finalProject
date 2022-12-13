@@ -62,8 +62,10 @@ snap.onclick = function(){
 			"img" : img
 		},
 		url: "transmitCam.do",
-		success: function(data){
+		success: function(response){
 			console.log("success");
+			var keyword = response;
+			location.href = "result.do?keyword=" + keyword;
 		},
 		error: function(a, b, c){
 			alert("error");
