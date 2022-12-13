@@ -86,8 +86,9 @@
 		<div>
 			<c:forEach items="${ requestScope.replylist }" var="br">
 				<form action="replyup.do" method="POST">
-					<input type="hidden" name="b_no" value="${ br.b_no }"> <input
-						type="hidden" name="page" value="${ currentPage }">
+					<input type="hidden" name="b_no" value="${ br.b_no }">
+					<input type="hidden" name="page" value="${ currentPage }">
+					<input type="hidden" name="br_no" value="${ br.br_no }">
 					<hr style="border-bottom: 1px solid #b1b1b1;">
 					<div style="display: flex;">
 						<input
@@ -99,9 +100,16 @@
 						</p>
 					</div>
 					<div>
+					<c:if test="${ br.br_id eq sessionScope.loginMember.m_id }">
 						<textarea
 							style="width: 100%; height: 200px; padding: 10px; box-sizing: border-box; border: solid 2px #000000; border-radius: 5px; font-size: 16px; resize: both;"
 							rows="5" cols="100" name="br_content">${ br.br_content }</textarea>
+							</c:if>
+					<c:if test="${ br.br_id ne sessionScope.loginMember.m_id }">
+						<textarea
+							style="width: 100%; height: 200px; padding: 10px; box-sizing: border-box; border: solid 2px #000000; border-radius: 5px; font-size: 16px; resize: both;"
+							rows="5" cols="100" name="br_content" readonly>${ br.br_content }</textarea>
+							</c:if>
 						<br>
 						<c:if test="${ br.br_id eq sessionScope.loginMember.m_id }">
 							<div style="display: flex; flex-direction: row-reverse;">

@@ -64,6 +64,7 @@
 						<form action="greplyup.do" method="POST">
 							<input type="hidden" name="gal_no" value="${ br.gal_no }">
 							<input type="hidden" name="page" value="${ currentPage }">
+							<input type="hidden" name="reply_no" value="${ br.reply_no }">
 							<hr style="border-bottom: 1px solid #b1b1b1;">
 							<div style="display: flex;">
 								<input
@@ -76,9 +77,16 @@
 								</p>
 							</div>
 							<div>
+							<c:if test="${ br.reply_id eq sessionScope.loginMember.m_id }">
 								<textarea
 									style="width: 100%; height: 200px; padding: 10px; box-sizing: border-box; border: solid 2px #000000; border-radius: 5px; font-size: 16px; resize: both;"
-									rows="5" cols="100" name="reply_content">${ br.reply_content }</textarea>
+									rows="5" cols="100" name="reply_content" >${ br.reply_content }</textarea>
+							</c:if>
+							<c:if test="${ br.reply_id ne sessionScope.loginMember.m_id }">
+								<textarea
+									style="width: 100%; height: 200px; padding: 10px; box-sizing: border-box; border: solid 2px #000000; border-radius: 5px; font-size: 16px; resize: both;"
+									rows="5" cols="100" name="reply_content" readonly>${ br.reply_content }</textarea>
+									</c:if>
 								<br>
 								<c:if test="${ br.reply_id eq sessionScope.loginMember.m_id }">
 									<div style="display: flex; flex-direction: row-reverse;">

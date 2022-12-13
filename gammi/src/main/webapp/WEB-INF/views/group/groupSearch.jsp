@@ -97,7 +97,7 @@ function Change(){
 			<br>
 			<div style="display: flex; justify-content: center; margin: 0px 0px 0px 200px;">
 				<select id="test" onchange="Change()"
-					style="position: relative; border: 1px solid #ccc; left: -198px; width:5rem; height:3rem;  text-align:center">
+					style="position: relative; border: 1px solid #ccc; left: -198px; width:7.5rem; height:3rem;  text-align:center">
 					<option value="1">제목</option>
 					<option value="2">그룹장아이디</option>
 				</select>

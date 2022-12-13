@@ -46,7 +46,7 @@ public class GammiGroupGalController {
 			currentPage = Integer.parseInt(page);
 		}
 		int limit = 10;
-		int listCount = service.selectListCount();
+		int listCount = service.selectListCount(gno);
 		int maxPage = (int)((double)listCount / limit + 0.9);
 		int startPage = (currentPage / 10) * 10 + 1;
 		int endPage = startPage + 10 - 1;

@@ -50,8 +50,8 @@ public class GammiGroupGalDao {
 		return (ArrayList<GalleryImg>)list;
 	}
 
-	public int selectListCount() {
-		return session.selectOne("groupgalMapper.selectListCount");
+	public int selectListCount(int gno) {
+		return session.selectOne("groupgalMapper.selectListCount", gno);
 	}
 
 	public ArrayList<GammiGroupGal> groupAllList(Paging paging) {

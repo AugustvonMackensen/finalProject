@@ -16,6 +16,7 @@
 		<select id="selectGroupGalReply" parameterType="_int" resultMap="resultList">
 		select * from galleryreply
 		where gal_no = #{ gal_no }
+		order by REPLY_DATE desc
 	</select>
 	
 		<!-- 댓글작성 -->

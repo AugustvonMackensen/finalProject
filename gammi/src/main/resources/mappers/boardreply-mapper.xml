@@ -16,6 +16,7 @@
 		<select id="selectBoardReply" parameterType="_int" resultMap="resultBoardReply">
 		select * from boardreply
 		where b_no = #{ b_no }
+		order by br_date desc
 	</select>
 	
 	<!-- 댓글작성 -->
