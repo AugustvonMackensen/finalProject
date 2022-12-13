@@ -99,8 +99,8 @@ function Change(){
 
 				</div>
 
-				<div style="margin-right: 50px;">
-					<button class="rightbtn4"
+				<div style="display: flex;justify-content: center; margin-right: 50px; margin-bottom:70px;">
+					<button class="rightbtn4" 
 						onclick="javascript:location.href='creategroupgal.do?gno=${gno}';">글쓰기</button>
 				</div>
 			</c:if>
