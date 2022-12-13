@@ -1,16 +1,22 @@
 package com.andamiro.gammi.search.controller;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.codehaus.plexus.util.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -57,10 +63,37 @@ public class SearchController {
 		return "search/camView";
 	}
 	
-
+	@ResponseBody
 	@PostMapping("transmitImg.do")
-	public String transmitImg(@RequestParam("file") MultipartFile file
-			,HttpServletRequest request) {
+	public void transmitImg(@RequestParam("file") MultipartFile file
+			,HttpServletRequest request, HttpServletResponse response) throws IOException {
+		String imgFilePath = request.getSession().getServletContext().getRealPath("/resources/dropzone_foodimage");
+		String fileName = file.getOriginalFilename();
+		String renameFilename = "dnd_food." + fileName.substring(fileName.lastIndexOf(".") + 1);
+		String msg = "";
+		//파일 저장
+		File renameFile = new File(imgFilePath + "\\" + renameFilename);
+		try {
+			file.transferTo(renameFile);
+			logger.info(renameFile.getAbsolutePath());
+			msg = trainData(renameFile.getAbsolutePath()).replace("#", "");
+		} catch(Exception e) {
+			e.printStackTrace();
+			msg = "fail";
+		}
+		
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.append(msg);
+		out.flush();
+		out.close();
+		
+	}
+	
+	@PostMapping("upImg.do")
+	public String upImg(@RequestParam("imgFile") MultipartFile file
+			,HttpServletRequest request, Model model) {
+		String keyword = "";
 		String imgFilePath = request.getSession().getServletContext().getRealPath("/resources/uploaded_foodImage");
 		String fileName = file.getOriginalFilename();
 		String renameFilename = "up_food." + fileName.substring(fileName.lastIndexOf(".") + 1);
@@ -70,20 +103,77 @@ public class SearchController {
 		try {
 			file.transferTo(renameFile);
 			logger.info(renameFile.getAbsolutePath());
-			msg = "success";
+			keyword = trainData(renameFile.getAbsolutePath()).replace("#", "");
 		} catch(Exception e) {
 			e.printStackTrace();
-			msg = "fail";
+			return "common/error";
 		}
 		
-		return msg;
+		ArrayList<Recipe> list = service.selectTop5(keyword);
+		Foodinfo food_info = searchService.selectFoodByKeyword(keyword);
 		
+		model.addAttribute("keyword", keyword);
+		model.addAttribute("food_info", food_info);
+		model.addAttribute("recipe_list", list);
+		return "food/searchView";
+		
+	}
+	
+	//훈련 데이터 리턴(매핑 없음)
+	public String trainData(String filepath) throws Exception {
+		
+		String result = "";
+		String command = "C:\\Users\\Leo\\anaconda3\\envs\\yolov7\\python.exe";
+		String arg1 = "C:\\yolov7\\detect.py";
+		String arg2 = "C:\\yolov7\\best.pt";
+		String arg4 = "--save-txt";
+		String sum = arg1 + arg2 + filepath;
+		logger.info("인자확인 : " + sum);
+		
+		int idx = 0;
+		int exitVal = 0;
+		
+		ProcessBuilder builder;
+		BufferedReader br;
+		
+		
+		String[] cmd = new String[] {command, arg1, "--weights", arg2, 
+				"--source", filepath};
+		
+		builder = new ProcessBuilder(cmd); //파이썬3 에러
+		builder.redirectErrorStream(true);
+		Process process = builder.start();
+		
+		//자식 프로세스 종료까지 기다림
+		int exitval = process.waitFor();
+		
+		//서브 프로세스 출력 내용 받기 위해
+		br = new BufferedReader(new InputStreamReader(process.getInputStream(), "euc-kr"));
+		String line;
+		
+		while((line = br.readLine()) != null) {
+			System.out.println(">>> " + line); //표준출력에 씀
+			System.out.println(line.indexOf("#"));
+			if(line.indexOf("#") == 0) {
+				result = line;
+				System.out.println(result);
+			}
+		}
+		
+		if(exitval != 0) {
+			//비정상종료
+			System.out.println("비정상종료");
+		}
+		
+		
+		
+		return result;
 	}
 	
 
 	@ResponseBody
 	@PostMapping("transmitCam.do")
-	public String transmitCam(HttpServletRequest request) throws Exception{
+	public void transmitCam(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		String msg = "";
 		String img = request.getParameter("img");
 		FileOutputStream stream = null;
@@ -99,13 +189,17 @@ public class SearchController {
 			stream = new FileOutputStream(filePath + "\\cam_food.png");
 			stream.write(file);
 			stream.close();
-			msg = "success";
+			msg = trainData(filePath + "\\cam_food.png").replace("#", "");
 		}catch(Exception e) {
 			e.printStackTrace();;
 			stream.close();
 			msg = "fail";
 		}
 		
-		return msg;
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.append(msg);
+		out.flush();
+		out.close();
 	}
 }
