@@ -67,7 +67,7 @@ public class SearchController {
 	@PostMapping("transmitImg.do")
 	public void transmitImg(@RequestParam("file") MultipartFile file
 			,HttpServletRequest request, HttpServletResponse response) throws IOException {
-		String imgFilePath = request.getSession().getServletContext().getRealPath("/resources/dropzone_foodimage");
+		String imgFilePath = request.getSession().getServletContext().getRealPath("/resources/capture_foodImage");
 		String fileName = file.getOriginalFilename();
 		String renameFilename = "dnd_food." + fileName.substring(fileName.lastIndexOf(".") + 1);
 		String msg = "";
@@ -94,7 +94,7 @@ public class SearchController {
 	public String upImg(@RequestParam("imgFile") MultipartFile file
 			,HttpServletRequest request, Model model) {
 		String keyword = "";
-		String imgFilePath = request.getSession().getServletContext().getRealPath("/resources/uploaded_foodImage");
+		String imgFilePath = request.getSession().getServletContext().getRealPath("/resources/capture_foodImage");
 		String fileName = file.getOriginalFilename();
 		String renameFilename = "up_food." + fileName.substring(fileName.lastIndexOf(".") + 1);
 		String msg = "";
@@ -123,9 +123,9 @@ public class SearchController {
 	public String trainData(String filepath) throws Exception {
 		
 		String result = "";
-		String command = "C:\\Users\\Leo\\anaconda3\\envs\\yolov7\\python.exe";
-		String arg1 = "C:\\yolov7\\detect.py";
-		String arg2 = "C:\\yolov7\\best.pt";
+		String command = "C:\\Users\\8031k\\.conda\\envs\\yolov7\\python.exe";
+		String arg1 = "C:\\yolov7-main\\yolov7-main\\detect.py";
+		String arg2 = "C:\\yolov7-main\\yolov7-main\\best.pt";
 		String arg4 = "--save-txt";
 		String sum = arg1 + arg2 + filepath;
 		logger.info("인자확인 : " + sum);

@@ -7,6 +7,25 @@
 <meta charset="UTF-8">
 <title></title>
 <style>
+#loading {
+   width: 100%;
+   height: 100%;
+   top: 0;
+   left: 0;
+   position: fixed;
+   display: block;
+   opacity: 0.8;
+   background: white;
+   z-index: 99;
+   text-align: center;
+}
+
+#loading>img {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   z-index: 100;
+}
 #container {
 	margin: 0px auto;
 	width: 500px;
@@ -34,12 +53,31 @@
 	border: 1px solid #aaa;
 	font-family: 'Noto Sans KR', sans-serif;
 }
+   #loading > p {
+       position: absolute;
+       top: 56%;
+       left: 49%;
+       z-index: 101;
+    }
 </style>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+    $(document).ready(function() {
+    $('#loading').hide();
+    $('#snap').click(function(){
+        $('#loading').show();
+        return true;
+        });
+    });
+</script>
 </head>
 <br>
 <br>
 <div class="bgc">
+<div id="loading" style="margin-left: 0px;">
+        <img src="${ pageContext.servletContext.contextPath }/resources/img/img.gif">
+        <p>로딩중입니다..</p>
+    </div>
 	<div style="max-width: 1130px; margin: 0 auto;">
 		<br>
 		<h4 style="font-family: 'CookieRun';">
@@ -86,7 +124,6 @@ snap.onclick = function(){
 	var img = canvas.toDataURL("image/png"); //canvas를 png 파일로 저장
 	
 	img = img.replace("data:image/png;base64,","");
-	
 	$.ajax({
 		type: "post",
 		data: {
