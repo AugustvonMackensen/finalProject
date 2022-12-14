@@ -19,14 +19,16 @@ div.my_user{
 	
 }
 div.my_user b{
-	background-color: Yellow
+	background-color: Yellow;
+	font-family: 'Noto Sans KR';
 }
 
 div.other_user{
 	color: gray;
 }
 div.other_user b{
-	background-color: #FFFFFF
+	background-color: #FFFFFF;
+	font-family: 'Noto Sans KR';
 }
 div#msgArea{
 	width: 680px;
@@ -118,9 +120,9 @@ div#msgArea{
 <c:import url="/WEB-INF/views/common/somoimsidebar.jsp"/>
 <div style="margin-left:10%;padding:1px 16px;height:1000px;">
 	<div class="container" style="border-radius: 20px; box-shadow : 5px 5px 5px 5px gray; height: 580px; border: 1px solid; width: 700px;">
-		<div class = "writelistbtn" style="text-align: center;">
+		<br><div class = "writelistbtn" style="text-align: center;">
 		<br><br>
-		<p>채팅방 ${room.chatroom_name } 입니다. 방장 : ${ room.m_id }</p>
+		<p style="font-family: 'Noto Sans KR';">채팅방 ${room.chatroom_name } 입니다. 방장 : ${ room.m_id }</p>
 		<input type = "hidden" name = "chatroom_no" value=${ room.chatroom_no }>
 		<input type = "hidden" name = "group_no" value=${ room.group_no }>	
 			<c:if test="${room.m_id eq roommem.m_id }">

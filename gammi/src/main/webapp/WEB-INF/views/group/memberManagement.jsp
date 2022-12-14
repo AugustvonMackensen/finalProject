@@ -23,7 +23,11 @@ function mGrade(no, id, num){
 		contentType: "application/json; charset=utf-8",
 		dataType: "json",
 		success: function(result){
+			if('${group.group_owner}' != '${ sessionScope.loginMember.m_id }'){
+				location.href="group.do";
+			}else{
 			location.href="groupMemberManagement.do?gno="+result.group_no;
+			}
 		},
 		error: function(request, status, errorData){
 			console.log("error code : " + request.status
@@ -42,6 +46,11 @@ function mGrade(no, id, num){
 			<h4 style="font-family: 'CookieRun';">
 				신청 목록을 확인 후<br> 멤버들을 관리해보세요!
 			</h4>
+			<c:if test="${ group.group_owner ne sessionScope.loginMember.m_id  }">
+			<div class="writelistbtn2">
+			<button class="rightbtn3" onclick="mGrade(${gno}, '${ sessionScope.loginMember.m_id }', 3);">탈퇴하기</button>
+			</div>
+			</c:if>
 			<div>
 				<hr class="hline">
 				<br>

@@ -83,13 +83,23 @@ $(function(){
 	});
 });
 </script>
+<script type="text/javascript">
+   function validation() {
+      var fileValue = $("#multi-add").val();
+      if (fileValue == null || fileValue == "") {
+         alert("이미지 첨부는 필수 입니다.");
+         return false;
+      }
+      return true;
+   };
+</script>
 </head>
 <body>
 	<c:import url="/WEB-INF/views/common/menubar.jsp" />
 	<hr>
 	<h2 align="center">새로운 모임 생성</h2>
 
-	<form name="fileForm" action="groupgalinsert.do" method="post"
+	<form name="fileForm" action="groupgalinsert.do" method="post" onsubmit="return validation();"
 		enctype="multipart/form-data">
 		<input type="hidden" name="gno" value="${gno}">
 		<div class="board_wrap">
@@ -120,7 +130,7 @@ $(function(){
 							<!-- <dd><input multiple="multiple" type="file" name="file" />test1.jpg ,test2.jpg</dd> -->
 							<dd>
 							<input type="file" id="multi-add" class="btn-add" multiple
-								style="display: none;" name="file">
+								style="display: none;" name="file" >
 							<button type="button" class="btn-add" id="file_add">파일추가</button>
 							</dd>
 							
