@@ -18,7 +18,7 @@
 				<c:if test="${ joinrooms.size() <5 }">
 					<div style="text-align: center; width: 500px; margin-left : 50px;">
 						<form style="display: flex; justify-content: flex-end;" action="${ pageContext.servletContext.contextPath }/roomP.do"method="post"> 
-							<input   type="hidden" name="group_no" value="${ gno }"> <input  type="hidden" name="m_id" value="${ sessionScope.loginMember.m_id }"> <input placeholder="채팅창을 만들어보세요!"  style="height: 33px; padding: 0 10px; border: 1px solid #dddddd; width: 60%; margin-left: 10px"  type="text" name="chatroom_name">
+							<input   type="hidden" name="group_no" value="${ gno }"> <input  type="hidden" name="m_id" value="${ sessionScope.loginMember.m_id }"> <input placeholder="채팅창을 만들어보세요!"  style="height: 33px; padding: 0 10px; border: 1px solid #dddddd; width: 60%; margin-left: 10px"  type="text" name="chatroom_name" required>
 							&nbsp;<button style="color: #fff; height: 33px; vertical-align: middle; border: 1px solid #999999; background-color: #999999; cursor: pointer; width: 80px;">개설하기</button>
 						</form>
 					</div>
