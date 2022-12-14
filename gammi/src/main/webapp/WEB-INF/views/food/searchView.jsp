@@ -74,6 +74,15 @@
 		</div>
 	</div>
 	<br>
+	<!-- 정보 없을때 -->
+	<c:if test="${empty food_info }">
+		<div style="display: grid;  place-items: center;  min-height: 40vh;">
+				<h1 style=" font-family: 'Noto Sans KR', sans-serif;">
+					해당하는 음식 정보가 존재하지 않습니다.
+				</h1>
+		</div>
+	</c:if>
+	<c:if test="${!empty food_info }">
 	<div class="bgc">
 		<div style="display: flex;">
 			<div>
@@ -183,6 +192,7 @@
 			</div>
 		</section>
 	</div>
+	</c:if>
 	<!-- Categories Section End -->
 	<c:import url="/WEB-INF/views/common/footer.jsp" />
 </body>
