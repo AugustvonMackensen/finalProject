@@ -22,7 +22,7 @@ public class NewsController {
 	
 	//뉴스 페이지 단위로 목록보기 요청 처리용
 		@RequestMapping("newslist.do")
-		public ModelAndView recipeListMethod(
+		public ModelAndView newsListMethod(
 				@RequestParam(name="page", required=false) String page,
 				ModelAndView mv) {
 			int currentPage = 1;
@@ -61,7 +61,7 @@ public class NewsController {
 		
 		//뉴스 제목 검색
 		@RequestMapping(value="newsTitle.do", method=RequestMethod.GET)
-		public String recipeSearchTitleMethod(
+		public String newsTitleMethod(
 				@RequestParam("keyword") String keyword, Model model,
 				@RequestParam(name="page", required=false) String page) {
 			int currentPage = 1;
