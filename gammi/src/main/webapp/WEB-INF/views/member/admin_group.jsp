@@ -50,7 +50,7 @@
 					},
 					error: function(request, status, errorData){
 						console.log("error code : " + request.status
-								+ "\nMessage : " + request,responseText
+								+ "\nMessage : " + request.responseText
 								+ "\nError : " + errorData);
 					}
 				});

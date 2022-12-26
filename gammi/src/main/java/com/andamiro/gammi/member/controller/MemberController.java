@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.codehaus.jackson.JsonNode;
-import org.json.JSONObject;
+import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
@@ -118,7 +118,7 @@ public class MemberController {
 			
 			if(memberService.insertMember(member) > 0) {
 				//회원 가입 성공
-				return "common/main";
+				return "../../index";
 			}else {
 				//회원 가입 실패
 				model.addAttribute("message", "회원 가입 실패!");
@@ -371,6 +371,7 @@ public class MemberController {
 			Member member =new Member();
 			member.setM_id((String)json.get("m_id"));
 			member.setLogin_ok((String)json.get("login_ok"));
+			logger.info("내용 : " + member);
 			if(memberService.updateLoginok(member) > 0) {
 				return new ResponseEntity<String>("success", HttpStatus.OK);
 			} else {
