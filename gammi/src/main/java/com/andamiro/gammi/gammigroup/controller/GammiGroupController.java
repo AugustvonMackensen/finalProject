@@ -322,7 +322,7 @@ public class GammiGroupController {
 		
 		//모임 제한/가능 변경 처리용
 		@RequestMapping(value="groupok.do", method=RequestMethod.POST)
-		public ResponseEntity<String> changeLoginOKMethod(@RequestBody String param) throws ParseException {
+		public ResponseEntity<String> changeGroupOKMethod(@RequestBody String param) throws ParseException {
 			GammiGroup group = new GammiGroup();
 			JSONParser jparser = new JSONParser();
 			JSONObject json = (JSONObject)jparser.parse(param);

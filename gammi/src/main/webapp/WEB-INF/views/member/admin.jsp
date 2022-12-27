@@ -33,12 +33,14 @@
             function changeLogin(element){
             	//선택한 radio의 name 속성의 이름에서 userid 분리 추출함
             	var m_id = element.name.substring(9);
+            	console.log(m_id);
             	var json = new Object();
             	json.m_id = m_id;
-            	if(element.checked == true && element.value == "N")
+            	if(element.checked == true && element.value == "N"){
             		json.login_ok="N";
-            	else
+            	} else {
             		json.login_ok="Y";
+            	}
             	$.ajax({
 					url: "loginok.do",
 					type: "post",
@@ -49,7 +51,7 @@
 					},
 					error: function(request, status, errorData){
 						console.log("error code : " + request.status
-								+ "\nMessage : " + request,responseText
+								+ "\nMessage : " + request.responseText
 								+ "\nError : " + errorData);
 					}
 				});

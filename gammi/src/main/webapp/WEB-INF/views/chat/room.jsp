@@ -119,7 +119,7 @@ div#msgArea{
 <div style="background-color: #F7F8F9;">
 <c:import url="/WEB-INF/views/common/somoimsidebar.jsp"/>
 <div style="margin-left:10%;padding:1px 16px;height:1000px;">
-	<div class="container" style="border-radius: 20px; box-shadow : 5px 5px 5px 5px gray; height: 580px; border: 1px solid; width: 700px;">
+	<div class="container" style="border-radius: 20px; box-shadow : 5px 5px 5px 5px gray; height: 600px; border: 1px solid; width: 700px;">
 		<br><div class = "writelistbtn" style="text-align: center;">
 		<br><br>
 		<p style="font-family: 'Noto Sans KR';">채팅방 ${room.chatroom_name } 입니다. 방장 : ${ room.m_id }</p>
@@ -129,7 +129,7 @@ div#msgArea{
 			<form action="roomDelete.do" method="post">
 				<input type="hidden" name = "chatroom_no" value=${ room.chatroom_no }>
 				<input type ="hidden" name = "group_no" value=${ room.group_no }>
-				<button class="rightbtn3" style="width: 7rem;">채팅방 폭파합니다!</button>
+				<button class="rightbtn3" style="width: 7rem; margin-top: -30px;">채팅방 폭파합니다!</button>
 			</form>
 			</c:if>
 		</div>

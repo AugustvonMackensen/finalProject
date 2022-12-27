@@ -44,12 +44,13 @@ public class RoomController {
     	selRoom.setGroup_no(gno);
     	selRoom.setM_id(user.getM_id());
         ModelAndView mv = new ModelAndView("chat/rooms");
-        mv.addObject("rooms", service.allList(gno));		//전체 채팅방목록
+        mv.addObject("rooms", service.allList(gno));									//전체 채팅방목록
         mv.addObject("joinrooms", service.joinRoomsList(selRoom));			    //로그인유저의 가입된 채팅방 목록
         mv.addObject("gno",gno);
         return mv;
     }
     
+    //사이드바메뉴에 출력할 채팅방 정보
     @RequestMapping(value = "roomsside.do", method = RequestMethod.POST)
     @ResponseBody
     public String rooms2(@RequestParam("gno") int gno, @RequestParam("m_id") String m_id , HttpServletResponse response) throws Exception{
